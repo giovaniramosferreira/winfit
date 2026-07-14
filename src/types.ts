@@ -184,3 +184,13 @@ export interface OnboardingDraft {
   limitations?: Limitation[]
   biometrics?: Biometrics
 }
+
+// Conta Google conectada neste aparelho (autenticação client-side, sem backend).
+// `sub` é o ID estável do usuário no Google — será a chave do sync na fase 2.
+export interface GoogleUser {
+  sub: string
+  email: string
+  name: string
+  picture?: string
+  signedInAt: number
+}

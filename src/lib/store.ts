@@ -1,10 +1,11 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import type {
-  OnboardingDraft, Plan, PRRecord, Session, SessionExercise, SetLog, TrainingProfile,
+  GoogleUser, OnboardingDraft, Plan, PRRecord, Session, SessionExercise, SetLog, TrainingProfile,
 } from '../types'
 import { generatePlan } from './generator'
 import { checkPR } from './progression'
+import { googleSignOut } from './auth'
 import { byId } from '../data/exercises'
 
 // Persistência write-through: o middleware `persist` grava em localStorage a cada `set`,
@@ -21,6 +22,10 @@ interface WinfitState {
   sessions: Session[] // encerradas (completed | partial)
   activeSession: Session | null
   prs: PRRecord[]
+  googleUser: GoogleUser | null
+
+  setGoogleUser: (u: GoogleUser | null) => void
+  signOut: () => void
 
   setDraft: (d: OnboardingDraft | null) => void
   completeOnboarding: (p: TrainingProfile) => void
@@ -83,6 +88,14 @@ export const useStore = create<WinfitState>()(
       sessions: [],
       activeSession: null,
       prs: [],
+      googleUser: null,
+
+      setGoogleUser: (u) => set({ googleUser: u }),
+
+      signOut: () => {
+        googleSignOut()
+        set({ googleUser: null })
+      },
 
       setDraft: (d) => set({ draft: d }),
 
@@ -275,11 +288,13 @@ export const useStore = create<WinfitState>()(
         )
       },
 
-      resetAll: () =>
+      resetAll: () => {
+        googleSignOut()
         set({
           profile: null, draft: null, plan: null, archivedPlans: [],
-          sessions: [], activeSession: null, prs: [],
-        }),
+          sessions: [], activeSession: null, prs: [], googleUser: null,
+        })
+      },
     }),
     {
       name: 'winfit-v1',

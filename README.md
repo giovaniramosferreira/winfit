@@ -14,6 +14,7 @@ Documento-mestre do produto: [PRODUCT_SPEC.md](./PRODUCT_SPEC.md).
 - **Progresso**: semana, volume, PRs, evolução por exercício com gráfico, histórico.
 - **Biblioteca** com ~70 exercícios PT-BR (instruções, erros comuns, equivalências).
 - **PWA offline-first, 100% local**: dados em `localStorage`, sem backend, custo de infra zero. Export de dados em JSON.
+- **Login com Google (opcional)**: Sign in with Google 100% client-side (Google Identity Services) — identifica o perfil no aparelho e prepara o sync da fase 2. Sem client ID configurado, o botão simplesmente não aparece.
 
 ## Rodar
 
@@ -23,6 +24,14 @@ npm run dev      # desenvolvimento
 npm run build    # produção → dist/
 npx tsx scripts/test-generator.ts   # suíte combinatória do gerador (56k combinações)
 ```
+
+### Login com Google (opcional)
+
+1. No [Google Cloud Console](https://console.cloud.google.com/apis/credentials), crie um **OAuth Client ID** do tipo *Web application*.
+2. Em *Authorized JavaScript origins*, adicione `http://localhost:5173` (dev) e o domínio de produção.
+3. Copie `.env.example` para `.env.local` e preencha `VITE_GOOGLE_CLIENT_ID`.
+
+Sem a variável, o app roda normalmente sem o botão de login — a autenticação é opcional e client-side (nenhum dado sai do aparelho).
 
 ## Deploy grátis (MVP)
 

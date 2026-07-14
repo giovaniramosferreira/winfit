@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom'
+import { useStore } from '../lib/store'
+import { googleAuthEnabled } from '../lib/auth'
+import GoogleSignIn from '../components/GoogleSignIn'
 
 export default function Intro() {
   const nav = useNavigate()
+  const googleUser = useStore((s) => s.googleUser)
   return (
     <div className="page-full fade-in" style={{ justifyContent: 'space-between' }}>
       <div style={{ paddingTop: 48 }}>
@@ -35,6 +39,16 @@ export default function Intro() {
         <button className="btn btn-primary" onClick={() => nav('/onboarding')}>
           Montar meu treino
         </button>
+        {googleAuthEnabled && !googleUser && (
+          <div style={{ marginTop: 14 }}>
+            <GoogleSignIn />
+          </div>
+        )}
+        {googleUser && (
+          <p className="tiny faint center" style={{ marginTop: 12 }}>
+            Conectado como {googleUser.email}
+          </p>
+        )}
         <p className="tiny faint center" style={{ marginTop: 12 }}>
           Leva ~2 minutos. Seus dados ficam no seu aparelho.
         </p>

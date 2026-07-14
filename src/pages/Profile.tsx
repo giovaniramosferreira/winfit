@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId, EQUIP_LABEL } from '../data/exercises'
+import { googleAuthEnabled } from '../lib/auth'
+import GoogleSignIn from '../components/GoogleSignIn'
 import type { Equipment, Goal, TrainingProfile } from '../types'
 
 const GOAL_LABEL: Record<Goal, string> = {
@@ -20,6 +22,8 @@ export default function Profile() {
   const exportData = useStore((s) => s.exportData)
   const resetAll = useStore((s) => s.resetAll)
   const setDraft = useStore((s) => s.setDraft)
+  const googleUser = useStore((s) => s.googleUser)
+  const signOut = useStore((s) => s.signOut)
   const [adjust, setAdjust] = useState(false)
   const [freq, setFreq] = useState(profile.frequency)
   const [time, setTime] = useState(profile.sessionTimeMin)
@@ -50,6 +54,47 @@ export default function Profile() {
   return (
     <div className="page fade-in">
       <h1>Perfil</h1>
+
+      {googleAuthEnabled && (
+        <div className="card" style={{ marginTop: 16 }}>
+          <h3>Conta</h3>
+          {googleUser ? (
+            <>
+              <div className="row" style={{ marginTop: 10, alignItems: 'center' }}>
+                {googleUser.picture && (
+                  <img
+                    src={googleUser.picture}
+                    alt=""
+                    referrerPolicy="no-referrer"
+                    style={{ width: 44, height: 44, borderRadius: '50%' }}
+                  />
+                )}
+                <div>
+                  <div className="small" style={{ fontWeight: 600 }}>{googleUser.name}</div>
+                  <div className="tiny muted">{googleUser.email}</div>
+                </div>
+              </div>
+              <p className="tiny faint" style={{ marginTop: 10 }}>
+                Conta conectada neste aparelho. A sincronização na nuvem chega em breve —
+                por enquanto seus dados continuam salvos aqui.
+              </p>
+              <button className="btn btn-ghost btn-sm" style={{ marginTop: 10 }} onClick={signOut}>
+                Sair da conta Google
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="small muted" style={{ marginTop: 6 }}>
+                Conecte sua conta Google para identificar seu perfil e preparar a
+                sincronização entre aparelhos.
+              </p>
+              <div style={{ marginTop: 12 }}>
+                <GoogleSignIn />
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
       <div className="card" style={{ marginTop: 16 }}>
         <div className="between">
