@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { EXERCISES, MUSCLE_LABEL } from '../data/exercises'
+import ExerciseAnim from '../components/ExerciseAnim'
 import type { MuscleGroup } from '../types'
 
 const GROUPS = Object.keys(MUSCLE_LABEL) as MuscleGroup[]
@@ -53,6 +54,7 @@ export default function Library() {
         )}
         {results.map((e) => (
           <Link key={e.id} to={`/exercise/${e.id}`} className="list-item">
+            <ExerciseAnim exerciseId={e.id} ratio={1.3} className="lib-thumb" />
             <div className="grow">
               <h3 style={{ fontSize: 15 }}>{e.name}</h3>
               <span className="tiny faint">{MUSCLE_LABEL[e.primary]}{e.loadType === 'bodyweight' ? ' · peso corporal' : ''}</span>

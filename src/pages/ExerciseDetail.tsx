@@ -5,6 +5,7 @@ import { byId, EQUIP_LABEL, MUSCLE_LABEL } from '../data/exercises'
 import { fmtDate } from '../lib/helpers'
 import { fmtKg } from '../lib/progression'
 import Chart from '../components/Chart'
+import ExerciseAnim from '../components/ExerciseAnim'
 
 export default function ExerciseDetail() {
   const { id } = useParams()
@@ -48,7 +49,11 @@ export default function ExerciseDetail() {
         Equipamento: {exercise.equipment.map((e) => EQUIP_LABEL[e]).join(' + ')}
       </p>
 
-      <div className="card" style={{ marginTop: 14 }}>
+      <div className="anim-stage anim-stage-lg" style={{ marginTop: 14 }}>
+        <ExerciseAnim exerciseId={exercise.id} ratio={1.5} />
+      </div>
+
+      <div className="card" style={{ marginTop: 12 }}>
         <h3>Como executar</h3>
         <ol className="small muted" style={{ marginTop: 8, paddingLeft: 20, display: 'grid', gap: 6 }}>
           {exercise.instructions.map((i) => <li key={i}>{i}</li>)}

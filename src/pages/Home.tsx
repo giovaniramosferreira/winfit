@@ -104,6 +104,15 @@ export default function Home() {
         </div>
       </div>
 
+      <button className="card program-teaser" onClick={() => nav('/programs')}>
+        <div className="grow">
+          <span className="eyebrow">Programas prontos</span>
+          <h3 style={{ marginTop: 4 }}>Massa Total — corpo inteiro 3×</h3>
+          <span className="tiny faint">Plano fechado de hipertrofia, com execução ilustrada</span>
+        </div>
+        <span className="chev">›</span>
+      </button>
+
       {lastPR && (
         <div className="card" style={{ marginTop: 12 }}>
           <div className="row">

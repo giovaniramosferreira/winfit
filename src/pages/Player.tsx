@@ -5,6 +5,7 @@ import { byId } from '../data/exercises'
 import { lastPerformance, suggestFor, fmtKg } from '../lib/progression'
 import { equivalentsFor } from '../lib/generator'
 import { fmtClock, beep, vibrate } from '../lib/helpers'
+import ExerciseAnim from '../components/ExerciseAnim'
 import type { Exercise, PlanExercise } from '../types'
 
 const TIMED_IDS = new Set(['prancha', 'prancha-lateral'])
@@ -128,6 +129,11 @@ export default function Player() {
           )}
         </p>
         <p className="tiny faint" style={{ marginTop: 4 }}>{suggestion.note}</p>
+
+        <button className="anim-stage" onClick={() => nav(`/exercise/${exercise.id}`)}>
+          <ExerciseAnim exerciseId={exercise.id} ratio={1.75} />
+          <span className="anim-stage-hint">ver execução ›</span>
+        </button>
 
         {prFlash && <div className="pr-flash" style={{ marginTop: 12 }}>{prFlash}</div>}
 

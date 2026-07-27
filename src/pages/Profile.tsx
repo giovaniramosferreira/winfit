@@ -59,9 +59,12 @@ export default function Profile() {
         <p className="small muted num" style={{ marginTop: 6 }}>
           {GOAL_LABEL[profile.goal]} · {profile.frequency}x/semana · ~{profile.sessionTimeMin} min
         </p>
-        <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={() => setShowPlan(!showPlan)}>
-          {showPlan ? 'Ocultar treinos' : 'Ver treinos da semana'}
-        </button>
+        <div className="row" style={{ marginTop: 12 }}>
+          <button className="btn btn-ghost btn-sm grow" onClick={() => setShowPlan(!showPlan)}>
+            {showPlan ? 'Ocultar treinos' : 'Ver treinos da semana'}
+          </button>
+          <button className="btn btn-ghost btn-sm grow" onClick={() => nav('/programs')}>Programas prontos</button>
+        </div>
         {showPlan && (
           <div style={{ marginTop: 10 }}>
             {plan.days.map((d) => (

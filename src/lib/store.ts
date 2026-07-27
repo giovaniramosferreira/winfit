@@ -4,6 +4,8 @@ import type {
   OnboardingDraft, Plan, PRRecord, Session, SessionExercise, SetLog, TrainingProfile,
 } from '../types'
 import { generatePlan } from './generator'
+import { buildPlanFromProgram } from './program'
+import { programById } from '../data/programs'
 import { checkPR } from './progression'
 import { byId } from '../data/exercises'
 
@@ -26,6 +28,7 @@ interface WinfitState {
   completeOnboarding: (p: TrainingProfile) => void
   activatePlan: () => void
   regenerate: (p: TrainingProfile) => void
+  activateProgram: (programId: string) => void
 
   startSession: (dayId: string) => void
   resumeOrExpireSession: () => 'none' | 'resumable' | 'expired'
@@ -101,6 +104,19 @@ export const useStore = create<WinfitState>()(
         const next = generatePlan(p, seed + ':' + Date.now())
         set({
           profile: p,
+          plan: next,
+          archivedPlans: plan ? [{ ...plan, status: 'archived' as const }, ...archivedPlans].slice(0, 10) : archivedPlans,
+        })
+      },
+
+      // Trocar de programa arquiva o plano atual: o histórico de sessões referencia
+      // planId, então apagar o plano antigo cegaria o Progresso.
+      activateProgram: (programId) => {
+        const { profile, plan, archivedPlans } = get()
+        const program = programById.get(programId)
+        if (!profile || !program) return
+        const { plan: next } = buildPlanFromProgram(program, profile)
+        set({
           plan: next,
           archivedPlans: plan ? [{ ...plan, status: 'archived' as const }, ...archivedPlans].slice(0, 10) : archivedPlans,
         })

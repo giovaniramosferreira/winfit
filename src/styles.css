@@ -143,6 +143,7 @@ label.field { display: block; font-size: 13px; color: var(--text-dim); margin: 1
 }
 .pill.gold { background: var(--gold-soft); color: var(--gold); }
 .pill.accent { background: var(--accent-soft); color: var(--accent-strong); }
+.pill.green-pill { background: rgba(62, 207, 142, 0.14); color: var(--green); }
 
 /* ---------- player ---------- */
 .player { max-width: 480px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; background: var(--bg); }
@@ -241,6 +242,50 @@ label.field { display: block; font-size: 13px; color: var(--text-dim); margin: 1
 .muscle-tag {
   display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px;
   border-radius: 6px; background: var(--bg-elev2); color: var(--text-dim); margin: 2px 4px 2px 0;
+}
+
+/* ---------- ilustração de execução ---------- */
+.anim-wrap { width: 100%; line-height: 0; }
+.anim-wrap canvas { display: block; }
+
+.anim-stage {
+  position: relative; display: block; width: 100%; margin-top: 14px; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 0%, var(--bg-elev2), var(--bg-elev) 70%);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.anim-stage-lg { border-radius: 18px; }
+.anim-stage-hint {
+  position: absolute; right: 10px; bottom: 8px;
+  font-size: 11px; font-weight: 600; color: var(--text-faint);
+}
+
+.lib-thumb {
+  width: 72px; flex: 0 0 72px; border-radius: 8px; overflow: hidden;
+  background: var(--bg-elev2);
+}
+
+/* ---------- programas ---------- */
+.program-card {
+  display: block; width: 100%; text-align: left; overflow: hidden;
+  background: var(--bg-elev); border: 1px solid var(--line); border-radius: 18px;
+}
+.program-card-art {
+  background: radial-gradient(120% 120% at 70% 0%, rgba(110, 86, 248, 0.18), var(--bg-elev2) 65%);
+  border-bottom: 1px solid var(--line);
+}
+.program-card-body { padding: 14px 16px 16px; }
+
+.program-teaser {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; margin-top: 12px;
+}
+
+.program-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.program-row:last-child { border-bottom: none; }
+.program-thumb {
+  width: 68px; flex: 0 0 68px; border-radius: 8px; overflow: hidden; background: var(--bg-elev2);
 }
 
 /* ---------- gráfico ---------- */

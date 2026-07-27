@@ -12,7 +12,9 @@ Documento-mestre do produto: [PRODUCT_SPEC.md](./PRODUCT_SPEC.md).
 - **Dupla progressão automática**: fechou o teto de reps → app sugere +carga na próxima sessão.
 - **Recordes pessoais** com detecção no log (sem PRs triviais na 1ª sessão).
 - **Progresso**: semana, volume, PRs, evolução por exercício com gráfico, histórico.
-- **Biblioteca** com ~70 exercícios PT-BR (instruções, erros comuns, equivalências).
+- **Programas prontos** (`src/data/programs.ts`): planos curados exercício por exercício, com racional próprio. O destaque é **Massa Total** — corpo inteiro 3×/semana para hipertrofia, cada grupo muscular estimulado três vezes por semana. Ativar um programa arquiva o plano anterior e preserva todo o histórico.
+- **Ilustração animada de execução** em todo exercício (`src/lib/anim/`): figura desenhada em Canvas com cinemática direta, mais o aparelho correspondente (barra, halteres, banco, máquina, polia, elástico, barra fixa). 62 movimentos, sem vídeo nem asset externo — tudo procedural, funciona offline e pesa alguns KB. Anima só o que está visível na tela e respeita `prefers-reduced-motion`.
+- **Biblioteca** com ~80 exercícios PT-BR (instruções, erros comuns, equivalências).
 - **PWA offline-first, 100% local**: dados em `localStorage`, sem backend, custo de infra zero. Export de dados em JSON.
 
 ## Rodar
@@ -21,7 +23,7 @@ Documento-mestre do produto: [PRODUCT_SPEC.md](./PRODUCT_SPEC.md).
 npm install
 npm run dev      # desenvolvimento
 npm run build    # produção → dist/
-npx tsx scripts/test-generator.ts   # suíte combinatória do gerador (56k combinações)
+npm test         # gerador (56k combinações) + programas curados (40 perfis)
 ```
 
 ## Deploy grátis (MVP)

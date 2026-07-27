@@ -10,6 +10,7 @@ import Progress from './pages/Progress'
 import ExerciseDetail from './pages/ExerciseDetail'
 import Library from './pages/Library'
 import Profile from './pages/Profile'
+import Programs from './pages/Programs'
 import TabBar from './components/TabBar'
 import MiniBar from './components/MiniBar'
 
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/exercise/:id" element={<ExerciseDetail />} />
         <Route path="/library" element={onboarded ? <Library /> : <Navigate to="/" replace />} />
         <Route path="/profile" element={onboarded ? <Profile /> : <Navigate to="/" replace />} />
+        <Route path="/programs" element={onboarded ? <Programs /> : <Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       {onboarded && !inPlayer && !inFlow && !loc.pathname.startsWith('/summary') && (
