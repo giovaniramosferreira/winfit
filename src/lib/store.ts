@@ -14,6 +14,23 @@ import { byId } from '../data/exercises'
 
 const RESUME_WINDOW_MS = 8 * 60 * 60 * 1000 // 8h (seção 21)
 
+// Perfil padrão do primeiro boot: academia completa, hipertrofia, 3x/semana.
+// O onboarding continua existindo em /onboarding para quem quiser recalibrar —
+// ele só deixou de ser pedágio para chegar ao treino.
+const DEFAULT_PROGRAM = 'massa-total-fb3'
+const DEFAULT_PROFILE: TrainingProfile = {
+  goal: 'hypertrophy',
+  experience: 'advanced',
+  currentState: 'active',
+  location: 'gym_full',
+  equipment: [],
+  frequency: 3,
+  sessionTimeMin: 75,
+  limitations: [],
+  biometrics: {},
+  version: 1,
+}
+
 interface WinfitState {
   seed: string
   profile: TrainingProfile | null
@@ -29,6 +46,7 @@ interface WinfitState {
   activatePlan: () => void
   regenerate: (p: TrainingProfile) => void
   activateProgram: (programId: string) => void
+  quickStart: () => void
 
   startSession: (dayId: string) => void
   resumeOrExpireSession: () => 'none' | 'resumable' | 'expired'
@@ -107,6 +125,16 @@ export const useStore = create<WinfitState>()(
           plan: next,
           archivedPlans: plan ? [{ ...plan, status: 'archived' as const }, ...archivedPlans].slice(0, 10) : archivedPlans,
         })
+      },
+
+      // Primeiro boot já entrega o treino pronto. Só age quando não há plano —
+      // rodar de novo por engano nunca sobrescreve o que o usuário já escolheu.
+      quickStart: () => {
+        if (get().plan) return
+        const program = programById.get(DEFAULT_PROGRAM)
+        if (!program) return
+        const { plan } = buildPlanFromProgram(program, DEFAULT_PROFILE)
+        set({ profile: DEFAULT_PROFILE, plan, draft: null })
       },
 
       // Trocar de programa arquiva o plano atual: o histórico de sessões referencia

@@ -106,9 +106,9 @@ export default function Home() {
 
       <button className="card program-teaser" onClick={() => nav('/programs')}>
         <div className="grow">
-          <span className="eyebrow">Programas prontos</span>
-          <h3 style={{ marginTop: 4 }}>Massa Total — corpo inteiro 3×</h3>
-          <span className="tiny faint">Plano fechado de hipertrofia, com execução ilustrada</span>
+          <span className="eyebrow">Programa atual</span>
+          <h3 style={{ marginTop: 4 }}>{plan.splitLabel}</h3>
+          <span className="tiny faint">Ver os treinos completos ou trocar de programa</span>
         </div>
         <span className="chev">›</span>
       </button>
