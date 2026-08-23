@@ -4,7 +4,7 @@ import type { WatchCommand, WatchStatusPayload } from '../types'
 
 // URL padrão do relay serverless (pode ser sobrescrita via localStorage ou .env)
 export const DEFAULT_RELAY_URL =
-  import.meta.env.VITE_WATCH_RELAY_URL || 'https://winfit-relay.giovaniramosferreira.workers.dev'
+  import.meta.env.VITE_WATCH_RELAY_URL || 'https://winfit-watch-relay.giovaniramosferreira.workers.dev'
 
 export const OFFICIAL_ICLOUD_SHORTCUT_URL = 'https://www.icloud.com/shortcuts/aa3492f388cf479fb3c9f48d5baba1f8'
 
