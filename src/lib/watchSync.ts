@@ -63,6 +63,30 @@ export function useWatchSync() {
   const eventSourceRef = useRef<EventSource | null>(null)
   const retryTimeoutRef = useRef<number | null>(null)
   const isMountedRef = useRef<boolean>(true)
+  const processedIdsRef = useRef<Set<string>>(new Set())
+  const lastSeenTsRef = useRef<number>(Date.now() - 5000)
+
+  // Executa o comando evitando duplicidades entre SSE e Polling
+  const processIncomingCommand = (cmd: WatchCommand) => {
+    if (cmd.id && processedIdsRef.current.has(cmd.id)) return
+    if (cmd.id) {
+      processedIdsRef.current.add(cmd.id)
+      // Mantém tamanho controlado
+      if (processedIdsRef.current.size > 100) {
+        const arr = Array.from(processedIdsRef.current).slice(-50)
+        processedIdsRef.current = new Set(arr)
+      }
+    }
+
+    try {
+      const result = executeWatchCommand(cmd)
+      setLastCommand({ action: cmd.action, ts: Date.now(), message: result.message })
+      // Atualiza status no relay imediatamente
+      pushWatchStatus(watchToken, getWatchStatusPayload())
+    } catch (err) {
+      console.error('[WatchSync] Erro ao processar comando:', err)
+    }
+  }
 
   // Publica o status sempre que houver mudança na sessão ativa
   useEffect(() => {
@@ -71,7 +95,38 @@ export function useWatchSync() {
     pushWatchStatus(watchToken, payload)
   }, [activeSession, watchToken, getWatchStatusPayload])
 
-  // Gerencia o ciclo de vida do EventSource SSE
+  // Polling em background a cada 1s como garantia contra separação de instâncias serverless
+  useEffect(() => {
+    if (!activeSession || !watchToken) return
+    let active = true
+    const relay = getRelayUrl().replace(/\/+$/, '')
+
+    const interval = setInterval(async () => {
+      if (!active) return
+      try {
+        const res = await fetch(`${relay}/poll/${encodeURIComponent(watchToken)}?since=${lastSeenTsRef.current}`)
+        if (!res.ok) return
+        const data = (await res.json()) as { ok: boolean; commands?: WatchCommand[] }
+        if (data.commands && Array.isArray(data.commands)) {
+          for (const cmd of data.commands) {
+            if (cmd.ts && cmd.ts > lastSeenTsRef.current) {
+              lastSeenTsRef.current = cmd.ts
+            }
+            processIncomingCommand(cmd)
+          }
+        }
+      } catch {
+        // silencioso
+      }
+    }, 1000)
+
+    return () => {
+      active = false
+      clearInterval(interval)
+    }
+  }, [activeSession?.id, watchToken])
+
+  // Gerencia o ciclo de vida do EventSource SSE para tempo de resposta < 50ms
   useEffect(() => {
     isMountedRef.current = true
 
@@ -103,7 +158,6 @@ export function useWatchSync() {
         if (!isMountedRef.current) return
         setSyncState('connected')
         retryDelay = 2000
-        // Envia o status atual logo após conectar
         pushWatchStatus(watchToken, getWatchStatusPayload())
       })
 
@@ -111,12 +165,9 @@ export function useWatchSync() {
         if (!isMountedRef.current) return
         try {
           const cmd = JSON.parse(event.data) as WatchCommand
-          const result = executeWatchCommand(cmd)
-          setLastCommand({ action: cmd.action, ts: Date.now(), message: result.message })
-          // Atualiza status no relay imediatamente
-          pushWatchStatus(watchToken, getWatchStatusPayload())
+          processIncomingCommand(cmd)
         } catch (err) {
-          console.error('[WatchSync] Erro ao processar comando:', err)
+          console.error('[WatchSync] Erro no parse SSE:', err)
         }
       })
 
@@ -146,7 +197,7 @@ export function useWatchSync() {
         eventSourceRef.current = null
       }
     }
-  }, [activeSession?.id, watchToken, executeWatchCommand, getWatchStatusPayload])
+  }, [activeSession?.id, watchToken])
 
   return {
     syncState,

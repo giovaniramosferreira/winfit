@@ -1,12 +1,13 @@
 /**
  * WinFit Apple Watch Sync Relay — Cloudflare Worker
  *
- * Relay serverless ultraleve (R$ 0 / free tier) que conecta os Atalhos do Apple Watch
- * ao PWA WinFit no iPhone via Server-Sent Events (SSE).
+ * Relay serverless ultraleve que conecta os Atalhos do Apple Watch
+ * ao PWA WinFit no iPhone via Server-Sent Events (SSE) + Fallback Polling.
  *
  * Rotas:
  * - GET  /events/:token           -> Conexão SSE aberta para o PWA WinFit
- * - POST /cmd/:token              -> Recebe comando do Apple Watch e transmite via SSE
+ * - GET  /poll/:token             -> Polling de comandos pendentes
+ * - POST /cmd/:token              -> Recebe comando do Apple Watch e transmite via SSE/Fila
  * - GET  /cmd/:token?action=...   -> Atalho rápido via GET do Apple Watch
  * - POST /status/:token           -> PWA publica o estado do treino em andamento
  * - GET  /status/:token           -> Apple Watch / Siri lê o estado atual
@@ -16,6 +17,14 @@ interface ClientStream {
   id: string
   writer: WritableStreamDefaultWriter<Uint8Array>
   encoder: TextEncoder
+}
+
+interface QueuedCommand {
+  id: string
+  action: string
+  weight?: number
+  reps?: number
+  ts: number
 }
 
 interface WatchStatusCache {
@@ -42,6 +51,7 @@ interface WatchStatusCache {
 // In-memory hub por instância do Worker
 const tokenClients = new Map<string, Set<ClientStream>>()
 const tokenStatus = new Map<string, WatchStatusCache>()
+const tokenQueues = new Map<string, QueuedCommand[]>()
 
 const CORS_HEADERS: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
@@ -69,7 +79,7 @@ function textResponse(text: string, status = 200): Response {
   })
 }
 
-function broadcastEvent(token: string, eventName: string, data: unknown): number {
+async function broadcastEvent(token: string, eventName: string, data: unknown): Promise<number> {
   const clients = tokenClients.get(token.toUpperCase())
   if (!clients || clients.size === 0) return 0
 
@@ -78,21 +88,23 @@ function broadcastEvent(token: string, eventName: string, data: unknown): number
   const bytes = encoder.encode(payload)
 
   let sent = 0
+  const promises: Promise<void>[] = []
+
   for (const client of Array.from(clients)) {
-    try {
-      client.writer.write(bytes).catch(() => {
-        clients.delete(client)
-      })
+    const p = client.writer.write(bytes).then(() => {
       sent++
-    } catch {
+    }).catch(() => {
       clients.delete(client)
-    }
+    })
+    promises.push(p)
   }
+
+  await Promise.allSettled(promises)
   return sent
 }
 
 export default {
-  async fetch(request: Request): Promise<Response> {
+  async fetch(request: Request, env: unknown, ctx: { waitUntil: (p: Promise<unknown>) => void }): Promise<Response> {
     const url = new URL(request.url)
     const method = request.method
 
@@ -107,13 +119,14 @@ export default {
       return jsonResponse({
         ok: true,
         service: 'winfit-watch-relay',
-        version: '1.0.0',
+        version: '1.1.0',
         activeTokens: tokenClients.size,
         time: Date.now(),
       })
     }
 
     const matchEvents = path.match(/^\/events\/([^/]+)$/)
+    const matchPoll = path.match(/^\/poll\/([^/]+)$/)
     const matchCmd = path.match(/^\/cmd\/([^/]+)$/)
     const matchStatus = path.match(/^\/status\/([^/]+)$/)
 
@@ -144,7 +157,7 @@ export default {
       })}\n\n`
       writer.write(encoder.encode(welcome))
 
-      // Keepalive ping a cada 25s
+      // Keepalive ping a cada 20s
       const interval = setInterval(() => {
         try {
           writer.write(encoder.encode(': ping\n\n')).catch(() => {
@@ -155,7 +168,7 @@ export default {
           clearInterval(interval)
           tokenClients.get(token)?.delete(client)
         }
-      }, 25000)
+      }, 20000)
 
       request.signal.addEventListener('abort', () => {
         clearInterval(interval)
@@ -179,7 +192,21 @@ export default {
       })
     }
 
-    // 2. Command Endpoint: POST ou GET /cmd/:token
+    // 2. Poll Endpoint: GET /poll/:token?since=123456789
+    if (method === 'GET' && matchPoll) {
+      const token = decodeURIComponent(matchPoll[1]).trim().toUpperCase()
+      const since = Number(url.searchParams.get('since') || 0)
+      const queue = tokenQueues.get(token) || []
+      const pending = queue.filter((c) => c.ts > since)
+
+      return jsonResponse({
+        ok: true,
+        commands: pending,
+        serverTime: Date.now(),
+      })
+    }
+
+    // 3. Command Endpoint: POST ou GET /cmd/:token
     if ((method === 'POST' || method === 'GET') && matchCmd) {
       const token = decodeURIComponent(matchCmd[1]).trim().toUpperCase()
       let action = 'quick_log'
@@ -193,7 +220,6 @@ export default {
           if (body.weight !== undefined && body.weight !== null) weight = Number(body.weight)
           if (body.reps !== undefined && body.reps !== null) reps = Number(body.reps)
         } catch {
-          // se não for json, tenta query params
           action = url.searchParams.get('action') || 'quick_log'
           if (url.searchParams.has('weight')) weight = Number(url.searchParams.get('weight'))
           if (url.searchParams.has('reps')) reps = Number(url.searchParams.get('reps'))
@@ -204,7 +230,7 @@ export default {
         if (url.searchParams.has('reps')) reps = Number(url.searchParams.get('reps'))
       }
 
-      const commandPayload = {
+      const commandPayload: QueuedCommand = {
         id: crypto.randomUUID(),
         action,
         weight,
@@ -212,9 +238,23 @@ export default {
         ts: Date.now(),
       }
 
-      const recipients = broadcastEvent(token, 'command', commandPayload)
-      const cached = tokenStatus.get(token)
+      // Adiciona à fila de comandos com TTL de 60 segundos
+      if (!tokenQueues.has(token)) {
+        tokenQueues.set(token, [])
+      }
+      const q = tokenQueues.get(token)!
+      q.push(commandPayload)
+      const cutoff = Date.now() - 60000
+      tokenQueues.set(token, q.filter((c) => c.ts > cutoff))
 
+      // Dispara broadcast SSE assíncrono
+      if (ctx?.waitUntil) {
+        ctx.waitUntil(broadcastEvent(token, 'command', commandPayload))
+      } else {
+        await broadcastEvent(token, 'command', commandPayload)
+      }
+
+      const cached = tokenStatus.get(token)
       const restSec = cached?.totalRestSec || 90
       const summary = cached?.summaryText || 'Comando enviado ao WinFit.'
 
@@ -225,7 +265,6 @@ export default {
 
       return jsonResponse({
         ok: true,
-        deliveredTo: recipients,
         action,
         weight,
         reps,
@@ -235,7 +274,7 @@ export default {
       })
     }
 
-    // 3. Status Publisher: POST /status/:token
+    // 4. Status Publisher: POST /status/:token
     if (method === 'POST' && matchStatus) {
       const token = decodeURIComponent(matchStatus[1]).trim().toUpperCase()
       try {
@@ -247,7 +286,7 @@ export default {
       }
     }
 
-    // 4. Status Reader: GET /status/:token
+    // 5. Status Reader: GET /status/:token
     if (method === 'GET' && matchStatus) {
       const token = decodeURIComponent(matchStatus[1]).trim().toUpperCase()
       const cached = tokenStatus.get(token)
