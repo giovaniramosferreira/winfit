@@ -1,19 +1,28 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import type {
-  OnboardingDraft, Plan, PRRecord, Session, SessionExercise, SetLog, TrainingProfile,
+  OnboardingDraft, Plan, PlanExercise, PRRecord, Session, SessionExercise, SetLog, TrainingProfile,
+  WatchCommand, WatchStatusPayload,
 } from '../types'
 import { generatePlan } from './generator'
-import { checkPR } from './progression'
+import { checkPR, suggestFor } from './progression'
 import { byId } from '../data/exercises'
+import { beep, vibrate } from './helpers'
 
 // Persistência write-through: o middleware `persist` grava em localStorage a cada `set`,
 // antes do próximo frame — princípio 1 da spec (nunca perder uma série logada).
 
 const RESUME_WINDOW_MS = 8 * 60 * 60 * 1000 // 8h (seção 21)
 
+export interface WatchCommandResult {
+  ok: boolean
+  message: string
+  restSec?: number
+}
+
 interface WinfitState {
   seed: string
+  watchToken: string
   profile: TrainingProfile | null
   draft: OnboardingDraft | null
   plan: Plan | null
@@ -22,6 +31,7 @@ interface WinfitState {
   activeSession: Session | null
   prs: PRRecord[]
 
+  setWatchToken: (t: string) => void
   setDraft: (d: OnboardingDraft | null) => void
   completeOnboarding: (p: TrainingProfile) => void
   activatePlan: () => void
@@ -41,9 +51,13 @@ interface WinfitState {
   startTimer: (sec: number) => void
   finishSession: (rpe?: number) => string | null
 
+  getWatchStatusPayload: () => WatchStatusPayload
+  executeWatchCommand: (cmd: WatchCommand) => WatchCommandResult
+
   exportData: () => string
   resetAll: () => void
 }
+
 
 function sessionFromDay(plan: Plan, dayId: string): Session | null {
   const day = plan.days.find((d) => d.id === dayId)
@@ -72,10 +86,20 @@ function sessionFromDay(plan: Plan, dayId: string): Session | null {
   }
 }
 
+function generateWatchToken(): string {
+  const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'
+  let token = 'WF-'
+  for (let i = 0; i < 4; i++) {
+    token += chars[Math.floor(Math.random() * chars.length)]
+  }
+  return token
+}
+
 export const useStore = create<WinfitState>()(
   persist(
     (set, get) => ({
       seed: crypto.randomUUID(),
+      watchToken: generateWatchToken(),
       profile: null,
       draft: null,
       plan: null,
@@ -84,6 +108,7 @@ export const useStore = create<WinfitState>()(
       activeSession: null,
       prs: [],
 
+      setWatchToken: (t) => set({ watchToken: t.trim().toUpperCase() }),
       setDraft: (d) => set({ draft: d }),
 
       completeOnboarding: (p) => {
@@ -266,6 +291,190 @@ export const useStore = create<WinfitState>()(
         return done.id
       },
 
+      getWatchStatusPayload: (): WatchStatusPayload => {
+        const { activeSession, sessions } = get()
+        if (!activeSession) {
+          return {
+            active: false,
+            summaryText: 'Nenhum treino em andamento no WinFit.',
+            updatedAt: Date.now(),
+          }
+        }
+
+        const idx = activeSession.currentIndex
+        const sx = activeSession.exercises[idx]
+        if (!sx) {
+          return {
+            active: false,
+            summaryText: 'Nenhum exercício ativo.',
+            updatedAt: Date.now(),
+          }
+        }
+        const exercise = byId.get(sx.exerciseId)
+        if (!exercise) {
+          return {
+            active: false,
+            summaryText: 'Exercício não encontrado.',
+            updatedAt: Date.now(),
+          }
+        }
+        const logsHere = activeSession.logs.filter((l) => l.planExerciseId === sx.planExerciseId)
+        const isTimed = sx.exerciseId === 'prancha' || sx.exerciseId === 'prancha-lateral'
+
+        const planExLike: PlanExercise = {
+          id: sx.planExerciseId,
+          exerciseId: sx.exerciseId,
+          slotType: 'core',
+          sets: sx.sets,
+          repMin: sx.repMin,
+          repMax: sx.repMax,
+          restSec: sx.restSec,
+          optional: sx.optional,
+        }
+        const suggestion = suggestFor(planExLike, exercise, sessions)
+
+        const defaultWeight = () => {
+          if (logsHere.length > 0) return logsHere[logsHere.length - 1].weight
+          if (exercise.loadType !== 'external') return 0
+          return suggestion.weight ?? 0
+        }
+        const defaultReps = () => {
+          if (logsHere.length > 0) return logsHere[logsHere.length - 1].reps
+          return suggestion.targetReps
+        }
+
+        const currentSetNumber = logsHere.length + 1
+        const timer = activeSession.timer
+        const restRemaining = timer ? Math.max(0, Math.ceil((timer.endsAt - Date.now()) / 1000)) : 0
+        const isResting = restRemaining > 0
+        const doneSets = activeSession.logs.length
+        const totalPlannedSets = activeSession.exercises.filter((e) => !e.skipped).reduce((a, e) => a + e.sets, 0)
+
+        const weight = defaultWeight()
+        const reps = defaultReps()
+        const unit = isTimed ? 'seg' : 'reps'
+
+        let summaryText = `${exercise.name}: Série ${Math.min(currentSetNumber, sx.sets)} de ${sx.sets}`
+        if (weight > 0) summaryText += ` com ${weight} kg`
+        summaryText += ` (${reps} ${unit})`
+        if (isResting) summaryText += ` · Descanso: ${restRemaining}s`
+
+        return {
+          active: true,
+          sessionLabel: activeSession.dayLabel,
+          exerciseName: exercise.name,
+          exerciseIdx: idx,
+          totalExercises: activeSession.exercises.length,
+          currentSet: Math.min(currentSetNumber, sx.sets),
+          totalSets: sx.sets,
+          suggestedWeight: weight,
+          suggestedReps: reps,
+          unit,
+          loadType: exercise.loadType,
+          isResting,
+          restRemainingSec: restRemaining,
+          totalRestSec: timer?.totalSec ?? sx.restSec,
+          doneSets,
+          totalPlannedSets,
+          summaryText,
+          updatedAt: Date.now(),
+        }
+      },
+
+      executeWatchCommand: (cmd: WatchCommand): WatchCommandResult => {
+        const { activeSession, sessions, logSet, startTimer, clearTimer, skipExercise, setCurrentIndex, finishSession } = get()
+        if (!activeSession) return { ok: false, message: 'Nenhum treino ativo no momento.' }
+
+        const idx = activeSession.currentIndex
+        const sx = activeSession.exercises[idx]
+        if (!sx) return { ok: false, message: 'Exercício não encontrado.' }
+        const exercise = byId.get(sx.exerciseId)
+        if (!exercise) return { ok: false, message: 'Exercício não encontrado.' }
+
+        const logsHere = activeSession.logs.filter((l) => l.planExerciseId === sx.planExerciseId)
+        const isTimed = sx.exerciseId === 'prancha' || sx.exerciseId === 'prancha-lateral'
+
+        const planExLike: PlanExercise = {
+          id: sx.planExerciseId,
+          exerciseId: sx.exerciseId,
+          slotType: 'core',
+          sets: sx.sets,
+          repMin: sx.repMin,
+          repMax: sx.repMax,
+          restSec: sx.restSec,
+          optional: sx.optional,
+        }
+        const suggestion = suggestFor(planExLike, exercise, sessions)
+
+        const defaultWeight = () => {
+          if (logsHere.length > 0) return logsHere[logsHere.length - 1].weight
+          if (exercise.loadType !== 'external') return 0
+          return suggestion.weight ?? 0
+        }
+        const defaultReps = () => {
+          if (logsHere.length > 0) return logsHere[logsHere.length - 1].reps
+          return suggestion.targetReps
+        }
+
+        switch (cmd.action) {
+          case 'quick_log': {
+            const weight = defaultWeight()
+            const reps = defaultReps()
+            logSet(idx, weight, reps)
+            vibrate(50)
+            beep()
+            return {
+              ok: true,
+              message: `Série ${logsHere.length + 1} de ${sx.sets} registrada: ${weight > 0 ? weight + 'kg' : 'peso corporal'} × ${reps} ${isTimed ? 's' : 'reps'}.`,
+              restSec: sx.restSec,
+            }
+          }
+          case 'custom_log': {
+            const weight = cmd.weight !== undefined ? cmd.weight : defaultWeight()
+            const reps = cmd.reps !== undefined ? cmd.reps : defaultReps()
+            logSet(idx, weight, reps)
+            vibrate(50)
+            beep()
+            return {
+              ok: true,
+              message: `Série ${logsHere.length + 1} de ${sx.sets} registrada: ${weight > 0 ? weight + 'kg' : 'peso corporal'} × ${reps} ${isTimed ? 's' : 'reps'}.`,
+              restSec: sx.restSec,
+            }
+          }
+          case 'add_rest': {
+            const timer = activeSession.timer
+            const currentRemaining = timer ? Math.max(0, Math.ceil((timer.endsAt - Date.now()) / 1000)) : 0
+            const nextSec = (currentRemaining > 0 ? currentRemaining : sx.restSec) + 30
+            startTimer(nextSec)
+            return { ok: true, message: `+30s de descanso (${nextSec}s restantes).`, restSec: nextSec }
+          }
+          case 'skip_rest': {
+            clearTimer()
+            return { ok: true, message: 'Descanso encerrado.' }
+          }
+          case 'skip_exercise': {
+            skipExercise(idx)
+            return { ok: true, message: `${exercise.name} pulado.` }
+          }
+          case 'next_exercise': {
+            const nextIdx = Math.min(idx + 1, activeSession.exercises.length - 1)
+            setCurrentIndex(nextIdx)
+            return { ok: true, message: 'Avançado para o próximo exercício.' }
+          }
+          case 'prev_exercise': {
+            const prevIdx = Math.max(idx - 1, 0)
+            setCurrentIndex(prevIdx)
+            return { ok: true, message: 'Voltado para o exercício anterior.' }
+          }
+          case 'finish_session': {
+            const id = finishSession()
+            return { ok: true, message: id ? 'Treino encerrado com sucesso!' : 'Treino encerrado.' }
+          }
+          default:
+            return { ok: false, message: 'Ação desconhecida.' }
+        }
+      },
+
       exportData: () => {
         const { profile, plan, archivedPlans, sessions, prs } = get()
         return JSON.stringify(
@@ -283,7 +492,20 @@ export const useStore = create<WinfitState>()(
     }),
     {
       name: 'winfit-v1',
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => {
+        if (typeof window !== 'undefined' && window.localStorage) return window.localStorage
+        if (typeof globalThis !== 'undefined' && (globalThis as any).localStorage) return (globalThis as any).localStorage
+        const memory = new Map<string, string>()
+        return {
+          getItem: (k: string) => memory.get(k) ?? null,
+          setItem: (k: string, v: string) => { memory.set(k, v) },
+          removeItem: (k: string) => { memory.delete(k) },
+          clear: () => memory.clear(),
+          key: (i: number) => Array.from(memory.keys())[i] ?? null,
+          length: 0,
+        } as Storage
+      }),
     },
   ),
 )
+

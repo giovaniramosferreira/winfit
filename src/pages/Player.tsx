@@ -6,6 +6,8 @@ import { lastPerformance, suggestFor, fmtKg } from '../lib/progression'
 import { equivalentsFor } from '../lib/generator'
 import { fmtClock, beep, vibrate } from '../lib/helpers'
 import type { Exercise, PlanExercise } from '../types'
+import { useWatchSync } from '../lib/watchSync'
+import WatchModal from '../components/WatchModal'
 
 const TIMED_IDS = new Set(['prancha', 'prancha-lateral'])
 
@@ -23,11 +25,23 @@ export default function Player() {
   const finishSession = useStore((s) => s.finishSession)
   const discardActive = useStore((s) => s.discardActive)
 
+  const { syncState, lastCommand } = useWatchSync()
+
   const [editor, setEditor] = useState<{ weight: number; reps: number; logId?: string } | null>(null)
   const [subOpen, setSubOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [finishOpen, setFinishOpen] = useState(false)
+  const [watchModalOpen, setWatchModalOpen] = useState(false)
   const [prFlash, setPrFlash] = useState<string | null>(null)
+  const [watchToast, setWatchToast] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (lastCommand) {
+      setWatchToast(`⌚ Watch: ${lastCommand.message}`)
+      const t = setTimeout(() => setWatchToast(null), 3000)
+      return () => clearTimeout(t)
+    }
+  }, [lastCommand?.ts])
 
   if (!session || !profile) return <Navigate to="/home" replace />
 
@@ -109,7 +123,17 @@ export default function Player() {
       <header className="player-head">
         <div className="between">
           <button className="btn-quiet" onClick={() => nav('/home')}>▾ Minimizar</button>
-          <span className="small muted num">{doneSets}/{totalSets} séries</span>
+          <div className="row" style={{ gap: 8 }}>
+            <button
+              className={`watch-badge ${syncState}`}
+              onClick={() => setWatchModalOpen(true)}
+              title="Sincronização com Apple Watch"
+            >
+              <span className="dot-pulse" />
+              <span>⌚ Watch</span>
+            </button>
+            <span className="small muted num">{doneSets}/{totalSets} séries</span>
+          </div>
           <button className="btn-quiet" onClick={() => setMenuOpen(true)}>⋯</button>
         </div>
         <div className="player-progress"><div style={{ width: `${(doneSets / Math.max(totalSets, 1)) * 100}%` }} /></div>
@@ -129,6 +153,11 @@ export default function Player() {
         </p>
         <p className="tiny faint" style={{ marginTop: 4 }}>{suggestion.note}</p>
 
+        {watchToast && (
+          <div className="pr-flash" style={{ marginTop: 12, borderColor: 'rgba(62,207,142,0.4)', background: 'rgba(62,207,142,0.15)', color: 'var(--green)' }}>
+            {watchToast}
+          </div>
+        )}
         {prFlash && <div className="pr-flash" style={{ marginTop: 12 }}>{prFlash}</div>}
 
         <div className="card" style={{ marginTop: 14, padding: '6px 14px' }}>
@@ -275,6 +304,10 @@ export default function Player() {
             </button>
           </div>
         </div>
+      )}
+
+      {watchModalOpen && (
+        <WatchModal syncState={syncState} onClose={() => setWatchModalOpen(false)} />
       )}
     </div>
   )
