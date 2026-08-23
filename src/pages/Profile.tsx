@@ -104,14 +104,14 @@ export default function Profile() {
 
       <div className="card" style={{ marginTop: 12 }}>
         <div className="between">
-          <h3>⌚ Apple Watch & Atalhos</h3>
+          <h3>⌚ Apple Watch</h3>
           <span className="pill accent num">{watchToken}</span>
         </div>
         <p className="small muted" style={{ marginTop: 6 }}>
-          Controle suas séries e receba a vibração do timer no relógio sem tirar o iPhone do bolso.
+          Bata séries e receba a vibração do timer no relógio sem tirar o iPhone do bolso.
         </p>
-        <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={() => setWatchModal(true)}>
-          Ver Atalhos e Pareamento
+        <button className="btn btn-primary btn-sm" style={{ marginTop: 12 }} onClick={() => setWatchModal(true)}>
+          📲 Adicionar ao Apple Watch (1 Toque)
         </button>
       </div>
 
