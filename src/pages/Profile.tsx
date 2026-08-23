@@ -4,6 +4,7 @@ import { useStore } from '../lib/store'
 import { byId, EQUIP_LABEL } from '../data/exercises'
 import type { Equipment, Goal, TrainingProfile } from '../types'
 import InstallCard from '../components/InstallCard'
+import WatchModal from '../components/WatchModal'
 import { useOnline, useServiceWorker } from '../lib/pwa'
 
 const GOAL_LABEL: Record<Goal, string> = {
@@ -18,6 +19,7 @@ export default function Profile() {
   const nav = useNavigate()
   const profile = useStore((s) => s.profile)!
   const plan = useStore((s) => s.plan)!
+  const watchToken = useStore((s) => s.watchToken)
   const regenerate = useStore((s) => s.regenerate)
   const exportData = useStore((s) => s.exportData)
   const resetAll = useStore((s) => s.resetAll)
@@ -25,6 +27,7 @@ export default function Profile() {
   const online = useOnline()
   const { needRefresh, update } = useServiceWorker()
   const [adjust, setAdjust] = useState(false)
+  const [watchModal, setWatchModal] = useState(false)
   const [freq, setFreq] = useState(profile.frequency)
   const [time, setTime] = useState(profile.sessionTimeMin)
   const [goal, setGoal] = useState(profile.goal)
@@ -97,6 +100,19 @@ export default function Profile() {
               : 'Somente peso corporal.'}
         </p>
         <p className="tiny faint" style={{ marginTop: 6 }}>Para mudar, use "Refazer perguntas".</p>
+      </div>
+
+      <div className="card" style={{ marginTop: 12 }}>
+        <div className="between">
+          <h3>⌚ Apple Watch & Atalhos</h3>
+          <span className="pill accent num">{watchToken}</span>
+        </div>
+        <p className="small muted" style={{ marginTop: 6 }}>
+          Controle suas séries e receba a vibração do timer no relógio sem tirar o iPhone do bolso.
+        </p>
+        <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={() => setWatchModal(true)}>
+          Ver Atalhos e Pareamento
+        </button>
       </div>
 
       <div style={{ marginTop: 12 }}>
@@ -176,6 +192,8 @@ export default function Profile() {
           </div>
         </div>
       )}
+
+      {watchModal && <WatchModal onClose={() => setWatchModal(false)} />}
     </div>
   )
 }

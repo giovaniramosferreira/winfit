@@ -13,6 +13,7 @@ Documento-mestre do produto: [PRODUCT_SPEC.md](./PRODUCT_SPEC.md).
 - **Recordes pessoais** com detecção no log (sem PRs triviais na 1ª sessão).
 - **Progresso**: semana, volume, PRs, evolução por exercício com gráfico, histórico.
 - **Biblioteca** com ~70 exercícios PT-BR (instruções, erros comuns, equivalências).
+- **Controle pelo Apple Watch (Atalhos do iOS + Relay SSE R$ 0)**: bater série no pulso (1 toque ou com ajuste de carga/reps), avanço de descanso (+30s), consulta de status e vibração tátil no fim do timer via app nativo do relógio.
 - **PWA offline-first, 100% local**: dados em `localStorage`, sem backend, custo de infra zero. Export de dados em JSON.
 
 ## App instalável (PWA)

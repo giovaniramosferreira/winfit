@@ -306,3 +306,32 @@ a { color: var(--accent-strong); }
   text-align: center; padding: 48px 24px; color: var(--text-dim);
 }
 .empty .big { font-size: 40px; margin-bottom: 12px; }
+
+/* ---------- apple watch sync ---------- */
+.watch-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--bg-elev2); border: 1px solid var(--line);
+  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: border-color 0.2s;
+}
+.watch-badge.connected { border-color: rgba(62, 207, 142, 0.4); color: var(--green); }
+.watch-badge.connecting { border-color: rgba(245, 185, 66, 0.4); color: var(--gold); }
+.watch-badge.error { border-color: rgba(240, 97, 109, 0.4); color: var(--red); }
+.dot-pulse {
+  width: 7px; height: 7px; border-radius: 50%; background: currentColor;
+  display: inline-block;
+}
+.watch-badge.connected .dot-pulse {
+  box-shadow: 0 0 6px var(--green);
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.code-box {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 10px; font-family: monospace; font-size: 11px; word-break: break-all;
+  color: var(--text-dim); user-select: all;
+}

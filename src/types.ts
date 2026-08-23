@@ -184,3 +184,43 @@ export interface OnboardingDraft {
   limitations?: Limitation[]
   biometrics?: Biometrics
 }
+
+export type WatchAction =
+  | 'quick_log'
+  | 'custom_log'
+  | 'add_rest'
+  | 'skip_rest'
+  | 'skip_exercise'
+  | 'next_exercise'
+  | 'prev_exercise'
+  | 'finish_session'
+
+export interface WatchCommand {
+  id?: string
+  action: WatchAction
+  weight?: number
+  reps?: number
+  ts?: number
+}
+
+export interface WatchStatusPayload {
+  active: boolean
+  sessionLabel?: string
+  exerciseName?: string
+  exerciseIdx?: number
+  totalExercises?: number
+  currentSet?: number
+  totalSets?: number
+  suggestedWeight?: number
+  suggestedReps?: number
+  unit?: 'reps' | 'seg'
+  loadType?: 'external' | 'bodyweight' | 'band'
+  isResting?: boolean
+  restRemainingSec?: number
+  totalRestSec?: number
+  doneSets?: number
+  totalPlannedSets?: number
+  summaryText?: string
+  updatedAt: number
+}
+
