@@ -6,7 +6,7 @@ import type { WatchCommand, WatchStatusPayload } from '../types'
 export const DEFAULT_RELAY_URL =
   import.meta.env.VITE_WATCH_RELAY_URL || 'https://winfit-watch-relay.giovaniramosferreira.workers.dev'
 
-export const OFFICIAL_ICLOUD_SHORTCUT_URL = 'https://www.icloud.com/shortcuts/aa3492f388cf479fb3c9f48d5baba1f8'
+export const OFFICIAL_ICLOUD_SHORTCUT_URL = 'https://www.icloud.com/shortcuts/0af36324b8a2473c849d4072a49929c7'
 
 export function getRelayUrl(): string {
   try {
