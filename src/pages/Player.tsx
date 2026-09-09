@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
 import { lastPerformance, suggestFor, fmtKg } from '../lib/progression'
 import { equivalentsFor } from '../lib/generator'
+import { isEquipmentFree } from '../lib/homeWorkout'
 import { fmtClock, beep, vibrate } from '../lib/helpers'
 import type { Exercise, PlanExercise } from '../types'
 import { useWatchSync } from '../lib/watchSync'
@@ -34,6 +35,7 @@ export default function Player() {
   const [watchModalOpen, setWatchModalOpen] = useState(false)
   const [prFlash, setPrFlash] = useState<string | null>(null)
   const [watchToast, setWatchToast] = useState<string | null>(null)
+  const finishing = useRef(false)
 
   useEffect(() => {
     if (lastCommand) {
@@ -43,7 +45,7 @@ export default function Player() {
     }
   }, [lastCommand?.ts])
 
-  if (!session || !profile) return <Navigate to="/home" replace />
+  if (!session || !profile) return finishing.current ? null : <Navigate to="/home" replace />
 
   const idx = session.currentIndex
   const sx = session.exercises[idx]
@@ -54,8 +56,8 @@ export default function Player() {
     id: sx.planExerciseId, exerciseId: sx.exerciseId, slotType: 'core',
     sets: sx.sets, repMin: sx.repMin, repMax: sx.repMax, restSec: sx.restSec, optional: sx.optional,
   }
-  const suggestion = useMemo(() => suggestFor(planExLike, exercise, sessions), [sx.exerciseId, sessions])
-  const prev = useMemo(() => lastPerformance(sx.exerciseId, sessions), [sx.exerciseId, sessions])
+  const suggestion = suggestFor(planExLike, exercise, sessions)
+  const prev = lastPerformance(sx.exerciseId, sessions)
 
   const logsHere = session.logs.filter((l) => l.planExerciseId === sx.planExerciseId)
   const nextSetNumber = logsHere.length + 1
@@ -110,6 +112,8 @@ export default function Player() {
   const goPrev = () => setCurrentIndex(Math.max(idx - 1, 0))
 
   const doFinish = (rpe?: number) => {
+    // A store esvazia a sessão antes da transição de rota terminar.
+    finishing.current = true
     const id = finishSession(rpe)
     if (id) nav(`/summary/${id}`, { replace: true })
     else nav('/home', { replace: true })
@@ -360,8 +364,10 @@ function SubstituteModal({ exercise, onClose, onPick }: {
   onPick: (id: string, scope: 'today' | 'always') => void
 }) {
   const profile = useStore((s) => s.profile)!
+  const session = useStore((s) => s.activeSession)!
   const [chosen, setChosen] = useState<Exercise | null>(null)
-  const options = equivalentsFor(exercise.id, profile)
+  const options = equivalentsFor(exercise.id, session.profileSnapshot ?? profile)
+    .filter((ex) => session.source !== 'home' || isEquipmentFree(ex))
 
   return (
     <div className="modal-back" onClick={onClose}>
@@ -390,9 +396,9 @@ function SubstituteModal({ exercise, onClose, onPick }: {
             <button className="btn btn-primary" style={{ marginTop: 14 }} onClick={() => onPick(chosen.id, 'today')}>
               Só neste treino
             </button>
-            <button className="btn btn-ghost" style={{ marginTop: 10 }} onClick={() => onPick(chosen.id, 'always')}>
+            {session.source !== 'home' && <button className="btn btn-ghost" style={{ marginTop: 10 }} onClick={() => onPick(chosen.id, 'always')}>
               Sempre (atualiza o plano)
-            </button>
+            </button>}
             <button className="btn btn-quiet" onClick={() => setChosen(null)}>← Outras opções</button>
           </>
         )}

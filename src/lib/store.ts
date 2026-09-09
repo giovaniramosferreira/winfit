@@ -4,9 +4,10 @@ import type {
   OnboardingDraft, Plan, PlanExercise, PRRecord, Session, SessionExercise, SetLog, TrainingProfile,
   WatchCommand, WatchStatusPayload,
 } from '../types'
-import { generatePlan } from './generator'
+import { canPerform, generatePlan } from './generator'
 import { checkPR, suggestFor } from './progression'
 import { byId } from '../data/exercises'
+import { homeWorkout, isEquipmentFree } from './homeWorkout'
 import { beep, vibrate } from './helpers'
 
 // Persistência write-through: o middleware `persist` grava em localStorage a cada `set`,
@@ -38,6 +39,7 @@ interface WinfitState {
   regenerate: (p: TrainingProfile) => void
 
   startSession: (dayId: string) => void
+  startHomeSession: () => void
   resumeOrExpireSession: () => 'none' | 'resumable' | 'expired'
   saveExpiredAsPartial: () => void
   discardActive: () => void
@@ -132,10 +134,19 @@ export const useStore = create<WinfitState>()(
       },
 
       startSession: (dayId) => {
-        const { plan } = get()
-        if (!plan) return
+        const { plan, activeSession } = get()
+        if (!plan || activeSession) return
         const s = sessionFromDay(plan, dayId)
         if (s) set({ activeSession: s })
+      },
+
+      startHomeSession: () => {
+        const { plan, profile, seed, sessions, activeSession } = get()
+        if (!plan || !profile || activeSession) return
+        const home = homeWorkout(profile, plan, seed, sessions)
+        if (!home.day.exercises.length) return
+        const s = sessionFromDay(home.plan, home.day.id)!
+        set({ activeSession: { ...s, source: 'home', profileSnapshot: home.plan.profileSnapshot } })
       },
 
       resumeOrExpireSession: () => {
@@ -205,12 +216,15 @@ export const useStore = create<WinfitState>()(
       substitute: (exerciseIdx, newExerciseId, scope) => {
         const { activeSession, plan } = get()
         if (!activeSession || !byId.has(newExerciseId)) return
+        const replacement = byId.get(newExerciseId)!
+        if (activeSession.source === 'home' && (!isEquipmentFree(replacement) ||
+          !canPerform(replacement, ['peso_corporal'], activeSession.profileSnapshot?.limitations ?? []))) return
         const cur = activeSession.exercises[exerciseIdx]
         const exercises = activeSession.exercises.map((e, i) =>
           i === exerciseIdx ? { ...e, exerciseId: newExerciseId, substitutedFrom: cur.exerciseId } : e,
         )
         let nextPlan = plan
-        if (scope === 'always' && plan) {
+        if (scope === 'always' && plan && activeSession.source !== 'home') {
           nextPlan = {
             ...plan,
             days: plan.days.map((d) => ({

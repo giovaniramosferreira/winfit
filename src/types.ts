@@ -149,6 +149,8 @@ export interface RestTimer {
 
 export interface Session {
   id: string
+  source?: 'home'
+  profileSnapshot?: TrainingProfile
   planId: string
   dayId: string
   dayLabel: string

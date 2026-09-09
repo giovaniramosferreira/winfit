@@ -2,12 +2,14 @@
 
 Treinador inteligente de bolso: monta, guia e evolui seu treino de musculação — academia ou casa.
 Documento-mestre do produto: [PRODUCT_SPEC.md](./PRODUCT_SPEC.md).
+Estado da arquitetura: [CONTEXT.md](./CONTEXT.md). Pendências verificadas no código: [backlog auditado](./docs/backlog-audit.md).
 
 ## O que este MVP entrega
 
 - **Onboarding de 9 passos** → perfil de treino (objetivo, nível, estado atual, local, equipamento, frequência, tempo, limitações).
 - **Gerador de plano semi-determinístico** (templates parametrizados, seção 19 da spec): divisão por frequência×nível, volume por grupo, seleção por slots com filtro duro de equipamento/limitação, prescrição por objetivo, ajuste ao tempo disponível, rampa de recomeço para quem volta de pausa.
 - **Preview com racional explicável** ("Por que este plano?").
+- **Treino em casa para home office**: seção na Home com prévia, sem equipamentos ou apoios, respeitando as limitações do perfil. Conta no histórico e na semana, mantendo o próximo treino da academia. [Contrato técnico](./docs/home-workout.md).
 - **Player de treino**: log de série em 1 toque, steppers de carga/reps, timer de descanso automático (âncora absoluta — sobrevive a reload), substituição por equivalência, pular, retomar sessão em até 8 h.
 - **Dupla progressão automática**: fechou o teto de reps → app sugere +carga na próxima sessão.
 - **Recordes pessoais** com detecção no log (sem PRs triviais na 1ª sessão).

@@ -5,6 +5,7 @@ import { byId, MUSCLE_LABEL } from '../data/exercises'
 import { greeting, sessionsThisWeek, startOfWeek } from '../lib/helpers'
 import { fmtKg } from '../lib/progression'
 import InstallCard from '../components/InstallCard'
+import { homeWorkout } from '../lib/homeWorkout'
 
 export default function Home() {
   const nav = useNavigate()
@@ -13,12 +14,15 @@ export default function Home() {
   const active = useStore((s) => s.activeSession)
   const prs = useStore((s) => s.prs)
   const startSession = useStore((s) => s.startSession)
+  const startHomeSession = useStore((s) => s.startHomeSession)
+  const seed = useStore((s) => s.seed)
   const resumeState = useStore((s) => s.resumeOrExpireSession)
   const saveExpired = useStore((s) => s.saveExpiredAsPartial)
   const discard = useStore((s) => s.discardActive)
   const profile = useStore((s) => s.profile)!
   const [expiredPrompt, setExpiredPrompt] = useState(false)
   const [pickDay, setPickDay] = useState(false)
+  const home = useMemo(() => homeWorkout(profile, plan, seed, sessions), [profile, plan, seed, sessions])
 
   const weekSessions = sessionsThisWeek(sessions)
   const goal = Math.min(profile.frequency, plan.days.length)
@@ -35,11 +39,12 @@ export default function Home() {
 
   const lastPR = prs.length > 0 ? prs[0] : null
 
-  const handleStart = () => {
+  const handleStart = (source: 'plan' | 'home' = 'plan') => {
     const state = resumeState()
     if (state === 'resumable') return nav('/player')
     if (state === 'expired') return setExpiredPrompt(true)
-    startSession(nextDay.id)
+    if (source === 'home') startHomeSession()
+    else startSession(nextDay.id)
     nav('/player')
   }
 
@@ -80,7 +85,7 @@ export default function Home() {
             </div>
           </>
         )}
-        <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={handleStart}>
+        <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => handleStart()}>
           {active ? 'Continuar treino' : 'Começar treino'}
         </button>
         {!active && (
@@ -89,6 +94,38 @@ export default function Home() {
           </button>
         )}
       </div>
+
+      <section className="card" style={{ marginTop: 14 }} aria-labelledby="home-workout-title">
+        <div className="eyebrow">Dias de home office</div>
+        <h2 id="home-workout-title" style={{ marginTop: 6 }}>Treino em casa</h2>
+        <p className="small muted" style={{ marginTop: 6 }}>
+          Só peso corporal, sem equipamentos. Conta na sua semana e mantém o próximo treino do plano.
+        </p>
+        {home.day.exercises.length > 0 ? <>
+          <p className="small muted num" style={{ marginTop: 8 }}>
+            {home.day.exercises.length} exercícios · ~{home.day.estMin} min
+          </p>
+          <details style={{ marginTop: 12 }}>
+            <summary style={{ cursor: 'pointer', padding: '12px 0' }}>Ver exercícios</summary>
+            {home.day.exercises.map((pe) => (
+              <div className="list-item" key={pe.id}>
+                <span className="grow small">{byId.get(pe.exerciseId)?.name}</span>
+                <span className="tiny muted num">
+                  {pe.sets} × {pe.repMin}–{pe.repMax} {pe.exerciseId.startsWith('prancha') ? 'seg' : 'reps'}
+                </span>
+              </div>
+            ))}
+          </details>
+          <p className="tiny faint" style={{ marginTop: 8 }}>
+            O treino respeita as limitações do seu perfil. Movimentos que exigem apoio ou acessórios ficam de fora.
+          </p>
+          <button className="btn btn-primary" style={{ marginTop: 14 }} onClick={() => handleStart('home')}>
+            {active ? 'Continuar treino em andamento' : 'Começar em casa'}
+          </button>
+        </> : <p className="small muted" style={{ marginTop: 10 }}>
+          Não há exercícios sem equipamentos compatíveis com as limitações do seu perfil.
+        </p>}
+      </section>
 
       <div className="card" style={{ marginTop: 14 }}>
         <div className="between">

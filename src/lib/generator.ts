@@ -147,11 +147,11 @@ export function canPerform(ex: Exercise, equip: Equipment[], limitations: Limita
   return eqOk && limOk
 }
 
-function candidatesFor(slot: SlotType, p: TrainingProfile, equip: Equipment[]): Exercise[] {
+function candidatesFor(slot: SlotType, p: TrainingProfile, equip: Equipment[], catalog: Exercise[]): Exercise[] {
   // Se o teto de habilidade zera o slot (ex.: pike push-up para iniciante em casa),
   // relaxa o teto antes de deixar o slot vazio — slot vazio é pior que exercício exigente.
   for (let cap = maxSkill(p); cap <= 3; cap++) {
-    const found = EXERCISES.filter(
+    const found = catalog.filter(
       (ex) => ex.slotTypes.includes(slot) && ex.skill <= cap && canPerform(ex, equip, p.limitations),
     ).sort((a, b) => a.equivRank - b.equivRank)
     if (found.length > 0) return found
@@ -226,7 +226,7 @@ function buildRationale(p: TrainingProfile, splitLabel: string, dayCount: number
 }
 
 // ---------- Geração ----------
-export function generatePlan(p: TrainingProfile, seed: string): Plan {
+export function generatePlan(p: TrainingProfile, seed: string, catalog = EXERCISES): Plan {
   const rng = mulberry32(hashStr(seed + JSON.stringify([p.goal, p.frequency, p.location, p.experience])))
   const { split, notes } = pickSplit(p)
   const equip = availableEquipment(p)
@@ -238,7 +238,7 @@ export function generatePlan(p: TrainingProfile, seed: string): Plan {
     const exercises: PlanExercise[] = []
 
     for (const spec of tpl.slots) {
-      const cands = candidatesFor(spec.slot, p, equip)
+      const cands = candidatesFor(spec.slot, p, equip, catalog)
       if (cands.length === 0) continue // sem opção viável → slot sai (nunca prescrever o impossível)
 
       // Com carga externa disponível, elástico não entra na prescrição principal
