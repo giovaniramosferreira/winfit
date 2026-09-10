@@ -57,6 +57,7 @@ interface WinfitState {
   executeWatchCommand: (cmd: WatchCommand) => WatchCommandResult
 
   exportData: () => string
+  importCloudData: (data: Record<string, unknown>) => void
   resetAll: () => void
 }
 
@@ -496,6 +497,24 @@ export const useStore = create<WinfitState>()(
           null,
           2,
         )
+      },
+
+      // A conta sincroniza apenas os dados, nunca as ações do Zustand. O player
+      // continua local-first: se cair a internet, cada série ainda é gravada aqui.
+      importCloudData: (data) => {
+        const safe = data as Partial<Pick<WinfitState,
+          'seed' | 'watchToken' | 'profile' | 'draft' | 'plan' | 'archivedPlans' | 'sessions' | 'activeSession' | 'prs'>>
+        set({
+          seed: typeof safe.seed === 'string' ? safe.seed : get().seed,
+          watchToken: typeof safe.watchToken === 'string' ? safe.watchToken : get().watchToken,
+          profile: safe.profile ?? null,
+          draft: safe.draft ?? null,
+          plan: safe.plan ?? null,
+          archivedPlans: Array.isArray(safe.archivedPlans) ? safe.archivedPlans : [],
+          sessions: Array.isArray(safe.sessions) ? safe.sessions : [],
+          activeSession: safe.activeSession ?? null,
+          prs: Array.isArray(safe.prs) ? safe.prs : [],
+        })
       },
 
       resetAll: () =>

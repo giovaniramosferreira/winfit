@@ -13,6 +13,7 @@ import Profile from './pages/Profile'
 import TabBar from './components/TabBar'
 import MiniBar from './components/MiniBar'
 import PwaToasts from './components/PwaToasts'
+import AuthProvider from './components/AuthProvider'
 
 export default function App() {
   const profile = useStore((s) => s.profile)
@@ -24,7 +25,7 @@ export default function App() {
   const inFlow = ['/', '/onboarding', '/preview'].includes(loc.pathname)
 
   return (
-    <div className="app-shell">
+    <AuthProvider><div className="app-shell">
       <PwaToasts />
       <Routes>
         <Route path="/" element={onboarded ? <Navigate to="/home" replace /> : <Intro />} />
@@ -45,6 +46,6 @@ export default function App() {
           <TabBar />
         </>
       )}
-    </div>
+    </div></AuthProvider>
   )
 }

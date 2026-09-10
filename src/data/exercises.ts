@@ -99,6 +99,9 @@ export const EXERCISES: Exercise[] = [
   d({ id: 'remada-toalha', name: 'Remada isométrica com toalha (porta)', slots: ['pull_h_comp'], primary: 'costas', secondary: ['biceps'], equip: ['peso_corporal'], load: 'bodyweight', group: 'puxar_h_costas', rank: 6,
     how: ['Prenda uma toalha firme na maçaneta de uma porta fechada.', 'Incline o corpo para trás com braços estendidos.', 'Puxe o corpo em direção à porta e volte devagar.'],
     avoid: ['Usar porta ou apoio instável.', 'Deixar o quadril dobrar.'] }),
+  d({ id: 'puxada-prona-solo', name: 'Puxada prona no solo', aliases: ['prone pull', 'superman pull'], slots: ['pull_h_comp', 'pull_v_comp'], primary: 'costas', secondary: ['ombro'], equip: ['peso_corporal'], load: 'bodyweight', group: 'puxar_solo_costas', rank: 7,
+    how: ['Deite de barriga para baixo, braços estendidos à frente e testa próxima ao chão.', 'Eleve levemente os braços e puxe os cotovelos em direção às costelas, aproximando as escápulas.', 'Estenda os braços de novo de forma controlada; mantenha o pescoço neutro.'],
+    avoid: ['Forçar a lombar para levantar alto demais.', 'Encolher os ombros em direção às orelhas.'] }),
 
   // ============ PUXAR VERTICAL (costas) ============
   d({ id: 'puxada-polia', name: 'Puxada na polia alta', aliases: ['pulldown', 'puxada frontal'], slots: ['pull_v_comp'], primary: 'costas', secondary: ['biceps'], equip: ['polia'], group: 'puxar_v_costas', rank: 1,

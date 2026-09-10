@@ -6,6 +6,7 @@ import type { Equipment, Goal, TrainingProfile } from '../types'
 import InstallCard from '../components/InstallCard'
 import WatchModal from '../components/WatchModal'
 import { useOnline, useServiceWorker } from '../lib/pwa'
+import AccountCard from '../components/AccountCard'
 
 const GOAL_LABEL: Record<Goal, string> = {
   hypertrophy: 'Ganhar músculo',
@@ -114,6 +115,8 @@ export default function Profile() {
           📲 Adicionar ao Apple Watch (1 Toque)
         </button>
       </div>
+
+      <AccountCard />
 
       <div style={{ marginTop: 12 }}>
         <InstallCard variant="settings" />

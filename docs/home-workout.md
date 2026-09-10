@@ -7,8 +7,8 @@ Adicionar uma seção para home office sem equipamentos na Home. Reutilizar cat�
 ## Fluxo e arquivos
 
 1. `src/pages/Home.tsx` usa `homeWorkout(profile, plan, seed, sessions)` para mostrar a prévia e duração estimada.
-2. `src/lib/homeWorkout.ts` cria um perfil derivado (`home_none`, equipamentos vazios, frequência 3 para o ciclo, orçamento de até 30 min), preservando limitações, objetivo, experiência e estado atual. Usa seed estável e o catálogo filtrado no gerador existente.
-3. O filtro remove máquinas, pesos, elásticos e cinco itens que exigem acessórios/apoio: flexões inclinada e declinada, remada com toalha na porta, flexora deslizante e panturrilha em degrau. Sem opções compatíveis, a Home informa e não oferece início.
+2. `src/lib/homeWorkout.ts` monta um ciclo curado de três sessões completas A/B/C, em vez de reutilizar o gerador de academia com o catálogo reduzido. Cada sessão inclui inferiores, empurrar, cadeia posterior/costas e core; B adiciona unilateralidade e C prioriza estabilidade.
+3. O filtro remove máquinas, pesos, elásticos e cinco itens que exigem acessórios/apoio: flexões inclinada e declinada, remada com toalha na porta, flexora deslizante e panturrilha em degrau. Não tratamos porta, sofá ou toalha como equipamento seguro. A puxada prona no solo é uma alternativa sem equipamento para controle escapular/costas, mas a interface deixa claro que ela não equivale a uma puxada com carga; para isso, o usuário precisa de barra ou elástico.
 4. `startHomeSession()` da store cria uma sessão com `source: 'home'` e `profileSnapshot`. O `planId` é `<plano principal>:home`; o `dayId` acrescenta a posição do ciclo. Isso preserva a sequência do plano principal e permite identificar o mesmo dia no histórico.
 5. `Player.tsx` usa o perfil da sessão nas substituições. Na sessão de casa, filtra acessórios e só oferece troca para hoje. A store também recusa equipamentos e contraindicações incompatíveis.
 6. Série, timer, Watch, conclusão, resumo e histórico usam os mecanismos existentes. A janela de retomada continua sendo 8 horas; um novo início não sobrescreve a sessão ativa. Na verificação de encerramento foi corrigido um erro preexistente de ordem de hooks no player: os dois cálculos após o retorno condicional não usam mais `useMemo`.
@@ -21,7 +21,9 @@ Nenhuma nova rota, API, payload de rede ou banco. Os comandos de Watch continuam
 
 Ao encerrar pelo player, uma referência de encerramento impede o redirect de sessão vazia de disputar a navegação para o resumo enquanto a transição de rota termina.
 
-## Limites conhecidos
+## Base de prescrição e limites conhecidos
+
+O formato de corpo inteiro é deliberado: uma revisão sistemática com meta-análise não encontrou diferença relevante entre divisão e full body para força/hipertrofia quando o volume é equivalente ([PubMed, 2024](https://pubmed.ncbi.nlm.nih.gov/38595233/)). A ACSM também aponta que exercícios de peso corporal e rotinas em casa trazem benefícios relevantes ([ACSM](https://acsm.org/resistance-training-guidelines-update-2026/)); a OMS recomenda fortalecimento dos grandes grupos musculares em pelo menos dois dias da semana ([WHO](https://www.who.int/tools/your-life-your-health/life-phase/later-adulthood/being-active-in-later-adulthood)). Isso não transforma calistenia sem barra em substituta perfeita de uma academia: puxada carregada continua sendo a limitação material, comunicada no produto.
 
 - Sem progressão visual ou PR de repetições/tempo: gráficos existentes priorizam kg.
 - Volume externo de treino sem carga continua sendo 0 kg; séries e frequência são registradas.

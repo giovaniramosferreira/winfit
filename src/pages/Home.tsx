@@ -99,7 +99,7 @@ export default function Home() {
         <div className="eyebrow">Dias de home office</div>
         <h2 id="home-workout-title" style={{ marginTop: 6 }}>Treino em casa</h2>
         <p className="small muted" style={{ marginTop: 6 }}>
-          Só peso corporal, sem equipamentos. Conta na sua semana e mantém o próximo treino do plano.
+          Calistenia de corpo inteiro, sem equipamentos. Conta na sua semana e mantém o próximo treino do plano.
         </p>
         {home.day.exercises.length > 0 ? <>
           <p className="small muted num" style={{ marginTop: 8 }}>
@@ -117,7 +117,7 @@ export default function Home() {
             ))}
           </details>
           <p className="tiny faint" style={{ marginTop: 8 }}>
-            O treino respeita as limitações do seu perfil. Movimentos que exigem apoio ou acessórios ficam de fora.
+            Ciclo A/B/C com agachar, empurrar, cadeia posterior e core. Respeita suas limitações e não usa porta, sofá ou acessórios improvisados.
           </p>
           <button className="btn btn-primary" style={{ marginTop: 14 }} onClick={() => handleStart('home')}>
             {active ? 'Continuar treino em andamento' : 'Começar em casa'}
