@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
+import { ANATOMY, plateNo } from '../data/anatomy'
 import { lastPerformance, suggestFor, fmtKg } from '../lib/progression'
 import { equivalentsFor } from '../lib/generator'
 import { isEquipmentFree } from '../lib/homeWorkout'
@@ -39,7 +40,7 @@ export default function Player() {
 
   useEffect(() => {
     if (lastCommand) {
-      setWatchToast(`⌚ Watch: ${lastCommand.message}`)
+      setWatchToast(`Watch: ${lastCommand.message}`)
       const t = setTimeout(() => setWatchToast(null), 3000)
       return () => clearTimeout(t)
     }
@@ -88,7 +89,7 @@ export default function Player() {
     const log = logSet(idx, defaultWeight(), defaultReps())
     vibrate(30)
     if (log?.isPR) {
-      setPrFlash(`🏅 Novo recorde: ${fmtKg(log.weight)}!`)
+      setPrFlash(`Novo recorde: ${fmtKg(log.weight)}.`)
       setTimeout(() => setPrFlash(null), 3500)
     }
   }
@@ -101,7 +102,7 @@ export default function Player() {
       const log = logSet(idx, editor.weight, editor.reps)
       vibrate(30)
       if (log?.isPR) {
-        setPrFlash(`🏅 Novo recorde: ${fmtKg(log.weight)}!`)
+        setPrFlash(`Novo recorde: ${fmtKg(log.weight)}.`)
         setTimeout(() => setPrFlash(null), 3500)
       }
     }
@@ -134,7 +135,7 @@ export default function Player() {
               title="Sincronização com Apple Watch"
             >
               <span className="dot-pulse" />
-              <span>⌚ Watch</span>
+              <span>Watch</span>
             </button>
             <span className="small muted num">{doneSets}/{totalSets} séries</span>
           </div>
@@ -145,31 +146,32 @@ export default function Player() {
 
       <main className="player-body">
         <div className="between">
-          <span className="eyebrow num">Exercício {idx + 1} de {session.exercises.length}</span>
+          <span className="eyebrow num">Exercício {idx + 1} de {session.exercises.length} · Prancha {plateNo(exercise.id)}</span>
           {sx.substitutedFrom && <span className="pill">substituído</span>}
         </div>
-        <h1 style={{ marginTop: 6, fontSize: 24 }}>{exercise.name}</h1>
+        <h1 style={{ marginTop: 6, fontSize: 27 }}>{exercise.name}</h1>
+        <p className="latin small" style={{ marginTop: 2 }}>{ANATOMY[exercise.primary].latin}</p>
         <p className="small muted num" style={{ marginTop: 4 }}>
           Meta: {sx.sets} × {sx.repMin}–{sx.repMax} {unit}
           {exercise.loadType === 'external' && suggestion.weight != null && suggestion.weight > 0 && (
-            <> · <b className={suggestion.isIncrease ? 'green' : ''}>{fmtKg(suggestion.weight)}</b></>
+            <> · <b className={`mono${suggestion.isIncrease ? ' accent-text' : ''}`}>{fmtKg(suggestion.weight)}</b></>
           )}
         </p>
         <p className="tiny faint" style={{ marginTop: 4 }}>{suggestion.note}</p>
 
         {watchToast && (
-          <div className="pr-flash" style={{ marginTop: 12, borderColor: 'rgba(62,207,142,0.4)', background: 'rgba(62,207,142,0.15)', color: 'var(--green)' }}>
+          <div className="pr-flash ok" style={{ marginTop: 12 }}>
             {watchToast}
           </div>
         )}
         {prFlash && <div className="pr-flash" style={{ marginTop: 12 }}>{prFlash}</div>}
 
-        <div className="card" style={{ marginTop: 14, padding: '6px 14px' }}>
-          <div className="set-row" style={{ borderBottom: '1px solid var(--line)' }}>
-            <span className="tiny faint center">#</span>
-            <span className="tiny faint center">Anterior</span>
-            <span className="tiny faint center">kg</span>
-            <span className="tiny faint center">{unit}</span>
+        <div style={{ marginTop: 16 }}>
+          <div className="set-row head">
+            <span>Série</span>
+            <span>Anterior</span>
+            <span>kg</span>
+            <span>{unit}</span>
             <span />
           </div>
           {Array.from({ length: Math.max(sx.sets, logsHere.length) }, (_, i) => {
@@ -177,7 +179,7 @@ export default function Player() {
             const prevSet = prev?.[i]
             const isNext = i === logsHere.length
             return (
-              <div className="set-row" key={i}>
+              <div className={`set-row${isNext ? ' current' : ''}`} key={i}>
                 <span className="n num">{i + 1}</span>
                 <span className="prev num">{prevSet ? `${prevSet.weight > 0 ? prevSet.weight : '—'}×${prevSet.reps}` : '—'}</span>
                 {log ? (
@@ -209,8 +211,8 @@ export default function Player() {
         </div>
 
         <div className="row" style={{ marginTop: 12 }}>
-          <button className="btn btn-ghost btn-sm grow" onClick={() => setSubOpen(true)}>⇄ Trocar</button>
-          <button className="btn btn-ghost btn-sm grow" onClick={() => nav(`/exercise/${exercise.id}`)}>ℹ Como fazer</button>
+          <button className="btn btn-ghost btn-sm grow" onClick={() => setSubOpen(true)}>Trocar</button>
+          <button className="btn btn-ghost btn-sm grow" onClick={() => nav(`/exercise/${exercise.id}`)}>Ver prancha</button>
           <button className="btn btn-ghost btn-sm grow" onClick={() => { skipExercise(idx) }}>Pular →</button>
         </div>
 
@@ -251,7 +253,7 @@ export default function Player() {
               <button onClick={() => setEditor({ ...editor, reps: editor.reps + (isTimed ? 5 : 1) })}>+</button>
             </div>
             <button className="btn btn-primary" style={{ marginTop: 20 }} onClick={confirmEditor}>
-              {editor.logId ? 'Salvar' : 'Registrar série ✓'}
+              {editor.logId ? 'Salvar' : 'Registrar série'}
             </button>
             {editor.logId && (
               <button className="btn btn-danger" style={{ marginTop: 10 }}
@@ -296,11 +298,14 @@ export default function Player() {
             <p className="muted small" style={{ marginTop: 6 }}>
               {doneSets < totalSets
                 ? `Você registrou ${doneSets} de ${totalSets} séries. O treino será salvo como parcial.`
-                : 'Todas as séries registradas. 💪'}
+                : 'Todas as séries registradas.'}
             </p>
-            <div className="row" style={{ marginTop: 16, justifyContent: 'space-between' }}>
-              {[['😮‍💨', 1], ['🙂', 2], ['😊', 3], ['😤', 4], ['🥵', 5]].map(([e, v]) => (
-                <button key={v} style={{ fontSize: 34, padding: 6 }} onClick={() => doFinish(v as number)}>{e}</button>
+            <div className="eyebrow" style={{ marginTop: 16 }}>Esforço percebido</div>
+            <div className="rpe" style={{ marginTop: 8 }}>
+              {([[1, 'Muito leve'], [2, 'Leve'], [3, 'Moderado'], [4, 'Pesado'], [5, 'Máximo']] as const).map(([v, t]) => (
+                <button key={v} onClick={() => doFinish(v)} aria-label={`${v}: ${t}`}>
+                  <b className="num">{v}</b><span>{t}</span>
+                </button>
               ))}
             </div>
             <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => doFinish(undefined)}>
@@ -340,7 +345,7 @@ function RestTimer() {
       vibrate([180, 90, 180])
     }
     return (
-      <div className="timer-bar" style={{ marginTop: 14, borderColor: 'rgba(62,207,142,0.4)', background: 'rgba(62,207,142,0.1)' }}>
+      <div className="timer-bar done" style={{ marginTop: 14 }}>
         <span className="t green">0:00</span>
         <span className="grow small green">Descanso encerrado — próxima série!</span>
         <button className="btn btn-ghost btn-sm" onClick={clearTimer}>OK</button>

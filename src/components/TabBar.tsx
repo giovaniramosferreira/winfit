@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom'
 
 const tabs = [
-  { to: '/home', label: 'Home', ic: '🏠' },
-  { to: '/progress', label: 'Progresso', ic: '📈' },
-  { to: '/library', label: 'Biblioteca', ic: '📚' },
-  { to: '/profile', label: 'Perfil', ic: '👤' },
+  { to: '/home', label: 'Hoje' },
+  { to: '/progress', label: 'Progresso' },
+  { to: '/library', label: 'Atlas' },
+  { to: '/profile', label: 'Perfil' },
 ]
 
 export default function TabBar() {
@@ -12,7 +12,6 @@ export default function TabBar() {
     <nav className="tabbar">
       {tabs.map((t) => (
         <NavLink key={t.to} to={t.to} className={({ isActive }) => (isActive ? 'active' : '')}>
-          <span className="ic">{t.ic}</span>
           {t.label}
         </NavLink>
       ))}

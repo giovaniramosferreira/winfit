@@ -1,11 +1,13 @@
-interface Point { x: number; y: number; label: string }
+import { fmtKg } from '../lib/progression'
 
-/** Gráfico de linha em SVG puro — carga máxima por sessão. Zero dependências. */
+interface Point { x: number; y: number; label: string; value: number }
+
+/** Gráfico de linha em SVG puro — carga máxima por sessão. Tinta; último ponto em vermelho com o valor. */
 export default function Chart({ data, unit }: { data: { label: string; value: number }[]; unit: string }) {
   if (data.length < 2) return null
   const W = 320
-  const H = 140
-  const PAD = { l: 34, r: 10, t: 12, b: 22 }
+  const H = 150
+  const PAD = { l: 34, r: 16, t: 22, b: 24 }
   const vals = data.map((d) => d.value)
   const min = Math.min(...vals)
   const max = Math.max(...vals)
@@ -17,30 +19,27 @@ export default function Chart({ data, unit }: { data: { label: string; value: nu
     x: PAD.l + (i / (data.length - 1)) * iw,
     y: PAD.t + (1 - (d.value - min) / range) * ih,
     label: d.label,
+    value: d.value,
   }))
-  const path = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')
-  const area = `${path} L${pts[pts.length - 1].x},${H - PAD.b} L${pts[0].x},${H - PAD.b} Z`
+  const path = pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')
+  const last = pts[pts.length - 1]
+  const fmt = (v: number) => `${String(v).replace('.', ',')}${unit}`
 
   return (
     <div className="chart-wrap">
-      <svg className="chart" viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: 'block' }}>
-        <defs>
-          <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <text x={2} y={PAD.t + 4}>{max}{unit}</text>
-        <text x={2} y={H - PAD.b}>{min}{unit}</text>
-        <line x1={PAD.l} y1={PAD.t} x2={PAD.l} y2={H - PAD.b} stroke="var(--line)" />
-        <line x1={PAD.l} y1={H - PAD.b} x2={W - PAD.r} y2={H - PAD.b} stroke="var(--line)" />
-        <path d={area} fill="url(#cg)" />
-        <path d={path} fill="none" stroke="var(--accent-strong)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        {pts.map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r={i === pts.length - 1 ? 4.5 : 3} fill={i === pts.length - 1 ? 'var(--gold)' : 'var(--accent-strong)'} />
-        ))}
+      <svg className="chart" viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: 'block' }}
+        role="img" aria-label={`Carga de ${fmtKg(vals[0])} a ${fmtKg(last.value)} em ${data.length} sessões`}>
+        <line className="grid" x1={PAD.l} y1={PAD.t} x2={W - PAD.r} y2={PAD.t} />
+        <line className="grid" x1={PAD.l} y1={PAD.t + ih / 2} x2={W - PAD.r} y2={PAD.t + ih / 2} />
+        <line className="grid" x1={PAD.l} y1={H - PAD.b} x2={W - PAD.r} y2={H - PAD.b} />
+        <text x={0} y={PAD.t + 3}>{fmt(max)}</text>
+        <text x={0} y={H - PAD.b + 3}>{fmt(min)}</text>
+        <polyline className="ln" points={path} />
+        {pts.slice(0, -1).map((p, i) => <circle key={i} className="pt" cx={p.x} cy={p.y} r={2.6} />)}
+        <circle className="last" cx={last.x} cy={last.y} r={4.2} />
+        <text className="val" x={last.x} y={last.y - 9} textAnchor="end">{fmt(last.value)}</text>
         <text x={pts[0].x} y={H - 6} textAnchor="start">{pts[0].label}</text>
-        <text x={pts[pts.length - 1].x} y={H - 6} textAnchor="end">{pts[pts.length - 1].label}</text>
+        <text x={last.x} y={H - 6} textAnchor="end">{last.label}</text>
       </svg>
     </div>
   )

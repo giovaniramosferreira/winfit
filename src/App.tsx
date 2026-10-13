@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useStore } from './lib/store'
-import Intro from './pages/Intro'
+import Landing from './pages/Landing'
+import Login from './pages/Login'
 import Onboarding from './pages/Onboarding'
 import Preview from './pages/Preview'
 import Home from './pages/Home'
@@ -22,13 +23,15 @@ export default function App() {
 
   const onboarded = profile !== null && plan !== null
   const inPlayer = loc.pathname === '/player'
-  const inFlow = ['/', '/onboarding', '/preview'].includes(loc.pathname)
+  const inFlow = ['/', '/login', '/onboarding', '/preview'].includes(loc.pathname)
+  const isLanding = loc.pathname === '/' && !onboarded
 
   return (
-    <AuthProvider><div className="app-shell">
+    <AuthProvider><div className={`app-shell${isLanding ? ' wide' : ''}`}>
       <PwaToasts />
       <Routes>
-        <Route path="/" element={onboarded ? <Navigate to="/home" replace /> : <Intro />} />
+        <Route path="/" element={onboarded ? <Navigate to="/home" replace /> : <Landing />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/preview" element={<Preview />} />
         <Route path="/home" element={onboarded ? <Home /> : <Navigate to="/" replace />} />

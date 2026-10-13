@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#0d1117"/>
-  <g stroke="#6E56F8" stroke-width="34" stroke-linecap="round">
-    <line x1="120" y1="256" x2="392" y2="256"/>
-    <rect x="76" y="176" width="52" height="160" rx="18" fill="#6E56F8" stroke="none"/>
-    <rect x="384" y="176" width="52" height="160" rx="18" fill="#6E56F8" stroke="none"/>
-    <rect x="140" y="200" width="40" height="112" rx="14" fill="#8f7bff" stroke="none"/>
-    <rect x="332" y="200" width="40" height="112" rx="14" fill="#8f7bff" stroke="none"/>
+  <rect width="512" height="512" rx="112" fill="#f8f6f0"/>
+  <rect x="40" y="40" width="432" height="432" rx="84" fill="none" stroke="#dfdfd3" stroke-width="6"/>
+  <g fill="#292d27">
+    <rect x="120" y="248" width="272" height="16" rx="4"/>
+    <rect x="88" y="178" width="44" height="156" rx="8"/>
+    <rect x="380" y="178" width="44" height="156" rx="8"/>
+    <rect x="140" y="204" width="30" height="104" rx="6"/>
+    <rect x="342" y="204" width="30" height="104" rx="6"/>
   </g>
-  <path d="M196 340 L236 300 L268 332 L326 240" stroke="#F5B942" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M196 352 L236 312 L268 340 L322 268" stroke="#a4432b" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

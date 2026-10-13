@@ -16,7 +16,7 @@ const publicDir = resolve(root, 'public')
 const splashDir = resolve(publicDir, 'splash')
 const tmpDir = resolve(root, 'node_modules/.cache/winfit-icons')
 
-const BG = '#0d1117'
+const BG = '#f8f6f0'
 
 const CHROME_CANDIDATES = [
   process.env.CHROME_BIN,

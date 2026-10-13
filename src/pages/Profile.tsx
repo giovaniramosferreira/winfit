@@ -57,7 +57,8 @@ export default function Profile() {
 
   return (
     <div className="page fade-in">
-      <h1>Perfil</h1>
+      <div className="sheet-head"><span>Perfil</span><span>Ficha de treino</span></div>
+      <h1>Seu plano e <em>suas preferências.</em></h1>
 
       <div className="card" style={{ marginTop: 16 }}>
         <div className="between">
@@ -105,14 +106,14 @@ export default function Profile() {
 
       <div className="card" style={{ marginTop: 12 }}>
         <div className="between">
-          <h3>⌚ Apple Watch</h3>
+          <h3>Apple Watch</h3>
           <span className="pill accent num">{watchToken}</span>
         </div>
         <p className="small muted" style={{ marginTop: 6 }}>
           Bata séries e receba a vibração do timer no relógio sem tirar o iPhone do bolso.
         </p>
-        <button className="btn btn-primary btn-sm" style={{ marginTop: 12 }} onClick={() => setWatchModal(true)}>
-          📲 Adicionar ao Apple Watch (1 Toque)
+        <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={() => setWatchModal(true)}>
+          Adicionar ao Apple Watch
         </button>
       </div>
 

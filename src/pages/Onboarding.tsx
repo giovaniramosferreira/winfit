@@ -5,12 +5,12 @@ import type {
   CurrentState, Equipment, Experience, Goal, Limitation, OnboardingDraft, TrainLocation, TrainingProfile,
 } from '../types'
 
-const GOALS: { v: Goal; ic: string; t: string; s: string }[] = [
-  { v: 'hypertrophy', ic: '💪', t: 'Ganhar músculo', s: 'Hipertrofia como prioridade' },
-  { v: 'fat_loss', ic: '🔥', t: 'Perder gordura', s: 'Emagrecer preservando músculo' },
-  { v: 'strength', ic: '🏋️', t: 'Ficar mais forte', s: 'Foco em força nos básicos' },
-  { v: 'return_fitness', ic: '🔄', t: 'Voltar à forma', s: 'Retomar o condicionamento' },
-  { v: 'health', ic: '❤️', t: 'Saúde e disposição', s: 'Treinar bem, viver melhor' },
+const GOALS: { v: Goal; t: string; s: string }[] = [
+  { v: 'hypertrophy', t: 'Ganhar músculo', s: 'Hipertrofia como prioridade' },
+  { v: 'fat_loss', t: 'Perder gordura', s: 'Emagrecer preservando músculo' },
+  { v: 'strength', t: 'Ficar mais forte', s: 'Foco em força nos básicos' },
+  { v: 'return_fitness', t: 'Voltar à forma', s: 'Retomar o condicionamento' },
+  { v: 'health', t: 'Saúde e disposição', s: 'Treinar bem, viver melhor' },
 ]
 const EXP: { v: Experience; t: string; s: string }[] = [
   { v: 'none', t: 'Nunca treinei', s: 'Ou treinei muito pouco' },
@@ -24,11 +24,11 @@ const STATE: { v: CurrentState; t: string; s: string }[] = [
   { v: 'paused_months', t: 'Parado há alguns meses', s: 'Voltando de uma pausa' },
   { v: 'paused_long', t: 'Parado há muito tempo', s: '1 ano ou mais' },
 ]
-const LOCATIONS: { v: TrainLocation; ic: string; t: string; s: string }[] = [
-  { v: 'gym_full', ic: '🏢', t: 'Academia completa', s: 'Máquinas, pesos livres, polias' },
-  { v: 'gym_basic', ic: '🏠', t: 'Academia básica / condomínio', s: 'Estrutura limitada' },
-  { v: 'home_equipment', ic: '🧰', t: 'Em casa, com equipamentos', s: 'Halteres, elásticos etc.' },
-  { v: 'home_none', ic: '🧘', t: 'Em casa, sem equipamentos', s: 'Só o peso do corpo' },
+const LOCATIONS: { v: TrainLocation; t: string; s: string }[] = [
+  { v: 'gym_full', t: 'Academia completa', s: 'Máquinas, pesos livres, polias' },
+  { v: 'gym_basic', t: 'Academia básica / condomínio', s: 'Estrutura limitada' },
+  { v: 'home_equipment', t: 'Em casa, com equipamentos', s: 'Halteres, elásticos etc.' },
+  { v: 'home_none', t: 'Em casa, sem equipamentos', s: 'Só o peso do corpo' },
 ]
 const EQUIP_OPTS: { v: Equipment; t: string }[] = [
   { v: 'halteres', t: 'Halteres' },
@@ -110,7 +110,7 @@ export default function Onboarding() {
     <div className="page-full fade-in" key={d.step}>
       <div className="between" style={{ marginBottom: 8 }}>
         <button className="btn-quiet" onClick={back} style={{ padding: '8px 0' }}>← Voltar</button>
-        <span className="tiny faint num">{d.step} de {totalSteps}</span>
+        <span className="eyebrow num">Pergunta {d.step} de {totalSteps}</span>
       </div>
       <div className="progressbar"><div style={{ width: `${(d.step / totalSteps) * 100}%` }} /></div>
 
@@ -119,7 +119,6 @@ export default function Onboarding() {
           {GOALS.map((o) => (
             <button key={o.v} className={`option ${d.goal === o.v ? 'selected' : ''}`}
               onClick={() => next({ goal: o.v })}>
-              <span className="icon">{o.ic}</span>
               <span>{o.t}<div className="desc">{o.s}</div></span>
             </button>
           ))}
@@ -156,7 +155,6 @@ export default function Onboarding() {
                 const skip = o.v === 'gym_full' || o.v === 'home_none'
                 next({ location: o.v, equipment: skip ? [] : d.equipment }, skip ? 2 : 1)
               }}>
-              <span className="icon">{o.ic}</span>
               <span>{o.t}<div className="desc">{o.s}</div></span>
             </button>
           ))}
@@ -186,7 +184,7 @@ export default function Onboarding() {
           {FREQS.map((f) => (
             <button key={f} className={`option ${d.frequency === f ? 'selected' : ''}`}
               onClick={() => next({ frequency: f })}>
-              <span className="num" style={{ fontSize: 20, fontWeight: 800, width: 30 }}>{f}</span>
+              <span className="icon num" style={{ fontSize: 22 }}>{f}</span>
               <span>dias por semana</span>
             </button>
           ))}
@@ -250,7 +248,7 @@ export default function Onboarding() {
 function Step({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
     <div>
-      <h1 style={{ fontSize: 24 }}>{title}</h1>
+      <h1 style={{ fontSize: 27 }}>{title}</h1>
       {sub && <p className="muted small" style={{ marginTop: 6 }}>{sub}</p>}
       <div style={{ marginTop: 16 }}>{children}</div>
     </div>

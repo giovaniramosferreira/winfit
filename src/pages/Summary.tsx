@@ -13,16 +13,22 @@ export default function Summary() {
   if (!session) return <Navigate to="/home" replace />
 
   const volume = volumeOf(session.logs)
-  const prs = session.logs.filter((l) => l.isPR)
+  // Um recorde por exercício: a melhor série marcada como PR na sessão.
+  const prs = [...session.logs.filter((l) => l.isPR)
+    .reduce((m, l) => {
+      const cur = m.get(l.exerciseId)
+      if (!cur || l.weight > cur.weight || (l.weight === cur.weight && l.reps > cur.reps)) m.set(l.exerciseId, l)
+      return m
+    }, new Map<string, (typeof session.logs)[number]>()).values()]
   const previous = sessions.find((s) => s.id !== session.id && s.dayId === session.dayId && s.startedAt < session.startedAt)
   const prevVolume = previous ? volumeOf(previous.logs) : null
   const delta = prevVolume != null && prevVolume > 0 ? Math.round(((volume - prevVolume) / prevVolume) * 100) : null
 
   return (
     <div className="page-full fade-in">
-      <div style={{ paddingTop: 32 }} className="center">
-        <div style={{ fontSize: 52 }}>{prs.length > 0 ? '🏅' : '✅'}</div>
-        <h1 style={{ marginTop: 12 }}>Treino concluído!</h1>
+      <div style={{ paddingTop: 32 }}>
+        <div className="sheet-head"><span>Treino concluído</span><span>{session.status === 'partial' ? 'Parcial' : 'Completo'}</span></div>
+        <h1>{prs.length > 0 ? <>Sessão com <em>{prs.length} {prs.length === 1 ? 'recorde' : 'recordes'}.</em></> : 'Mais uma sessão no caderno.'}</h1>
         <p className="muted" style={{ marginTop: 6 }}>{session.dayLabel}</p>
       </div>
 
@@ -40,7 +46,7 @@ export default function Summary() {
           <div className="k">Volume total</div>
         </div>
         <div className="stat">
-          <div className="v num" style={{ color: delta != null && delta > 0 ? 'var(--green)' : undefined }}>
+          <div className="v num" style={{ color: delta != null && delta > 0 ? 'var(--accent)' : undefined }}>
             {delta != null ? `${delta > 0 ? '+' : ''}${delta}%` : '—'}
           </div>
           <div className="k">vs. último {session.dayLabel.split(' ')[0]}</div>
@@ -48,8 +54,8 @@ export default function Summary() {
       </div>
 
       {prs.length > 0 && (
-        <div className="card" style={{ marginTop: 14, borderColor: 'rgba(245,185,66,0.4)' }}>
-          <h3 className="gold">🏅 Recordes desta sessão</h3>
+        <div className="card" style={{ marginTop: 14 }}>
+          <div className="eyebrow accent">Recordes desta sessão</div>
           {prs.map((l) => (
             <div key={l.id} className="between" style={{ marginTop: 8 }}>
               <span className="small">{byId.get(l.exerciseId)?.name}</span>

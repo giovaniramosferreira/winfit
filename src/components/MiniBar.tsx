@@ -12,7 +12,7 @@ export default function MiniBar() {
   }).length
   return (
     <button className="minibar" onClick={() => nav('/player')}>
-      <span>▶ {active.dayLabel}</span>
+      <span><span className="dot" />{active.dayLabel}</span>
       <span className="num">{done}/{active.exercises.length} exercícios</span>
     </button>
   )

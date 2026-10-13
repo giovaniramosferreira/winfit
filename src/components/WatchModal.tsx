@@ -53,10 +53,10 @@ export default function WatchModal({
   }
 
   const statusLabel: Record<SyncState, { text: string; color: string }> = {
-    idle: { text: '⚪ Aguardando início do treino', color: 'var(--text-dim)' },
-    connecting: { text: '🟡 Conectando ao relay...', color: 'var(--gold)' },
-    connected: { text: '🟢 Conectado em tempo real', color: 'var(--green)' },
-    error: { text: '🔴 Reconectando ao relay...', color: 'var(--red)' },
+    idle: { text: 'Aguardando início do treino', color: 'var(--text-dim)' },
+    connecting: { text: 'Conectando ao relay…', color: 'var(--warn)' },
+    connected: { text: 'Conectado em tempo real', color: 'var(--green)' },
+    error: { text: 'Reconectando ao relay…', color: 'var(--red)' },
   }
 
   return (
@@ -67,7 +67,7 @@ export default function WatchModal({
         style={{ maxHeight: '90vh', overflowY: 'auto' }}
       >
         <div className="between">
-          <h2>⌚ Apple Watch</h2>
+          <h2>Apple Watch</h2>
           <button className="btn-quiet" onClick={onClose} style={{ minHeight: 32, fontSize: 18 }}>
             ✕
           </button>
@@ -83,7 +83,7 @@ export default function WatchModal({
           style={{
             marginTop: 14,
             padding: '10px 14px',
-            borderColor: syncState === 'connected' ? 'rgba(62,207,142,0.4)' : 'var(--line)',
+            borderColor: syncState === 'connected' ? 'var(--green)' : 'var(--line)',
           }}
         >
           <div className="between">
@@ -100,8 +100,9 @@ export default function WatchModal({
           style={{
             marginTop: 12,
             padding: '16px',
-            background: 'linear-gradient(180deg, var(--bg-elev) 0%, rgba(110, 86, 248, 0.08) 100%)',
-            borderColor: 'rgba(110, 86, 248, 0.4)',
+            background: 'var(--bg-elev)',
+            border: '1px solid var(--line)',
+            borderRadius: 'var(--radius)',
           }}
         >
           <button
@@ -114,7 +115,6 @@ export default function WatchModal({
             }}
             onClick={handleInstallShortcut}
           >
-            <span>📲</span>
             <span>{installing ? '✓ Abrindo o app Atalhos...' : 'Adicionar ao Apple Watch (1 Toque)'}</span>
           </button>
 
@@ -186,7 +186,7 @@ export default function WatchModal({
             onClick={() => setShowAdvanced(!showAdvanced)}
             style={{ textDecoration: 'underline' }}
           >
-            {showAdvanced ? 'Ocultar opções avançadas' : '⚙️ Opções manuais e URLs'}
+            {showAdvanced ? 'Ocultar opções avançadas' : 'Opções manuais e URLs'}
           </button>
         </div>
 

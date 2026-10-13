@@ -5,6 +5,8 @@ import { byId, EQUIP_LABEL, MUSCLE_LABEL } from '../data/exercises'
 import { fmtDate } from '../lib/helpers'
 import { fmtKg } from '../lib/progression'
 import Chart from '../components/Chart'
+import BodyPlate from '../components/BodyPlate'
+import { ANATOMY, plateNo } from '../data/anatomy'
 
 export default function ExerciseDetail() {
   const { id } = useParams()
@@ -32,59 +34,82 @@ export default function ExerciseDetail() {
 
   const chartData = history.filter((h) => h.max > 0).map((h) => ({ label: fmtDate(h.ts), value: h.max }))
 
+  const anat = ANATOMY[exercise.primary]
+  const plate = plateNo(exercise.id)
+
   return (
     <div className="page fade-in">
-      <button className="btn-quiet" onClick={() => nav(-1)} style={{ padding: '4px 0' }}>
-        ← Voltar{active ? ' ao treino' : ''}
-      </button>
-      <h1 style={{ marginTop: 8 }}>{exercise.name}</h1>
-      <div style={{ marginTop: 8 }}>
-        <span className="muscle-tag" style={{ background: 'var(--accent-soft)', color: 'var(--accent-strong)' }}>
-          {MUSCLE_LABEL[exercise.primary]}
-        </span>
-        {exercise.secondary.map((m) => <span key={m} className="muscle-tag">{MUSCLE_LABEL[m]}</span>)}
+      <div className="between" style={{ marginBottom: 6 }}>
+        <button className="btn-quiet" onClick={() => nav(-1)} style={{ padding: '4px 0' }}>
+          ← Voltar{active ? ' ao treino' : ''}
+        </button>
+        <span className="eyebrow num">Prancha {plate}</span>
       </div>
-      <p className="tiny faint" style={{ marginTop: 6 }}>
-        Equipamento: {exercise.equipment.map((e) => EQUIP_LABEL[e]).join(' + ')}
+      <div className="rule-strong" />
+
+      <div className="eyebrow" style={{ marginTop: 16 }}>{MUSCLE_LABEL[exercise.primary]}</div>
+      <h1 style={{ marginTop: 6 }}>{exercise.name}</h1>
+      <p className="latin" style={{ fontSize: 17, marginTop: 4 }}>
+        {anat.latin}{anat.also ? <span className="small"> — {anat.also}</span> : null}
       </p>
 
-      <div className="card" style={{ marginTop: 14 }}>
-        <h3>Como executar</h3>
-        <ol className="small muted" style={{ marginTop: 8, paddingLeft: 20, display: 'grid', gap: 6 }}>
+      <figure className="plate-fig" style={{ marginTop: 14 }}>
+        <BodyPlate primary={exercise.primary} secondary={exercise.secondary}
+          label={`Figura do corpo com ${MUSCLE_LABEL[exercise.primary].toLowerCase()} em destaque`} />
+        <figcaption>
+          <b>Fig. {plate}.</b> Em hachura, o músculo principal
+          {exercise.secondary.length > 0 && <>; em tom claro, apoio de {exercise.secondary.map((m) => MUSCLE_LABEL[m].toLowerCase()).join(', ')}</>}.
+        </figcaption>
+      </figure>
+
+      <dl className="defs" style={{ marginTop: 18, paddingTop: 14, borderTop: '1px solid var(--line)' }}>
+        <dt>Origem</dt><dd>{anat.origin}</dd>
+        <dt>Inserção</dt><dd>{anat.insertion}</dd>
+        <dt>Ação</dt><dd>{anat.action}</dd>
+        <dt>Equipamento</dt><dd>{exercise.equipment.length ? exercise.equipment.map((e) => EQUIP_LABEL[e]).join(' + ') : 'Peso corporal'}</dd>
+      </dl>
+
+      <section className="card" style={{ marginTop: 18 }}>
+        <div className="eyebrow">Como executar</div>
+        <ol className="steps-list" style={{ marginTop: 10 }}>
           {exercise.instructions.map((i) => <li key={i}>{i}</li>)}
         </ol>
-      </div>
+      </section>
 
-      <div className="card" style={{ marginTop: 12 }}>
-        <h3>⚠️ Erros comuns</h3>
-        <ul className="small muted" style={{ marginTop: 8, paddingLeft: 20, display: 'grid', gap: 6 }}>
-          {exercise.mistakes.map((m) => <li key={m}>{m}</li>)}
-        </ul>
-      </div>
+      {exercise.mistakes.length > 0 && (
+        <div className="note" style={{ marginTop: 6 }}>
+          <b>{exercise.mistakes.length === 1 ? 'Erro comum.' : 'Erros comuns.'}</b>{' '}
+          {exercise.mistakes.join(' ')}
+        </div>
+      )}
 
       {chartData.length >= 2 && (
-        <div className="card" style={{ marginTop: 12 }}>
+        <section className="card" style={{ marginTop: 18 }}>
           <div className="between">
-            <h3>Sua evolução de carga</h3>
-            <span className="pill gold num">{fmtKg(Math.max(...chartData.map((d) => d.value)))}</span>
+            <div className="eyebrow">Sua carga</div>
+            <span className="mono num small accent-text">recorde {fmtKg(Math.max(...chartData.map((d) => d.value)))}</span>
           </div>
           <div style={{ marginTop: 10 }}>
             <Chart data={chartData} unit="" />
           </div>
-        </div>
+        </section>
       )}
 
       {history.length > 0 && (
-        <div className="card" style={{ marginTop: 12 }}>
-          <h3>Seu histórico</h3>
+        <section className="card" style={{ marginTop: 12 }}>
+          <div className="eyebrow">Seu histórico</div>
           {[...history].reverse().slice(0, 10).map((h) => (
             <div key={h.ts} className="list-item">
               <span className="tiny faint num" style={{ width: 60 }}>{fmtDate(h.ts)}</span>
-              <span className="small num grow">{h.sets}</span>
+              <span className="small mono num grow">{h.sets}</span>
             </div>
           ))}
-        </div>
+        </section>
       )}
+
+      <p className="tiny faint" style={{ marginTop: 20 }}>
+        Conteúdo anatômico educativo, baseado em anatomia descritiva clássica. Não substitui orientação profissional.
+      </p>
     </div>
   )
 }

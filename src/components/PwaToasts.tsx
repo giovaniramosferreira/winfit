@@ -38,7 +38,7 @@ export default function PwaToasts() {
     <div className="toast-stack">
       {showOffline && (
         <div className="toast">
-          <span className="ic">📴</span>
+          <span className="ic">Offline</span>
           <div className="grow small">
             <b>Sem conexão.</b> Seu treino continua funcionando normalmente.
           </div>
@@ -47,7 +47,7 @@ export default function PwaToasts() {
 
       {showOfflineReady && (
         <div className="toast">
-          <span className="ic">✓</span>
+          <span className="ic">Pronto</span>
           <div className="grow small">
             <b>App pronto para usar offline.</b>
           </div>

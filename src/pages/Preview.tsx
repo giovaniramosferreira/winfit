@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
-import { byId, MUSCLE_LABEL } from '../data/exercises'
+import { byId } from '../data/exercises'
+import { ANATOMY } from '../data/anatomy'
 
 export default function Preview() {
   const plan = useStore((s) => s.plan)
@@ -21,8 +22,8 @@ export default function Preview() {
     return (
       <div className="page-full center" style={{ justifyContent: 'center' }}>
         <div className="fade-in">
-          <div style={{ fontSize: 44 }}>🧠</div>
-          <h2 style={{ marginTop: 16 }}>Montando seu plano…</h2>
+          <div className="eyebrow accent">Escrevendo</div>
+          <h2 style={{ marginTop: 10, fontSize: 26 }}>Montando seu plano…</h2>
           <p className="muted small" style={{ marginTop: 8 }}>
             Ajustando ao seu equipamento · Distribuindo o volume semanal · Calibrando repetições
           </p>
@@ -33,22 +34,22 @@ export default function Preview() {
 
   return (
     <div className="page-full fade-in">
-      <div className="eyebrow">Seu plano está pronto</div>
+      <div className="eyebrow accent">Seu plano está pronto</div>
       <h1 style={{ marginTop: 8 }}>{plan.splitLabel}</h1>
       <p className="muted" style={{ marginTop: 6 }}>
         {plan.days.length} treinos/semana · ~{Math.round(plan.days.reduce((a, d) => a + d.estMin, 0) / plan.days.length)} min por sessão
       </p>
 
       {plan.notes.map((n) => (
-        <div key={n} className="card small" style={{ marginTop: 14, borderColor: 'rgba(245,185,66,0.4)' }}>
-          💡 {n}
+        <div key={n} className="note olive" style={{ marginTop: 14 }}>
+          <b>Nota.</b> {n}
         </div>
       ))}
 
       <button className="card" style={{ marginTop: 14, width: '100%', textAlign: 'left' }} onClick={() => setShowWhy(!showWhy)}>
         <div className="between">
           <h3>Por que este plano?</h3>
-          <span className="chev">{showWhy ? '▲' : '▼'}</span>
+          <span className="chev">{showWhy ? '−' : '+'}</span>
         </div>
         {showWhy && (
           <ul className="small muted" style={{ marginTop: 10, paddingLeft: 18, display: 'grid', gap: 6 }}>
@@ -67,11 +68,11 @@ export default function Preview() {
                 <div className="small muted num">{day.exercises.length} exercícios · ~{day.estMin} min</div>
                 <div style={{ marginTop: 6 }}>
                   {day.targetMuscles.slice(0, 4).map((m) => (
-                    <span key={m} className="muscle-tag">{MUSCLE_LABEL[m]}</span>
+                    <span key={m} className="muscle-tag">{ANATOMY[m].latin}</span>
                   ))}
                 </div>
               </div>
-              <span className="chev">{expanded === day.id ? '▲' : '▼'}</span>
+              <span className="chev">{expanded === day.id ? '−' : '+'}</span>
             </div>
             {expanded === day.id && (
               <div style={{ marginTop: 12 }}>
@@ -80,7 +81,7 @@ export default function Preview() {
                   return (
                     <div key={pe.id} className="between" style={{ padding: '8px 0', borderTop: '1px solid var(--line)' }}>
                       <span className="small">{ex?.name}</span>
-                      <span className="small faint num">{pe.sets}×{pe.repMin}–{pe.repMax}</span>
+                      <span className="small faint mono num">{pe.sets}×{pe.repMin}–{pe.repMax}</span>
                     </div>
                   )
                 })}

@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
-import { byId, MUSCLE_LABEL } from '../data/exercises'
+import { byId } from '../data/exercises'
+import { ANATOMY, plateNo } from '../data/anatomy'
 import { greeting, sessionsThisWeek, startOfWeek } from '../lib/helpers'
 import { fmtKg } from '../lib/progression'
 import InstallCard from '../components/InstallCard'
@@ -63,28 +64,47 @@ export default function Home() {
     })
   }, [weekSessions])
 
+  const today = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
+  // Em andamento, o sumário mostra o que está no player (inclui trocas e treino em casa).
+  const toc = active
+    ? active.exercises.map((e) => ({ id: e.planExerciseId, exerciseId: e.exerciseId, sets: e.sets, repMin: e.repMin, repMax: e.repMax }))
+    : nextDay.exercises
+
   return (
     <div className="page fade-in">
-      <p className="muted small">{greeting()} 👋</p>
-      <h1 style={{ marginTop: 2 }}>
-        {weekSessions.length >= goal ? 'Semana fechada. 🎉' : 'Pronto para treinar?'}
-      </h1>
+      <div className="sheet-head">
+        <span>{greeting()} · {today}</span>
+        <span className="num">Semana {weekSessions.length}/{goal}</span>
+      </div>
 
-      <div className="hero-card" style={{ marginTop: 16 }}>
-        <div className="eyebrow">{active ? 'Treino em andamento' : 'Treino de hoje'}</div>
-        <h2 style={{ marginTop: 8, fontSize: 22 }}>{active ? active.dayLabel : nextDay.label}</h2>
+      <section className="hero-card" style={{ borderTop: 0, paddingTop: 0 }}>
+        <div className="eyebrow accent">{active ? 'Treino em andamento' : weekSessions.length >= goal ? 'Semana fechada' : 'Treino de hoje'}</div>
+        <h1 style={{ marginTop: 8 }}>{active ? active.dayLabel : nextDay.label}</h1>
         {!active && (
-          <>
-            <p className="muted small num" style={{ marginTop: 4 }}>
-              {nextDay.exercises.length} exercícios · ~{nextDay.estMin} min
-            </p>
-            <div style={{ marginTop: 8 }}>
-              {nextDay.targetMuscles.slice(0, 4).map((m) => (
-                <span key={m} className="muscle-tag">{MUSCLE_LABEL[m]}</span>
-              ))}
-            </div>
-          </>
+          <div className="kpis" style={{ marginTop: 14 }}>
+            <div><b className="num">{nextDay.exercises.length}</b><span>exercícios</span></div>
+            <div><b className="num">~{nextDay.estMin}</b><span>minutos</span></div>
+            <div><b className={`num${weekSessions.length >= goal ? ' hot' : ''}`}>{weekSessions.length}/{goal}</b><span>treinos na semana</span></div>
+          </div>
         )}
+
+        <div className="eyebrow" style={{ marginTop: 18 }}>Sumário</div>
+        <ol className="toc" style={{ marginTop: 4 }}>
+          {toc.map((pe, i) => {
+            const ex = byId.get(pe.exerciseId)
+            if (!ex) return null
+            return (
+              <li key={pe.id}>
+                <Link to={`/exercise/${ex.id}`} className={`toc-item${i === 0 && !active ? ' on' : ''}`}>
+                  <span className="n num">{plateNo(ex.id)}</span>
+                  <span className="t">{ex.name}<small>{ANATOMY[ex.primary].latin}</small></span>
+                  <span className="m num">{pe.sets}×{pe.repMin}–{pe.repMax}</span>
+                </Link>
+              </li>
+            )
+          })}
+        </ol>
+
         <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => handleStart()}>
           {active ? 'Continuar treino' : 'Começar treino'}
         </button>
@@ -93,44 +113,12 @@ export default function Home() {
             Treinar outro dia do plano
           </button>
         )}
-      </div>
-
-      <section className="card" style={{ marginTop: 14 }} aria-labelledby="home-workout-title">
-        <div className="eyebrow">Dias de home office</div>
-        <h2 id="home-workout-title" style={{ marginTop: 6 }}>Treino em casa</h2>
-        <p className="small muted" style={{ marginTop: 6 }}>
-          Calistenia de corpo inteiro, sem equipamentos. Conta na sua semana e mantém o próximo treino do plano.
-        </p>
-        {home.day.exercises.length > 0 ? <>
-          <p className="small muted num" style={{ marginTop: 8 }}>
-            {home.day.exercises.length} exercícios · ~{home.day.estMin} min
-          </p>
-          <details style={{ marginTop: 12 }}>
-            <summary style={{ cursor: 'pointer', padding: '12px 0' }}>Ver exercícios</summary>
-            {home.day.exercises.map((pe) => (
-              <div className="list-item" key={pe.id}>
-                <span className="grow small">{byId.get(pe.exerciseId)?.name}</span>
-                <span className="tiny muted num">
-                  {pe.sets} × {pe.repMin}–{pe.repMax} {pe.exerciseId.startsWith('prancha') ? 'seg' : 'reps'}
-                </span>
-              </div>
-            ))}
-          </details>
-          <p className="tiny faint" style={{ marginTop: 8 }}>
-            Ciclo A/B/C com agachar, empurrar, cadeia posterior e core. Respeita suas limitações e não usa porta, sofá ou acessórios improvisados.
-          </p>
-          <button className="btn btn-primary" style={{ marginTop: 14 }} onClick={() => handleStart('home')}>
-            {active ? 'Continuar treino em andamento' : 'Começar em casa'}
-          </button>
-        </> : <p className="small muted" style={{ marginTop: 10 }}>
-          Não há exercícios sem equipamentos compatíveis com as limitações do seu perfil.
-        </p>}
       </section>
 
-      <div className="card" style={{ marginTop: 14 }}>
+      <section className="card" style={{ marginTop: 18 }}>
         <div className="between">
           <h3>Minha semana</h3>
-          <span className="pill accent num">{weekSessions.length}/{goal} treinos</span>
+          <span className="tiny muted num">{weekSessions.length} de {goal} treinos</span>
         </div>
         <div className="week-dots" style={{ marginTop: 12 }}>
           {week.map((d, i) => (
@@ -140,21 +128,45 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
       {lastPR && (
-        <div className="card" style={{ marginTop: 12 }}>
-          <div className="row">
-            <span style={{ fontSize: 24 }}>🏅</span>
-            <div>
-              <h3 className="gold">Último recorde</h3>
-              <div className="small muted">
-                {byId.get(lastPR.exerciseId)?.name}: <b className="num">{fmtKg(lastPR.value)} × {lastPR.reps}</b>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Link to={`/exercise/${lastPR.exerciseId}`} className="note" style={{ display: 'block', marginTop: 14, color: 'inherit', textDecoration: 'none' }}>
+          <b>Último recorde.</b> {byId.get(lastPR.exerciseId)?.name}: <span className="mono num">{fmtKg(lastPR.value)} × {lastPR.reps}</span>
+        </Link>
       )}
+
+      <section className="card" style={{ marginTop: 18 }} aria-labelledby="home-workout-title">
+        <div className="eyebrow">Dias de home office</div>
+        <h2 id="home-workout-title" style={{ marginTop: 6 }}>Treino em casa</h2>
+        <p className="small muted" style={{ marginTop: 6 }}>
+          Calistenia de corpo inteiro, sem equipamentos. Conta na sua semana e mantém o próximo treino do plano.
+        </p>
+        {home.day.exercises.length > 0 ? <>
+          <p className="small muted num" style={{ marginTop: 8 }}>
+            {home.day.exercises.length} exercícios · ~{home.day.estMin} min
+          </p>
+          <details style={{ marginTop: 6 }}>
+            <summary style={{ cursor: 'pointer', padding: '10px 0' }}>Ver exercícios</summary>
+            {home.day.exercises.map((pe) => (
+              <div className="list-item" key={pe.id}>
+                <span className="grow small">{byId.get(pe.exerciseId)?.name}</span>
+                <span className="tiny muted mono num">
+                  {pe.sets} × {pe.repMin}–{pe.repMax} {pe.exerciseId.startsWith('prancha') ? 'seg' : 'reps'}
+                </span>
+              </div>
+            ))}
+          </details>
+          <p className="tiny faint" style={{ marginTop: 8 }}>
+            Ciclo A/B/C com agachar, empurrar, cadeia posterior e core. Respeita suas limitações e não usa porta, sofá ou acessórios improvisados.
+          </p>
+          <button className="btn btn-ghost" style={{ marginTop: 14 }} onClick={() => handleStart('home')}>
+            {active ? 'Continuar treino em andamento' : 'Começar em casa'}
+          </button>
+        </> : <p className="small muted" style={{ marginTop: 10 }}>
+          Não há exercícios sem equipamentos compatíveis com as limitações do seu perfil.
+        </p>}
+      </section>
 
       <div style={{ marginTop: 12 }}>
         <InstallCard />

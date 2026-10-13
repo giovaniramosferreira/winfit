@@ -39,6 +39,18 @@ Detalhes de implementação: `src/lib/pwa.ts` (registro único do service worker
 instalação e de conexão), `src/components/PwaToasts.tsx`, `src/components/InstallCard.tsx`
 e o bloco `VitePWA` em `vite.config.ts`.
 
+## Direção visual: atlas de anatomia
+
+O app se lê como um livro de anatomia, não como painel de controle:
+
+- **Papel, tinta e um vermelho só.** O vermelho é o músculo: músculo trabalhado nas figuras, carga que subiu, ação principal. Uma coisa vermelha por tela.
+- **Cada exercício é uma prancha numerada** (`src/data/anatomy.ts`, `src/components/BodyPlate.tsx`): figura em traço com vistas anterior e posterior, nome latino, origem, inserção e ação. As 10 regiões musculares são desenhadas uma vez e reaproveitadas pelos ~75 exercícios.
+- **Tipografia:** Fraunces nos títulos e números-chave, Geist no texto, Geist Mono nas cargas. Fontes embutidas no PWA (subconjunto latino, OFL) para funcionar offline.
+- **Modo tinta:** com o sistema em modo escuro, o papel vira texto. Pensado para academia à noite.
+- Sem emoji, sem cards arredondados: hierarquia por filete.
+
+Base visual compartilhada com o AuraViz (mesmo papel, tinta, oliva e terracota).
+
 ## Rodar
 
 ```bash
@@ -50,6 +62,8 @@ npm run preview  # serve o dist/ — necessário para testar service worker e in
 SW_DEV=true npm run dev             # habilita o service worker em desenvolvimento
 npm run icons                       # regera ícones e splash screens a partir dos SVGs
 npx tsx scripts/test-generator.ts   # suíte combinatória do gerador (56k combinações)
+npx tsx scripts/test-home-workout.ts
+npx tsx scripts/test-watch-sync.ts
 ```
 
 > `npm run icons` renderiza os PNGs com Chrome/Chromium headless (defina `CHROME_BIN` se ele

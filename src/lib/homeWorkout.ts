@@ -39,6 +39,16 @@ function prescription(profile: TrainingProfile, move: Move, exercise: Exercise):
     repMin: timed ? 20 : 8, repMax: timed ? 45 : 15, restSec: move.slot === 'core' ? 45 : 75 }
 }
 
+// Treino de home office cabe em ~30 min: corta uma série por vez, das maiores para as menores, até 2 por exercício.
+const HOME_BUDGET_MIN = 30
+function fitToBudget(exercises: PlanExercise[]) {
+  while (estimateDayMin(exercises) > HOME_BUDGET_MIN) {
+    const target = [...exercises].filter((e) => e.sets > 2).sort((a, b) => b.sets - a.sets)[0]
+    if (!target) break
+    target.sets -= 1
+  }
+}
+
 export function homeWorkout(profile: TrainingProfile, plan: Plan, _seed: string, sessions: Session[]) {
   const homeId = `${plan.id}:home`
   const done = sessions.filter((s) => s.planId === homeId)
@@ -47,6 +57,7 @@ export function homeWorkout(profile: TrainingProfile, plan: Plan, _seed: string,
       const exercise = choose(move, profile)
       return exercise ? prescription(profile, move, exercise) : null
     }).filter((item): item is PlanExercise => item !== null)
+    fitToBudget(exercises)
     return { id: `${homeId}:${index}`, label: `Em casa · ${template.label}`, position: index,
       targetMuscles: [...new Set(exercises.map((e) => byId.get(e.exerciseId)!.primary))], exercises, estMin: estimateDayMin(exercises) }
   })
