@@ -127,7 +127,7 @@ export default function Player() {
   const inc = exercise.minIncrementKg
 
   return (
-    <div className="player">
+    <div className={`player${session.timer ? ' is-resting' : ''}`}>
       <header className="player-head">
         <div className="between">
           <button className="btn-quiet" onClick={() => nav('/home')}>▾ Minimizar</button>
@@ -225,10 +225,10 @@ export default function Player() {
           Escolha a variação antes da primeira série deste exercício. As séries registradas permanecem no histórico.
         </p>}
 
-        <RestTimer />
       </main>
 
       <footer className="player-foot">
+        <RestTimer />
         <div className="row">
           <button className="btn btn-ghost" style={{ flex: 1 }} disabled={idx === 0} onClick={goPrev}>← Anterior</button>
           {allExercisesDone || idx === session.exercises.length - 1 ? (
@@ -354,7 +354,7 @@ function RestTimer() {
       vibrate([180, 90, 180])
     }
     return (
-      <div className="timer-bar done" style={{ marginTop: 14 }}>
+      <div className="timer-bar done">
         <span className="t green">0:00</span>
         <span className="grow small green">Descanso encerrado — próxima série!</span>
         <button className="btn btn-ghost btn-sm" onClick={clearTimer}>OK</button>
@@ -363,7 +363,7 @@ function RestTimer() {
   }
 
   return (
-    <div className="timer-bar" style={{ marginTop: 14 }}>
+    <div className="timer-bar">
       <span className="t num">{fmtClock(remaining)}</span>
       <span className="grow small muted">descanso</span>
       <button className="btn btn-ghost btn-sm" onClick={() => startTimer(remaining + 30)}>+30s</button>
