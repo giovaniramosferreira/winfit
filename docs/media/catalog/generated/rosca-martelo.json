@@ -1,0 +1,15 @@
+{
+  "id": "rosca-martelo",
+  "name": "Rosca martelo",
+  "hold": false,
+  "directions": "Dumbbell HAMMER curl. One dumbbell per hand held VERTICALLY with neutral thumbs-up grip, palms face each other THROUGHOUT. Elbows stay at sides, start arms long and curl both weights toward shoulders. No wrist rotation, torso still.",
+  "instructions": [
+    "Halteres com pegada neutra (palmas se olhando).",
+    "Suba dobrando os cotovelos.",
+    "Desça com controle."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/rosca-martelo.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Dumbbell HAMMER curl. One dumbbell per hand held VERTICALLY with neutral thumbs-up grip, palms face each other THROUGHOUT. Elbows stay at sides, start arms long and curl both weights toward shoulders. No wrist rotation, torso still. Source instructions Portuguese: Halteres com pegada neutra (palmas se olhando). Suba dobrando os cotovelos. Desça com controle.",
+  "status": "generated",
+  "cycle": "loop"
+}

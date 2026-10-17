@@ -1,0 +1,15 @@
+{
+  "id": "panturrilha-maquina",
+  "name": "Panturrilha na máquina",
+  "hold": false,
+  "directions": "Standing calf raise MACHINE. Shoulders under visible padded shoulder supports, hands on handles, BOTH forefeet planted on footplate edge with heels free. Start heels down then raise heels/tiptoe while forefeet remain fixed on edge. Machine pads move with shoulders, no floating body.",
+  "instructions": [
+    "Posicione-se na máquina (sentado ou em pé).",
+    "Suba na ponta dos pés com pausa no topo.",
+    "Desça alongando."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/panturrilha-maquina.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Standing calf raise MACHINE. Shoulders under visible padded shoulder supports, hands on handles, BOTH forefeet planted on footplate edge with heels free. Start heels down then raise heels/tiptoe while forefeet remain fixed on edge. Machine pads move with shoulders, no floating body. Source instructions Portuguese: Posicione-se na máquina (sentado ou em pé). Suba na ponta dos pés com pausa no topo. Desça alongando.",
+  "status": "generated",
+  "cycle": "loop"
+}

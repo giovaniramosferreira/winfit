@@ -1,0 +1,146 @@
+[
+  {
+    "id": "agachamento-goblet",
+    "observations": "Halter único vertical junto ao peito, duas mãos, pés inteiros apoiados e agachamento até aproximadamente paralelo. Quadros 0–3 descem; 4–5 retornam à postura ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "agachamento-kettlebell",
+    "observations": "Kettlebell único seguro pelas duas mãos junto ao peito; pés apoiados e joelhos acompanham os pés. Descida até aproximadamente paralelo no quadro 3, seguida de subida nos quadros 4–5.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "agachamento-elastico",
+    "observations": "Duas pontas do elástico permanecem junto aos ombros e o meio fica sob os pés. Descida com quadril para trás e pés apoiados; quadro 3 é o fundo, 4–5 sobem.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "terra-romeno-barra",
+    "observations": "Barra segurada pelas duas mãos permanece próxima às pernas; braços longos, quadril recua e joelhos têm leve flexão. Amplitude da inclinação é moderada, mas a execução é de hinge. Quadros 4–5 retornam à postura ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "terra-romeno-halteres",
+    "observations": "Um halter em cada mão, braços longos e pesos perto das pernas. Quadril recua com coluna visualmente neutra e joelhos flexionam moderadamente. Quadros 4–5 fazem o retorno à posição ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "hip-thrust-barra",
+    "observations": "Parte superior das costas apoiada no banco, pés no chão e barra atravessando a dobra do quadril. Quadro 2 eleva quadril até próximo da linha ombros–quadril–joelhos; quadros 3–5 descem novamente. Mãos ficam parcialmente ocultas pelas anilhas.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "swing-kettlebell",
+    "observations": "Hinge, kettlebell entre as pernas e extensão até altura do peito estão corretos. A ordem bruta mostra um segundo impulso no quadro 5; selecionar 0,1,2,2,3,4 produz um ciclo contínuo de subida e retorno sem esse salto.",
+    "issueSeverity": "minor",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "terra-romeno-elastico",
+    "observations": "Elástico visível sob os dois pés e pontas nas mãos. Braços longos, quadril recua e tronco inclina sem curvar a lombar. Quadros 4–5 retornam à posição ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "afundo-halteres",
+    "observations": "Halter em cada mão, pé da frente inteiro apoiado e apoio traseiro na ponta. Quadros 2–3 aproximam joelho traseiro do chão com tronco ereto; quadros 4–5 retornam à posição inicial.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "bulgaro",
+    "observations": "Quadros 0 e 5 desenham terceira perna: dois pés no chão além do pé traseiro elevado no banco. Quadros 1–4 preservam somente duas pernas e contato correto. Seleção proposta usa apenas esses quadros para ida e retorno.",
+    "issueSeverity": "moderate",
+    "cycle": "loop",
+    "selectedFrames": [
+      1,
+      2,
+      3,
+      3,
+      4,
+      1
+    ]
+  },
+  {
+    "id": "step-up",
+    "observations": "Corpo e braços sobem juntos com apoio no banco e sem membros soltos. Quadro 3 inclina o pé de apoio e levanta o calcanhar, perdendo o pé inteiro fixo. Seleção proposta usa apenas 0–2 e os repete em retorno.",
+    "issueSeverity": "minor",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      0
+    ]
+  },
+  {
+    "id": "crucifixo-halteres",
+    "observations": "Banco, pés e duas cargas estão presentes. Entretanto os cotovelos passam de quase estendidos na abertura para aproximadamente 90 graus nos quadros 2 e 4; parece uma mistura de crucifixo e supino. Recomendada regeneração para manter flexão leve constante ao mover braços em arco. A sequência bruta já abre e fecha em ciclo.",
+    "issueSeverity": "major",
+    "cycle": "loop"
+  },
+  {
+    "id": "crossover-polia",
+    "observations": "Duas torres opostas com cabos ancorados no alto e um pegador por mão. Braços fecham à frente na linha baixa do tronco, com leve flexão de cotovelos; base e tronco estáveis. Fecha em 2 e reabre em 3–5.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "crucifixo-elastico",
+    "observations": "Elástico percorre atrás das costas e duas pontas permanecem nas mãos. Braços fecham à frente do peito em arco sem flexão excessiva dos cotovelos. Quadros 4–5 voltam à abertura inicial.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "elevacao-lateral-halteres",
+    "observations": "Um halter em cada mão. Ambos os braços abrem lateralmente e chegam à linha dos ombros no quadro 3, com tronco e base estáveis. Quadros 4–5 descem à posição inicial.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "elevacao-lateral-polia",
+    "observations": "Polia baixa de um lado, cabo cruzando para a mão do lado oposto e braço de apoio fixo na torre. Só o braço da carga eleva até a linha do ombro. Quadros 4–5 retornam ao quadril.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "elevacao-lateral-elastico",
+    "observations": "Duas tiras do elástico seguem dos pés às mãos. Elevação bilateral até os ombros sem flexão excessiva ou impulso de tronco; pés mantêm contato com a banda. Quadros 3–5 mostram descida.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "crucifixo-invertido-halteres",
+    "observations": "Vista oblíqua posterior, tronco inclinado e joelhos semiflexionados. Os dois braços abrem lateralmente até a linha do tronco, sem virar remada. Braço distante fica oculto nas posições baixas, coerente com a câmera. Retorno em 4–5.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "band-pull-apart",
+    "observations": "Elástico sempre visível entre as mãos, braços estendidos à frente abrindo até quase T. Cotovelos mantêm leve flexão constante e tronco não acompanha a abertura. Quadros 3–5 retornam ao início.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "face-pull",
+    "observations": "Polia e cabo na altura do rosto, corda com duas pontas e mãos terminando ao lado das têmporas nos quadros 2–3. Cotovelos abrem na linha dos ombros com tronco estável; quadros 4–5 estendem os braços novamente.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  }
+]

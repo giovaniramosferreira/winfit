@@ -1,0 +1,144 @@
+[
+  {
+    "id": "supino-reto-barra",
+    "observations": "Corpo apoiado em banco completo, pés no chão e ambas mãos na mesma barra. Pressiona verticalmente e inicia descida no último quadro; sequência já contém subida e retorno parcial até o início.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "supino-halteres",
+    "observations": "Um halter em cada mão, cotovelos dobram no fundo e quase estendem acima do peito; banco e pés mantêm apoio. Ida e volta completas.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "supino-maquina",
+    "observations": "Sentado com costas e pés apoiados; duas mãos empurram pegadas à frente e voltam. Seis quadros contêm ida e retorno.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "flexao-inclinada",
+    "observations": "Mãos fixas sobre banco e pés no chão, corpo alinhado; cotovelos dobram e estendem sem ajoelhar. Sequência desce e retorna.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "flexao-declinada",
+    "observations": "Mãos no chão e pés elevados no banco em todos os quadros; cotovelos dobram para aproximar peito do chão sem perder alinhamento. Desce e retorna.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "supino-elastico",
+    "observations": "Em pé, faixa passa por trás do tórax, mãos empurram à frente e retornam, sem ancoragem externa. Sequência contém ida e volta.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "desenvolvimento-halteres",
+    "observations": "Movimento e pesos corretos, mas ordem original salta do topo no quadro 2 direto ao fundo no 3 e termina no meio. Usar quadros 0–1–2 para subir e os mesmos em ordem inversa para voltar.",
+    "issueSeverity": "low",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      0
+    ]
+  },
+  {
+    "id": "desenvolvimento-maquina",
+    "observations": "Sentado com apoio, duas pegadas ligadas ao aparelho sobem acima da cabeça e retornam. Pés e tronco permanecem estáveis. Ciclo completo.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "desenvolvimento-barra",
+    "observations": "Duas mãos na mesma barra à frente dos ombros, elevação acima da cabeça sem inclinar lombar ou perder pés do chão. Seis quadros sobem e descem.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "pike-pushup",
+    "observations": "V invertido claro, quadril alto e mãos/pés apoiados; cabeça desce entre os braços sem virar flexão horizontal nem tocar o chão. Desce e volta.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "desenvolvimento-elastico",
+    "observations": "Faixa visível sob ambos os pés e até ambas as mãos; press vertical com tronco firme. Seis quadros sobem e retornam.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "remada-curvada-barra",
+    "observations": "Tronco inclinado estável, pés apoiados e duas mãos na barra; cotovelos recolhem a barra ao abdômen e estendem de novo. Ida e volta presentes.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "remada-serrote",
+    "observations": "Mão e joelho opostos apoiados no banco, outro pé no chão; somente um braço move um halter em direção ao quadril. Apoios preservados e retorno presente.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "remada-maquina",
+    "observations": "Peito no apoio, quadril no assento e pés firmes; duas mãos puxam pegadas conectadas à alavanca. Cotovelos recuam e mãos retornam à frente sem balanço importante do tronco.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "remada-baixa-polia",
+    "observations": "Assento e plataforma dos pés claros, cabo horizontal conectado ao triângulo; braços recolhem ao abdômen e estendem novamente com tronco ereto.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "remada-elastico",
+    "observations": "Sentado no chão, faixa laçada nos dois pés e uma ponta em cada mão. Mãos puxam à cintura e retornam sem mudar apoio ou postura.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "remada-toalha",
+    "observations": "Toalha conectada à maçaneta e duas mãos, puxada do corpo por flexão dos cotovelos. Quadro 3 desloca os pés para perto da porta e muda o contato; descartar esse quadro e repetir 0–1–2 em ida e volta preserva apoios e amplitude útil.",
+    "issueSeverity": "low",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      0
+    ]
+  },
+  {
+    "id": "puxada-polia",
+    "observations": "Sentado com trava de coxas, pés apoiados, duas mãos na barra e cabo até polia alta. Barra desce à região superior do tórax e retorna com o tronco estável.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "barra-fixa",
+    "observations": "Duas mãos mantêm contato na barra fixa; corpo sobe até a cabeça ultrapassar a barra e desce, com joelhos dobrados e sem balanço importante.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "puxada-elastico",
+    "observations": "Joelhos apoiados e tronco ereto; duas faixas seguem das mãos para ponto alto à frente, cotovelos descem junto ao tronco e retornam.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "agachamento-barra",
+    "observations": "Barra apoiada atrás do pescoço no trapézio e segura pelas duas mãos; pés permanecem inteiros no chão enquanto quadril recua e desce até coxas próximas da horizontal. Desce e sobe.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  }
+]

@@ -1,0 +1,150 @@
+[
+  {
+    "id": "rosca-direta-barra",
+    "observations": "Barra única permanece nas duas mãos; cotovelos flexionam e barra sobe das coxas ao peito, depois retorna no quadro 5. Tronco e pés mantêm a posição.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "rosca-alternada",
+    "observations": "Um halter em cada mão. Quadros 0–2 elevam o braço do lado esquerdo da imagem, 3 retorna ambos e 4–5 elevam o outro; reinício do loop termina a descida do segundo braço. Alternância legível.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "rosca-polia",
+    "observations": "Polia baixa e cabo conectado à barra nas duas mãos; quadros 0–3 sobem, 4–5 descem. Pés e tronco continuam apoiados e estáveis.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "rosca-elastico",
+    "observations": "Duas pontas ligam as mãos ao elástico sob os pés; cotovelos flexionam juntos em 0–3 e retornam em 4–5, sem trocar o exercício por elevação de ombros.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "rosca-martelo",
+    "observations": "Um halter por mão e pegada neutra identificável nas fases elevadas; braços sobem por flexão dos cotovelos em 0–3 e descem em 4–5. Variação do contorno das mãos é pequena.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "triceps-frances-halter",
+    "observations": "Um único halter segurado pelas duas mãos atrás/acima da cabeça. Quadros 0–2 mostram extensão progressiva; 3–5 reiniciam parcialmente outra subida. Selecionar 0,0,1,1,2,2 e reproduzir ida e volta evita o salto do quadro 2 ao 3.",
+    "issueSeverity": "none",
+    "cycle": "return",
+    "selectedFrames": [
+      0,
+      0,
+      1,
+      1,
+      2,
+      2
+    ]
+  },
+  {
+    "id": "triceps-polia",
+    "observations": "Polia alta ligada à corda nas duas mãos; cotovelos estendem para baixo em 0–3 e flexionam no retorno 4–5. Pés e tronco continuam estáveis.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "triceps-banco",
+    "observations": "Duas mãos sobre a borda do banco atrás do corpo e calcanhares apoiados à frente; cotovelos dobram e quadril desce em 0–3, voltando em 4–5. Apoios permanecem legíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "flexao-diamante",
+    "observations": "Mãos próximas sob o peito, duas mãos e dois braços visíveis na perspectiva oblíqua; cotovelos dobram próximos do tronco e corpo desce em 0–3, voltando em 4–5.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "triceps-elastico",
+    "observations": "Duas pontas ligam as mãos ao ponto alto à frente; braços superiores ficam próximos do corpo, antebraços estendem para baixo e retornam. Âncora alta permanece visível.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "mesa-flexora",
+    "observations": "Corpo claramente de barriga para baixo, tronco/quadril apoiados na mesa; rolo acompanha tornozelos enquanto joelhos dobram em 0–3 e estendem em 4–5. Máquina completa e duas pernas distinguíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "flexora-deslizante",
+    "observations": "REGENERAR: em todos os seis quadros a cabeça permanece elevada, com vão visível entre a nuca e o nível do chão, contrariando o brief HEAD/SHOULDERS supported e no floating head. Deslizamento dos calcanhares e elevação do quadril são legíveis, mas nenhuma seleção elimina a cabeça sem apoio.",
+    "issueSeverity": "high",
+    "cycle": "loop"
+  },
+  {
+    "id": "flexora-elastico",
+    "observations": "Um pé de apoio e uma mão no suporte; faixa conectada à tornozeleira por ponto baixo. A perna móvel dobra pelo joelho trazendo calcanhar para trás em 0–3 e retorna em 4–5, sem virar movimento deitado.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "cadeira-extensora",
+    "observations": "Sentado com encosto, coxas apoiadas; dois joelhos estendem e rolo acompanha tornozelos em 0–3, retornando em 4–5. Apoios, ligação da máquina e duas pernas são claros.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "abducao-maquina",
+    "observations": "Sentado com encosto, apoios na parte externa dos joelhos e pés nas plataformas. Joelhos abrem lateralmente em 0–2, retornam em 3–5; perspectiva e comprimentos continuam legíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "abducao-elastico",
+    "observations": "Semia­gachamento mantido, miniband na região logo acima dos joelhos e pés afastam lateralmente em 0–2, aproximando em 3–5. Perspectiva frontal mantém movimento distinto de coice ou elevação unilateral.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "coice-polia",
+    "observations": "Pessoa de lado voltada à máquina à esquerda, mãos no suporte e um pé de apoio; cabo baixo permanece na tornozeleira da perna móvel, que estende para trás em 0–2 e retorna em 3–5.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "panturrilha-halteres",
+    "observations": "Um halter em cada mão; antepés permanecem na borda do degrau e calcanhares elevam em 0–3, descendo em 4–5. Corpo sobe junto e os sapatos não flutuam sobre o apoio.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "pallof-press",
+    "observations": "Âncora lateral na altura do peito, duas mãos juntas ao esterno e depois estendidas à frente; peito e quadril mantêm orientação. Quadros 0–3 estendem e 4–5 retornam.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "elevacao-pernas-barra",
+    "observations": "Mãos fixas na barra e braços longos; duas pernas elevam juntas. Nos quadros 0 e 5 os sapatos chegam à mesma altura ou ligeiramente abaixo das bases dos postes, tornando o afastamento do chão ambíguo. Usar quadros 1–3 em ida e volta preserva movimento com pés claramente livres.",
+    "issueSeverity": "low",
+    "cycle": "return",
+    "selectedFrames": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3
+    ]
+  },
+  {
+    "id": "panturrilha-maquina",
+    "observations": "Máquina com apoios nos ombros, mãos nas pegadas e antepés na plataforma. Fase elevada no quadro 3 mostra calcanhares levantados e contato das pontas preservado; quadros 4–5 retornam. Movimento tem amplitude visual curta, mas apoio e exercício são legíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  },
+  {
+    "id": "panturrilha-corporal",
+    "observations": "Apoio unilateral claro na borda do degrau, outra perna dobrada sem apoiar e uma mão no suporte. Calcanhar do pé de apoio sobe em 0–2 e desce em 3–5, com ponta do pé mantendo contato.",
+    "issueSeverity": "none",
+    "cycle": "loop"
+  }
+]

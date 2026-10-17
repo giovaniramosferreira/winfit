@@ -1,0 +1,15 @@
+{
+  "id": "barra-fixa",
+  "name": "Barra fixa",
+  "hold": false,
+  "directions": "Pullup on overhead fixed horizontal bar. Both hands pronated slightly wider than shoulders stay FIXED to bar. Start hanging with long arms FEET CLEAR of floor; pull whole body UP until CHIN above bar. Same proportions throughout, knees slightly bent behind, no swing.",
+  "instructions": [
+    "Pegada pronada, um pouco mais aberta que os ombros.",
+    "Puxe até o queixo passar a barra.",
+    "Desça com controle até estender."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/barra-fixa.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Pullup on overhead fixed horizontal bar. Both hands pronated slightly wider than shoulders stay FIXED to bar. Start hanging with long arms FEET CLEAR of floor; pull whole body UP until CHIN above bar. Same proportions throughout, knees slightly bent behind, no swing. Source instructions Portuguese: Pegada pronada, um pouco mais aberta que os ombros. Puxe até o queixo passar a barra. Desça com controle até estender.",
+  "status": "generated",
+  "cycle": "loop"
+}

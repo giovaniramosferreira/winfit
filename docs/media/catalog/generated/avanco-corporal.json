@@ -1,0 +1,15 @@
+{
+  "id": "avanco-corporal",
+  "name": "Avanço (peso corporal)",
+  "hold": false,
+  "directions": "Bodyweight forward lunge. Start split stance with front foot flat and rear heel raised on toes. Lower hips vertically until front knee90degrees and rear knee just above floor, rear shin angled toward rear toes. Torso upright, arms naturally at sides, no weights, NOT a wide split stretch.",
+  "instructions": [
+    "Passo à frente, desça o joelho de trás.",
+    "Empurre de volta com a perna da frente.",
+    "Alterne as pernas."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/avanco-corporal.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT3 COLUMNS x2 ROWS grid of SIX equal square cells, landscape1536x1024; one whole character per cell. Reading order is six progressively changing poses from START to END described below, suitable for forward/backward animation. Pose1 start,2 early,3 halfway,4 late,5 nearend,6 complete end. Consistency of fixed support contact and body proportions is essential. Bodyweight forward lunge. Start split stance with front foot flat and rear heel raised on toes. Lower hips vertically until front knee90degrees and rear knee just above floor, rear shin angled toward rear toes. Torso upright, arms naturally at sides, no weights, NOT a wide split stretch. Catalog instructions (Portuguese, must agree with drawing): Passo à frente, desça o joelho de trás. Empurre de volta com a perna da frente. Alterne as pernas.",
+  "status": "generated",
+  "cycle": "loop"
+}

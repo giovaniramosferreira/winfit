@@ -1,0 +1,15 @@
+{
+  "id": "abdominal-infra",
+  "name": "Elevação de pernas (solo)",
+  "hold": false,
+  "directions": "SUPINE FLOOR LEG RAISE, sixframes3x2. Back of HEAD, SHOULDERS, entire BACK AND SACRUM/PELVIS stay FLAT ON FLOOR in ALLsixframes. Only both legs rotate at hip joints. NO reversecrunch or pelvis lifting at end. Start long legs hoverjustabovfloor. Frame2 legs30degrees, frame3 legs60degrees, frame4 legs90degrees vertical ABOVE hips but BUTTOCKS STILLONFLOOR, frame5 legs45degrees, frame6 hoverinitial. Both arms restingonfloorpalmsdown, head relaxed supported. Hipcrease stays at SAME LOW coordinate in everyframe, neverpullkneestochest. Maintainneutrallumbar.",
+  "instructions": [
+    "Deitado, mãos sob a lombar se precisar.",
+    "Suba as pernas até 90°.",
+    "Desça devagar sem tocar o chão."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/abdominal-infra.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. SUPINE FLOOR LEG RAISE, sixframes3x2. Back of HEAD, SHOULDERS, entire BACK AND SACRUM/PELVIS stay FLAT ON FLOOR in ALLsixframes. Only both legs rotate at hip joints. NO reversecrunch or pelvis lifting at end. Start long legs hoverjustabovfloor. Frame2 legs30degrees, frame3 legs60degrees, frame4 legs90degrees vertical ABOVE hips but BUTTOCKS STILLONFLOOR, frame5 legs45degrees, frame6 hoverinitial. Both arms restingonfloorpalmsdown, head relaxed supported. Hipcrease stays at SAME LOW coordinate in everyframe, neverpullkneestochest. Maintainneutrallumbar. Source instructions Portuguese: Deitado, mãos sob a lombar se precisar. Suba as pernas até 90°. Desça devagar sem tocar o chão.",
+  "status": "generated",
+  "cycle": "loop"
+}

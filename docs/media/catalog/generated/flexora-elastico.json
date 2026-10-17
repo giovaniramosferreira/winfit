@@ -1,0 +1,15 @@
+{
+  "id": "flexora-elastico",
+  "name": "Flexão de perna com elástico",
+  "hold": false,
+  "directions": "STANDING single-leg band hamstring curl. One foot on floor, one hand supported on stable rail for balance. LOW band anchor ahead connects to MOVING ankle. Start moving knee long then bend knee bringing HEEL BACK toward buttock, thighs remain side by side, pelvis neutral. Not lying or hip extension.",
+  "instructions": [
+    "Elástico preso embaixo, no tornozelo.",
+    "Em pé, dobre o joelho puxando o calcanhar ao glúteo.",
+    "Volte devagar."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/flexora-elastico.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. STANDING single-leg band hamstring curl. One foot on floor, one hand supported on stable rail for balance. LOW band anchor ahead connects to MOVING ankle. Start moving knee long then bend knee bringing HEEL BACK toward buttock, thighs remain side by side, pelvis neutral. Not lying or hip extension. Source instructions Portuguese: Elástico preso embaixo, no tornozelo. Em pé, dobre o joelho puxando o calcanhar ao glúteo. Volte devagar.",
+  "status": "generated",
+  "cycle": "loop"
+}

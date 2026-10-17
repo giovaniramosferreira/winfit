@@ -1,0 +1,15 @@
+{
+  "id": "flexao-joelhos",
+  "name": "Flexão com joelhos apoiados",
+  "hold": false,
+  "directions": "KNEELING pushup. Knees and both hands stay planted on floor. Head shoulders hips KNEES stay in one straight neutral line. Lower chest by bending elbows from straight to90degrees; bent lower legs lifted behind. Do not bend at hips.",
+  "instructions": [
+    "Apoie mãos e joelhos no chão, mantendo uma linha dos ombros aos joelhos.",
+    "Dobre os cotovelos e aproxime o peito do chão dentro de uma amplitude confortável.",
+    "Empurre para voltar, mantendo abdômen firme e quadril alinhado."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/flexao-joelhos.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT3 COLUMNS x2 ROWS grid of SIX equal square cells, landscape1536x1024; one whole character per cell. Reading order is six progressively changing poses from START to END described below, suitable for forward/backward animation. Pose1 start,2 early,3 halfway,4 late,5 nearend,6 complete end. Consistency of fixed support contact and body proportions is essential. KNEELING pushup. Knees and both hands stay planted on floor. Head shoulders hips KNEES stay in one straight neutral line. Lower chest by bending elbows from straight to90degrees; bent lower legs lifted behind. Do not bend at hips. Catalog instructions (Portuguese, must agree with drawing): Apoie mãos e joelhos no chão, mantendo uma linha dos ombros aos joelhos. Dobre os cotovelos e aproxime o peito do chão dentro de uma amplitude confortável. Empurre para voltar, mantendo abdômen firme e quadril alinhado.",
+  "status": "generated",
+  "cycle": "loop"
+}

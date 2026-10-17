@@ -1,0 +1,15 @@
+{
+  "id": "terra-romeno-halteres",
+  "name": "Terra romeno com halteres",
+  "hold": false,
+  "directions": "Romanian deadlift with ONE dumbbell in EACH hand. Start standing weights at thighs, hinge hips BACK while knees softly bent and torso neutral lowering dumbbells close to shins. Arms long, feet fixed. No squat and no round back.",
+  "instructions": [
+    "Halteres à frente das coxas.",
+    "Quadril para trás, desça até sentir alongar o posterior.",
+    "Suba apertando os glúteos no topo."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/terra-romeno-halteres.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Romanian deadlift with ONE dumbbell in EACH hand. Start standing weights at thighs, hinge hips BACK while knees softly bent and torso neutral lowering dumbbells close to shins. Arms long, feet fixed. No squat and no round back. Source instructions Portuguese: Halteres à frente das coxas. Quadril para trás, desça até sentir alongar o posterior. Suba apertando os glúteos no topo.",
+  "status": "generated",
+  "cycle": "loop"
+}

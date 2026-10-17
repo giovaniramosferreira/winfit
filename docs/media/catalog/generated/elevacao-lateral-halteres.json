@@ -1,0 +1,15 @@
+{
+  "id": "elevacao-lateral-halteres",
+  "name": "Elevação lateral com halteres",
+  "hold": false,
+  "directions": "Standing dumbbell lateral raise, FRONT three-quarter view. One dumbbell each hand. Start arms by sides, raise BOTH arms OUT SIDEWAYS to shoulder height with slight elbow bend, palms down. Stable torso, no overhead pressing. Both arms symmetrical, clear shoulders.",
+  "instructions": [
+    "Em pé, halteres ao lado do corpo.",
+    "Eleve os braços até a linha dos ombros.",
+    "Desça devagar resistindo."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/elevacao-lateral-halteres.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Standing dumbbell lateral raise, FRONT three-quarter view. One dumbbell each hand. Start arms by sides, raise BOTH arms OUT SIDEWAYS to shoulder height with slight elbow bend, palms down. Stable torso, no overhead pressing. Both arms symmetrical, clear shoulders. Source instructions Portuguese: Em pé, halteres ao lado do corpo. Eleve os braços até a linha dos ombros. Desça devagar resistindo.",
+  "status": "generated",
+  "cycle": "loop"
+}

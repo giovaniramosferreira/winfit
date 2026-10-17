@@ -1,0 +1,14 @@
+{
+  "id": "prancha-joelhos",
+  "name": "Prancha com joelhos apoiados",
+  "hold": true,
+  "directions": "STATIC KNEELING FOREARM PLANK, strict SIDE view. BOTH elbows directly BELOW shoulders, forearms FLAT on floor, BOTH KNEES supported on floor. Shoulders hips knees in straight neutral line, lower legs bent up behind. Natural limbs. ONE static pose, no movement.",
+  "instructions": [
+    "Apoie antebraços e joelhos no chão, com cotovelos abaixo dos ombros.",
+    "Alinhe ombros, quadril e joelhos, contraindo o abdômen.",
+    "Sustente pelo tempo prescrito, respirando normalmente."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/prancha-joelhos.png",
+  "prompt": "Original black-and-white sports instruction illustration, single landscape image on plain white background, full body side view of an adult male fitness instructor doing a modified forearm plank on knees. Wear a fitted plain crew-neck sports T-SHIRT, knee-length crosshatched athletic shorts and sneakers. Bold variable charcoal-gray ink contours, natural anatomy, faceless head, hand-drawn engraving style, consistent with supplied exercise illustration. This is a neutral nonsexual gym demonstration with clothing. Forearms lie flat on mat, elbows directly beneath shoulders. Knees touch mat behind hips, shins relaxed along mat. Shoulders, hips and knees form ONE long nearly straight diagonal line: hips lowered until trunk and thighs align. Abdomen braced, neutral neck looking down. Do not draw a tabletop quadruped, pike or bent-at-hip pose. Entire head, forearms, knees, feet visible; no equipment, text, logos, numbers, watermark, extra limbs, panels or inset. Clean white background.",
+  "status": "generated"
+}

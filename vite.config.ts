@@ -34,8 +34,8 @@ export default defineConfig({
         display: 'standalone',
         display_override: ['standalone', 'minimal-ui'],
         orientation: 'portrait',
-        background_color: '#f8f6f0',
-        theme_color: '#f8f6f0',
+        background_color: '#100d1a',
+        theme_color: '#100d1a',
         categories: ['health', 'fitness', 'sports', 'lifestyle'],
         prefer_related_applications: false,
         icons,
@@ -58,7 +58,7 @@ export default defineConfig({
       },
       workbox: {
         // (o manifest.webmanifest é adicionado ao precache pelo próprio plugin)
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff2}'],
         // As splash screens do iOS só são lidas na instalação: ficam fora do
         // precache para não baixar ~300 kB no primeiro acesso.
         globIgnores: ['**/splash/**'],

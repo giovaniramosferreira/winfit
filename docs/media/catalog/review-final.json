@@ -1,0 +1,1270 @@
+[
+  {
+    "id": "flexao-joelhos",
+    "observation": "Mãos e joelhos mantêm apoio; corpo desce com flexão dos cotovelos e retorna. Quadros 0–3 descem e 4–5 voltam ao início.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "report": "review-home.json",
+    "sourceSha256": "63956bd2eb82fae111762bcf0cd31f50242b06196741c3de99555549be1126ed",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "prancha",
+    "observation": "Uma pose estática; antebraços e pontas dos pés apoiados, joelhos elevados e tronco alinhado.",
+    "issueSeverity": "none",
+    "hold": true,
+    "report": "review-home.json",
+    "sourceSha256": "63ec617251c07dc729b573ac5f04a28ea6eb7caa43a2fa030928affd44818e58",
+    "selectedFrames": [
+      0
+    ],
+    "cycle": "hold",
+    "disposition": "accepted"
+  },
+  {
+    "id": "prancha-joelhos",
+    "observations": "Fonte corrigida com camiseta esportiva: antebraços e joelhos apoiados, cotovelos sob ombros e quadril mais baixo. Tronco e coxas agora mantêm linha coerente de ombros a joelhos, corrigindo a dobra anterior. Uma única pose estática.",
+    "issueSeverity": "none",
+    "hold": true,
+    "sourceSha256": "c945757f78fb781a22db8409695114946f1f632765531395ccae1b46bfad472f",
+    "report": "review-corrections.json",
+    "selectedFrames": [
+      0
+    ],
+    "cycle": "hold",
+    "disposition": "accepted"
+  },
+  {
+    "id": "prancha-lateral",
+    "observation": "Uma pose estática lateral clara, cotovelo sob ombro, mão superior no quadril, quadril elevado e pés empilhados.",
+    "issueSeverity": "none",
+    "hold": true,
+    "report": "review-home.json",
+    "sourceSha256": "3de3e65c5fa8072b09ce336c31961fe566c8ed930fde4a9f5888c13e84606bb4",
+    "selectedFrames": [
+      0
+    ],
+    "cycle": "hold",
+    "disposition": "accepted"
+  },
+  {
+    "id": "prancha-lateral-joelhos",
+    "observations": "Fonte corrigida já presente ao iniciar esta revisão. Agora há joelhos claramente dobrados, canelas recolhidas para trás, apoio lateral sobre joelho e antebraço, quadril elevado e pés livres de apoio. Corrige o problema anterior.",
+    "issueSeverity": "none",
+    "hold": true,
+    "sourceSha256": "61b12b878256807208dc207677511ae53cbc6e098cae92121770aab88ffa3b54",
+    "report": "review-corrections.json",
+    "selectedFrames": [
+      0
+    ],
+    "cycle": "hold",
+    "disposition": "accepted"
+  },
+  {
+    "id": "ponte-gluteo",
+    "observation": "Cabeça, ombros e pés mantêm apoio; quadril sobe e volta a baixar. Quadros 0–1 baixos, 2–3 altos, 4–5 retorno.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "report": "review-home.json",
+    "sourceSha256": "bfc935b06206114e40b766aec4868e57cbb5c2988324403acff9bc1b3da310ca",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "ponte-unilateral",
+    "observation": "Cabeça e ombros apoiados, um pé fixo e a outra perna livre. Quadril sobe nos quadros 0–3 e retorna em 4–5; perna elevada não vira apoio.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "report": "review-home.json",
+    "sourceSha256": "e3d3100394969e16265e760ba665501fe2c213771ab65d82b6cfda5112cae9c6",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "puxada-prona-solo",
+    "observation": "Decúbito ventral claro com barriga/quadril apoiados, braços estendem e cotovelos recolhem em W, sem equipamento. Quadros 0–3 recolhem e 4–5 estendem de novo.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "report": "review-home.json",
+    "sourceSha256": "f2da2c9d5c9149c5a5f808776fcc7a0c74f012a2f88cfff721e0583b9f8d3464",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "avanco-corporal",
+    "observation": "Tronco ereto, pé dianteiro inteiro apoiado e calcanhar traseiro elevado; joelho traseiro desce sem afastamento lateral. Quadros 0–3 descem e 4–5 sobem.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "report": "review-home.json",
+    "sourceSha256": "6faf7197b723b9cd13894963c9021a58d00d4378fb921240e5a6228f5ccf7aaa",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "dead-bug",
+    "observations": "Fonte corrigida: braço próximo ao observador estende por cima da cabeça e perna distante estende à frente; a perna próxima fica dobrada e o braço distante elevado. Par contralateral agora claro. Quadros 0–3 estendem e 4–5 retornam, com tronco apoiado.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "sourceSha256": "73d997a664532e74ab0373a33d9f47c15cb2b02fcd47e5093e91c8d9ec47b05d",
+    "report": "review-corrections.json",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "abdominal-infra",
+    "observations": "Fonte corrigida já presente ao iniciar esta revisão. Quadril permanece baixo apoiado; pernas sobem até vertical e retornam a quase horizontal nos seis quadros. Sem reverse crunch ao final.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "sourceSha256": "b7b81177220bfb0a154998575cc59857600b227c42943ad290429ea9849f41dc",
+    "report": "review-corrections.json",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "abdominal-supra",
+    "observation": "Joelhos dobrados, pés apoiados, mãos leves no peito e escápulas elevam sem virar sit-up completo. Quadros 0–3 sobem e 4–5 descem.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "report": "review-home.json",
+    "sourceSha256": "a6ff74f0eb4daab78a57b158017fe5995b52d2609885b2bdb0d1c48908193321",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "supino-reto-barra",
+    "observations": "Corpo apoiado em banco completo, pés no chão e ambas mãos na mesma barra. Pressiona verticalmente e inicia descida no último quadro; sequência já contém subida e retorno parcial até o início.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "525428c6080629c21c086ea8e18fe764c9a784a3db2f7dbd5f09fb9d48444f45",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "supino-halteres",
+    "observations": "Um halter em cada mão, cotovelos dobram no fundo e quase estendem acima do peito; banco e pés mantêm apoio. Ida e volta completas.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "8a382737217edc9f1f55db10c2e22b0ba350c73735c590ce52290aae521a2c64",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "supino-maquina",
+    "observations": "Sentado com costas e pés apoiados; duas mãos empurram pegadas à frente e voltam. Seis quadros contêm ida e retorno.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "741e3c6c1268771be2fbf776a52694ac7ef1e995f6568077752d7ff7bc51420d",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "flexao-inclinada",
+    "observations": "Mãos fixas sobre banco e pés no chão, corpo alinhado; cotovelos dobram e estendem sem ajoelhar. Sequência desce e retorna.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "2038c280e107692ffc3bfb78220f30e415d36b96f4fdc14ea82d331637590009",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "flexao-declinada",
+    "observations": "Mãos no chão e pés elevados no banco em todos os quadros; cotovelos dobram para aproximar peito do chão sem perder alinhamento. Desce e retorna.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "0f600309220a633bc3f88369ed7f70aa45438e4c0deafe2f0a26da61d46a42e7",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "supino-elastico",
+    "observations": "Em pé, faixa passa por trás do tórax, mãos empurram à frente e retornam, sem ancoragem externa. Sequência contém ida e volta.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "6cd7513ffed6ffbcc8cdfb25cf072b76e21abb903b805e0a9e9cb6c449608a5d",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "desenvolvimento-halteres",
+    "observations": "Movimento e pesos corretos, mas ordem original salta do topo no quadro 2 direto ao fundo no 3 e termina no meio. Usar quadros 0–1–2 para subir e os mesmos em ordem inversa para voltar.",
+    "issueSeverity": "low",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      0
+    ],
+    "report": "review-upper.json",
+    "sourceSha256": "07c3539b609023a558f84be14c09fbc7c52e767d1df09808711975e685bd0648",
+    "disposition": "accepted-selected-frames"
+  },
+  {
+    "id": "desenvolvimento-maquina",
+    "observations": "Sentado com apoio, duas pegadas ligadas ao aparelho sobem acima da cabeça e retornam. Pés e tronco permanecem estáveis. Ciclo completo.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "957d8d58eb4f02ad5d8b060d921240539f99217cb346564ff41781f5f035e55a",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "desenvolvimento-barra",
+    "observations": "Duas mãos na mesma barra à frente dos ombros, elevação acima da cabeça sem inclinar lombar ou perder pés do chão. Seis quadros sobem e descem.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "1f5da958d24ecd7f3114c5c150bb8754e608a89f14aec920396b2df343116ea0",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "pike-pushup",
+    "observations": "V invertido claro, quadril alto e mãos/pés apoiados; cabeça desce entre os braços sem virar flexão horizontal nem tocar o chão. Desce e volta.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "a151ba01b469358e35166662fdaf887557e57f28a6e376612533ff8a28386e27",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "desenvolvimento-elastico",
+    "observations": "Faixa visível sob ambos os pés e até ambas as mãos; press vertical com tronco firme. Seis quadros sobem e retornam.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "5212469a46166e9c1e5784fc48f3875a2d9e59468d7adc5fc7761a99e5fbf5f8",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "remada-curvada-barra",
+    "observations": "Tronco inclinado estável, pés apoiados e duas mãos na barra; cotovelos recolhem a barra ao abdômen e estendem de novo. Ida e volta presentes.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "1d344856019e38e3c20691ed8cfefab981fcc3fadc29221427569bb4c297e542",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "remada-serrote",
+    "observations": "Mão e joelho opostos apoiados no banco, outro pé no chão; somente um braço move um halter em direção ao quadril. Apoios preservados e retorno presente.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "a7824272395e7d99bf9d1f96a7f8e5eaeb4fcecfa41add7e46557fecbc146caf",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "remada-maquina",
+    "observations": "Peito no apoio, quadril no assento e pés firmes; duas mãos puxam pegadas conectadas à alavanca. Cotovelos recuam e mãos retornam à frente sem balanço importante do tronco.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "85e98d765c8b80976f55e6cc1846eb4e52d017248fca8d9daca4c7e7938eec26",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "remada-baixa-polia",
+    "observations": "Assento e plataforma dos pés claros, cabo horizontal conectado ao triângulo; braços recolhem ao abdômen e estendem novamente com tronco ereto.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "1b2946b6e05496af7735028a265ae394193fa8b6846a001943a0f16ced290b81",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "remada-elastico",
+    "observations": "Sentado no chão, faixa laçada nos dois pés e uma ponta em cada mão. Mãos puxam à cintura e retornam sem mudar apoio ou postura.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "bd75491e70ec2ca783bf35b0f1b4b0f3bd3eaa6de268016b5ba5018f7217d87a",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "remada-toalha",
+    "observations": "Toalha conectada à maçaneta e duas mãos, puxada do corpo por flexão dos cotovelos. Quadro 3 desloca os pés para perto da porta e muda o contato; descartar esse quadro e repetir 0–1–2 em ida e volta preserva apoios e amplitude útil.",
+    "issueSeverity": "low",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      0
+    ],
+    "report": "review-upper.json",
+    "sourceSha256": "a0b0d639438514bdc28edb05c7da8f20063e60732dfbcd3aa5b279a0ec890072",
+    "disposition": "accepted-selected-frames"
+  },
+  {
+    "id": "puxada-polia",
+    "observations": "Sentado com trava de coxas, pés apoiados, duas mãos na barra e cabo até polia alta. Barra desce à região superior do tórax e retorna com o tronco estável.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "00da698f63861a8d51e9c363460dcce61bb49ff044ef1f9ac4e68d00db6bb08e",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "barra-fixa",
+    "observations": "Duas mãos mantêm contato na barra fixa; corpo sobe até a cabeça ultrapassar a barra e desce, com joelhos dobrados e sem balanço importante.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "12c6161ba064daa684da567fba1a6ab32f00d81f0a075ce2cf48810441f3117c",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "puxada-elastico",
+    "observations": "Joelhos apoiados e tronco ereto; duas faixas seguem das mãos para ponto alto à frente, cotovelos descem junto ao tronco e retornam.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "ae4d71628304a7c3a0a902c32b1a28326f3084557e87a70a59ceb0709e5d3758",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "agachamento-barra",
+    "observations": "Barra apoiada atrás do pescoço no trapézio e segura pelas duas mãos; pés permanecem inteiros no chão enquanto quadril recua e desce até coxas próximas da horizontal. Desce e sobe.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-upper.json",
+    "sourceSha256": "40313d5c0a0724b6c96686903172725c00a6045693a78d88810c75c34461cc83",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "agachamento-goblet",
+    "observations": "Halter único vertical junto ao peito, duas mãos, pés inteiros apoiados e agachamento até aproximadamente paralelo. Quadros 0–3 descem; 4–5 retornam à postura ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "56c9d9e26d309c622ce99ba2b2e8fae74a4281b0f6853385bff97dd87cd2ea1e",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "agachamento-kettlebell",
+    "observations": "Kettlebell único seguro pelas duas mãos junto ao peito; pés apoiados e joelhos acompanham os pés. Descida até aproximadamente paralelo no quadro 3, seguida de subida nos quadros 4–5.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "2ba656d2063ef9188828a107f7cb731389238027c311f1c0e46c207d1865124d",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "agachamento-elastico",
+    "observations": "Duas pontas do elástico permanecem junto aos ombros e o meio fica sob os pés. Descida com quadril para trás e pés apoiados; quadro 3 é o fundo, 4–5 sobem.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "1d8d0df79fd5c95fc6a3a301f6569e178d3fe6f7688a9464a5260e97a952b7cd",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "terra-romeno-barra",
+    "observations": "Barra segurada pelas duas mãos permanece próxima às pernas; braços longos, quadril recua e joelhos têm leve flexão. Amplitude da inclinação é moderada, mas a execução é de hinge. Quadros 4–5 retornam à postura ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "23695862dfffd57bff9691cf63b8c3c3df44c438c0466968c3efc7c73bbae5fe",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "terra-romeno-halteres",
+    "observations": "Um halter em cada mão, braços longos e pesos perto das pernas. Quadril recua com coluna visualmente neutra e joelhos flexionam moderadamente. Quadros 4–5 fazem o retorno à posição ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "ae23674a81eca836247aceb919dad9bfe13d932a8f48d4fa8d4e94ead7b7c18d",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "hip-thrust-barra",
+    "observations": "Parte superior das costas apoiada no banco, pés no chão e barra atravessando a dobra do quadril. Quadro 2 eleva quadril até próximo da linha ombros–quadril–joelhos; quadros 3–5 descem novamente. Mãos ficam parcialmente ocultas pelas anilhas.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "8b0f7d263040116679a2ad98ea202e39b86139e5dd3d1d43acc7b9e06ead330f",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "swing-kettlebell",
+    "observations": "Hinge, kettlebell entre as pernas e extensão até altura do peito estão corretos. A ordem bruta mostra um segundo impulso no quadro 5; selecionar 0,1,2,2,3,4 produz um ciclo contínuo de subida e retorno sem esse salto.",
+    "issueSeverity": "minor",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      3,
+      4
+    ],
+    "report": "review-middle.json",
+    "sourceSha256": "e26715d47ec7e0b28948533a1a601fbdab6b85b7ae0cfd6b5c3a1ce5924dd7ef",
+    "disposition": "accepted-selected-frames"
+  },
+  {
+    "id": "terra-romeno-elastico",
+    "observations": "Elástico visível sob os dois pés e pontas nas mãos. Braços longos, quadril recua e tronco inclina sem curvar a lombar. Quadros 4–5 retornam à posição ereta.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "b699fa7cde652ece5b628e417485956f5d32670f7a513ad082dae769d299e21a",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "afundo-halteres",
+    "observations": "Halter em cada mão, pé da frente inteiro apoiado e apoio traseiro na ponta. Quadros 2–3 aproximam joelho traseiro do chão com tronco ereto; quadros 4–5 retornam à posição inicial.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "cbb7d289580fac98482f1523b101bcade968ba708d8b74f376c06f4d80889375",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "bulgaro",
+    "observations": "Quadros 0 e 5 desenham terceira perna: dois pés no chão além do pé traseiro elevado no banco. Quadros 1–4 preservam somente duas pernas e contato correto. Seleção proposta usa apenas esses quadros para ida e retorno.",
+    "issueSeverity": "moderate",
+    "cycle": "loop",
+    "selectedFrames": [
+      1,
+      2,
+      3,
+      3,
+      4,
+      1
+    ],
+    "report": "review-middle.json",
+    "sourceSha256": "589a5533b3af64c64e21b4d6900fba139ee4335a57c8eaeab15037749301457f",
+    "disposition": "accepted-selected-frames"
+  },
+  {
+    "id": "step-up",
+    "observations": "Corpo e braços sobem juntos com apoio no banco e sem membros soltos. Quadro 3 inclina o pé de apoio e levanta o calcanhar, perdendo o pé inteiro fixo. Seleção proposta usa apenas 0–2 e os repete em retorno.",
+    "issueSeverity": "minor",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      0
+    ],
+    "report": "review-middle.json",
+    "sourceSha256": "2a1346ba692332dd63f0fcf9e0e46c7c284e50d55cac3dbc331ca7f84ed5e92f",
+    "disposition": "accepted-selected-frames"
+  },
+  {
+    "id": "crucifixo-halteres",
+    "observations": "Correção revisada no PNG oficial e no WebP reempacotado: cotovelos mantêm leve flexão durante arco amplo; duas cargas, cabeça/costas apoiadas e pés plantados. A sequência abre em 0, fecha em 3 e reabre em 4–5, portanto loop. Não há mais a flexão de 90 graus da versão rejeitada. Após alignment source, recorte global, escala e translação são idênticos nos seis quadros; o banco e os pés permanecem nas coordenadas da fonte, eliminando o deslocamento adicional de cerca de 50 px causado pelo centro da silhueta. Pequeno fragmento marginal no quadro 1 não altera a execução.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "alignment": "source",
+    "report": "review-fly-correction.json",
+    "sourceSha256": "2c37e25d5073ab64bf8c03907b6cbd86e20fb1b906f35c163fd2c110d22c1441",
+    "disposition": "accepted-selected-frames"
+  },
+  {
+    "id": "crossover-polia",
+    "observations": "Duas torres opostas com cabos ancorados no alto e um pegador por mão. Braços fecham à frente na linha baixa do tronco, com leve flexão de cotovelos; base e tronco estáveis. Fecha em 2 e reabre em 3–5.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "b18a9d0a36aa7dd292d10e2e5fbc609376c89597d95686e9837bddc31264607f",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "crucifixo-elastico",
+    "observations": "Elástico percorre atrás das costas e duas pontas permanecem nas mãos. Braços fecham à frente do peito em arco sem flexão excessiva dos cotovelos. Quadros 4–5 voltam à abertura inicial.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "db53cf5e9f8602a2e466022f1a9ca7329189b1cab9dbcab9a6a04dabc508d798",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "elevacao-lateral-halteres",
+    "observations": "Um halter em cada mão. Ambos os braços abrem lateralmente e chegam à linha dos ombros no quadro 3, com tronco e base estáveis. Quadros 4–5 descem à posição inicial.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "1f886fcc73d5ef3ed8e6d8e85a42bf13c8dd23711d796d769ac56c418074167c",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "elevacao-lateral-polia",
+    "observations": "Polia baixa de um lado, cabo cruzando para a mão do lado oposto e braço de apoio fixo na torre. Só o braço da carga eleva até a linha do ombro. Quadros 4–5 retornam ao quadril.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "e3225d2a6f6a299d6732b93aa297d9a35a3110e7594caed5d16cee745995556e",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "elevacao-lateral-elastico",
+    "observations": "Duas tiras do elástico seguem dos pés às mãos. Elevação bilateral até os ombros sem flexão excessiva ou impulso de tronco; pés mantêm contato com a banda. Quadros 3–5 mostram descida.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "de408eb0b754f28bece6b90516ad0dfa1aa6f7512a65195e8eb1378c62373c5d",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "crucifixo-invertido-halteres",
+    "observations": "Vista oblíqua posterior, tronco inclinado e joelhos semiflexionados. Os dois braços abrem lateralmente até a linha do tronco, sem virar remada. Braço distante fica oculto nas posições baixas, coerente com a câmera. Retorno em 4–5.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "bf45d55971f0e012fd07d85749b2c3fa321ba6f42599877f54d0350261505fab",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "face-pull",
+    "observations": "Polia e cabo na altura do rosto, corda com duas pontas e mãos terminando ao lado das têmporas nos quadros 2–3. Cotovelos abrem na linha dos ombros com tronco estável; quadros 4–5 estendem os braços novamente.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "cd01397f90981c5fe6373684e6c877a45f7e4ad12ded59a010247e87d7fdc395",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "band-pull-apart",
+    "observations": "Elástico sempre visível entre as mãos, braços estendidos à frente abrindo até quase T. Cotovelos mantêm leve flexão constante e tronco não acompanha a abertura. Quadros 3–5 retornam ao início.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-middle.json",
+    "sourceSha256": "c10d2e1aeed478e4ad18d29673c27c06828e3a26088a0dc7f8d2134183b122d7",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "rosca-direta-barra",
+    "observations": "Barra única permanece nas duas mãos; cotovelos flexionam e barra sobe das coxas ao peito, depois retorna no quadro 5. Tronco e pés mantêm a posição.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "49f2a80725a4e2a96fa6fddfee24f547467abf6ec017ebfa814e43635e8d6b46",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "rosca-alternada",
+    "observations": "Um halter em cada mão. Quadros 0–2 elevam o braço do lado esquerdo da imagem, 3 retorna ambos e 4–5 elevam o outro; reinício do loop termina a descida do segundo braço. Alternância legível.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "cc41223fa8593aefda87d61c14a4775ee53ee1a6662e214c5bc340477df03022",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "rosca-polia",
+    "observations": "Polia baixa e cabo conectado à barra nas duas mãos; quadros 0–3 sobem, 4–5 descem. Pés e tronco continuam apoiados e estáveis.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "c46ad73ca0864791114bf9d37b80d82e381ad6c6814b972936e4a3d4ee980f38",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "rosca-elastico",
+    "observations": "Duas pontas ligam as mãos ao elástico sob os pés; cotovelos flexionam juntos em 0–3 e retornam em 4–5, sem trocar o exercício por elevação de ombros.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "ba1fb172ffbf5c786c8e503f719b63ac5384f8f51d3a505d1d3af37045fe1f02",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "rosca-martelo",
+    "observations": "Um halter por mão e pegada neutra identificável nas fases elevadas; braços sobem por flexão dos cotovelos em 0–3 e descem em 4–5. Variação do contorno das mãos é pequena.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "1523f5b96209945bdacbff10b84dd99544eed443998c96c438910c222ea4aa86",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "triceps-polia",
+    "observations": "Polia alta ligada à corda nas duas mãos; cotovelos estendem para baixo em 0–3 e flexionam no retorno 4–5. Pés e tronco continuam estáveis.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "0f4e0ab8fe5d5391403f48f4b81c64e66d4440029aff87d0cd05cff4142bd331",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "triceps-frances-halter",
+    "observations": "Um único halter segurado pelas duas mãos atrás/acima da cabeça. Quadros 0–2 mostram extensão progressiva; 3–5 reiniciam parcialmente outra subida. Selecionar 0,0,1,1,2,2 e reproduzir ida e volta evita o salto do quadro 2 ao 3.",
+    "issueSeverity": "none",
+    "cycle": "return",
+    "selectedFrames": [
+      0,
+      0,
+      1,
+      1,
+      2,
+      2
+    ],
+    "report": "review-lower.json",
+    "sourceSha256": "96f5c6663d162850b4eba2c2d9bebc782c883c39d698774ec4ff05312a571121",
+    "disposition": "accepted-selected-frames"
+  },
+  {
+    "id": "triceps-banco",
+    "observations": "Duas mãos sobre a borda do banco atrás do corpo e calcanhares apoiados à frente; cotovelos dobram e quadril desce em 0–3, voltando em 4–5. Apoios permanecem legíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "49a450403b55823abb19ae7234dd393b059a6f1dfbc87fe28553212f01b02b2e",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "flexao-diamante",
+    "observations": "Mãos próximas sob o peito, duas mãos e dois braços visíveis na perspectiva oblíqua; cotovelos dobram próximos do tronco e corpo desce em 0–3, voltando em 4–5.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "9ac79ffba8b9f85c816bd9af153adf09dd617ee84d996f65a0eaf738e1694e28",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "triceps-elastico",
+    "observations": "Duas pontas ligam as mãos ao ponto alto à frente; braços superiores ficam próximos do corpo, antebraços estendem para baixo e retornam. Âncora alta permanece visível.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "69d216fcfa6086739a128eb4ce69fe495dece501ea730f93492e2f97d048a56e",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "mesa-flexora",
+    "observations": "Corpo claramente de barriga para baixo, tronco/quadril apoiados na mesa; rolo acompanha tornozelos enquanto joelhos dobram em 0–3 e estendem em 4–5. Máquina completa e duas pernas distinguíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "253c267ddae3b542cf1fd5c920953acce6df89c7e87c7c3620f64de632f51b37",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "flexora-deslizante",
+    "observations": "Correção conferida na fonte regenerada: personagem com camiseta, face voltada para cima e parte posterior da cabeça/ombros apoiados no mesmo nível do chão em todos os seis quadros. Braços permanecem no chão e ambos os calcanhares ficam sobre toalhas deslizantes. Quadros 0–3 aproximam os calcanhares e dobram os joelhos com quadril elevado; quadros 4–5 estendem as pernas novamente. Sequência completa já contém ida e retorno, sem necessidade de seleção ou inversão adicional. Avaliação limitada à clareza visual e aderência ao brief local.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-sliding-correction.json",
+    "sourceSha256": "9e95bf0be764eb94f6bfcbb583845f56b131ab059f8f1efca4b15a9290f06883",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "flexora-elastico",
+    "observations": "Um pé de apoio e uma mão no suporte; faixa conectada à tornozeleira por ponto baixo. A perna móvel dobra pelo joelho trazendo calcanhar para trás em 0–3 e retorna em 4–5, sem virar movimento deitado.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "6204240d50e9feabe3db0e674c66c90f8b51479cadcfff572f34c10e90278d95",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "cadeira-extensora",
+    "observations": "Sentado com encosto, coxas apoiadas; dois joelhos estendem e rolo acompanha tornozelos em 0–3, retornando em 4–5. Apoios, ligação da máquina e duas pernas são claros.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "433a31763be44a8743c7f928cc56bb3b2d1eefb922558b2c32a22ec8af0f2cfc",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "abducao-maquina",
+    "observations": "Sentado com encosto, apoios na parte externa dos joelhos e pés nas plataformas. Joelhos abrem lateralmente em 0–2, retornam em 3–5; perspectiva e comprimentos continuam legíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "1d00d806a3a73cc460e8ec615bc82e2e10627aa5f372f0c8b05f75104d493009",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "abducao-elastico",
+    "observations": "Semia­gachamento mantido, miniband na região logo acima dos joelhos e pés afastam lateralmente em 0–2, aproximando em 3–5. Perspectiva frontal mantém movimento distinto de coice ou elevação unilateral.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "2dd868cfea259dc15affce22910cb46e8696ade1b76a3e66a9ab53ab2e8eaacd",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "coice-polia",
+    "observations": "Pessoa de lado voltada à máquina à esquerda, mãos no suporte e um pé de apoio; cabo baixo permanece na tornozeleira da perna móvel, que estende para trás em 0–2 e retorna em 3–5.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "c73db1ffea5be36268eb101d9f956caaa16cca8fa1dea62c4db02ece641356cb",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "panturrilha-halteres",
+    "observations": "Um halter em cada mão; antepés permanecem na borda do degrau e calcanhares elevam em 0–3, descendo em 4–5. Corpo sobe junto e os sapatos não flutuam sobre o apoio.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "695fb06d53da9d49ca8e08bafa3ce6a1e463ec05f6ca747ca84f9a594adf246c",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "panturrilha-maquina",
+    "observations": "Máquina com apoios nos ombros, mãos nas pegadas e antepés na plataforma. Fase elevada no quadro 3 mostra calcanhares levantados e contato das pontas preservado; quadros 4–5 retornam. Movimento tem amplitude visual curta, mas apoio e exercício são legíveis.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "feadb5919314ca24a5d8dafc3b4c306406f3b1497cb34aaff92d33ab1836d970",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "panturrilha-corporal",
+    "observations": "Apoio unilateral claro na borda do degrau, outra perna dobrada sem apoiar e uma mão no suporte. Calcanhar do pé de apoio sobe em 0–2 e desce em 3–5, com ponta do pé mantendo contato.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "de50c124c5cc9f21160e5eaf501f77738a7d2c5473e2b45b6546601be907cb68",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "pallof-press",
+    "observations": "Âncora lateral na altura do peito, duas mãos juntas ao esterno e depois estendidas à frente; peito e quadril mantêm orientação. Quadros 0–3 estendem e 4–5 retornam.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "report": "review-lower.json",
+    "sourceSha256": "7287172cddd5b506e6153bdaa4b3a89056f36964cd16337642421c07ae3af635",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "disposition": "accepted"
+  },
+  {
+    "id": "elevacao-pernas-barra",
+    "observations": "Mãos fixas na barra e braços longos; duas pernas elevam juntas. Nos quadros 0 e 5 os sapatos chegam à mesma altura ou ligeiramente abaixo das bases dos postes, tornando o afastamento do chão ambíguo. Usar quadros 1–3 em ida e volta preserva movimento com pés claramente livres.",
+    "issueSeverity": "low",
+    "cycle": "return",
+    "selectedFrames": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3
+    ],
+    "report": "review-lower.json",
+    "sourceSha256": "33dfe0e7ca5e2411002755d7d9a9aee03e7f72066f1b5ee23019233efb05200f",
+    "disposition": "accepted-selected-frames"
+  }
+]

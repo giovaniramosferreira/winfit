@@ -10,14 +10,15 @@ import { fmtClock, beep, vibrate } from '../lib/helpers'
 import type { Exercise, PlanExercise } from '../types'
 import { useWatchSync } from '../lib/watchSync'
 import WatchModal from '../components/WatchModal'
-
-const TIMED_IDS = new Set(['prancha', 'prancha-lateral'])
+import ExerciseDemo from '../components/ExerciseDemo'
+import { isEquipmentFreeSession, isTimedExercise, variationLabel } from '../lib/exerciseRules'
 
 export default function Player() {
   const nav = useNavigate()
   const session = useStore((s) => s.activeSession)
   const sessions = useStore((s) => s.sessions)
   const profile = useStore((s) => s.profile)
+  const plan = useStore((s) => s.plan)
   const logSet = useStore((s) => s.logSet)
   const editSet = useStore((s) => s.editSet)
   const deleteSet = useStore((s) => s.deleteSet)
@@ -51,7 +52,9 @@ export default function Player() {
   const idx = session.currentIndex
   const sx = session.exercises[idx]
   const exercise = byId.get(sx.exerciseId)!
-  const isTimed = TIMED_IDS.has(exercise.id)
+  const isTimed = isTimedExercise(exercise.id)
+  const bodyweight = exercise.loadType === 'bodyweight'
+  const equipmentFreeSession = isEquipmentFreeSession(session, plan)
 
   const planExLike: PlanExercise = {
     id: sx.planExerciseId, exerciseId: sx.exerciseId, slotType: 'core',
@@ -146,7 +149,7 @@ export default function Player() {
 
       <main className="player-body">
         <div className="between">
-          <span className="eyebrow num">Exercício {idx + 1} de {session.exercises.length} · Prancha {plateNo(exercise.id)}</span>
+          <span className="eyebrow num">Exercício {idx + 1} de {session.exercises.length}</span>
           {sx.substitutedFrom && <span className="pill">substituído</span>}
         </div>
         <h1 style={{ marginTop: 6, fontSize: 27 }}>{exercise.name}</h1>
@@ -159,6 +162,8 @@ export default function Player() {
         </p>
         <p className="tiny faint" style={{ marginTop: 4 }}>{suggestion.note}</p>
 
+        <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} />
+
         {watchToast && (
           <div className="pr-flash ok" style={{ marginTop: 12 }}>
             {watchToast}
@@ -167,10 +172,10 @@ export default function Player() {
         {prFlash && <div className="pr-flash" style={{ marginTop: 12 }}>{prFlash}</div>}
 
         <div style={{ marginTop: 16 }}>
-          <div className="set-row head">
+          <div className={`set-row head${bodyweight ? ' bodyweight' : ''}`}>
             <span>Série</span>
             <span>Anterior</span>
-            <span>kg</span>
+            {!bodyweight && <span>kg</span>}
             <span>{unit}</span>
             <span />
           </div>
@@ -179,14 +184,14 @@ export default function Player() {
             const prevSet = prev?.[i]
             const isNext = i === logsHere.length
             return (
-              <div className={`set-row${isNext ? ' current' : ''}`} key={i}>
+              <div className={`set-row${isNext ? ' current' : ''}${bodyweight ? ' bodyweight' : ''}`} key={i}>
                 <span className="n num">{i + 1}</span>
-                <span className="prev num">{prevSet ? `${prevSet.weight > 0 ? prevSet.weight : '—'}×${prevSet.reps}` : '—'}</span>
+                <span className="prev num">{prevSet ? bodyweight ? `${prevSet.reps} ${unit}` : `${prevSet.weight > 0 ? prevSet.weight : '—'}×${prevSet.reps}` : '—'}</span>
                 {log ? (
                   <>
-                    <button className="set-cell done num" onClick={() => setEditor({ weight: log.weight, reps: log.reps, logId: log.id })}>
+                    {!bodyweight && <button className="set-cell done num" onClick={() => setEditor({ weight: log.weight, reps: log.reps, logId: log.id })}>
                       {log.weight > 0 ? log.weight : '—'}
-                    </button>
+                    </button>}
                     <button className="set-cell done num" onClick={() => setEditor({ weight: log.weight, reps: log.reps, logId: log.id })}>
                       {log.reps}
                     </button>
@@ -194,10 +199,10 @@ export default function Player() {
                   </>
                 ) : (
                   <>
-                    <button className="set-cell num" disabled={!isNext}
+                    {!bodyweight && <button className="set-cell num" disabled={!isNext}
                       onClick={() => setEditor({ weight: defaultWeight(), reps: defaultReps() })}>
                       {isNext && exercise.loadType === 'external' ? (defaultWeight() || '?') : isNext ? '—' : ''}
-                    </button>
+                    </button>}
                     <button className="set-cell num" disabled={!isNext}
                       onClick={() => setEditor({ weight: defaultWeight(), reps: defaultReps() })}>
                       {isNext ? defaultReps() : ''}
@@ -211,10 +216,14 @@ export default function Player() {
         </div>
 
         <div className="row" style={{ marginTop: 12 }}>
-          <button className="btn btn-ghost btn-sm grow" onClick={() => setSubOpen(true)}>Trocar</button>
-          <button className="btn btn-ghost btn-sm grow" onClick={() => nav(`/exercise/${exercise.id}`)}>Ver prancha</button>
+          <button className="btn btn-ghost btn-sm grow" disabled={equipmentFreeSession && logsHere.length > 0}
+            onClick={() => setSubOpen(true)}>{bodyweight ? 'Variações' : 'Trocar'}</button>
+          <button className="btn btn-ghost btn-sm grow" onClick={() => nav(`/exercise/${exercise.id}`)}>Como fazer</button>
           <button className="btn btn-ghost btn-sm grow" onClick={() => { skipExercise(idx) }}>Pular →</button>
         </div>
+        {equipmentFreeSession && logsHere.length > 0 && <p className="tiny faint" style={{ marginTop: 8 }}>
+          Escolha a variação antes da primeira série deste exercício. As séries registradas permanecem no histórico.
+        </p>}
 
         <RestTimer />
       </main>
@@ -370,24 +379,31 @@ function SubstituteModal({ exercise, onClose, onPick }: {
 }) {
   const profile = useStore((s) => s.profile)!
   const session = useStore((s) => s.activeSession)!
+  const plan = useStore((s) => s.plan)
+  const equipmentFree = isEquipmentFreeSession(session, plan)
   const [chosen, setChosen] = useState<Exercise | null>(null)
   const options = equivalentsFor(exercise.id, session.profileSnapshot ?? profile)
-    .filter((ex) => session.source !== 'home' || isEquipmentFree(ex))
+    .filter((ex) => !equipmentFree || isEquipmentFree(ex))
+    .sort((a, b) => Number(variationLabel(exercise.id, a.id) === 'Outra variação') - Number(variationLabel(exercise.id, b.id) === 'Outra variação'))
 
   return (
     <div className="modal-back" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+      <div className="modal" role="dialog" aria-modal="true" aria-label={`Variações de ${exercise.name}`} onClick={(e) => e.stopPropagation()}>
+        <div className="between" style={{ marginBottom: 12 }}>
+          <span className="eyebrow">{exercise.loadType === 'bodyweight' ? 'Ajuste a dificuldade' : 'Substituir exercício'}</span>
+          <button className="btn-quiet" onClick={onClose}>Fechar</button>
+        </div>
         {!chosen ? (
           <>
             <h2>Trocar {exercise.name}</h2>
-            <p className="muted small" style={{ marginTop: 4 }}>Equivalentes com o seu equipamento:</p>
+            <p className="muted small" style={{ marginTop: 4 }}>{equipmentFree ? 'Variações sem equipamentos, respeitando seu perfil:' : 'Equivalentes com o seu equipamento:'}</p>
             <div style={{ marginTop: 8 }}>
               {options.length === 0 && <p className="muted small">Nenhum equivalente disponível — você pode pular este exercício.</p>}
               {options.slice(0, 8).map((o) => (
                 <button key={o.id} className="list-item" onClick={() => setChosen(o)}>
                   <div className="grow">
                     <h3>{o.name}</h3>
-                    <span className="tiny faint">{o.equivGroup === exercise.equivGroup ? 'Mesmo padrão de movimento' : 'Estímulo semelhante'}</span>
+                    <span className="tiny faint">{exercise.loadType === 'bodyweight' ? variationLabel(exercise.id, o.id) : o.equivGroup === exercise.equivGroup ? 'Mesmo padrão de movimento' : 'Estímulo semelhante'}</span>
                   </div>
                   <span className="chev">›</span>
                 </button>

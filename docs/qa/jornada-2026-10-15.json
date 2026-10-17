@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-15",
+  "timezone": "America/Sao_Paulo",
+  "scope": "Jornada principal no modo local, somente pela interface do navegador",
+  "originalOrigin": "http://127.0.0.1:5173",
+  "testOrigin": "http://localhost:5173",
+  "isolation": "A origem de teste abriu sem perfil nem histórico; ações de cadastro e registros foram feitas somente nela. O histórico da origem original não foi editado.",
+  "fictionalProfile": {
+    "goal": "Saúde e disposição",
+    "experience": "Nunca treinei",
+    "routine": "Parado há muito tempo",
+    "location": "Em casa, sem equipamentos",
+    "days": 3,
+    "minutes": 30,
+    "limitation": "Nenhuma",
+    "age": 30,
+    "weight": null
+  },
+  "confirmedPasses": [
+    "Landing, cadastro, campos obrigatórios, geração/explicação do plano e salvamento",
+    "Biblioteca com78exercícios, filtro de peito combinado com busca joelhos e ficha correspondente",
+    "Reprodução/pausa, figura muscular e instruções",
+    "Perfil e consulta dos treinos A/B/C",
+    "Registro editado de repetições, registro rápido e descanso automático",
+    "Botão+30s medido de0:15 para0:45; pular descanso",
+    "Consulta Como fazer e retorno ao player",
+    "Minimizar, recarregar e retomar mantendo2séries já registradas",
+    "Troca de flexão por joelhos somente na sessão; bloqueio de variação após primeira série",
+    "Treino A completo:8séries,114repetições,0seg; avaliação opcional3; avanço paraB e semana1/3",
+    "Treino em casa completo:10séries,116repetições,60seg; encerramento sem avaliação; próximoB preservado e semana2/3",
+    "Progressão de agachamento12para13repetições e histórico separado por variação",
+    "Progresso após reload:2treinos,18séries,230repetições,60seg; gráfico de12para13reps"
+  ],
+  "findings": [
+    {
+      "id": "J01",
+      "status": "confirmed",
+      "severity": "moderate",
+      "title": "Progressão sugere troca indisponível",
+      "reproduction": "Após2séries de15reps de puxada prona no solo, próxima sessão mostra recomendação de variação mais difícil. Abrir Variações.",
+      "actual": "Recomendação de trocar exercício coexistiu com Nenhum equivalente disponível — você pode pular este exercício.",
+      "expected": "Mensagem de progressão coerente com as alternativas realmente disponíveis.",
+      "evidence": "jornada-progressao-sem-opcao.jpg"
+    },
+    {
+      "id": "J02",
+      "status": "confirmed",
+      "severity": "minor",
+      "title": "Seletor de treino sem saída explícita por teclado",
+      "reproduction": "Hoje > Treinar outro dia do plano > pressionarEscape.",
+      "actual": "Seletor permanece aberto, sem botãoFechar visível ou exposto na árvore. Clique fora fecha.",
+      "expected": "OferecerFechar/Cancelar e suporte aEscape.",
+      "evidence": "jornada-seletor-sem-fechar.jpg"
+    },
+    {
+      "id": "J03",
+      "status": "inference",
+      "severity": "review",
+      "title": "Dificuldade possivelmente alta para primeiro acesso",
+      "observed": "Perfil Nunca treinei/retomada recebeu flexãopike noB e diamante noC.",
+      "hypothesis": "Pode dificultar a jornada de um iniciante. Precisa de revisão de produto/conteúdo; não foi validado com usuários nem constitui avaliação biomecânica."
+    }
+  ],
+  "limitations": [
+    "Não houve autenticação externa, instalaçãoPWA, simulaçãooffline ou teste em relógio físico.",
+    "Não foi afirmada cobertura de todos os botões ou78exercícios nesta jornada; houve revisão individual de mídias na etapa anterior.",
+    "A jornada foi verificada no viewport de desktop disponível.",
+    "A captura de logs retornou lista vazia de avisos/erros capturados; isso não prova ausência de todos os erros internos.",
+    "As duas sessões são registros fictícios em localhost; não foram exercícios físicos executados."
+  ],
+  "evidenceDirectory": "/Users/giovaniramosferreira/.codex/visualizations/2026/10/15/01a14085-d83d-76b0-aa24-568a2dac59c9",
+  "screenshots": [
+    "jornada-exercicio.jpg",
+    "jornada-resumo-plano.jpg",
+    "jornada-prancha.jpg",
+    "jornada-resumo-casa.jpg",
+    "jornada-progresso.jpg",
+    "jornada-progressao-sem-opcao.jpg",
+    "jornada-seletor-sem-fechar.jpg"
+  ]
+}

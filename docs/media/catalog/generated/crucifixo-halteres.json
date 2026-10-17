@@ -1,0 +1,24 @@
+{
+  "id": "crucifixo-halteres",
+  "name": "Crucifixo com halteres",
+  "hold": false,
+  "directions": "Dumbbell chest FLY on FLAT BENCH. Oblique front-side view clearly shows both arms. Head/back supported, feet flat. Start arms open WIDE at chest level, elbows slightly bent15degrees; bring TWO dumbbells together in an arc ABOVE chest while elbow bend stays constant. NOT pressing or bending elbows90degrees.",
+  "instructions": [
+    "Deitado, halteres acima do peito, cotovelos semiflexionados.",
+    "Abra os braços até alongar o peito.",
+    "Feche como se abraçasse um tronco."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/crucifixo-halteres.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose.  SIX SQUARE PANELS in EXACT 3 columns x2 rows, total1536x1024. Show one cycle of a DUMBBELL CHEST FLY, not a bench press. Elevated oblique view from feet, so both arms and the lateral sweep are visible. Adult lies on FLAT horizontal bench, head and entire back supported, feet planted on ground, one dumbbell in EACH hand. Upper arms and forearms form almost straight arms with a small fixed15degree elbow bend throughout ALLsix panels. Elbows must NEVER bend to90degrees or approach ribs. Only shoulders rotate, bringing nearly straight arms in a broad hugging arc from open wide to together over middle chest. Frame0 open arms wide at chestheight, frame1 arms sweeping30degrees inward, frame2 sweeping60degrees inward, frame3 hands together vertically above chest, frame4 sweeping60degrees, frame5 sweeping30degrees. Forearms stay aligned with upper arms at every pose, dumbbells always above or lateral to chest, no press. Bench, torso and feet stay in identical place. Keep small fixed elbow bend across all6.",
+  "status": "generated",
+  "alignment": "source",
+  "cycle": "loop",
+  "selectedFrames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
+}

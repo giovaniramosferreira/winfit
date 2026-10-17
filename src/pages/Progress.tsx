@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
 import { fmtDate, fmtDuration, sessionsInWeekOffset, sessionsThisWeek } from '../lib/helpers'
-import { fmtKg, volumeOf } from '../lib/progression'
+import { activityTotals, fmtKg, volumeOf } from '../lib/progression'
+import { isTimedExercise } from '../lib/exerciseRules'
 import Chart from '../components/Chart'
 import { ANATOMY } from '../data/anatomy'
 
@@ -17,15 +18,18 @@ export default function Progress() {
   const weekVol = week.reduce((a, s) => a + volumeOf(s.logs), 0)
   const lastVol = lastWeek.reduce((a, s) => a + volumeOf(s.logs), 0)
   const delta = lastVol > 0 ? Math.round(((weekVol - lastVol) / lastVol) * 100) : null
+  const weekActivity = activityTotals(week.flatMap((session) => session.logs))
+  const bodyweightFocus = !activityTotals((week.length > 0 ? week : sessions).flatMap((session) => session.logs)).hasLoad
 
   // Exercícios com histórico, ordenados por uso
   const exerciseStats = useMemo(() => {
-    const map = new Map<string, { count: number; max: number }>()
+    const map = new Map<string, { count: number; max: number; best: number }>()
     for (const s of sessions) {
       for (const l of s.logs) {
-        const cur = map.get(l.exerciseId) ?? { count: 0, max: 0 }
+        const cur = map.get(l.exerciseId) ?? { count: 0, max: 0, best: 0 }
         cur.count += 1
         cur.max = Math.max(cur.max, l.weight)
+        cur.best = Math.max(cur.best, l.reps)
         map.set(l.exerciseId, cur)
       }
     }
@@ -49,9 +53,9 @@ export default function Progress() {
   if (sessions.length === 0) {
     return (
       <div className="page">
-        <div className="sheet-head"><span>Progresso</span><span>Caderno vazio</span></div>
+        <div className="sheet-head"><span>Progresso</span><span>Seu histórico</span></div>
         <h1>Seus números começam no <em>primeiro treino.</em></h1>
-        <p className="muted small" style={{ marginTop: 8 }}>Conclua uma sessão para ver carga, volume e recordes aqui.</p>
+        <p className="muted small" style={{ marginTop: 8 }}>Conclua uma sessão para acompanhar sua frequência e evolução nos exercícios.</p>
         <Link to="/home" className="btn btn-primary" style={{ marginTop: 20 }}>Ir para o treino</Link>
       </div>
     )
@@ -59,7 +63,7 @@ export default function Progress() {
 
   return (
     <div className="page fade-in">
-      <div className="sheet-head"><span>Progresso</span><span className="num">{sessions.length} treinos no caderno</span></div>
+      <div className="sheet-head"><span>Progresso</span><span className="num">{sessions.length} treinos registrados</span></div>
       <h1>
         {lead && leadEx && leadDelta > 0
           ? <>A carga do {leadEx.name.toLowerCase()} subiu <em>{fmtKg(leadDelta)}.</em></>
@@ -80,16 +84,16 @@ export default function Progress() {
           <div className="k">Treinos esta semana</div>
         </div>
         <div className="stat">
-          <div className="v num">{weekVol >= 1000 ? `${(weekVol / 1000).toFixed(1).replace('.', ',')} t` : `${Math.round(weekVol)} kg`}</div>
-          <div className="k">Volume da semana {delta != null && <span className={delta >= 0 ? 'accent-text' : ''}>({delta > 0 ? '+' : ''}{delta}%)</span>}</div>
+          <div className="v num">{bodyweightFocus ? weekActivity.reps : weekVol >= 1000 ? `${(weekVol / 1000).toFixed(1).replace('.', ',')} t` : `${Math.round(weekVol)} kg`}</div>
+          <div className="k">{bodyweightFocus ? 'Repetições na semana' : <>Volume da semana {delta != null && <span className={delta >= 0 ? 'accent-text' : ''}>({delta > 0 ? '+' : ''}{delta}%)</span>}</>}</div>
         </div>
         <div className="stat">
-          <div className="v num">{sessions.length}</div>
-          <div className="k">Treinos no total</div>
+          <div className="v num">{bodyweightFocus ? `${weekActivity.seconds} seg` : sessions.length}</div>
+          <div className="k">{bodyweightFocus ? 'Sustentação na semana' : 'Treinos no total'}</div>
         </div>
         <div className="stat">
-          <div className="v num gold">{prs.length}</div>
-          <div className="k">Recordes pessoais</div>
+          <div className={`v num${bodyweightFocus ? '' : ' gold'}`}>{bodyweightFocus ? weekActivity.sets : prs.length}</div>
+          <div className="k">{bodyweightFocus ? 'Séries na semana' : 'Recordes pessoais'}</div>
         </div>
       </div>
 
@@ -116,7 +120,7 @@ export default function Progress() {
               <span className="small">{byId.get(exId)?.name}</span>
               <div className="tiny faint num">{st.count} séries registradas</div>
             </div>
-            <span className="mono num">{st.max > 0 ? fmtKg(st.max) : '—'}</span>
+            <span className="mono num">{st.max > 0 ? fmtKg(st.max) : `${st.best} ${isTimedExercise(exId) ? 'seg' : 'reps'}`}</span>
             <span className="chev">›</span>
           </Link>
         ))}
@@ -124,7 +128,9 @@ export default function Progress() {
 
       <div className="card" style={{ marginTop: 14 }}>
         <h3>Histórico</h3>
-        {sessions.slice(0, 15).map((s) => (
+        {sessions.slice(0, 15).map((s) => {
+          const activity = activityTotals(s.logs)
+          return (
           <div key={s.id} className="list-item">
             <div className="grow">
               <span className="small">{s.dayLabel} {s.status === 'partial' && <span className="pill">parcial</span>}</span>
@@ -132,9 +138,14 @@ export default function Progress() {
                 {fmtDate(s.startedAt)} · {s.logs.length} séries · {s.endedAt ? fmtDuration(s.endedAt - s.startedAt) : ''}
               </div>
             </div>
-            <span className="mono num small muted">{Math.round(volumeOf(s.logs))} kg</span>
+            <span className="mono num small muted">{activity.hasLoad ? `${Math.round(activity.volume)} kg` : <>
+              {activity.reps > 0 && `${activity.reps} reps`}
+              {activity.reps > 0 && activity.seconds > 0 && ' · '}
+              {activity.seconds > 0 && `${activity.seconds} seg`}
+              {activity.sets === 0 && 'Sem séries'}
+            </>}</span>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   )

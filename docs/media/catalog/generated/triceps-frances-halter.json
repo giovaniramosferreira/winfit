@@ -1,0 +1,23 @@
+{
+  "id": "triceps-frances-halter",
+  "name": "Tríceps francês com halter",
+  "hold": false,
+  "directions": "Overhead TWO-HAND triceps extension with ONE dumbbell. Stand neutral. BOTH hands cradle same dumbbell behind head, elbows point UP close to ears. Start elbows bent then extend forearms UP nearly straight without moving upper arms. Weight/hands fully visible with margin above. Not two separate dumbbells.",
+  "instructions": [
+    "Halter atrás da cabeça, cotovelos apontando para cima.",
+    "Estenda os braços.",
+    "Desça devagar sem abrir os cotovelos."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/triceps-frances-halter.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Overhead TWO-HAND triceps extension with ONE dumbbell. Stand neutral. BOTH hands cradle same dumbbell behind head, elbows point UP close to ears. Start elbows bent then extend forearms UP nearly straight without moving upper arms. Weight/hands fully visible with margin above. Not two separate dumbbells. Source instructions Portuguese: Halter atrás da cabeça, cotovelos apontando para cima. Estenda os braços. Desça devagar sem abrir os cotovelos.",
+  "status": "generated",
+  "cycle": "return",
+  "selectedFrames": [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2
+  ]
+}

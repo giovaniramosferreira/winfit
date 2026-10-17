@@ -14,7 +14,7 @@ Estado da arquitetura: [CONTEXT.md](./CONTEXT.md). Pendências verificadas no c�
 - **Dupla progressão automática**: fechou o teto de reps → app sugere +carga na próxima sessão.
 - **Recordes pessoais** com detecção no log (sem PRs triviais na 1ª sessão).
 - **Progresso**: semana, volume, PRs, evolução por exercício com gráfico, histórico.
-- **Biblioteca** com ~70 exercícios PT-BR (instruções, erros comuns, equivalências).
+- **Biblioteca** com 78 exercícios PT-BR (instruções, erros comuns, equivalências).
 - **Controle pelo Apple Watch (Atalhos do iOS + Relay SSE R$ 0)**: bater série no pulso (1 toque ou com ajuste de carga/reps), avanço de descanso (+30s), consulta de status e vibração tátil no fim do timer via app nativo do relógio.
 - **PWA offline-first**: séries são gravadas imediatamente no aparelho e seguem funcionando sem rede. Com conta, plano e histórico sincronizam entre celular e web; sem conta, há export em JSON.
 
@@ -39,17 +39,12 @@ Detalhes de implementação: `src/lib/pwa.ts` (registro único do service worker
 instalação e de conexão), `src/components/PwaToasts.tsx`, `src/components/InstallCard.tsx`
 e o bloco `VitePWA` em `vite.config.ts`.
 
-## Direção visual: atlas de anatomia
+## Direção visual: roxo e ilustrações em tinta
 
-O app se lê como um livro de anatomia, não como painel de controle:
-
-- **Papel, tinta e um vermelho só.** O vermelho é o músculo: músculo trabalhado nas figuras, carga que subiu, ação principal. Uma coisa vermelha por tela.
-- **Cada exercício é uma prancha numerada** (`src/data/anatomy.ts`, `src/components/BodyPlate.tsx`): figura em traço com vistas anterior e posterior, nome latino, origem, inserção e ação. As 10 regiões musculares são desenhadas uma vez e reaproveitadas pelos ~75 exercícios.
-- **Tipografia:** Fraunces nos títulos e números-chave, Geist no texto, Geist Mono nas cargas. Fontes embutidas no PWA (subconjunto latino, OFL) para funcionar offline.
-- **Modo tinta:** com o sistema em modo escuro, o papel vira texto. Pensado para academia à noite.
-- Sem emoji, sem cards arredondados: hierarquia por filete.
-
-Base visual compartilhada com o AuraViz (mesmo papel, tinta, oliva e terracota).
+- Tema escuro roxo, tipografia Geist, cartões e controles arredondados.
+- 78 exercícios com o personagem em tinta: contorno humano, roupas hachuradas e fundo claro. Sequências por quadros com reprodução/pausa; quatro pranchas com posição de sustentação. Mapas musculares anterior e posterior seguem a mesma identidade, com destaque dinâmico por exercício.
+- Figuras anatômicas em tinta/hachura, preservando vistas anterior/posterior e identificação dos músculos principais e secundários.
+- Fontes e desenhos locais, disponíveis offline. Nenhuma mídia do BetterMe ou imagem de banco sem licença foi incorporada. [Origem das artes](./docs/media-licenses.md).
 
 ## Rodar
 

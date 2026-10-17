@@ -1,0 +1,23 @@
+{
+  "id": "swing-kettlebell",
+  "name": "Swing com kettlebell",
+  "hold": false,
+  "directions": "TWO-HANDED kettlebell swing. Both hands always together on ONE kettlebell handle. Start hip hinge with bell BETWEEN thighs behind knees, neutral back. Drive hips forward to stand tall and bell swings forward to chest height with long arms. Feet fixed, NOT a front raise or squat.",
+  "instructions": [
+    "Quadril para trás, kettlebell entre as pernas.",
+    "Estenda o quadril com força projetando o peso à frente.",
+    "Deixe voltar e repita em ritmo."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/swing-kettlebell.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. TWO-HANDED kettlebell swing. Both hands always together on ONE kettlebell handle. Start hip hinge with bell BETWEEN thighs behind knees, neutral back. Drive hips forward to stand tall and bell swings forward to chest height with long arms. Feet fixed, NOT a front raise or squat. Source instructions Portuguese: Quadril para trás, kettlebell entre as pernas. Estenda o quadril com força projetando o peso à frente. Deixe voltar e repita em ritmo.",
+  "status": "generated",
+  "cycle": "loop",
+  "selectedFrames": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    4
+  ]
+}

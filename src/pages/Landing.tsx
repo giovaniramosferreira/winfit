@@ -5,10 +5,10 @@ import { ANATOMY } from '../data/anatomy'
 import { byId, EXERCISES } from '../data/exercises'
 
 const chapters = [
-  ['Um plano escrito para você', 'Objetivo, nível, equipamento, tempo e limitações viram decisão de treino. O app explica o porquê de cada escolha.', 'Nove perguntas · cerca de 2 minutos'],
-  ['Um caderno que anota por você', 'Carga e repetições já vêm preenchidas. Confirmou a série, o descanso começa a contar sozinho.', 'Registro em 1 toque'],
+  ['Um plano para sua rotina', 'Objetivo, nível, equipamento, tempo e limitações orientam seu treino. O app explica o porquê de cada escolha.', 'Nove perguntas · cerca de 2 minutos'],
+  ['Treino guiado, série a série', 'Carga e repetições já vêm preenchidas. Confirmou a série, o descanso começa a contar sozinho.', 'Registro em 1 toque'],
   ['Uma carga que sobe com método', 'Fechou o teto de repetições em todas as séries? Na próxima sessão o app sugere aumentar o peso.', 'Dupla progressão automática'],
-  ['Um atlas de cada movimento', 'Cada exercício é uma prancha: músculo trabalhado, origem, inserção, ação, passo a passo e erros comuns.', `${EXERCISES.length} pranchas · academia ou casa`],
+  ['Entenda cada movimento', 'Ilustrações de execução, músculos trabalhados, passo a passo e erros comuns para consultar durante o treino.', `${EXERCISES.length} exercícios · academia ou casa`],
 ]
 
 export default function Landing() {
@@ -33,10 +33,10 @@ export default function Landing() {
       <section className="landing-wrap landing-cover">
         <div>
           <span className="eyebrow accent">Treinador de bolso</span>
-          <h1 className="landing-title">Seu treino, escrito para o <em>seu corpo.</em></h1>
+          <h1 className="landing-title">Seu treino. <em>No seu ritmo.</em></h1>
           <p className="landing-lead">
             Plano de musculação sob medida, guiado série a série, com progressão de carga automática.
-            Cada exercício explicado como num atlas de anatomia.
+            Calistenia em casa e exercícios explicados para acompanhar sua evolução.
           </p>
           <div className="landing-ctas">
             <button className="btn btn-primary" onClick={() => nav('/onboarding')}>Montar meu treino</button>
@@ -49,16 +49,16 @@ export default function Landing() {
           </p>
         </div>
         <figure className="plate-fig" style={{ maxWidth: 420, width: '100%', justifySelf: 'center' }}>
-          <BodyPlate primary="peito" secondary={['ombro', 'triceps']} label="Prancha do corpo, vistas anterior e posterior, com o peitoral em destaque" />
-          <figcaption><b>Fig. 1.</b> Supino reto: peitoral em destaque; deltoide e tríceps como apoio.</figcaption>
+          <BodyPlate primary="peito" secondary={['ombro', 'triceps']} label="Músculos do corpo, vistas anterior e posterior, com o peitoral em destaque" />
+          <figcaption>Supino reto: peitoral em destaque; deltoide e tríceps como apoio.</figcaption>
         </figure>
       </section>
 
       <div className="landing-wrap">
         <div className="landing-verdict">
-          <p>Os apps de treino falam como painel de controle. O WinFit fala como um livro que você consulta na academia.</p>
+          <p>Abra o treino, registre suas séries e acompanhe sua evolução. Na academia ou em casa.</p>
           <dl>
-            <div><dt>Pranchas de exercício</dt><dd className="num">{EXERCISES.length}</dd></div>
+            <div><dt>Exercícios</dt><dd className="num">{EXERCISES.length}</dd></div>
             <div><dt>Perguntas para o plano</dt><dd className="num">9</dd></div>
             <div><dt>Custo</dt><dd className="num">R$ 0</dd></div>
           </dl>
@@ -66,8 +66,8 @@ export default function Landing() {
       </div>
 
       <section className="landing-wrap landing-section">
-        <div className="sheet-head"><span>Sumário</span><span>Quatro capítulos</span></div>
-        <h2 className="landing-h2">O que um bom treinador faria, <em>por escrito.</em></h2>
+        <div className="sheet-head"><span>Como funciona</span><span>Simples de usar</span></div>
+        <h2 className="landing-h2">Do primeiro treino <em>à sua evolução.</em></h2>
         <ol className="numbered">
           {chapters.map(([t, s, k], i) => (
             <li key={t}>
@@ -83,7 +83,7 @@ export default function Landing() {
       </section>
 
       <section className="landing-wrap landing-section">
-        <div className="sheet-head"><span>Amostra do atlas</span><span>Peito</span></div>
+        <div className="sheet-head"><span>Conheça um exercício</span><span>Peito</span></div>
         <div className="plate-sample">
           <div>
             <span className="eyebrow">Peito · empurrar horizontal</span>

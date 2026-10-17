@@ -77,7 +77,7 @@ export default function Home() {
         <span className="num">Semana {weekSessions.length}/{goal}</span>
       </div>
 
-      <section className="hero-card" style={{ borderTop: 0, paddingTop: 0 }}>
+      <section className="hero-card">
         <div className="eyebrow accent">{active ? 'Treino em andamento' : weekSessions.length >= goal ? 'Semana fechada' : 'Treino de hoje'}</div>
         <h1 style={{ marginTop: 8 }}>{active ? active.dayLabel : nextDay.label}</h1>
         {!active && (
@@ -88,7 +88,7 @@ export default function Home() {
           </div>
         )}
 
-        <div className="eyebrow" style={{ marginTop: 18 }}>Sumário</div>
+        <div className="eyebrow" style={{ marginTop: 18 }}>Exercícios de hoje</div>
         <ol className="toc" style={{ marginTop: 4 }}>
           {toc.map((pe, i) => {
             const ex = byId.get(pe.exerciseId)
@@ -137,7 +137,7 @@ export default function Home() {
       )}
 
       <section className="card" style={{ marginTop: 18 }} aria-labelledby="home-workout-title">
-        <div className="eyebrow">Dias de home office</div>
+        <div className="eyebrow">Calistenia · só o peso do corpo</div>
         <h2 id="home-workout-title" style={{ marginTop: 6 }}>Treino em casa</h2>
         <p className="small muted" style={{ marginTop: 6 }}>
           Calistenia de corpo inteiro, sem equipamentos. Conta na sua semana e mantém o próximo treino do plano.
@@ -158,7 +158,7 @@ export default function Home() {
             ))}
           </details>
           <p className="tiny faint" style={{ marginTop: 8 }}>
-            Ciclo A/B/C com agachar, empurrar, cadeia posterior e core. Respeita suas limitações e não usa porta, sofá ou acessórios improvisados.
+            Demonstrações ilustradas e variações no treino. Sem porta, sofá ou acessórios improvisados.
           </p>
           <button className="btn btn-ghost" style={{ marginTop: 14 }} onClick={() => handleStart('home')}>
             {active ? 'Continuar treino em andamento' : 'Começar em casa'}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "prancha-lateral-joelhos",
+    "observations": "Fonte corrigida já presente ao iniciar esta revisão. Agora há joelhos claramente dobrados, canelas recolhidas para trás, apoio lateral sobre joelho e antebraço, quadril elevado e pés livres de apoio. Corrige o problema anterior.",
+    "issueSeverity": "none",
+    "hold": true,
+    "sourceSha256": "61b12b878256807208dc207677511ae53cbc6e098cae92121770aab88ffa3b54"
+  },
+  {
+    "id": "abdominal-infra",
+    "observations": "Fonte corrigida já presente ao iniciar esta revisão. Quadril permanece baixo apoiado; pernas sobem até vertical e retornam a quase horizontal nos seis quadros. Sem reverse crunch ao final.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "sourceSha256": "b7b81177220bfb0a154998575cc59857600b227c42943ad290429ea9849f41dc"
+  },
+  {
+    "id": "dead-bug",
+    "observations": "Fonte corrigida: braço próximo ao observador estende por cima da cabeça e perna distante estende à frente; a perna próxima fica dobrada e o braço distante elevado. Par contralateral agora claro. Quadros 0–3 estendem e 4–5 retornam, com tronco apoiado.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop",
+    "sourceSha256": "73d997a664532e74ab0373a33d9f47c15cb2b02fcd47e5093e91c8d9ec47b05d"
+  },
+  {
+    "id": "prancha-joelhos",
+    "observations": "Fonte corrigida com camiseta esportiva: antebraços e joelhos apoiados, cotovelos sob ombros e quadril mais baixo. Tronco e coxas agora mantêm linha coerente de ombros a joelhos, corrigindo a dobra anterior. Uma única pose estática.",
+    "issueSeverity": "none",
+    "hold": true,
+    "sourceSha256": "c945757f78fb781a22db8409695114946f1f632765531395ccae1b46bfad472f"
+  }
+]

@@ -2,12 +2,12 @@ import { fmtKg } from '../lib/progression'
 
 interface Point { x: number; y: number; label: string; value: number }
 
-/** Gráfico de linha em SVG puro — carga máxima por sessão. Tinta; último ponto em vermelho com o valor. */
+/** Gráfico local de carga, repetições ou tempo por sessão. */
 export default function Chart({ data, unit }: { data: { label: string; value: number }[]; unit: string }) {
   if (data.length < 2) return null
   const W = 320
   const H = 150
-  const PAD = { l: 34, r: 16, t: 22, b: 24 }
+  const PAD = { l: unit ? 54 : 34, r: 16, t: 22, b: 24 }
   const vals = data.map((d) => d.value)
   const min = Math.min(...vals)
   const max = Math.max(...vals)
@@ -23,12 +23,14 @@ export default function Chart({ data, unit }: { data: { label: string; value: nu
   }))
   const path = pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')
   const last = pts[pts.length - 1]
-  const fmt = (v: number) => `${String(v).replace('.', ',')}${unit}`
+  const fmt = (v: number) => `${String(v).replace('.', ',')}${unit ? ` ${unit}` : ''}`
+  const metric = unit === 'seg' ? 'Tempo' : unit === 'reps' ? 'Repetições' : 'Carga'
+  const describe = (v: number) => unit ? fmt(v) : fmtKg(v)
 
   return (
     <div className="chart-wrap">
       <svg className="chart" viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: 'block' }}
-        role="img" aria-label={`Carga de ${fmtKg(vals[0])} a ${fmtKg(last.value)} em ${data.length} sessões`}>
+        role="img" aria-label={`${metric} de ${describe(vals[0])} a ${describe(last.value)} em ${data.length} sessões`}>
         <line className="grid" x1={PAD.l} y1={PAD.t} x2={W - PAD.r} y2={PAD.t} />
         <line className="grid" x1={PAD.l} y1={PAD.t + ih / 2} x2={W - PAD.r} y2={PAD.t + ih / 2} />
         <line className="grid" x1={PAD.l} y1={H - PAD.b} x2={W - PAD.r} y2={H - PAD.b} />

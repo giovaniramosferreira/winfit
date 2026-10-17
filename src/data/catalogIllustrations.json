@@ -1,0 +1,452 @@
+{
+  "flexao-joelhos": {
+    "sprite": "/media/catalog/flexao-joelhos.webp",
+    "aspectRatio": "480 / 316",
+    "cycle": "loop",
+    "hold": false
+  },
+  "prancha": {
+    "sprite": "/media/catalog/prancha.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "return",
+    "hold": true
+  },
+  "prancha-joelhos": {
+    "sprite": "/media/catalog/prancha-joelhos.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "return",
+    "hold": true
+  },
+  "prancha-lateral": {
+    "sprite": "/media/catalog/prancha-lateral.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "return",
+    "hold": true
+  },
+  "prancha-lateral-joelhos": {
+    "sprite": "/media/catalog/prancha-lateral-joelhos.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "return",
+    "hold": true
+  },
+  "ponte-gluteo": {
+    "sprite": "/media/catalog/ponte-gluteo.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "loop",
+    "hold": false
+  },
+  "ponte-unilateral": {
+    "sprite": "/media/catalog/ponte-unilateral.webp",
+    "aspectRatio": "480 / 343",
+    "cycle": "loop",
+    "hold": false
+  },
+  "puxada-prona-solo": {
+    "sprite": "/media/catalog/puxada-prona-solo.webp",
+    "aspectRatio": "480 / 339",
+    "cycle": "loop",
+    "hold": false
+  },
+  "avanco-corporal": {
+    "sprite": "/media/catalog/avanco-corporal.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "dead-bug": {
+    "sprite": "/media/catalog/dead-bug.webp",
+    "aspectRatio": "480 / 299",
+    "cycle": "loop",
+    "hold": false
+  },
+  "abdominal-infra": {
+    "sprite": "/media/catalog/abdominal-infra.webp",
+    "aspectRatio": "480 / 381",
+    "cycle": "loop",
+    "hold": false
+  },
+  "abdominal-supra": {
+    "sprite": "/media/catalog/abdominal-supra.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "loop",
+    "hold": false
+  },
+  "supino-reto-barra": {
+    "sprite": "/media/catalog/supino-reto-barra.webp",
+    "aspectRatio": "480 / 448",
+    "cycle": "loop",
+    "hold": false
+  },
+  "supino-halteres": {
+    "sprite": "/media/catalog/supino-halteres.webp",
+    "aspectRatio": "480 / 478",
+    "cycle": "loop",
+    "hold": false
+  },
+  "supino-maquina": {
+    "sprite": "/media/catalog/supino-maquina.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "flexao-inclinada": {
+    "sprite": "/media/catalog/flexao-inclinada.webp",
+    "aspectRatio": "480 / 397",
+    "cycle": "loop",
+    "hold": false
+  },
+  "flexao-declinada": {
+    "sprite": "/media/catalog/flexao-declinada.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "loop",
+    "hold": false
+  },
+  "supino-elastico": {
+    "sprite": "/media/catalog/supino-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "desenvolvimento-halteres": {
+    "sprite": "/media/catalog/desenvolvimento-halteres.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "desenvolvimento-maquina": {
+    "sprite": "/media/catalog/desenvolvimento-maquina.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "desenvolvimento-barra": {
+    "sprite": "/media/catalog/desenvolvimento-barra.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "pike-pushup": {
+    "sprite": "/media/catalog/pike-pushup.webp",
+    "aspectRatio": "480 / 395",
+    "cycle": "loop",
+    "hold": false
+  },
+  "desenvolvimento-elastico": {
+    "sprite": "/media/catalog/desenvolvimento-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "remada-curvada-barra": {
+    "sprite": "/media/catalog/remada-curvada-barra.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "remada-serrote": {
+    "sprite": "/media/catalog/remada-serrote.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "remada-maquina": {
+    "sprite": "/media/catalog/remada-maquina.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "remada-baixa-polia": {
+    "sprite": "/media/catalog/remada-baixa-polia.webp",
+    "aspectRatio": "480 / 425",
+    "cycle": "loop",
+    "hold": false
+  },
+  "remada-elastico": {
+    "sprite": "/media/catalog/remada-elastico.webp",
+    "aspectRatio": "480 / 399",
+    "cycle": "loop",
+    "hold": false
+  },
+  "remada-toalha": {
+    "sprite": "/media/catalog/remada-toalha.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "puxada-polia": {
+    "sprite": "/media/catalog/puxada-polia.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "barra-fixa": {
+    "sprite": "/media/catalog/barra-fixa.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "puxada-elastico": {
+    "sprite": "/media/catalog/puxada-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "agachamento-barra": {
+    "sprite": "/media/catalog/agachamento-barra.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "agachamento-goblet": {
+    "sprite": "/media/catalog/agachamento-goblet.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "agachamento-kettlebell": {
+    "sprite": "/media/catalog/agachamento-kettlebell.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "agachamento-elastico": {
+    "sprite": "/media/catalog/agachamento-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "terra-romeno-barra": {
+    "sprite": "/media/catalog/terra-romeno-barra.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "terra-romeno-halteres": {
+    "sprite": "/media/catalog/terra-romeno-halteres.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "hip-thrust-barra": {
+    "sprite": "/media/catalog/hip-thrust-barra.webp",
+    "aspectRatio": "480 / 360",
+    "cycle": "loop",
+    "hold": false
+  },
+  "swing-kettlebell": {
+    "sprite": "/media/catalog/swing-kettlebell.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "terra-romeno-elastico": {
+    "sprite": "/media/catalog/terra-romeno-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "afundo-halteres": {
+    "sprite": "/media/catalog/afundo-halteres.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "bulgaro": {
+    "sprite": "/media/catalog/bulgaro.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "step-up": {
+    "sprite": "/media/catalog/step-up.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "crucifixo-halteres": {
+    "sprite": "/media/catalog/crucifixo-halteres.webp",
+    "aspectRatio": "480 / 456",
+    "cycle": "loop",
+    "hold": false
+  },
+  "crossover-polia": {
+    "sprite": "/media/catalog/crossover-polia.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "crucifixo-elastico": {
+    "sprite": "/media/catalog/crucifixo-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "elevacao-lateral-halteres": {
+    "sprite": "/media/catalog/elevacao-lateral-halteres.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "elevacao-lateral-polia": {
+    "sprite": "/media/catalog/elevacao-lateral-polia.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "elevacao-lateral-elastico": {
+    "sprite": "/media/catalog/elevacao-lateral-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "crucifixo-invertido-halteres": {
+    "sprite": "/media/catalog/crucifixo-invertido-halteres.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "face-pull": {
+    "sprite": "/media/catalog/face-pull.webp",
+    "aspectRatio": "480 / 472",
+    "cycle": "loop",
+    "hold": false
+  },
+  "band-pull-apart": {
+    "sprite": "/media/catalog/band-pull-apart.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "rosca-direta-barra": {
+    "sprite": "/media/catalog/rosca-direta-barra.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "rosca-alternada": {
+    "sprite": "/media/catalog/rosca-alternada.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "rosca-polia": {
+    "sprite": "/media/catalog/rosca-polia.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "rosca-elastico": {
+    "sprite": "/media/catalog/rosca-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "rosca-martelo": {
+    "sprite": "/media/catalog/rosca-martelo.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "triceps-polia": {
+    "sprite": "/media/catalog/triceps-polia.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "triceps-frances-halter": {
+    "sprite": "/media/catalog/triceps-frances-halter.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "return",
+    "hold": false
+  },
+  "triceps-banco": {
+    "sprite": "/media/catalog/triceps-banco.webp",
+    "aspectRatio": "480 / 450",
+    "cycle": "loop",
+    "hold": false
+  },
+  "flexao-diamante": {
+    "sprite": "/media/catalog/flexao-diamante.webp",
+    "aspectRatio": "480 / 336",
+    "cycle": "loop",
+    "hold": false
+  },
+  "triceps-elastico": {
+    "sprite": "/media/catalog/triceps-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "mesa-flexora": {
+    "sprite": "/media/catalog/mesa-flexora.webp",
+    "aspectRatio": "480 / 411",
+    "cycle": "loop",
+    "hold": false
+  },
+  "flexora-deslizante": {
+    "sprite": "/media/catalog/flexora-deslizante.webp",
+    "aspectRatio": "480 / 280",
+    "cycle": "loop",
+    "hold": false
+  },
+  "flexora-elastico": {
+    "sprite": "/media/catalog/flexora-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "cadeira-extensora": {
+    "sprite": "/media/catalog/cadeira-extensora.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "abducao-maquina": {
+    "sprite": "/media/catalog/abducao-maquina.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "abducao-elastico": {
+    "sprite": "/media/catalog/abducao-elastico.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "coice-polia": {
+    "sprite": "/media/catalog/coice-polia.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "panturrilha-halteres": {
+    "sprite": "/media/catalog/panturrilha-halteres.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "panturrilha-maquina": {
+    "sprite": "/media/catalog/panturrilha-maquina.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "panturrilha-corporal": {
+    "sprite": "/media/catalog/panturrilha-corporal.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "pallof-press": {
+    "sprite": "/media/catalog/pallof-press.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "loop",
+    "hold": false
+  },
+  "elevacao-pernas-barra": {
+    "sprite": "/media/catalog/elevacao-pernas-barra.webp",
+    "aspectRatio": "480 / 480",
+    "cycle": "return",
+    "hold": false
+  }
+}

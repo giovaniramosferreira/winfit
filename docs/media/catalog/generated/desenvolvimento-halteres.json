@@ -1,0 +1,23 @@
+{
+  "id": "desenvolvimento-halteres",
+  "name": "Desenvolvimento com halteres",
+  "hold": false,
+  "directions": "Standing overhead dumbbell shoulder press. One dumbbell in each hand, both start beside ears with elbows90degrees; press both vertically UP to nearly straight arms, hands remain shoulder-width apart. Neutral spine. Leave margin ABOVE the weights.",
+  "instructions": [
+    "Sentado ou em pé, halteres na altura das orelhas.",
+    "Empurre para cima até estender os braços.",
+    "Desça com controle até a altura das orelhas."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/desenvolvimento-halteres.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Standing overhead dumbbell shoulder press. One dumbbell in each hand, both start beside ears with elbows90degrees; press both vertically UP to nearly straight arms, hands remain shoulder-width apart. Neutral spine. Leave margin ABOVE the weights. Source instructions Portuguese: Sentado ou em pé, halteres na altura das orelhas. Empurre para cima até estender os braços. Desça com controle até a altura das orelhas.",
+  "status": "generated",
+  "cycle": "loop",
+  "selectedFrames": [
+    0,
+    1,
+    2,
+    2,
+    1,
+    0
+  ]
+}

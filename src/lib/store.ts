@@ -4,10 +4,11 @@ import type {
   OnboardingDraft, Plan, PlanExercise, PRRecord, Session, SessionExercise, SetLog, TrainingProfile,
   WatchCommand, WatchStatusPayload,
 } from '../types'
-import { canPerform, generatePlan } from './generator'
+import { canPerform, generatePlan, sanitizeEquipmentFreePlan } from './generator'
 import { checkPR, suggestFor } from './progression'
 import { byId } from '../data/exercises'
 import { homeWorkout, isEquipmentFree } from './homeWorkout'
+import { isEquipmentFreeSession, isTimedExercise } from './exerciseRules'
 import { beep, vibrate } from './helpers'
 
 // Persistência write-through: o middleware `persist` grava em localStorage a cada `set`,
@@ -78,6 +79,7 @@ function sessionFromDay(plan: Plan, dayId: string): Session | null {
   return {
     id: crypto.randomUUID(),
     planId: plan.id,
+    profileSnapshot: plan.profileSnapshot,
     dayId: day.id,
     dayLabel: day.label,
     startedAt: Date.now(),
@@ -218,11 +220,20 @@ export const useStore = create<WinfitState>()(
         const { activeSession, plan } = get()
         if (!activeSession || !byId.has(newExerciseId)) return
         const replacement = byId.get(newExerciseId)!
-        if (activeSession.source === 'home' && (!isEquipmentFree(replacement) ||
-          !canPerform(replacement, ['peso_corporal'], activeSession.profileSnapshot?.limitations ?? []))) return
         const cur = activeSession.exercises[exerciseIdx]
+        if (!cur) return
+        // Uma variação por bloco de séries, sem reatribuir o histórico.
+        const equipmentFree = isEquipmentFreeSession(activeSession, plan)
+        if (equipmentFree &&
+          activeSession.logs.some((log) => log.planExerciseId === cur.planExerciseId)) return
+        const sessionProfile = activeSession.profileSnapshot ?? (activeSession.planId === plan?.id ? plan.profileSnapshot : get().profile)
+        if (equipmentFree && (!isEquipmentFree(replacement) ||
+          !canPerform(replacement, ['peso_corporal'], sessionProfile?.limitations ?? []))) return
+        const unitChanged = isTimedExercise(cur.exerciseId) !== isTimedExercise(newExerciseId)
         const exercises = activeSession.exercises.map((e, i) =>
-          i === exerciseIdx ? { ...e, exerciseId: newExerciseId, substitutedFrom: cur.exerciseId } : e,
+          i === exerciseIdx ? { ...e, exerciseId: newExerciseId, substitutedFrom: cur.exerciseId,
+            ...(unitChanged ? { repMin: isTimedExercise(newExerciseId) ? 20 : 8, repMax: isTimedExercise(newExerciseId) ? 45 : 15 } : {}),
+          } : e,
         )
         let nextPlan = plan
         if (scope === 'always' && plan && activeSession.source !== 'home') {
@@ -231,7 +242,9 @@ export const useStore = create<WinfitState>()(
             days: plan.days.map((d) => ({
               ...d,
               exercises: d.exercises.map((pe) =>
-                pe.id === cur.planExerciseId ? { ...pe, exerciseId: newExerciseId } : pe,
+                pe.id === cur.planExerciseId ? { ...pe, exerciseId: newExerciseId,
+                  ...(unitChanged ? { repMin: isTimedExercise(newExerciseId) ? 20 : 8, repMax: isTimedExercise(newExerciseId) ? 45 : 15 } : {}),
+                } : pe,
               ),
             })),
           }
@@ -334,7 +347,7 @@ export const useStore = create<WinfitState>()(
           }
         }
         const logsHere = activeSession.logs.filter((l) => l.planExerciseId === sx.planExerciseId)
-        const isTimed = sx.exerciseId === 'prancha' || sx.exerciseId === 'prancha-lateral'
+        const isTimed = isTimedExercise(sx.exerciseId)
 
         const planExLike: PlanExercise = {
           id: sx.planExerciseId,
@@ -407,7 +420,7 @@ export const useStore = create<WinfitState>()(
         if (!exercise) return { ok: false, message: 'Exercício não encontrado.' }
 
         const logsHere = activeSession.logs.filter((l) => l.planExerciseId === sx.planExerciseId)
-        const isTimed = sx.exerciseId === 'prancha' || sx.exerciseId === 'prancha-lateral'
+        const isTimed = isTimedExercise(sx.exerciseId)
 
         const planExLike: PlanExercise = {
           id: sx.planExerciseId,
@@ -509,7 +522,7 @@ export const useStore = create<WinfitState>()(
           watchToken: typeof safe.watchToken === 'string' ? safe.watchToken : get().watchToken,
           profile: safe.profile ?? null,
           draft: safe.draft ?? null,
-          plan: safe.plan ?? null,
+          plan: safe.plan ? sanitizeEquipmentFreePlan(safe.plan) : null,
           archivedPlans: Array.isArray(safe.archivedPlans) ? safe.archivedPlans : [],
           sessions: Array.isArray(safe.sessions) ? safe.sessions : [],
           activeSession: safe.activeSession ?? null,
@@ -525,6 +538,10 @@ export const useStore = create<WinfitState>()(
     }),
     {
       name: 'winfit-v1',
+      merge: (persisted, current) => {
+        const saved = persisted as Partial<WinfitState> | undefined
+        return { ...current, ...saved, plan: saved?.plan ? sanitizeEquipmentFreePlan(saved.plan) : current.plan }
+      },
       storage: createJSONStorage(() => {
         if (typeof window !== 'undefined' && window.localStorage) return window.localStorage
         if (typeof globalThis !== 'undefined' && (globalThis as any).localStorage) return (globalThis as any).localStorage

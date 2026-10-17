@@ -1,0 +1,15 @@
+{
+  "id": "crucifixo-elastico",
+  "name": "Crucifixo com elástico",
+  "hold": false,
+  "directions": "Standing band chest fly. Band runs BEHIND upper back, TWO ends held in hands. Oblique front view showing both arms. Start arms open wide at shoulder height elbows slightly bent, bring hands together in front chest in an arc; elbows stay softly bent. No single wall anchor.",
+  "instructions": [
+    "Elástico nas costas, braços abertos.",
+    "Feche os braços à frente do peito.",
+    "Volte devagar mantendo tensão."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/crucifixo-elastico.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. Standing band chest fly. Band runs BEHIND upper back, TWO ends held in hands. Oblique front view showing both arms. Start arms open wide at shoulder height elbows slightly bent, bring hands together in front chest in an arc; elbows stay softly bent. No single wall anchor. Source instructions Portuguese: Elástico nas costas, braços abertos. Feche os braços à frente do peito. Volte devagar mantendo tensão.",
+  "status": "generated",
+  "cycle": "loop"
+}

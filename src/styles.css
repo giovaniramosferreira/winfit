@@ -1,17 +1,5 @@
-/* WinFit — "atlas de anatomia". Papel, tinta e um único vermelho: o do músculo.
-   Base visual herdada do brandguide AuraViz (Fraunces + Geist, oliva + terracota).
-   Regra: uma coisa vermelha por tela. Hierarquia por filete, não por caixa. */
+/* WinFit — tema roxo restaurado da identidade anterior (8ea08d8). */
 
-@font-face {
-  font-family: 'Fraunces';
-  src: url('./assets/fonts/fraunces-latin-opsz-normal.woff2') format('woff2');
-  font-weight: 100 900; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Fraunces';
-  src: url('./assets/fonts/fraunces-latin-opsz-italic.woff2') format('woff2');
-  font-weight: 100 900; font-style: italic; font-display: swap;
-}
 @font-face {
   font-family: 'Geist';
   src: url('./assets/fonts/geist-latin-wght-normal.woff2') format('woff2');
@@ -24,87 +12,46 @@
 }
 
 :root {
-  color-scheme: light;
-  /* papel e superfícies */
-  --bg: #f8f6f0;          /* papel */
-  --bg-elev: #fffefb;     /* cartão / nota de margem */
-  --bg-elev2: #eeece3;    /* areia: controles, trilhos */
-  --sage: #e9ece4;        /* painel de dado */
-  --line: #dfdfd3;        /* filete */
-  --line-strong: #969b8c; /* borda de campo */
-  /* tinta */
-  --text: #292d27;
-  --text-dim: #686c61;
-  --text-faint: #6f7366;
-  --olive: #46513c;
-  /* músculo (terracota AuraViz) */
-  --accent: #a4432b;
-  --accent-deep: #843421;
-  --accent-soft: #f4e9e2;
-  --accent-strong: #843421; /* texto em destaque */
-  --on-accent: #fffefb;
-  /* semânticas — sempre com rótulo em texto */
-  --gold: #843421;          /* recordes = músculo */
-  --gold-soft: #f4e9e2;
-  --green: #516a3d;
-  --green-soft: #e9efe1;
-  --red: #8f2f22;
-  --red-soft: #f6e1db;
-  --warn: #8a5a17;
-  --warn-soft: #f6ecd6;
-  --scrim: rgba(41, 45, 39, 0.42);
-  --shadow-page: 0 12px 45px rgba(38, 43, 35, 0.07);
-  --shadow-control: 0 3px 8px rgba(164, 67, 43, 0.16);
-  --bar-bg: rgba(248, 246, 240, 0.94);
-  --verdict-bg: #46513c;
-  --verdict-fg: #fffefb;
-
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-text: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-data: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-
-  --radius: 4px;
-  --radius-sm: 8px;
-  --tabbar-h: 60px;
+  --bg: #100d1a;
+  --bg-elev: #191429;
+  --bg-elev2: #231c38;
+  --line: #352b50;
+  --text: #f0edfa;
+  --text-dim: #b2aac7;
+  --text-faint: #786f91;
+  --accent: #7657e8;
+  --accent-soft: rgba(118, 87, 232, 0.16);
+  --accent-strong: #b6a1ff;
+  --gold: #f5b942;
+  --gold-soft: rgba(245, 185, 66, 0.14);
+  --green: #3ecf8e;
+  --red: #f0616d;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --tabbar-h: 64px;
   --safe-b: env(safe-area-inset-bottom, 0px);
   /* Instalado no iOS a status bar é translúcida: o conteúdo precisa descer. */
   --safe-t: env(safe-area-inset-top, 0px);
-}
-
-/* Modo tinta: academia à noite. Mesma hierarquia, papel vira texto. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --bg: #1b1e19;
-    --bg-elev: #22261f;
-    --bg-elev2: #2a2f27;
-    --sage: #262b23;
-    --line: #353b31;
-    --line-strong: #6c7263;
-    --text: #ecebe3;
-    --text-dim: #b3b5a8;
-    --text-faint: #9a9d90;
-    --olive: #b7c2a5;
-    --accent: #cf6a4a;
-    --accent-deep: #b4553a;
-    --accent-soft: rgba(207, 106, 74, 0.16);
-    --accent-strong: #e48c6d;
-    --on-accent: #1b1e19;
-    --gold: #e48c6d;
-    --gold-soft: rgba(207, 106, 74, 0.16);
-    --green: #a3c08a;
-    --green-soft: rgba(163, 192, 138, 0.14);
-    --red: #ec8f7e;
-    --red-soft: rgba(236, 143, 126, 0.14);
-    --warn: #e0b46a;
-    --warn-soft: rgba(224, 180, 106, 0.14);
-    --scrim: rgba(0, 0, 0, 0.6);
-    --shadow-page: 0 12px 45px rgba(0, 0, 0, 0.3);
-    --shadow-control: none;
-    --bar-bg: rgba(27, 30, 25, 0.94);
-    --verdict-bg: #2a2f27;
-    --verdict-fg: #ecebe3;
-  }
+  color-scheme: dark;
+  --line-strong: #61517f;
+  --text-faint: #a197b7;
+  --olive: var(--accent-strong);
+  --sage: #231c38;
+  --accent-deep: #6547d6;
+  --on-accent: #ffffff;
+  --green-soft: rgba(62, 207, 142, .12);
+  --red-soft: rgba(240, 97, 109, .12);
+  --warn: #f5b942;
+  --warn-soft: rgba(245, 185, 66, .14);
+  --scrim: rgba(8, 5, 17, .76);
+  --shadow-page: 0 12px 36px rgba(0, 0, 0, .24);
+  --shadow-control: none;
+  --bar-bg: rgba(16, 13, 26, .96);
+  --verdict-bg: #231c38;
+  --verdict-fg: #f0edfa;
+  --font-display: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-text: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-data: 'Geist Mono', ui-monospace, monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -136,22 +83,23 @@ body {
   min-height: 100dvh; display: flex; flex-direction: column;
 }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; }
-h1 { font-size: 30px; line-height: 1.08; letter-spacing: -0.02em; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 750; text-wrap: balance; }
+h1 { font-size: 28px; line-height: 1.15; letter-spacing: -0.02em; }
 h2 { font-size: 21px; line-height: 1.15; letter-spacing: -0.01em; }
 h3 { font-size: 16px; line-height: 1.25; }
-h1 em, h2 em, h3 em { font-style: italic; font-weight: 400; color: var(--accent); }
+h1 em, h2 em, h3 em { font-style: normal; font-weight: inherit; color: var(--accent-strong); }
 .muted { color: var(--text-dim); }
 .faint { color: var(--text-faint); }
 .small { font-size: 13.5px; }
 .tiny { font-size: 12px; }
-.latin { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--text-dim); }
+.latin { font-family: var(--font-text); font-style: normal; font-weight: 400; color: var(--text-dim); }
 
 /* Folha: o "card" do atlas é uma área de papel delimitada por filetes. */
 .card {
-  background: transparent;
-  border-top: 1px solid var(--line);
-  padding: 16px 0;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
 }
 .card + .card, .stack > * + * { margin-top: 12px; }
 .card.boxed { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
@@ -164,7 +112,7 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 400; color: var(--accent)
 /* Cabeçalho de folha: rótulo à esquerda, referência à direita, filete grosso embaixo. */
 .sheet-head {
   display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
-  padding-bottom: 10px; border-bottom: 2px solid var(--text); margin-bottom: 18px;
+  padding-bottom: 0; border-bottom: 0; margin-bottom: 18px;
   font: 700 10.5px/1.3 var(--font-text); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim);
 }
 .sheet-head > :last-child { white-space: nowrap; text-align: right; }
@@ -183,7 +131,7 @@ button:disabled { cursor: default; }
 .btn {
   display: flex; align-items: center; justify-content: center; gap: 8px;
   width: 100%; min-height: 50px; padding: 13px 18px;
-  border-radius: var(--radius-sm); font: 600 15.5px/1.2 var(--font-text);
+  border-radius: 14px; font: 650 15.5px/1.2 var(--font-text);
   transition: transform 0.06s ease, opacity 0.15s, background 0.15s;
   user-select: none; text-decoration: none;
 }
@@ -226,7 +174,7 @@ button:disabled { cursor: default; }
 label.field { display: block; font: 700 11px/1.3 var(--font-text); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin: 16px 0 6px; }
 
 /* ---------- home ---------- */
-.hero-card { border-top: 2px solid var(--text); padding: 16px 0 6px; position: relative; }
+.hero-card { background: linear-gradient(145deg, var(--bg-elev2), var(--bg-elev)); border: 1px solid var(--line); border-radius: 20px; padding: 20px; position: relative; }
 .eyebrow { font: 700 11px/1.3 var(--font-text); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
 .eyebrow.accent { color: var(--accent); }
 
@@ -244,8 +192,8 @@ label.field { display: block; font: 700 11px/1.3 var(--font-text); letter-spacin
   padding: 11px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; width: 100%; text-align: left;
 }
 .toc-item .n { font: 600 13px/1 var(--font-display); color: var(--text-faint); }
-.toc-item .t { font: 600 15.5px/1.25 var(--font-display); min-width: 0; }
-.toc-item .t small { display: block; font: italic 400 12.5px/1.35 var(--font-display); color: var(--text-dim); margin-top: 1px; }
+.toc-item .t { font: 600 15px/1.35 var(--font-text); min-width: 0; }
+.toc-item .t small { display: block; font: 400 12px/1.35 var(--font-text); color: var(--text-dim); margin-top: 1px; }
 .toc-item .m { font: 500 12px/1 var(--font-data); color: var(--text-dim); white-space: nowrap; }
 .toc-item.on .n { color: var(--accent); }
 
@@ -261,9 +209,9 @@ label.field { display: block; font: 700 11px/1.3 var(--font-text); letter-spacin
 .week-dot.done.today .dot { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .week-dot .lbl { font: 700 10px/1.2 var(--font-text); letter-spacing: 0.1em; color: var(--text-faint); text-transform: uppercase; }
 
-.stat-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
-.stat { padding: 14px 12px 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
-.stat:nth-child(even) { padding-left: 14px; border-left: 1px solid var(--line); }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat { padding: 14px; border: 1px solid var(--line); background: var(--bg-elev); border-radius: var(--radius); min-width: 0; }
+.stat:nth-child(even) { padding-left: 14px; }
 .stat .v { font: 600 28px/1.05 var(--font-display); letter-spacing: -0.02em; }
 .stat .k { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
 
@@ -354,7 +302,7 @@ label.field { display: block; font: 700 11px/1.3 var(--font-text); letter-spacin
 }
 .modal {
   width: 100%; max-width: 480px; max-height: 82dvh; overflow-y: auto;
-  background: var(--bg); border-top: 2px solid var(--text); padding: 20px 18px calc(20px + var(--safe-b));
+  background: var(--bg-elev); border-radius: 20px 20px 0 0; border-top: 1px solid var(--line); padding: 20px 18px calc(20px + var(--safe-b));
   animation: slideup 0.22s ease;
 }
 @keyframes slideup { from { transform: translateY(30px); opacity: 0.6; } to { transform: none; opacity: 1; } }
@@ -372,9 +320,9 @@ label.field { display: block; font: 700 11px/1.3 var(--font-text); letter-spacin
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
   color: var(--text-faint); text-decoration: none; font: 600 12px/1 var(--font-text);
 }
-.tabbar a::before { content: ''; width: 18px; height: 2px; background: transparent; }
-.tabbar a.active { color: var(--text); }
-.tabbar a.active::before { background: var(--accent); }
+.tabbar .tab-icon { width: 21px; height: 21px; }
+.tabbar a.active { color: var(--accent-strong); }
+
 
 .minibar {
   position: fixed; bottom: calc(var(--tabbar-h) + var(--safe-b) + 8px); left: 50%; transform: translateX(-50%);
@@ -443,9 +391,21 @@ label.field { display: block; font: 700 11px/1.3 var(--font-text); letter-spacin
 /* ---------- atlas / pranchas ---------- */
 .plate-fig { margin: 4px 0 0; }
 .plate-fig figcaption { font-size: 12px; color: var(--text-faint); margin-top: 6px; }
-.plate-fig figcaption b { font-family: var(--font-display); font-style: italic; font-weight: 500; color: var(--text); }
+.plate-fig figcaption b { font-family: var(--font-display); font-style: normal; font-weight: 500; color: var(--text); }
 svg.body { width: 100%; height: auto; display: block; }
 .plate-fig svg.body { max-width: 330px; margin: 0 auto; }
+
+/* Demonstrações originais, iniciadas somente por ação do usuário. */
+.exercise-demo { margin: 16px 0; padding: 14px 0; border-block: 1px solid var(--line); }
+.exercise-demo svg { display: block; width: 100%; max-width: 320px; height: auto; margin: 4px auto 8px; }
+.demo-limb { fill: none; stroke: var(--text); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.demo-limb.back { stroke: var(--text-dim); opacity: .35; }
+.demo-head { fill: var(--bg); stroke: var(--text); stroke-width: 3; }
+.demo-floor { stroke: var(--line-strong); stroke-width: 1; }
+.demo-control { min-height: 44px; padding: 10px 0 0; text-decoration: underline; text-underline-offset: 4px; }
+.set-row.bodyweight { grid-template-columns: 36px 1fr 1fr 44px; }
+.variation-list { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.variation-list button { flex: 1; min-height: 44px; }
 svg.body .outline { fill: none; stroke: var(--text); stroke-width: 1.1; stroke-linejoin: round; stroke-linecap: round; }
 svg.body .rg { fill: transparent; stroke: var(--line-strong); stroke-width: 0.7; stroke-dasharray: 2 2; }
 svg.body .rg.sec { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 0.9; stroke-dasharray: 2 2; }
@@ -529,10 +489,10 @@ details[open] > summary::after { content: ' −'; }
 }
 .landing-nav .landing-wrap { height: 62px; }
 .wordmark { font: 600 21px/1 var(--font-display); letter-spacing: -0.02em; color: var(--text); }
-.wordmark em { font-style: italic; font-weight: 400; color: var(--accent); }
+.wordmark em { font-style: normal; font-weight: 750; color: var(--accent-strong); }
 .landing-cover { display: grid; gap: 28px; padding-top: 36px; }
 .landing-cover > * { min-width: 0; }
-.landing-title { font-size: clamp(38px, 7vw, 64px); line-height: 1.03; letter-spacing: -0.025em; margin-top: 12px; }
+.landing-title { font-size: clamp(34px, 6vw, 54px); line-height: 1.03; letter-spacing: -0.025em; margin-top: 12px; }
 .landing-lead { font-size: clamp(17px, 2vw, 21px); line-height: 1.45; color: var(--text-dim); margin-top: 16px; max-width: 34em; }
 .landing-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 26px; }
 .landing-section { margin-top: 64px; }
@@ -570,3 +530,62 @@ details[open] > summary::after { content: ' −'; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Identidade de ilustração: tinta, contornos orgânicos e hachuras em papel claro. */
+.exercise-demo { padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-elev2); }
+.exercise-demo svg.movement-illustration { background: #fffefa; border-radius: 10px; padding: 8px; margin: 12px auto; max-width: 360px; }
+.ink-skin, .ink-cloth, .ink-shoe { fill: #fffefa; stroke: #55504d; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+.ink-shoe { fill: #eeece5; stroke-width: 1.2; }
+.ink-detail { fill: none; stroke: #655e58; stroke-width: .75; stroke-linecap: round; stroke-linejoin: round; }
+.ink-back { stroke: #918a83; }
+.ink-equipment { fill: #efede6; stroke: #777067; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.ink-equipment path { fill: none; }
+.ink-apparatus { stroke: #a39b90; }
+.ink-band { stroke-width: 2; }
+.demo-floor { stroke: #bbb5ac; stroke-width: .7; }
+svg.body { background: #fffefa; padding: 16px; border-radius: 12px; }
+svg.body .outline { fill: #fffefa; stroke: #55504d; stroke-width: 1.25; }
+svg.body .rg { fill: transparent; stroke: #b9b3a9; stroke-width: .55; stroke-dasharray: none; }
+svg.body .rg.sec { fill: #e8e4db; stroke: #81796f; stroke-width: .75; stroke-dasharray: none; }
+svg.body .rg.pri { stroke: #55504d; stroke-width: 1; }
+svg.body .hatch-bg { fill: #f3f0e8; }
+svg.body .hatch-ln { stroke: #655e58; }
+svg.body text { fill: #655e58; }
+svg.body .ink-contour { fill: none; stroke: #777067; stroke-width: .6; stroke-linecap: round; }
+.plate-fig svg.body { max-width: 330px; }
+.timer-bar { background: var(--accent-soft); border: 1px solid var(--line-strong); border-radius: 14px; padding: 12px; }
+.region-head { border-bottom: 1px solid var(--line); }
+.note { border-radius: 10px; }
+.rule-strong { height: 1px; background: var(--line); }
+
+/* Piloto de tinta/hachura: três movimentos antes da expansão do catálogo. */
+.pilot-artboard { position: relative; isolation: isolate; overflow: hidden; width: 100%; margin: 12px auto; background: #fff; border-radius: 10px; }
+.pilot-preload { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.pilot-frames { position: absolute; inset: 0; background-repeat: no-repeat; background-size: 300% 200%; background-position: 0% 0%; animation-duration: 5s; animation-timing-function: steps(1, end); animation-iteration-count: infinite; }
+.pilot-cycle-return { animation-name: pilot-return; }
+.pilot-cycle-loop { animation-name: pilot-loop; animation-duration: 4s; }
+@keyframes pilot-return {
+  0%, 100% { background-position: 0% 0%; }
+  10%, 90% { background-position: 50% 0%; }
+  20%, 80% { background-position: 100% 0%; }
+  30%, 70% { background-position: 0% 100%; }
+  40%, 60% { background-position: 50% 100%; }
+  50% { background-position: 100% 100%; }
+}
+@keyframes pilot-loop {
+  0%, 100% { background-position: 0% 0%; }
+  16.666% { background-position: 50% 0%; }
+  33.333% { background-position: 100% 0%; }
+  50% { background-position: 0% 100%; }
+  66.666% { background-position: 50% 100%; }
+  83.333% { background-position: 100% 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* A reprodução só começa após o pedido explícito no botão, também neste modo. */
+  .pilot-frames { animation: pilot-return 5s steps(1, end) infinite !important; animation-play-state: paused !important; }
+  .pilot-cycle-loop { animation-name: pilot-loop !important; animation-duration: 4s !important; }
+  .pilot-frames.is-playing { animation-play-state: running !important; }
+}
+
+/* Catálogo de personagem: sustentação usa a imagem inteira, sem sequência de quadros. */
+.pilot-frames.pilot-hold { background-size: 100% 100%; animation: none !important; }

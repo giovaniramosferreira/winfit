@@ -1,7 +1,7 @@
 import type { Exercise, SlotType, MuscleGroup, Equipment, Limitation } from '../types'
 
 // Catálogo inicial do MVP web — ~70 exercícios parametrizados (seção 20 da spec).
-// Sem mídia nesta fase (custo zero): instruções em texto. Campo de mídia entra na fase de vídeo.
+// Demonstrações ilustradas originais ficam em movementDemos.ts.
 
 type Def = {
   id: string
@@ -56,6 +56,9 @@ export const EXERCISES: Exercise[] = [
   d({ id: 'flexao-inclinada', name: 'Flexão inclinada (mãos elevadas)', slots: ['push_h_comp'], primary: 'peito', secondary: ['triceps'], equip: ['peso_corporal'], load: 'bodyweight', contra: ['punho'], group: 'empurrar_h_peito', rank: 5,
     how: ['Apoie as mãos num banco, sofá ou mesa firme.', 'Corpo reto, desça o peito em direção ao apoio.', 'Empurre de volta com controle.'],
     avoid: ['Curvar a lombar.', 'Encolher os ombros em direção às orelhas.'] }),
+  d({ id: 'flexao-joelhos', name: 'Flexão com joelhos apoiados', aliases: ['flexão adaptada'], slots: ['push_h_comp'], primary: 'peito', secondary: ['triceps', 'core'], equip: ['peso_corporal'], load: 'bodyweight', contra: ['punho', 'joelho'], group: 'empurrar_h_peito', rank: 8,
+    how: ['Apoie mãos e joelhos no chão, mantendo uma linha dos ombros aos joelhos.', 'Dobre os cotovelos e aproxime o peito do chão dentro de uma amplitude confortável.', 'Empurre para voltar, mantendo abdômen firme e quadril alinhado.'],
+    avoid: ['Dobrar o corpo no quadril.', 'Abrir demais os cotovelos.'] }),
   d({ id: 'flexao-declinada', name: 'Flexão declinada (pés elevados)', slots: ['push_h_comp'], primary: 'peito', secondary: ['triceps', 'ombro'], equip: ['peso_corporal'], load: 'bodyweight', skill: 2, contra: ['punho'], group: 'empurrar_h_peito', rank: 6,
     how: ['Pés elevados num banco ou degrau, mãos no chão.', 'Desça o peito até perto do chão.', 'Suba mantendo o corpo alinhado.'],
     avoid: ['Deixar o quadril subir demais.', 'Perder o alinhamento do pescoço.'] }),
@@ -269,6 +272,12 @@ export const EXERCISES: Exercise[] = [
   d({ id: 'dead-bug', name: 'Dead bug', slots: ['core'], primary: 'core', equip: ['peso_corporal'], load: 'bodyweight', group: 'core_anti_ext', rank: 2,
     how: ['Deitado, braços e joelhos para cima.', 'Estenda braço e perna opostos sem tirar a lombar do chão.', 'Volte e alterne.'],
     avoid: ['Arquear a lombar.', 'Fazer rápido demais.'] }),
+  d({ id: 'prancha-joelhos', name: 'Prancha com joelhos apoiados', slots: ['core'], primary: 'core', equip: ['peso_corporal'], load: 'bodyweight', contra: ['joelho'], group: 'core_anti_ext', rank: 3,
+    how: ['Apoie antebraços e joelhos no chão, com cotovelos abaixo dos ombros.', 'Alinhe ombros, quadril e joelhos, contraindo o abdômen.', 'Sustente pelo tempo prescrito, respirando normalmente.'],
+    avoid: ['Deixar o quadril cair.', 'Prender a respiração.'] }),
+  d({ id: 'prancha-lateral-joelhos', name: 'Prancha lateral com joelhos apoiados', slots: ['core'], primary: 'core', equip: ['peso_corporal'], load: 'bodyweight', contra: ['joelho'], group: 'core_anti_rot', rank: 3,
+    how: ['Deite de lado, joelhos dobrados e antebraço no chão, cotovelo abaixo do ombro.', 'Eleve o quadril alinhando ombro, quadril e joelhos.', 'Sustente respirando normalmente e repita do outro lado.'],
+    avoid: ['Rodar o tronco.', 'Deixar o ombro subir em direção à orelha.'] }),
   d({ id: 'abdominal-infra', name: 'Elevação de pernas (solo)', slots: ['core'], primary: 'core', equip: ['peso_corporal'], load: 'bodyweight', group: 'core_flexao', rank: 1,
     how: ['Deitado, mãos sob a lombar se precisar.', 'Suba as pernas até 90°.', 'Desça devagar sem tocar o chão.'],
     avoid: ['Arquear a lombar na descida.', 'Usar impulso.'] }),

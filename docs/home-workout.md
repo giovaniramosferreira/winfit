@@ -25,8 +25,7 @@ Ao encerrar pelo player, uma referência de encerramento impede o redirect de se
 
 O formato de corpo inteiro é deliberado: uma revisão sistemática com meta-análise não encontrou diferença relevante entre divisão e full body para força/hipertrofia quando o volume é equivalente ([PubMed, 2024](https://pubmed.ncbi.nlm.nih.gov/38595233/)). A ACSM também aponta que exercícios de peso corporal e rotinas em casa trazem benefícios relevantes ([ACSM](https://acsm.org/resistance-training-guidelines-update-2026/)); a OMS recomenda fortalecimento dos grandes grupos musculares em pelo menos dois dias da semana ([WHO](https://www.who.int/tools/your-life-your-health/life-phase/later-adulthood/being-active-in-later-adulthood)). Isso não transforma calistenia sem barra em substituta perfeita de uma academia: puxada carregada continua sendo a limitação material, comunicada no produto.
 
-- Sem progressão visual ou PR de repetições/tempo: gráficos existentes priorizam kg.
-- Volume externo de treino sem carga continua sendo 0 kg; séries e frequência são registradas.
+- Gráficos e histórico de peso corporal mostram repetições ou segundos, separados do volume externo. Ainda não há recordes pessoais automáticos de repetições/tempo.
 - A cobertura muscular depende do catálogo e das limitações: não inventamos equivalentes para padrões indisponíveis, especialmente puxadas sem equipamentos.
 - Não há agendamento dos dias de home office; o início é manual.
 
@@ -35,3 +34,14 @@ O formato de corpo inteiro é deliberado: uma revisão sistemática com meta-an�
 `scripts/test-home-workout.ts` verifica ausência de equipamentos/apoios e respeito a contraindicações, preservação do plano/perfil, bloqueio de substituição com equipamento, proteção da sessão ativa, reidratação e histórico. A suíte combinatória existente valida o gerador original; a suíte Watch cobre os comandos da store.
 
 Verificação local em navegador: onboarding de academia → prévia de casa → início → série → reload com série e timer preservados → conclusão parcial → resumo. Após as correções do player, o encerramento abriu o resumo sem novos erros de console. Home preservou o dia de academia e contabilizou a sessão de casa.
+
+## Ajustes de calistenia — 15/10/2026
+
+- Demonstrações originais por quadros em tinta no player e nas fichas, com reprodução/pausa voluntárias; isometrias mostram a sustentação. Origem em `docs/media-licenses.md`.
+- Flexão e pranchas com joelhos apoiados; dificuldade identificada dentro da mesma família, respeitando as limitações. O ciclo inicial usa as alternativas básicas para iniciantes.
+- Regra compartilhada de ausência de apoios também no gerador principal `home_none`, nas substituições e na leitura/importação de planos antigos. Planos de academia e sessões históricas permanecem intactos.
+- Trocar uma variação após iniciar suas séries é bloqueado para não reatribuir registros. O contexto de sessões antigas é resolvido pelo plano correspondente. Trocar entre movimento e isometria atualiza a faixa e a unidade, inclusive nas mensagens do Watch.
+- Player sem coluna de kg para peso corporal; resumo e semanas de calistenia destacam séries, repetições e segundos. A semana atual determina as métricas, mesmo com musculação no histórico. Semanas mistas mantêm volume de carga; o histórico por sessão e os exercícios exibem as unidades correspondentes.
+- `scripts/test-calisthenics.ts` cobre filtros, alternativas, plano legado, unidades, preservação de séries, contexto `home_none`, mensagens do Watch, semanas de calistenia com musculação antiga, cobertura das ilustrações e acessibilidade dos gráficos.
+
+Verificação em navegador: tela de 390 × 844, reprodução/pausa, flexão adaptada, série → reload com variação e descanso preservados, troca de dead bug para prancha com joelhos (20–45 seg), ajuste/pulo de descanso e sessão completa de dez séries. Resumo: 120 repetições + 90 segundos, registrado no histórico e na semana. Dados fictícios locais.

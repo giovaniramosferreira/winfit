@@ -1,0 +1,15 @@
+{
+  "id": "elevacao-lateral-polia",
+  "name": "Elevação lateral na polia",
+  "hold": false,
+  "directions": "ONE-ARM cable lateral raise, front three-quarter view. LOW pulley near floor on LEFT, cable crosses in front to RIGHT hand. Left hand holds machine for balance. Raise RIGHT arm sideways from hip to shoulder height. Left arm stays still. Only one cable and one moving arm.",
+  "instructions": [
+    "Polia baixa ao lado do corpo.",
+    "Eleve o braço até a linha do ombro.",
+    "Desça com controle."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/elevacao-lateral-polia.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. ONE-ARM cable lateral raise, front three-quarter view. LOW pulley near floor on LEFT, cable crosses in front to RIGHT hand. Left hand holds machine for balance. Raise RIGHT arm sideways from hip to shoulder height. Left arm stays still. Only one cable and one moving arm. Source instructions Portuguese: Polia baixa ao lado do corpo. Eleve o braço até a linha do ombro. Desça com controle.",
+  "status": "generated",
+  "cycle": "loop"
+}

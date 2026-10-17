@@ -1,4 +1,6 @@
 import type { Exercise, PlanExercise, Session, SetLog } from '../types'
+import { byId } from '../data/exercises'
+import { isTimedExercise } from './exerciseRules'
 
 // Dupla progressão (seção 19 da spec): fechou todas as séries no teto da faixa → sobe carga,
 // volta ao piso. Senão → mesma carga, meta é adicionar repetições.
@@ -34,7 +36,9 @@ export function suggestFor(planEx: PlanExercise, exercise: Exercise, sessions: S
       note:
         exercise.loadType === 'external'
           ? 'Primeira vez: encontre um peso que desafie nas últimas 2 repetições.'
-          : 'Primeira vez: registre quantas repetições consegue com boa execução.',
+          : isTimedExercise(exercise.id)
+            ? 'Primeira vez: registre quantos segundos sustenta com boa execução.'
+            : 'Primeira vez: registre quantas repetições consegue com boa execução.',
       isIncrease: false,
     }
   }
@@ -46,7 +50,9 @@ export function suggestFor(planEx: PlanExercise, exercise: Exercise, sessions: S
       return { weight: 0, targetReps: planEx.repMax, note: 'Você fechou a faixa — hora de progredir para uma variação mais difícil (troque o exercício).', isIncrease: true }
     }
     const best = Math.max(...last.map((l) => l.reps))
-    return { weight: maxWeight, targetReps: Math.min(best + 1, planEx.repMax), note: `Última vez: ${best} reps. Meta: +1.`, isIncrease: false }
+    const step = isTimedExercise(exercise.id) ? 5 : 1
+    const unit = isTimedExercise(exercise.id) ? 'seg' : 'reps'
+    return { weight: maxWeight, targetReps: Math.min(best + step, planEx.repMax), note: `Última vez: ${best} ${unit}. Meta: +${step}.`, isIncrease: false }
   }
 
   if (allTopped && maxWeight > 0) {
@@ -99,4 +105,16 @@ export function fmtKg(x: number): string {
 
 export function volumeOf(logs: SetLog[]): number {
   return logs.reduce((a, l) => a + l.weight * l.reps, 0)
+}
+
+/** Não misturar o tempo das isometrias com repetições ou volume de carga. */
+export function activityTotals(logs: SetLog[]) {
+  return logs.reduce((total, log) => {
+    total.sets += 1
+    if (isTimedExercise(log.exerciseId)) total.seconds += log.reps
+    else total.reps += log.reps
+    total.volume += log.weight * log.reps
+    total.hasLoad ||= log.weight > 0 || byId.get(log.exerciseId)?.loadType === 'external'
+    return total
+  }, { sets: 0, reps: 0, seconds: 0, volume: 0, hasLoad: false })
 }

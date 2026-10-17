@@ -1,0 +1,2383 @@
+[
+  {
+    "id": "supino-reto-barra",
+    "name": "Supino reto com barra",
+    "aliases": [
+      "bench press",
+      "supino"
+    ],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps",
+      "ombro"
+    ],
+    "equipment": [
+      "barra",
+      "banco"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "ombro"
+    ],
+    "instructions": [
+      "Deite no banco com pés firmes no chão e escápulas retraídas.",
+      "Desça a barra com controle até tocar levemente o peito.",
+      "Empurre para cima até estender os cotovelos, sem travar bruscamente."
+    ],
+    "mistakes": [
+      "Quicar a barra no peito.",
+      "Tirar os glúteos do banco durante o esforço."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 1
+  },
+  {
+    "id": "supino-halteres",
+    "name": "Supino com halteres",
+    "aliases": [],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps",
+      "ombro"
+    ],
+    "equipment": [
+      "halteres",
+      "banco"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deite no banco segurando um halter em cada mão na linha do peito.",
+      "Empurre para cima até quase unir os halteres.",
+      "Desça com controle até sentir alongamento no peito."
+    ],
+    "mistakes": [
+      "Descer os cotovelos além do confortável.",
+      "Bater os halteres no topo com impacto."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 2
+  },
+  {
+    "id": "supino-maquina",
+    "name": "Supino na máquina",
+    "aliases": [
+      "chest press"
+    ],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps",
+      "ombro"
+    ],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Ajuste o banco para as pegadas ficarem na linha do peito.",
+      "Empurre até estender os braços sem travar.",
+      "Volte devagar até o peito alongar."
+    ],
+    "mistakes": [
+      "Usar amplitude curta demais.",
+      "Projetar os ombros para frente no fim do movimento."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 3
+  },
+  {
+    "id": "flexao",
+    "name": "Flexão de braço",
+    "aliases": [
+      "push up",
+      "apoio"
+    ],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps",
+      "core"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "punho"
+    ],
+    "instructions": [
+      "Mãos na largura dos ombros, corpo reto da cabeça ao calcanhar.",
+      "Desça até o peito quase tocar o chão.",
+      "Empurre de volta mantendo o core firme."
+    ],
+    "mistakes": [
+      "Deixar o quadril cair.",
+      "Abrir demais os cotovelos (formar um T)."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 4
+  },
+  {
+    "id": "flexao-inclinada",
+    "name": "Flexão inclinada (mãos elevadas)",
+    "aliases": [],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "punho"
+    ],
+    "instructions": [
+      "Apoie as mãos num banco, sofá ou mesa firme.",
+      "Corpo reto, desça o peito em direção ao apoio.",
+      "Empurre de volta com controle."
+    ],
+    "mistakes": [
+      "Curvar a lombar.",
+      "Encolher os ombros em direção às orelhas."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 5
+  },
+  {
+    "id": "flexao-joelhos",
+    "name": "Flexão com joelhos apoiados",
+    "aliases": [
+      "flexão adaptada"
+    ],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps",
+      "core"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "punho",
+      "joelho"
+    ],
+    "instructions": [
+      "Apoie mãos e joelhos no chão, mantendo uma linha dos ombros aos joelhos.",
+      "Dobre os cotovelos e aproxime o peito do chão dentro de uma amplitude confortável.",
+      "Empurre para voltar, mantendo abdômen firme e quadril alinhado."
+    ],
+    "mistakes": [
+      "Dobrar o corpo no quadril.",
+      "Abrir demais os cotovelos."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 8
+  },
+  {
+    "id": "flexao-declinada",
+    "name": "Flexão declinada (pés elevados)",
+    "aliases": [],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps",
+      "ombro"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 2,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "punho"
+    ],
+    "instructions": [
+      "Pés elevados num banco ou degrau, mãos no chão.",
+      "Desça o peito até perto do chão.",
+      "Suba mantendo o corpo alinhado."
+    ],
+    "mistakes": [
+      "Deixar o quadril subir demais.",
+      "Perder o alinhamento do pescoço."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 6
+  },
+  {
+    "id": "supino-elastico",
+    "name": "Press de peito com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "push_h_comp"
+    ],
+    "primary": "peito",
+    "secondary": [
+      "triceps"
+    ],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Passe o elástico pelas costas, segure as pontas na linha do peito.",
+      "Empurre para frente até estender os braços.",
+      "Volte com controle resistindo ao elástico."
+    ],
+    "mistakes": [
+      "Deixar o elástico puxar os braços de volta rápido.",
+      "Arquear a lombar."
+    ],
+    "equivGroup": "empurrar_h_peito",
+    "equivRank": 7
+  },
+  {
+    "id": "desenvolvimento-halteres",
+    "name": "Desenvolvimento com halteres",
+    "aliases": [
+      "shoulder press"
+    ],
+    "slotTypes": [
+      "push_v_comp"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "triceps"
+    ],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Sentado ou em pé, halteres na altura das orelhas.",
+      "Empurre para cima até estender os braços.",
+      "Desça com controle até a altura das orelhas."
+    ],
+    "mistakes": [
+      "Arquear a lombar para empurrar.",
+      "Descer demais e estressar o ombro."
+    ],
+    "equivGroup": "empurrar_v_ombro",
+    "equivRank": 1
+  },
+  {
+    "id": "desenvolvimento-maquina",
+    "name": "Desenvolvimento na máquina",
+    "aliases": [],
+    "slotTypes": [
+      "push_v_comp"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "triceps"
+    ],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Ajuste o banco: pegadas na altura dos ombros.",
+      "Empurre para cima sem travar os cotovelos.",
+      "Volte devagar até a posição inicial."
+    ],
+    "mistakes": [
+      "Usar impulso do corpo.",
+      "Amplitude curta no retorno."
+    ],
+    "equivGroup": "empurrar_v_ombro",
+    "equivRank": 2
+  },
+  {
+    "id": "desenvolvimento-barra",
+    "name": "Desenvolvimento militar com barra",
+    "aliases": [],
+    "slotTypes": [
+      "push_v_comp"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "triceps",
+      "core"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "ombro",
+      "lombar"
+    ],
+    "instructions": [
+      "Em pé, barra apoiada na frente dos ombros.",
+      "Empurre para cima passando o rosto, até estender.",
+      "Desça com controle até os ombros."
+    ],
+    "mistakes": [
+      "Inclinar o tronco para trás.",
+      "Empurrar com a barra longe do corpo."
+    ],
+    "equivGroup": "empurrar_v_ombro",
+    "equivRank": 3
+  },
+  {
+    "id": "pike-pushup",
+    "name": "Flexão pike",
+    "aliases": [],
+    "slotTypes": [
+      "push_v_comp"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "triceps"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 2,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "punho",
+      "ombro"
+    ],
+    "instructions": [
+      "Posição de V invertido: quadril alto, mãos e pés no chão.",
+      "Dobre os cotovelos levando a cabeça em direção ao chão.",
+      "Empurre de volta até estender os braços."
+    ],
+    "mistakes": [
+      "Deixar as costas arquearem.",
+      "Apoiar a cabeça no chão com peso."
+    ],
+    "equivGroup": "empurrar_v_ombro",
+    "equivRank": 4
+  },
+  {
+    "id": "desenvolvimento-elastico",
+    "name": "Desenvolvimento com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "push_v_comp"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "triceps"
+    ],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Pise no elástico, segure as pontas na altura dos ombros.",
+      "Empurre para cima até estender.",
+      "Volte devagar resistindo."
+    ],
+    "mistakes": [
+      "Arquear a lombar.",
+      "Soltar a tensão no retorno."
+    ],
+    "equivGroup": "empurrar_v_ombro",
+    "equivRank": 5
+  },
+  {
+    "id": "remada-curvada-barra",
+    "name": "Remada curvada com barra",
+    "aliases": [],
+    "slotTypes": [
+      "pull_h_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps",
+      "posterior"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "lombar"
+    ],
+    "instructions": [
+      "Tronco inclinado ~45°, coluna neutra, barra pendurada.",
+      "Puxe a barra em direção ao abdômen.",
+      "Desça com controle até estender os braços."
+    ],
+    "mistakes": [
+      "Arredondar a lombar.",
+      "Usar impulso do tronco para puxar."
+    ],
+    "equivGroup": "puxar_h_costas",
+    "equivRank": 1
+  },
+  {
+    "id": "remada-serrote",
+    "name": "Remada unilateral com halter (serrote)",
+    "aliases": [],
+    "slotTypes": [
+      "pull_h_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "halteres",
+      "banco"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Apoie joelho e mão no banco, coluna neutra.",
+      "Puxe o halter em direção ao quadril.",
+      "Desça devagar até alongar a costa."
+    ],
+    "mistakes": [
+      "Girar o tronco para ajudar.",
+      "Puxar com o braço em vez de levar o cotovelo para trás."
+    ],
+    "equivGroup": "puxar_h_costas",
+    "equivRank": 2
+  },
+  {
+    "id": "remada-maquina",
+    "name": "Remada na máquina",
+    "aliases": [],
+    "slotTypes": [
+      "pull_h_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Peito apoiado, pegadas à frente.",
+      "Puxe levando os cotovelos para trás.",
+      "Volte com controle sem soltar o peso."
+    ],
+    "mistakes": [
+      "Encolher os ombros.",
+      "Amplitude curta."
+    ],
+    "equivGroup": "puxar_h_costas",
+    "equivRank": 3
+  },
+  {
+    "id": "remada-baixa-polia",
+    "name": "Remada baixa na polia",
+    "aliases": [],
+    "slotTypes": [
+      "pull_h_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Sentado, coluna neutra, braços estendidos.",
+      "Puxe o triângulo em direção ao abdômen.",
+      "Volte devagar mantendo o tronco firme."
+    ],
+    "mistakes": [
+      "Balançar o tronco.",
+      "Arredondar as costas no alongamento."
+    ],
+    "equivGroup": "puxar_h_costas",
+    "equivRank": 4
+  },
+  {
+    "id": "remada-elastico",
+    "name": "Remada com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "pull_h_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Sentado, elástico preso nos pés, pernas semiestendidas.",
+      "Puxe as pontas em direção ao abdômen.",
+      "Volte com controle mantendo a postura."
+    ],
+    "mistakes": [
+      "Arredondar a coluna.",
+      "Puxar só com os braços, sem mover as escápulas."
+    ],
+    "equivGroup": "puxar_h_costas",
+    "equivRank": 5
+  },
+  {
+    "id": "remada-toalha",
+    "name": "Remada isométrica com toalha (porta)",
+    "aliases": [],
+    "slotTypes": [
+      "pull_h_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Prenda uma toalha firme na maçaneta de uma porta fechada.",
+      "Incline o corpo para trás com braços estendidos.",
+      "Puxe o corpo em direção à porta e volte devagar."
+    ],
+    "mistakes": [
+      "Usar porta ou apoio instável.",
+      "Deixar o quadril dobrar."
+    ],
+    "equivGroup": "puxar_h_costas",
+    "equivRank": 6
+  },
+  {
+    "id": "puxada-prona-solo",
+    "name": "Puxada prona no solo",
+    "aliases": [
+      "prone pull",
+      "superman pull"
+    ],
+    "slotTypes": [
+      "pull_h_comp",
+      "pull_v_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "ombro"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deite de barriga para baixo, braços estendidos à frente e testa próxima ao chão.",
+      "Eleve levemente os braços e puxe os cotovelos em direção às costelas, aproximando as escápulas.",
+      "Estenda os braços de novo de forma controlada; mantenha o pescoço neutro."
+    ],
+    "mistakes": [
+      "Forçar a lombar para levantar alto demais.",
+      "Encolher os ombros em direção às orelhas."
+    ],
+    "equivGroup": "puxar_solo_costas",
+    "equivRank": 7
+  },
+  {
+    "id": "puxada-polia",
+    "name": "Puxada na polia alta",
+    "aliases": [
+      "pulldown",
+      "puxada frontal"
+    ],
+    "slotTypes": [
+      "pull_v_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Sentado, pegada um pouco mais aberta que os ombros.",
+      "Puxe a barra até a parte alta do peito.",
+      "Suba com controle até alongar."
+    ],
+    "mistakes": [
+      "Puxar atrás da nuca.",
+      "Inclinar demais o tronco para trás."
+    ],
+    "equivGroup": "puxar_v_costas",
+    "equivRank": 1
+  },
+  {
+    "id": "barra-fixa",
+    "name": "Barra fixa",
+    "aliases": [
+      "pull up"
+    ],
+    "slotTypes": [
+      "pull_v_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "barra_fixa"
+    ],
+    "skill": 3,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "punho"
+    ],
+    "instructions": [
+      "Pegada pronada, um pouco mais aberta que os ombros.",
+      "Puxe até o queixo passar a barra.",
+      "Desça com controle até estender."
+    ],
+    "mistakes": [
+      "Balançar o corpo (kipping).",
+      "Amplitude parcial no topo."
+    ],
+    "equivGroup": "puxar_v_costas",
+    "equivRank": 2
+  },
+  {
+    "id": "puxada-elastico",
+    "name": "Puxada com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "pull_v_comp"
+    ],
+    "primary": "costas",
+    "secondary": [
+      "biceps"
+    ],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Prenda o elástico num ponto alto e firme.",
+      "Ajoelhe ou sente e puxe em direção ao peito.",
+      "Volte devagar resistindo à subida."
+    ],
+    "mistakes": [
+      "Encolher os ombros.",
+      "Perder a postura do tronco."
+    ],
+    "equivGroup": "puxar_v_costas",
+    "equivRank": 3
+  },
+  {
+    "id": "agachamento-barra",
+    "name": "Agachamento livre com barra",
+    "aliases": [
+      "squat"
+    ],
+    "slotTypes": [
+      "knee_comp"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo",
+      "posterior",
+      "core"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "skill": 3,
+    "loadType": "external",
+    "minIncrementKg": 5,
+    "contraindications": [
+      "lombar",
+      "joelho"
+    ],
+    "instructions": [
+      "Barra apoiada no trapézio, pés na largura dos ombros.",
+      "Desça empurrando o quadril para trás e dobrando os joelhos.",
+      "Suba empurrando o chão, mantendo o peito alto."
+    ],
+    "mistakes": [
+      "Joelhos colapsando para dentro.",
+      "Arredondar a lombar no fundo."
+    ],
+    "equivGroup": "agachar",
+    "equivRank": 1
+  },
+  {
+    "id": "leg-press",
+    "name": "Leg press",
+    "aliases": [],
+    "slotTypes": [
+      "knee_comp"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 5,
+    "contraindications": [],
+    "instructions": [
+      "Pés na plataforma na largura dos ombros.",
+      "Desça até ~90° sem tirar a lombar do encosto.",
+      "Empurre de volta sem travar os joelhos."
+    ],
+    "mistakes": [
+      "Descer demais e arredondar a lombar.",
+      "Travar os joelhos com impacto no topo."
+    ],
+    "equivGroup": "agachar",
+    "equivRank": 2
+  },
+  {
+    "id": "agachamento-goblet",
+    "name": "Agachamento goblet",
+    "aliases": [],
+    "slotTypes": [
+      "knee_comp"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo",
+      "core"
+    ],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Segure um halter junto ao peito, na vertical.",
+      "Agache até as coxas ficarem paralelas ao chão.",
+      "Suba mantendo o peito alto."
+    ],
+    "mistakes": [
+      "Deixar os calcanhares saírem do chão.",
+      "Projetar o tronco para frente."
+    ],
+    "equivGroup": "agachar",
+    "equivRank": 3
+  },
+  {
+    "id": "agachamento-corporal",
+    "name": "Agachamento livre (peso corporal)",
+    "aliases": [],
+    "slotTypes": [
+      "knee_comp"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Pés na largura dos ombros, braços à frente.",
+      "Agache até onde conseguir manter a postura.",
+      "Suba com força, sem pressa."
+    ],
+    "mistakes": [
+      "Joelhos para dentro.",
+      "Fazer rápido demais sem controle."
+    ],
+    "equivGroup": "agachar",
+    "equivRank": 4
+  },
+  {
+    "id": "agachamento-kettlebell",
+    "name": "Agachamento com kettlebell",
+    "aliases": [],
+    "slotTypes": [
+      "knee_comp"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo",
+      "core"
+    ],
+    "equipment": [
+      "kettlebell"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Segure o kettlebell junto ao peito.",
+      "Agache com peito alto e joelhos alinhados aos pés.",
+      "Suba empurrando o chão."
+    ],
+    "mistakes": [
+      "Curvar as costas.",
+      "Descer sem controle."
+    ],
+    "equivGroup": "agachar",
+    "equivRank": 5
+  },
+  {
+    "id": "agachamento-elastico",
+    "name": "Agachamento com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "knee_comp"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Pise no elástico e apoie as pontas nos ombros.",
+      "Agache mantendo a tensão.",
+      "Suba resistindo à ajuda do elástico."
+    ],
+    "mistakes": [
+      "Deixar o elástico deslocar os joelhos.",
+      "Perder a postura do tronco."
+    ],
+    "equivGroup": "agachar",
+    "equivRank": 6
+  },
+  {
+    "id": "terra-romeno-barra",
+    "name": "Levantamento terra romeno com barra",
+    "aliases": [
+      "stiff",
+      "rdl"
+    ],
+    "slotTypes": [
+      "hip_comp"
+    ],
+    "primary": "posterior",
+    "secondary": [
+      "gluteo",
+      "costas"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 5,
+    "contraindications": [
+      "lombar"
+    ],
+    "instructions": [
+      "Barra à frente das coxas, joelhos levemente dobrados.",
+      "Empurre o quadril para trás descendo a barra rente às pernas.",
+      "Suba contraindo glúteos e posteriores."
+    ],
+    "mistakes": [
+      "Arredondar a lombar.",
+      "Transformar em agachamento (dobrar demais os joelhos)."
+    ],
+    "equivGroup": "dobradica_quadril",
+    "equivRank": 1
+  },
+  {
+    "id": "terra-romeno-halteres",
+    "name": "Terra romeno com halteres",
+    "aliases": [],
+    "slotTypes": [
+      "hip_comp"
+    ],
+    "primary": "posterior",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "lombar"
+    ],
+    "instructions": [
+      "Halteres à frente das coxas.",
+      "Quadril para trás, desça até sentir alongar o posterior.",
+      "Suba apertando os glúteos no topo."
+    ],
+    "mistakes": [
+      "Curvar as costas.",
+      "Descer além da mobilidade."
+    ],
+    "equivGroup": "dobradica_quadril",
+    "equivRank": 2
+  },
+  {
+    "id": "hip-thrust-barra",
+    "name": "Elevação pélvica com barra (hip thrust)",
+    "aliases": [],
+    "slotTypes": [
+      "hip_comp"
+    ],
+    "primary": "gluteo",
+    "secondary": [
+      "posterior"
+    ],
+    "equipment": [
+      "barra",
+      "banco"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 5,
+    "contraindications": [],
+    "instructions": [
+      "Costas apoiadas no banco, barra sobre o quadril.",
+      "Suba o quadril até o corpo ficar reto.",
+      "Desça com controle sem relaxar."
+    ],
+    "mistakes": [
+      "Hiperestender a lombar no topo.",
+      "Empurrar com a lombar em vez do glúteo."
+    ],
+    "equivGroup": "ponte_gluteo",
+    "equivRank": 1
+  },
+  {
+    "id": "ponte-gluteo",
+    "name": "Ponte de glúteo",
+    "aliases": [],
+    "slotTypes": [
+      "hip_comp"
+    ],
+    "primary": "gluteo",
+    "secondary": [
+      "posterior"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deitado, joelhos dobrados, pés no chão.",
+      "Suba o quadril apertando os glúteos.",
+      "Desça devagar sem tocar o chão por completo."
+    ],
+    "mistakes": [
+      "Empurrar com a lombar.",
+      "Fazer rápido sem contrair no topo."
+    ],
+    "equivGroup": "ponte_gluteo",
+    "equivRank": 2
+  },
+  {
+    "id": "ponte-unilateral",
+    "name": "Ponte de glúteo unilateral",
+    "aliases": [],
+    "slotTypes": [
+      "hip_comp",
+      "iso_gluteo"
+    ],
+    "primary": "gluteo",
+    "secondary": [
+      "posterior"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 2,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Posição da ponte, uma perna estendida no ar.",
+      "Suba o quadril com a perna de apoio.",
+      "Desça com controle e repita."
+    ],
+    "mistakes": [
+      "Girar o quadril para o lado.",
+      "Apoiar a perna livre."
+    ],
+    "equivGroup": "ponte_gluteo",
+    "equivRank": 3
+  },
+  {
+    "id": "swing-kettlebell",
+    "name": "Swing com kettlebell",
+    "aliases": [],
+    "slotTypes": [
+      "hip_comp"
+    ],
+    "primary": "gluteo",
+    "secondary": [
+      "posterior",
+      "core"
+    ],
+    "equipment": [
+      "kettlebell"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "lombar"
+    ],
+    "instructions": [
+      "Quadril para trás, kettlebell entre as pernas.",
+      "Estenda o quadril com força projetando o peso à frente.",
+      "Deixe voltar e repita em ritmo."
+    ],
+    "mistakes": [
+      "Agachar em vez de dobrar o quadril.",
+      "Levantar com os braços em vez do quadril."
+    ],
+    "equivGroup": "dobradica_quadril",
+    "equivRank": 3
+  },
+  {
+    "id": "terra-romeno-elastico",
+    "name": "Terra romeno com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "hip_comp"
+    ],
+    "primary": "posterior",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "lombar"
+    ],
+    "instructions": [
+      "Pise no elástico, segure as pontas.",
+      "Quadril para trás, desça mantendo a coluna neutra.",
+      "Suba contraindo glúteos."
+    ],
+    "mistakes": [
+      "Arredondar as costas.",
+      "Dobrar demais os joelhos."
+    ],
+    "equivGroup": "dobradica_quadril",
+    "equivRank": 4
+  },
+  {
+    "id": "afundo-halteres",
+    "name": "Afundo com halteres",
+    "aliases": [
+      "lunge"
+    ],
+    "slotTypes": [
+      "lower_uni"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "joelho"
+    ],
+    "instructions": [
+      "Um halter em cada mão, dê um passo à frente.",
+      "Desça até o joelho de trás quase tocar o chão.",
+      "Volte à posição inicial e alterne."
+    ],
+    "mistakes": [
+      "Joelho da frente passando muito do pé.",
+      "Tronco caindo para frente."
+    ],
+    "equivGroup": "unilateral_inferior",
+    "equivRank": 1
+  },
+  {
+    "id": "bulgaro",
+    "name": "Agachamento búlgaro",
+    "aliases": [],
+    "slotTypes": [
+      "lower_uni"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "halteres",
+      "banco"
+    ],
+    "skill": 2,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "joelho"
+    ],
+    "instructions": [
+      "Pé de trás apoiado no banco, halteres nas mãos.",
+      "Desça dobrando o joelho da frente.",
+      "Suba empurrando o chão com o pé da frente."
+    ],
+    "mistakes": [
+      "Ficar longe ou perto demais do banco.",
+      "Perder o equilíbrio por pressa."
+    ],
+    "equivGroup": "unilateral_inferior",
+    "equivRank": 2
+  },
+  {
+    "id": "avanco-corporal",
+    "name": "Avanço (peso corporal)",
+    "aliases": [],
+    "slotTypes": [
+      "lower_uni"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "joelho"
+    ],
+    "instructions": [
+      "Passo à frente, desça o joelho de trás.",
+      "Empurre de volta com a perna da frente.",
+      "Alterne as pernas."
+    ],
+    "mistakes": [
+      "Passos curtos demais.",
+      "Deixar o joelho ceder para dentro."
+    ],
+    "equivGroup": "unilateral_inferior",
+    "equivRank": 3
+  },
+  {
+    "id": "step-up",
+    "name": "Subida no banco (step-up)",
+    "aliases": [],
+    "slotTypes": [
+      "lower_uni"
+    ],
+    "primary": "quadriceps",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "banco"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Pé inteiro no banco ou degrau firme.",
+      "Suba empurrando com a perna de cima.",
+      "Desça com controle e alterne."
+    ],
+    "mistakes": [
+      "Impulsionar com a perna de baixo.",
+      "Usar apoio instável."
+    ],
+    "equivGroup": "unilateral_inferior",
+    "equivRank": 4
+  },
+  {
+    "id": "crucifixo-halteres",
+    "name": "Crucifixo com halteres",
+    "aliases": [],
+    "slotTypes": [
+      "iso_peito"
+    ],
+    "primary": "peito",
+    "secondary": [],
+    "equipment": [
+      "halteres",
+      "banco"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deitado, halteres acima do peito, cotovelos semiflexionados.",
+      "Abra os braços até alongar o peito.",
+      "Feche como se abraçasse um tronco."
+    ],
+    "mistakes": [
+      "Dobrar demais os cotovelos (virar supino).",
+      "Descer além do confortável para o ombro."
+    ],
+    "equivGroup": "iso_peito",
+    "equivRank": 1
+  },
+  {
+    "id": "crossover-polia",
+    "name": "Crossover na polia",
+    "aliases": [],
+    "slotTypes": [
+      "iso_peito"
+    ],
+    "primary": "peito",
+    "secondary": [],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Polias altas, um pegador em cada mão.",
+      "Feche os braços à frente do corpo.",
+      "Volte com controle abrindo o peito."
+    ],
+    "mistakes": [
+      "Inclinar demais o tronco.",
+      "Usar peso que force os ombros."
+    ],
+    "equivGroup": "iso_peito",
+    "equivRank": 2
+  },
+  {
+    "id": "crucifixo-elastico",
+    "name": "Crucifixo com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "iso_peito"
+    ],
+    "primary": "peito",
+    "secondary": [],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Elástico nas costas, braços abertos.",
+      "Feche os braços à frente do peito.",
+      "Volte devagar mantendo tensão."
+    ],
+    "mistakes": [
+      "Soltar a tensão no retorno.",
+      "Dobrar os cotovelos demais."
+    ],
+    "equivGroup": "iso_peito",
+    "equivRank": 3
+  },
+  {
+    "id": "elevacao-lateral-halteres",
+    "name": "Elevação lateral com halteres",
+    "aliases": [],
+    "slotTypes": [
+      "iso_ombro_lat"
+    ],
+    "primary": "ombro",
+    "secondary": [],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 1,
+    "contraindications": [],
+    "instructions": [
+      "Em pé, halteres ao lado do corpo.",
+      "Eleve os braços até a linha dos ombros.",
+      "Desça devagar resistindo."
+    ],
+    "mistakes": [
+      "Balançar o corpo para subir.",
+      "Subir acima da linha dos ombros com peso alto."
+    ],
+    "equivGroup": "iso_ombro_lat",
+    "equivRank": 1
+  },
+  {
+    "id": "elevacao-lateral-polia",
+    "name": "Elevação lateral na polia",
+    "aliases": [],
+    "slotTypes": [
+      "iso_ombro_lat"
+    ],
+    "primary": "ombro",
+    "secondary": [],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 1,
+    "contraindications": [],
+    "instructions": [
+      "Polia baixa ao lado do corpo.",
+      "Eleve o braço até a linha do ombro.",
+      "Desça com controle."
+    ],
+    "mistakes": [
+      "Puxar com o trapézio.",
+      "Usar impulso."
+    ],
+    "equivGroup": "iso_ombro_lat",
+    "equivRank": 2
+  },
+  {
+    "id": "elevacao-lateral-elastico",
+    "name": "Elevação lateral com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "iso_ombro_lat"
+    ],
+    "primary": "ombro",
+    "secondary": [],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Pise no elástico, pontas nas mãos.",
+      "Eleve os braços até os ombros.",
+      "Desça devagar."
+    ],
+    "mistakes": [
+      "Encolher os ombros.",
+      "Movimento rápido sem controle."
+    ],
+    "equivGroup": "iso_ombro_lat",
+    "equivRank": 3
+  },
+  {
+    "id": "crucifixo-invertido-halteres",
+    "name": "Crucifixo invertido com halteres",
+    "aliases": [],
+    "slotTypes": [
+      "iso_ombro_post"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "costas"
+    ],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 1,
+    "contraindications": [],
+    "instructions": [
+      "Tronco inclinado à frente, halteres pendurados.",
+      "Abra os braços para os lados.",
+      "Volte com controle."
+    ],
+    "mistakes": [
+      "Levantar o tronco durante o movimento.",
+      "Usar peso alto demais e virar remada."
+    ],
+    "equivGroup": "iso_ombro_post",
+    "equivRank": 1
+  },
+  {
+    "id": "face-pull",
+    "name": "Face pull na polia",
+    "aliases": [],
+    "slotTypes": [
+      "iso_ombro_post"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "costas"
+    ],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Polia na altura do rosto, corda com as duas mãos.",
+      "Puxe em direção ao rosto abrindo os cotovelos.",
+      "Volte devagar."
+    ],
+    "mistakes": [
+      "Puxar para o peito.",
+      "Usar o tronco como impulso."
+    ],
+    "equivGroup": "iso_ombro_post",
+    "equivRank": 2
+  },
+  {
+    "id": "band-pull-apart",
+    "name": "Pull-apart com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "iso_ombro_post"
+    ],
+    "primary": "ombro",
+    "secondary": [
+      "costas"
+    ],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Segure o elástico à frente, braços estendidos.",
+      "Abra os braços até o elástico tocar o peito.",
+      "Volte com controle."
+    ],
+    "mistakes": [
+      "Dobrar os cotovelos.",
+      "Encolher os ombros."
+    ],
+    "equivGroup": "iso_ombro_post",
+    "equivRank": 3
+  },
+  {
+    "id": "rosca-direta-barra",
+    "name": "Rosca direta com barra",
+    "aliases": [],
+    "slotTypes": [
+      "iso_biceps"
+    ],
+    "primary": "biceps",
+    "secondary": [],
+    "equipment": [
+      "barra"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Em pé, barra com pegada supinada.",
+      "Suba dobrando apenas os cotovelos.",
+      "Desça devagar até estender."
+    ],
+    "mistakes": [
+      "Balançar o tronco.",
+      "Deixar os cotovelos irem à frente."
+    ],
+    "equivGroup": "iso_biceps",
+    "equivRank": 1
+  },
+  {
+    "id": "rosca-alternada",
+    "name": "Rosca alternada com halteres",
+    "aliases": [],
+    "slotTypes": [
+      "iso_biceps"
+    ],
+    "primary": "biceps",
+    "secondary": [],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 1,
+    "contraindications": [],
+    "instructions": [
+      "Halteres ao lado do corpo.",
+      "Suba um de cada vez girando a palma para cima.",
+      "Desça com controle."
+    ],
+    "mistakes": [
+      "Usar impulso do corpo.",
+      "Encurtar a descida."
+    ],
+    "equivGroup": "iso_biceps",
+    "equivRank": 2
+  },
+  {
+    "id": "rosca-polia",
+    "name": "Rosca na polia",
+    "aliases": [],
+    "slotTypes": [
+      "iso_biceps"
+    ],
+    "primary": "biceps",
+    "secondary": [],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Polia baixa, barra ou corda.",
+      "Suba dobrando os cotovelos.",
+      "Desça mantendo tensão."
+    ],
+    "mistakes": [
+      "Afastar os cotovelos do corpo.",
+      "Soltar o peso na descida."
+    ],
+    "equivGroup": "iso_biceps",
+    "equivRank": 3
+  },
+  {
+    "id": "rosca-elastico",
+    "name": "Rosca com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "iso_biceps"
+    ],
+    "primary": "biceps",
+    "secondary": [],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Pise no elástico, pontas nas mãos.",
+      "Suba dobrando os cotovelos.",
+      "Desça devagar."
+    ],
+    "mistakes": [
+      "Balançar o corpo.",
+      "Perder a tensão embaixo."
+    ],
+    "equivGroup": "iso_biceps",
+    "equivRank": 4
+  },
+  {
+    "id": "rosca-martelo",
+    "name": "Rosca martelo",
+    "aliases": [],
+    "slotTypes": [
+      "iso_biceps"
+    ],
+    "primary": "biceps",
+    "secondary": [],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 1,
+    "contraindications": [],
+    "instructions": [
+      "Halteres com pegada neutra (palmas se olhando).",
+      "Suba dobrando os cotovelos.",
+      "Desça com controle."
+    ],
+    "mistakes": [
+      "Girar o punho.",
+      "Usar impulso."
+    ],
+    "equivGroup": "iso_biceps",
+    "equivRank": 5
+  },
+  {
+    "id": "triceps-polia",
+    "name": "Tríceps na polia",
+    "aliases": [
+      "triceps corda",
+      "pushdown"
+    ],
+    "slotTypes": [
+      "iso_triceps"
+    ],
+    "primary": "triceps",
+    "secondary": [],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Polia alta, corda ou barra.",
+      "Estenda os cotovelos até embaixo.",
+      "Volte com controle até ~90°."
+    ],
+    "mistakes": [
+      "Abrir os cotovelos.",
+      "Usar o peso do corpo para empurrar."
+    ],
+    "equivGroup": "iso_triceps",
+    "equivRank": 1
+  },
+  {
+    "id": "triceps-frances-halter",
+    "name": "Tríceps francês com halter",
+    "aliases": [],
+    "slotTypes": [
+      "iso_triceps"
+    ],
+    "primary": "triceps",
+    "secondary": [],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 1,
+    "contraindications": [],
+    "instructions": [
+      "Halter atrás da cabeça, cotovelos apontando para cima.",
+      "Estenda os braços.",
+      "Desça devagar sem abrir os cotovelos."
+    ],
+    "mistakes": [
+      "Bater o halter na nuca.",
+      "Arquear a lombar."
+    ],
+    "equivGroup": "iso_triceps",
+    "equivRank": 2
+  },
+  {
+    "id": "triceps-banco",
+    "name": "Mergulho no banco",
+    "aliases": [],
+    "slotTypes": [
+      "iso_triceps"
+    ],
+    "primary": "triceps",
+    "secondary": [
+      "peito"
+    ],
+    "equipment": [
+      "banco"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "ombro",
+      "punho"
+    ],
+    "instructions": [
+      "Mãos no banco atrás do corpo, pernas à frente.",
+      "Desça dobrando os cotovelos até ~90°.",
+      "Empurre de volta."
+    ],
+    "mistakes": [
+      "Descer demais e forçar o ombro.",
+      "Afastar o corpo do banco."
+    ],
+    "equivGroup": "iso_triceps",
+    "equivRank": 3
+  },
+  {
+    "id": "flexao-diamante",
+    "name": "Flexão diamante",
+    "aliases": [],
+    "slotTypes": [
+      "iso_triceps"
+    ],
+    "primary": "triceps",
+    "secondary": [
+      "peito"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 2,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "punho"
+    ],
+    "instructions": [
+      "Mãos juntas formando um losango sob o peito.",
+      "Desça mantendo os cotovelos junto ao corpo.",
+      "Empurre de volta."
+    ],
+    "mistakes": [
+      "Quadril caído.",
+      "Cotovelos abrindo para os lados."
+    ],
+    "equivGroup": "iso_triceps",
+    "equivRank": 4
+  },
+  {
+    "id": "triceps-elastico",
+    "name": "Tríceps com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "iso_triceps"
+    ],
+    "primary": "triceps",
+    "secondary": [],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Prenda o elástico num ponto alto.",
+      "Estenda os cotovelos para baixo.",
+      "Volte com controle."
+    ],
+    "mistakes": [
+      "Abrir os cotovelos.",
+      "Usar o tronco."
+    ],
+    "equivGroup": "iso_triceps",
+    "equivRank": 5
+  },
+  {
+    "id": "mesa-flexora",
+    "name": "Mesa flexora",
+    "aliases": [],
+    "slotTypes": [
+      "iso_posterior"
+    ],
+    "primary": "posterior",
+    "secondary": [],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deitado na máquina, rolo nos tornozelos.",
+      "Dobre os joelhos puxando o rolo.",
+      "Volte devagar sem soltar."
+    ],
+    "mistakes": [
+      "Levantar o quadril do banco.",
+      "Soltar o peso na volta."
+    ],
+    "equivGroup": "iso_posterior",
+    "equivRank": 1
+  },
+  {
+    "id": "flexora-deslizante",
+    "name": "Flexão de pernas deslizante",
+    "aliases": [],
+    "slotTypes": [
+      "iso_posterior"
+    ],
+    "primary": "posterior",
+    "secondary": [
+      "gluteo"
+    ],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 2,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deitado, calcanhares sobre toalha em piso liso.",
+      "Suba o quadril e puxe os calcanhares em direção ao corpo.",
+      "Estenda devagar e repita."
+    ],
+    "mistakes": [
+      "Deixar o quadril cair.",
+      "Fazer rápido sem controle."
+    ],
+    "equivGroup": "iso_posterior",
+    "equivRank": 2
+  },
+  {
+    "id": "flexora-elastico",
+    "name": "Flexão de perna com elástico",
+    "aliases": [],
+    "slotTypes": [
+      "iso_posterior"
+    ],
+    "primary": "posterior",
+    "secondary": [],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Elástico preso embaixo, no tornozelo.",
+      "Em pé, dobre o joelho puxando o calcanhar ao glúteo.",
+      "Volte devagar."
+    ],
+    "mistakes": [
+      "Compensar com a lombar.",
+      "Movimento sem controle."
+    ],
+    "equivGroup": "iso_posterior",
+    "equivRank": 3
+  },
+  {
+    "id": "cadeira-extensora",
+    "name": "Cadeira extensora",
+    "aliases": [],
+    "slotTypes": [
+      "iso_quad"
+    ],
+    "primary": "quadriceps",
+    "secondary": [],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "joelho"
+    ],
+    "instructions": [
+      "Sentado, rolo nos tornozelos.",
+      "Estenda os joelhos até quase o topo.",
+      "Desça com controle."
+    ],
+    "mistakes": [
+      "Chutar o peso com impulso.",
+      "Soltar na descida."
+    ],
+    "equivGroup": "iso_quad",
+    "equivRank": 1
+  },
+  {
+    "id": "abducao-maquina",
+    "name": "Abdução de quadril na máquina",
+    "aliases": [],
+    "slotTypes": [
+      "iso_gluteo"
+    ],
+    "primary": "gluteo",
+    "secondary": [],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Sentado, joelhos contra os apoios.",
+      "Abra as pernas contra a resistência.",
+      "Volte devagar."
+    ],
+    "mistakes": [
+      "Usar impulso.",
+      "Amplitude curta."
+    ],
+    "equivGroup": "iso_gluteo",
+    "equivRank": 1
+  },
+  {
+    "id": "abducao-elastico",
+    "name": "Abdução com elástico (lateral)",
+    "aliases": [],
+    "slotTypes": [
+      "iso_gluteo"
+    ],
+    "primary": "gluteo",
+    "secondary": [],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Mini band acima dos joelhos, semiagachado.",
+      "Dê passos laterais mantendo tensão.",
+      "Controle o retorno de cada passo."
+    ],
+    "mistakes": [
+      "Ficar totalmente em pé (perder tensão).",
+      "Deixar os joelhos caírem para dentro."
+    ],
+    "equivGroup": "iso_gluteo",
+    "equivRank": 2
+  },
+  {
+    "id": "coice-polia",
+    "name": "Coice de glúteo na polia",
+    "aliases": [],
+    "slotTypes": [
+      "iso_gluteo"
+    ],
+    "primary": "gluteo",
+    "secondary": [],
+    "equipment": [
+      "polia"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Tornozeleira na polia baixa, tronco apoiado.",
+      "Estenda a perna para trás contraindo o glúteo.",
+      "Volte com controle."
+    ],
+    "mistakes": [
+      "Arquear a lombar.",
+      "Balançar a perna."
+    ],
+    "equivGroup": "iso_gluteo",
+    "equivRank": 3
+  },
+  {
+    "id": "panturrilha-halteres",
+    "name": "Panturrilha em pé com halteres",
+    "aliases": [],
+    "slotTypes": [
+      "iso_panturrilha"
+    ],
+    "primary": "panturrilha",
+    "secondary": [],
+    "equipment": [
+      "halteres"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 2,
+    "contraindications": [],
+    "instructions": [
+      "Halteres nas mãos, ponta dos pés num degrau.",
+      "Suba o máximo na ponta dos pés.",
+      "Desça alongando devagar."
+    ],
+    "mistakes": [
+      "Quicar embaixo.",
+      "Amplitude curta."
+    ],
+    "equivGroup": "iso_panturrilha",
+    "equivRank": 1
+  },
+  {
+    "id": "panturrilha-maquina",
+    "name": "Panturrilha na máquina",
+    "aliases": [],
+    "slotTypes": [
+      "iso_panturrilha"
+    ],
+    "primary": "panturrilha",
+    "secondary": [],
+    "equipment": [
+      "maquinas"
+    ],
+    "skill": 1,
+    "loadType": "external",
+    "minIncrementKg": 5,
+    "contraindications": [],
+    "instructions": [
+      "Posicione-se na máquina (sentado ou em pé).",
+      "Suba na ponta dos pés com pausa no topo.",
+      "Desça alongando."
+    ],
+    "mistakes": [
+      "Repetições rápidas quicadas.",
+      "Não alongar embaixo."
+    ],
+    "equivGroup": "iso_panturrilha",
+    "equivRank": 2
+  },
+  {
+    "id": "panturrilha-corporal",
+    "name": "Panturrilha unilateral (peso corporal)",
+    "aliases": [],
+    "slotTypes": [
+      "iso_panturrilha"
+    ],
+    "primary": "panturrilha",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Um pé num degrau, outro no ar, mão apoiada.",
+      "Suba na ponta do pé com pausa.",
+      "Desça alongando devagar."
+    ],
+    "mistakes": [
+      "Usar impulso.",
+      "Fazer com os dois pés quando ficar fácil (progrida unilateral)."
+    ],
+    "equivGroup": "iso_panturrilha",
+    "equivRank": 3
+  },
+  {
+    "id": "prancha",
+    "name": "Prancha",
+    "aliases": [
+      "plank"
+    ],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Antebraços no chão, corpo reto.",
+      "Contraia abdômen e glúteos.",
+      "Segure o tempo prescrito respirando normal."
+    ],
+    "mistakes": [
+      "Quadril caído ou empinado.",
+      "Prender a respiração."
+    ],
+    "equivGroup": "core_anti_ext",
+    "equivRank": 1
+  },
+  {
+    "id": "dead-bug",
+    "name": "Dead bug",
+    "aliases": [],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deitado, braços e joelhos para cima.",
+      "Estenda braço e perna opostos sem tirar a lombar do chão.",
+      "Volte e alterne."
+    ],
+    "mistakes": [
+      "Arquear a lombar.",
+      "Fazer rápido demais."
+    ],
+    "equivGroup": "core_anti_ext",
+    "equivRank": 2
+  },
+  {
+    "id": "prancha-joelhos",
+    "name": "Prancha com joelhos apoiados",
+    "aliases": [],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "joelho"
+    ],
+    "instructions": [
+      "Apoie antebraços e joelhos no chão, com cotovelos abaixo dos ombros.",
+      "Alinhe ombros, quadril e joelhos, contraindo o abdômen.",
+      "Sustente pelo tempo prescrito, respirando normalmente."
+    ],
+    "mistakes": [
+      "Deixar o quadril cair.",
+      "Prender a respiração."
+    ],
+    "equivGroup": "core_anti_ext",
+    "equivRank": 3
+  },
+  {
+    "id": "prancha-lateral-joelhos",
+    "name": "Prancha lateral com joelhos apoiados",
+    "aliases": [],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [
+      "joelho"
+    ],
+    "instructions": [
+      "Deite de lado, joelhos dobrados e antebraço no chão, cotovelo abaixo do ombro.",
+      "Eleve o quadril alinhando ombro, quadril e joelhos.",
+      "Sustente respirando normalmente e repita do outro lado."
+    ],
+    "mistakes": [
+      "Rodar o tronco.",
+      "Deixar o ombro subir em direção à orelha."
+    ],
+    "equivGroup": "core_anti_rot",
+    "equivRank": 3
+  },
+  {
+    "id": "abdominal-infra",
+    "name": "Elevação de pernas (solo)",
+    "aliases": [],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deitado, mãos sob a lombar se precisar.",
+      "Suba as pernas até 90°.",
+      "Desça devagar sem tocar o chão."
+    ],
+    "mistakes": [
+      "Arquear a lombar na descida.",
+      "Usar impulso."
+    ],
+    "equivGroup": "core_flexao",
+    "equivRank": 1
+  },
+  {
+    "id": "abdominal-supra",
+    "name": "Abdominal supra",
+    "aliases": [
+      "crunch"
+    ],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Deitado, joelhos dobrados.",
+      "Suba tirando as escápulas do chão.",
+      "Desça com controle."
+    ],
+    "mistakes": [
+      "Puxar o pescoço com as mãos.",
+      "Subir demais usando o quadril."
+    ],
+    "equivGroup": "core_flexao",
+    "equivRank": 2
+  },
+  {
+    "id": "prancha-lateral",
+    "name": "Prancha lateral",
+    "aliases": [],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "peso_corporal"
+    ],
+    "skill": 1,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Antebraço no chão, corpo de lado, reto.",
+      "Sustente o quadril alto.",
+      "Segure o tempo e troque o lado."
+    ],
+    "mistakes": [
+      "Quadril caído.",
+      "Rodar o tronco."
+    ],
+    "equivGroup": "core_anti_rot",
+    "equivRank": 1
+  },
+  {
+    "id": "pallof-press",
+    "name": "Pallof press",
+    "aliases": [],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "elasticos"
+    ],
+    "skill": 1,
+    "loadType": "band",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Elástico preso ao lado, segure à frente do peito.",
+      "Estenda os braços resistindo à rotação.",
+      "Volte com controle e troque o lado."
+    ],
+    "mistakes": [
+      "Deixar o tronco girar.",
+      "Fazer com pressa."
+    ],
+    "equivGroup": "core_anti_rot",
+    "equivRank": 2
+  },
+  {
+    "id": "elevacao-pernas-barra",
+    "name": "Elevação de pernas na barra",
+    "aliases": [],
+    "slotTypes": [
+      "core"
+    ],
+    "primary": "core",
+    "secondary": [],
+    "equipment": [
+      "barra_fixa"
+    ],
+    "skill": 3,
+    "loadType": "bodyweight",
+    "minIncrementKg": 2.5,
+    "contraindications": [],
+    "instructions": [
+      "Pendurado na barra fixa.",
+      "Suba as pernas (ou joelhos) até a linha do quadril.",
+      "Desça com controle sem balançar."
+    ],
+    "mistakes": [
+      "Balançar o corpo.",
+      "Soltar as pernas na descida."
+    ],
+    "equivGroup": "core_flexao",
+    "equivRank": 3
+  }
+]

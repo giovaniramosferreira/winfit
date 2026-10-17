@@ -1,0 +1,17 @@
+[
+  {
+    "id": "crucifixo-halteres",
+    "observations": "Correção revisada no PNG oficial e no WebP reempacotado: cotovelos mantêm leve flexão durante arco amplo; duas cargas, cabeça/costas apoiadas e pés plantados. A sequência abre em 0, fecha em 3 e reabre em 4–5, portanto loop. Não há mais a flexão de 90 graus da versão rejeitada. Após alignment source, recorte global, escala e translação são idênticos nos seis quadros; o banco e os pés permanecem nas coordenadas da fonte, eliminando o deslocamento adicional de cerca de 50 px causado pelo centro da silhueta. Pequeno fragmento marginal no quadro 1 não altera a execução.",
+    "issueSeverity": "none",
+    "cycle": "loop",
+    "selectedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "alignment": "source"
+  }
+]

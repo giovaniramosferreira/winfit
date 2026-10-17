@@ -1,12 +1,8 @@
 import { byId } from '../data/exercises'
 import type { Exercise, Plan, PlanExercise, Session, SlotType, TrainingProfile, WorkoutDay } from '../types'
 import { canPerform, estimateDayMin } from './generator'
-
-// Não tratamos porta, sofá ou toalha como equipamento seguro de treino.
-const NEEDS_SUPPORT = new Set(['flexao-inclinada', 'flexao-declinada', 'remada-toalha', 'flexora-deslizante', 'panturrilha-corporal'])
-export function isEquipmentFree(exercise: Exercise): boolean {
-  return exercise.equipment.every((e) => e === 'peso_corporal') && !NEEDS_SUPPORT.has(exercise.id)
-}
+import { isEquipmentFree, isTimedExercise } from './exerciseRules'
+export { isEquipmentFree } from './exerciseRules'
 
 type Move = { id: string; slot: SlotType; alternate?: string }
 const CYCLE: Array<{ label: string; moves: Move[] }> = [
@@ -30,11 +26,12 @@ function setsFor(profile: TrainingProfile, slot: SlotType) {
   return slot === 'core' ? Math.min(sets, 3) : sets
 }
 function choose(move: Move, profile: TrainingProfile) {
+  const skill = profile.experience === 'advanced' ? 3 : profile.experience === 'intermediate' ? 2 : 1
   return [byId.get(move.id), move.alternate ? byId.get(move.alternate) : undefined]
-    .find((ex): ex is Exercise => Boolean(ex && isEquipmentFree(ex) && canPerform(ex, ['peso_corporal'], profile.limitations)))
+    .find((ex): ex is Exercise => Boolean(ex && ex.skill <= skill && isEquipmentFree(ex) && canPerform(ex, ['peso_corporal'], profile.limitations)))
 }
 function prescription(profile: TrainingProfile, move: Move, exercise: Exercise): PlanExercise {
-  const timed = exercise.id === 'prancha' || exercise.id === 'prancha-lateral'
+  const timed = isTimedExercise(exercise.id)
   return { id: crypto.randomUUID(), exerciseId: exercise.id, slotType: move.slot, optional: false, sets: setsFor(profile, move.slot),
     repMin: timed ? 20 : 8, repMax: timed ? 45 : 15, restSec: move.slot === 'core' ? 45 : 75 }
 }

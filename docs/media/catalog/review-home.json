@@ -1,0 +1,82 @@
+[
+  {
+    "id": "flexao-joelhos",
+    "observation": "Mãos e joelhos mantêm apoio; corpo desce com flexão dos cotovelos e retorna. Quadros 0–3 descem e 4–5 voltam ao início.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop"
+  },
+  {
+    "id": "prancha",
+    "observation": "Uma pose estática; antebraços e pontas dos pés apoiados, joelhos elevados e tronco alinhado.",
+    "issueSeverity": "none",
+    "hold": true
+  },
+  {
+    "id": "prancha-joelhos",
+    "observation": "Uma pose estática com antebraços e joelhos apoiados, mas quadril elevado causa dobra clara entre tronco e coxas. Falta a linha ombro–quadril–joelho pedida nas instruções. Recomendo refazer com quadril mais baixo.",
+    "issueSeverity": "medium",
+    "hold": true
+  },
+  {
+    "id": "prancha-lateral",
+    "observation": "Uma pose estática lateral clara, cotovelo sob ombro, mão superior no quadril, quadril elevado e pés empilhados.",
+    "issueSeverity": "none",
+    "hold": true
+  },
+  {
+    "id": "prancha-lateral-joelhos",
+    "observation": "Uma pose estática lateral, mas joelhos ficam pouco dobrados e pernas quase estendidas até os pés; o apoio reduzido sobre os joelhos é ambíguo. Recomendo refazer com joelhos claramente dobrados ~90° e pernas inferiores para trás.",
+    "issueSeverity": "medium",
+    "hold": true
+  },
+  {
+    "id": "ponte-gluteo",
+    "observation": "Cabeça, ombros e pés mantêm apoio; quadril sobe e volta a baixar. Quadros 0–1 baixos, 2–3 altos, 4–5 retorno.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop"
+  },
+  {
+    "id": "ponte-unilateral",
+    "observation": "Cabeça e ombros apoiados, um pé fixo e a outra perna livre. Quadril sobe nos quadros 0–3 e retorna em 4–5; perna elevada não vira apoio.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop"
+  },
+  {
+    "id": "puxada-prona-solo",
+    "observation": "Decúbito ventral claro com barriga/quadril apoiados, braços estendem e cotovelos recolhem em W, sem equipamento. Quadros 0–3 recolhem e 4–5 estendem de novo.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop"
+  },
+  {
+    "id": "avanco-corporal",
+    "observation": "Tronco ereto, pé dianteiro inteiro apoiado e calcanhar traseiro elevado; joelho traseiro desce sem afastamento lateral. Quadros 0–3 descem e 4–5 sobem.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop"
+  },
+  {
+    "id": "dead-bug",
+    "observation": "REFAZER: nos quadros 1–2 e 5, braço e perna do mesmo lado visível da figura estendem juntos; os membros do lado distante continuam elevados. As instruções exigem pares contralaterais. Quadros 0–4 contêm extensão e retorno, mas o quadro 5 inicia outra extensão. Não há seleção que salve uma repetição dinâmica correta.",
+    "issueSeverity": "high",
+    "hold": false,
+    "cycle": "loop"
+  },
+  {
+    "id": "abdominal-infra",
+    "observation": "Pernas sobem juntas de quase horizontais até verticais, com tronco e braços apoiados. Seis quadros representam somente subida; reproduzir em ida e volta.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "return"
+  },
+  {
+    "id": "abdominal-supra",
+    "observation": "Joelhos dobrados, pés apoiados, mãos leves no peito e escápulas elevam sem virar sit-up completo. Quadros 0–3 sobem e 4–5 descem.",
+    "issueSeverity": "none",
+    "hold": false,
+    "cycle": "loop"
+  }
+]

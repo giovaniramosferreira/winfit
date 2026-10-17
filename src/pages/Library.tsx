@@ -31,9 +31,9 @@ export default function Library() {
 
   return (
     <div className="page fade-in">
-      <div className="sheet-head"><span>Atlas</span><span className="num">{EXERCISES.length} pranchas</span></div>
-      <h1>O corpo, <em>exercício por exercício.</em></h1>
-      <label className="sr-only" htmlFor="atlas-q">Buscar no atlas</label>
+      <div className="sheet-head"><span>Biblioteca</span><span className="num">{EXERCISES.length} exercícios</span></div>
+      <h1>Encontre seu exercício</h1>
+      <label className="sr-only" htmlFor="atlas-q">Buscar exercício</label>
       <input
         id="atlas-q" className="input" style={{ marginTop: 16 }}
         placeholder="Buscar exercício ou músculo"
@@ -51,7 +51,7 @@ export default function Library() {
 
       {results.length === 0 && (
         <div className="empty" style={{ marginTop: 16 }}>
-          <h3>Nenhuma prancha para “{q}”.</h3>
+          <h3>Nenhum exercício para “{q}”.</h3>
           <p className="small" style={{ marginTop: 6 }}>Tente outro nome, como “terra”, “extensora” ou “glúteo”.</p>
         </div>
       )}
@@ -63,7 +63,7 @@ export default function Library() {
           <section key={region.title} style={{ marginTop: 10 }}>
             <div className="region-head">
               <h2>{region.title}</h2>
-              <span>Parte {roman(ri + 1)}</span>
+              <span>{results.filter((e) => region.groups.includes(e.primary)).length} exercícios</span>
             </div>
             {groups.map((g) => (
               <div key={g} style={{ marginTop: 12 }}>

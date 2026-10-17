@@ -1,0 +1,15 @@
+{
+  "id": "flexora-deslizante",
+  "name": "Flexão de pernas deslizante",
+  "hold": false,
+  "directions": "Sliding floor hamstring curl. Supine, HEAD/SHOULDERS and palms SUPPORTED on floor; heels on small towels/sliders. Hips lifted in bridge throughout. Start legs nearly straight, slide BOTH heels toward hips until knees90degrees, keeping shoulders down and hips up. No floating head or bench.",
+  "instructions": [
+    "Deitado, calcanhares sobre toalha em piso liso.",
+    "Suba o quadril e puxe os calcanhares em direção ao corpo.",
+    "Estenda devagar e repita."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/flexora-deslizante.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose.  SIX SQUARE PANELS in EXACT3columns x2rows total1536x1024. This is a sports training demonstration of SUPINE SLIDING HAMSTRING CURL, not crunches. Wear a plain fitted sports T-shirt with knee-length hatched shorts and sneakers. Strict side view, head on LEFT, feet on RIGHT. IMPORTANT the BACK OF THE HEAD and both shoulder blades REST FLAT ON THE FLOOR through every frame; no neck curl, no head raised. Face looks up, gaze vertical. Arms flat on floor alongside torso, palms down. Each heel rests on a small sliding towel. Body forms a low bridge. ONLY heels slide as knees bend, drawing heels toward body then extending them out; shoulders and head stay stationary on ground. Hips elevated comfortably, no exaggerated arch. Frame0 knees nearly extended, frame1 knees45degrees, frame2 knees75degrees, frame3 knees90degrees heelsnearbody, frame4 knees60degrees, frame5 knees30degrees. Keep occiput/upperback grounded in ALLframes. The head should look like resting on an invisible pillow on ground, not like doing an abdominal crunch. No extra limbs or text.",
+  "status": "generated",
+  "cycle": "loop"
+}

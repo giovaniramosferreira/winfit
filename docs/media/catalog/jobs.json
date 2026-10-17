@@ -1,0 +1,827 @@
+[
+  {
+    "id": "flexao-joelhos",
+    "name": "Flexão com joelhos apoiados",
+    "hold": false,
+    "directions": "KNEELING pushup. Knees and both hands stay planted on floor. Head shoulders hips KNEES stay in one straight neutral line. Lower chest by bending elbows from straight to90degrees; bent lower legs lifted behind. Do not bend at hips.",
+    "instructions": [
+      "Apoie mãos e joelhos no chão, mantendo uma linha dos ombros aos joelhos.",
+      "Dobre os cotovelos e aproxime o peito do chão dentro de uma amplitude confortável.",
+      "Empurre para voltar, mantendo abdômen firme e quadril alinhado."
+    ]
+  },
+  {
+    "id": "prancha",
+    "name": "Prancha",
+    "hold": true,
+    "directions": "STATIC FOREARM PLANK, strict SIDE view. BOTH forearms flat on floor, elbows DIRECTLY BELOW shoulders, toes planted, knees off ground. Straight neutral head-shoulder-hip-ankle line. Natural arm lengths, hips neither sagging nor high. Draw ONE full-body holding pose, no movement.",
+    "instructions": [
+      "Antebraços no chão, corpo reto.",
+      "Contraia abdômen e glúteos.",
+      "Segure o tempo prescrito respirando normal."
+    ]
+  },
+  {
+    "id": "prancha-joelhos",
+    "name": "Prancha com joelhos apoiados",
+    "hold": true,
+    "directions": "STATIC KNEELING FOREARM PLANK, strict SIDE view. BOTH elbows directly BELOW shoulders, forearms FLAT on floor, BOTH KNEES supported on floor. Shoulders hips knees in straight neutral line, lower legs bent up behind. Natural limbs. ONE static pose, no movement.",
+    "instructions": [
+      "Apoie antebraços e joelhos no chão, com cotovelos abaixo dos ombros.",
+      "Alinhe ombros, quadril e joelhos, contraindo o abdômen.",
+      "Sustente pelo tempo prescrito, respirando normalmente."
+    ]
+  },
+  {
+    "id": "prancha-lateral",
+    "name": "Prancha lateral",
+    "hold": true,
+    "directions": "STATIC SIDE FOREARM PLANK. Chest/abdomen rotated to FACE viewer, legs straight with FEET STACKED on outer edge, one supporting elbow directly below shoulder, forearm flat. Hips lifted so head shoulder hips ankles align. Top hand on hip, clear lateral stance not front plank. ONE static pose.",
+    "instructions": [
+      "Antebraço no chão, corpo de lado, reto.",
+      "Sustente o quadril alto.",
+      "Segure o tempo e troque o lado."
+    ]
+  },
+  {
+    "id": "prancha-lateral-joelhos",
+    "name": "Prancha lateral com joelhos apoiados",
+    "hold": true,
+    "directions": "STATIC SIDE FOREARM PLANK with knees bent. Clear front-oblique SIDE-on rotated torso, chest faces viewer, one elbow on floor directly below shoulder, forearm points forward. Knees BENT90degrees stacked on floor, hips lifted and shoulders-hips-knees aligned; top hand on hip. One supporting forearm only. ONE static pose.",
+    "instructions": [
+      "Deite de lado, joelhos dobrados e antebraço no chão, cotovelo abaixo do ombro.",
+      "Eleve o quadril alinhando ombro, quadril e joelhos.",
+      "Sustente respirando normalmente e repita do outro lado."
+    ]
+  },
+  {
+    "id": "ponte-gluteo",
+    "name": "Ponte de glúteo",
+    "hold": false,
+    "directions": "Floor GLUTE BRIDGE. Supine, shoulders and back of head supported on floor, knees bent90degrees, BOTH feet flat fixed, arms resting palms down beside torso. Start hips near floor then lift hips until shoulders-hips-knees align. Do not arch lower back.",
+    "instructions": [
+      "Deitado, joelhos dobrados, pés no chão.",
+      "Suba o quadril apertando os glúteos.",
+      "Desça devagar sem tocar o chão por completo."
+    ]
+  },
+  {
+    "id": "ponte-unilateral",
+    "name": "Ponte de glúteo unilateral",
+    "hold": false,
+    "directions": "SINGLE-LEG floor glute bridge. Supine head and shoulders on floor, one foot planted with knee90degrees, OTHER LEG extended diagonally in air and stays FREE. Lift hips from floor to aligned shoulders-hips-planted-knee, no pelvis twisting. No bench/equipment.",
+    "instructions": [
+      "Posição da ponte, uma perna estendida no ar.",
+      "Suba o quadril com a perna de apoio.",
+      "Desça com controle e repita."
+    ]
+  },
+  {
+    "id": "puxada-prona-solo",
+    "name": "Puxada prona no solo",
+    "hold": false,
+    "directions": "PRONE FLOOR pull. Man lying FACE DOWN belly and hips remain supported on floor, legs extended still. Slight elevated oblique TOP view so face-down position obvious. Start both arms extended ahead, pull elbows toward ribs formingW, then extend again. No equipment, no floating torso or hyperextended lumbar.",
+    "instructions": [
+      "Deite de barriga para baixo, braços estendidos à frente e testa próxima ao chão.",
+      "Eleve levemente os braços e puxe os cotovelos em direção às costelas, aproximando as escápulas.",
+      "Estenda os braços de novo de forma controlada; mantenha o pescoço neutro."
+    ]
+  },
+  {
+    "id": "avanco-corporal",
+    "name": "Avanço (peso corporal)",
+    "hold": false,
+    "directions": "Bodyweight forward lunge. Start split stance with front foot flat and rear heel raised on toes. Lower hips vertically until front knee90degrees and rear knee just above floor, rear shin angled toward rear toes. Torso upright, arms naturally at sides, no weights, NOT a wide split stretch.",
+    "instructions": [
+      "Passo à frente, desça o joelho de trás.",
+      "Empurre de volta com a perna da frente.",
+      "Alterne as pernas."
+    ]
+  },
+  {
+    "id": "dead-bug",
+    "name": "Dead bug",
+    "hold": false,
+    "directions": "DEAD BUG supine on FLOOR, oblique TOP-SIDE view to distinguish opposite limbs. Head/back/pelvis supported. Start both arms pointing up and hips/knees90degrees. Extend RIGHT ARM overhead toward floor BEHIND head and LEFT LEG long toward floor AHEAD; opposite left arm and right knee remain up. Then return and alternate opposite pair. Do NOT extend same-side arm/leg.",
+    "instructions": [
+      "Deitado, braços e joelhos para cima.",
+      "Estenda braço e perna opostos sem tirar a lombar do chão.",
+      "Volte e alterne."
+    ]
+  },
+  {
+    "id": "abdominal-infra",
+    "name": "Elevação de pernas (solo)",
+    "hold": false,
+    "directions": "Supine floor leg raise. Head shoulders lower back on floor, arms resting by sides, BOTH LEGS extended with soft knees. Start feet hovering just above floor then raise both legs together toward90degrees above hips. Pelvis/back remain down, no neck lift, both legs visible obliquely.",
+    "instructions": [
+      "Deitado, mãos sob a lombar se precisar.",
+      "Suba as pernas até 90°.",
+      "Desça devagar sem tocar o chão."
+    ]
+  },
+  {
+    "id": "abdominal-supra",
+    "name": "Abdominal supra",
+    "hold": false,
+    "directions": "Supine CRUNCH, knees bent and both feet flat fixed on floor. Hands resting lightly on upper chest, elbows relaxed. Start shoulders on floor then curl just head/shoulder blades a short distance off floor toward knees. Lower back/hips stay supported, NOT full situp, no neck pulling.",
+    "instructions": [
+      "Deitado, joelhos dobrados.",
+      "Suba tirando as escápulas do chão.",
+      "Desça com controle."
+    ]
+  },
+  {
+    "id": "supino-reto-barra",
+    "name": "Supino reto com barra",
+    "hold": false,
+    "directions": "Flat barbell bench press. Supine on a complete flat bench, feet firmly grounded, back/head supported. Start bar just above lower chest with elbows bent90degrees; press UP vertically over chest to nearly straight elbows. Two hands hold SAME bar, bar stays horizontal.",
+    "instructions": [
+      "Deite no banco com pés firmes no chão e escápulas retraídas.",
+      "Desça a barra com controle até tocar levemente o peito.",
+      "Empurre para cima até estender os cotovelos, sem travar bruscamente."
+    ]
+  },
+  {
+    "id": "supino-halteres",
+    "name": "Supino com halteres",
+    "hold": false,
+    "directions": "Flat dumbbell bench press, supine on bench feet grounded. Start one dumbbell per hand beside chest with elbows90degrees; press both dumbbells above chest, almost straight elbows. Bench and feet remain fixed, no fly movement.",
+    "instructions": [
+      "Deite no banco segurando um halter em cada mão na linha do peito.",
+      "Empurre para cima até quase unir os halteres.",
+      "Desça com controle até sentir alongamento no peito."
+    ]
+  },
+  {
+    "id": "supino-maquina",
+    "name": "Supino na máquina",
+    "hold": false,
+    "directions": "SEATED chest press machine. Back supported on upright padded backrest, feet flat. Start handles beside chest elbows90degrees, push BOTH machine handles forward to nearly straight arms. Complete linked press machine clearly drawn.",
+    "instructions": [
+      "Ajuste o banco para as pegadas ficarem na linha do peito.",
+      "Empurre até estender os braços sem travar.",
+      "Volte devagar até o peito alongar."
+    ]
+  },
+  {
+    "id": "flexao-inclinada",
+    "name": "Flexão inclinada (mãos elevadas)",
+    "hold": false,
+    "directions": "INCLINE pushup with BOTH HANDS fixed on a LOW STABLE BENCH, toes fixed on floor. Straight head-hip-ankle line slopes downward toward feet. Start arms straight, then bend elbows to lower chest toward bench. Never kneel.",
+    "instructions": [
+      "Apoie as mãos num banco, sofá ou mesa firme.",
+      "Corpo reto, desça o peito em direção ao apoio.",
+      "Empurre de volta com controle."
+    ]
+  },
+  {
+    "id": "flexao-declinada",
+    "name": "Flexão declinada (pés elevados)",
+    "hold": false,
+    "directions": "DECLINE pushup. BOTH FEET stay on LOW BENCH at RIGHT and BOTH HANDS fixed on FLOOR at LEFT. Body straight. Start elbows straight then bend to90degrees lowering chest toward floor, keeping feet on bench.",
+    "instructions": [
+      "Pés elevados num banco ou degrau, mãos no chão.",
+      "Desça o peito até perto do chão.",
+      "Suba mantendo o corpo alinhado."
+    ]
+  },
+  {
+    "id": "supino-elastico",
+    "name": "Press de peito com elástico",
+    "hold": false,
+    "directions": "Standing resistance band chest press. Band wraps around upper back just below shoulder blades; TWO ends in TWO hands. Start elbows bent hands near chest, press both hands horizontally forward. No bench or wall anchor. Band visible behind back and in both hands.",
+    "instructions": [
+      "Passe o elástico pelas costas, segure as pontas na linha do peito.",
+      "Empurre para frente até estender os braços.",
+      "Volte com controle resistindo ao elástico."
+    ]
+  },
+  {
+    "id": "desenvolvimento-halteres",
+    "name": "Desenvolvimento com halteres",
+    "hold": false,
+    "directions": "Standing overhead dumbbell shoulder press. One dumbbell in each hand, both start beside ears with elbows90degrees; press both vertically UP to nearly straight arms, hands remain shoulder-width apart. Neutral spine. Leave margin ABOVE the weights.",
+    "instructions": [
+      "Sentado ou em pé, halteres na altura das orelhas.",
+      "Empurre para cima até estender os braços.",
+      "Desça com controle até a altura das orelhas."
+    ]
+  },
+  {
+    "id": "desenvolvimento-maquina",
+    "name": "Desenvolvimento na máquina",
+    "hold": false,
+    "directions": "SEATED overhead shoulder press machine. Sit on seat with supported back, feet flat. Start handles beside shoulders elbows bent; push BOTH linked handles UP until elbows nearly straight. Clearly drawn complete machine, head and seat stay fixed.",
+    "instructions": [
+      "Ajuste o banco: pegadas na altura dos ombros.",
+      "Empurre para cima sem travar os cotovelos.",
+      "Volte devagar até a posição inicial."
+    ]
+  },
+  {
+    "id": "desenvolvimento-barra",
+    "name": "Desenvolvimento militar com barra",
+    "hold": false,
+    "directions": "Standing barbell overhead press. TWO hands on same horizontal bar, start bar at collarbone/FRONT shoulders, press vertically above head to almost straight elbows, no backward torso lean. Bar and weights entirely visible above head.",
+    "instructions": [
+      "Em pé, barra apoiada na frente dos ombros.",
+      "Empurre para cima passando o rosto, até estender.",
+      "Desça com controle até os ombros."
+    ]
+  },
+  {
+    "id": "pike-pushup",
+    "name": "Flexão pike",
+    "hold": false,
+    "directions": "Pike pushup, hips high forming invertedV. Hands and toes planted on floor. Head between arms. Start arms straight then bend elbows, lowering head toward floor without touching it, keeping hips high. This is NOT a standard flat pushup.",
+    "instructions": [
+      "Posição de V invertido: quadril alto, mãos e pés no chão.",
+      "Dobre os cotovelos levando a cabeça em direção ao chão.",
+      "Empurre de volta até estender os braços."
+    ]
+  },
+  {
+    "id": "desenvolvimento-elastico",
+    "name": "Desenvolvimento com elástico",
+    "hold": false,
+    "directions": "Standing overhead band press. Stand on center of resistance band with BOTH FEET. Hold one end in each hand beside shoulders. Press hands UP shoulder-width apart to near-straight elbows, band clearly runs from feet to BOTH hands. No machine.",
+    "instructions": [
+      "Pise no elástico, segure as pontas na altura dos ombros.",
+      "Empurre para cima até estender.",
+      "Volte devagar resistindo."
+    ]
+  },
+  {
+    "id": "remada-curvada-barra",
+    "name": "Remada curvada com barra",
+    "hold": false,
+    "directions": "Bent-over BARBELL row. Feet planted, knees slightly bent, torso stays neutral inclined45degrees throughout. Start bar hanging from straight arms below chest, TWO hands on same horizontal bar. Pull bar to lower ribs/abdomen by bending elbows backward. Body and head do not bob.",
+    "instructions": [
+      "Tronco inclinado ~45°, coluna neutra, barra pendurada.",
+      "Puxe a barra em direção ao abdômen.",
+      "Desça com controle até estender os braços."
+    ]
+  },
+  {
+    "id": "remada-serrote",
+    "name": "Remada unilateral com halter (serrote)",
+    "hold": false,
+    "directions": "ONE-ARM dumbbell row on bench. Left knee and left palm supported on bench, right foot on floor. Torso neutral horizontal. Right hand starts hanging one dumbbell below shoulder; pull right elbow back and dumbbell toward hip. SUPPORT HAND/KNEE stay planted. Only one dumbbell.",
+    "instructions": [
+      "Apoie joelho e mão no banco, coluna neutra.",
+      "Puxe o halter em direção ao quadril.",
+      "Desça devagar até alongar a costa."
+    ]
+  },
+  {
+    "id": "remada-maquina",
+    "name": "Remada na máquina",
+    "hold": false,
+    "directions": "SEATED chest-supported row machine. Chest firmly on visible chest pad, feet grounded, arms reach handles ahead. Pull both handles toward abdomen with elbows traveling back. Complete machine supports and handle mechanism visible, no torso swinging.",
+    "instructions": [
+      "Peito apoiado, pegadas à frente.",
+      "Puxe levando os cotovelos para trás.",
+      "Volte com controle sem soltar o peso."
+    ]
+  },
+  {
+    "id": "remada-baixa-polia",
+    "name": "Remada baixa na polia",
+    "hold": false,
+    "directions": "SEATED low cable row on actual low-row machine. Sit upright on bench, legs semi-extended with FEET braced against platform. Hold triangle handle in both hands, cable extends horizontally forward from LOW pulley. Pull handle from arm-length to abdomen. Hips/head fixed.",
+    "instructions": [
+      "Sentado, coluna neutra, braços estendidos.",
+      "Puxe o triângulo em direção ao abdômen.",
+      "Volte devagar mantendo o tronco firme."
+    ]
+  },
+  {
+    "id": "remada-elastico",
+    "name": "Remada com elástico",
+    "hold": false,
+    "directions": "SEATED FLOOR resistance band row, legs almost straight ahead. Band LOOPED around BOTH feet, ends held in both hands. Sit upright on floor, arms straight forward initially. Pull hands to waist, elbows back, torso stays upright. No bench or machine.",
+    "instructions": [
+      "Sentado, elástico preso nos pés, pernas semiestendidas.",
+      "Puxe as pontas em direção ao abdômen.",
+      "Volte com controle mantendo a postura."
+    ]
+  },
+  {
+    "id": "remada-toalha",
+    "name": "Remada isométrica com toalha (porta)",
+    "hold": false,
+    "directions": "Standing leaning-back towel row, full sturdy closed door and secure handle visible at LEFT. Grasp BOTH ends of a folded towel secured to handle, feet fixed ahead, body straight inclined away. Pull chest toward door by bending elbows; do not depict loose or open door.",
+    "instructions": [
+      "Prenda uma toalha firme na maçaneta de uma porta fechada.",
+      "Incline o corpo para trás com braços estendidos.",
+      "Puxe o corpo em direção à porta e volte devagar."
+    ]
+  },
+  {
+    "id": "puxada-polia",
+    "name": "Puxada na polia alta",
+    "hold": false,
+    "directions": "SEATED lat pulldown on complete machine. Visible seat, thigh restraint and HIGH pulley DIRECTLY ABOVE FRONT of athlete. Both hands on wide bar overhead initially; pull bar down to UPPER FRONT CHEST bending elbows down at sides. Back neutral almost upright. Cable runs UP to high pulley, not sideways.",
+    "instructions": [
+      "Sentado, pegada um pouco mais aberta que os ombros.",
+      "Puxe a barra até a parte alta do peito.",
+      "Suba com controle até alongar."
+    ]
+  },
+  {
+    "id": "barra-fixa",
+    "name": "Barra fixa",
+    "hold": false,
+    "directions": "Pullup on overhead fixed horizontal bar. Both hands pronated slightly wider than shoulders stay FIXED to bar. Start hanging with long arms FEET CLEAR of floor; pull whole body UP until CHIN above bar. Same proportions throughout, knees slightly bent behind, no swing.",
+    "instructions": [
+      "Pegada pronada, um pouco mais aberta que os ombros.",
+      "Puxe até o queixo passar a barra.",
+      "Desça com controle até estender."
+    ]
+  },
+  {
+    "id": "puxada-elastico",
+    "name": "Puxada com elástico",
+    "hold": false,
+    "directions": "KNEELING resistance band lat pulldown. Kneel upright on floor, band anchored HIGH above FRONT. Hold two ends above head, pull both hands down toward upper chest, elbows down. Knees remain planted and torso upright, band visible to both hands.",
+    "instructions": [
+      "Prenda o elástico num ponto alto e firme.",
+      "Ajoelhe ou sente e puxe em direção ao peito.",
+      "Volte devagar resistindo à subida."
+    ]
+  },
+  {
+    "id": "agachamento-barra",
+    "name": "Agachamento livre com barra",
+    "hold": false,
+    "directions": "Back squat with barbell resting ON UPPER TRAPEZIUS behind neck and BOTH hands holding same bar. Feet flat shoulder-width fixed. Start upright, descend hips BACK and down while knees bend until thighs parallel. Neutral spine, bar remains on upper back, not front chest.",
+    "instructions": [
+      "Barra apoiada no trapézio, pés na largura dos ombros.",
+      "Desça empurrando o quadril para trás e dobrando os joelhos.",
+      "Suba empurrando o chão, mantendo o peito alto."
+    ]
+  },
+  {
+    "id": "agachamento-goblet",
+    "name": "Agachamento goblet",
+    "hold": false,
+    "directions": "Goblet squat with ONE dumbbell held VERTICALLY in BOTH hands against chest, palms cupping upper end. Feet flat shoulder-width fixed. Start upright then controlled squat hips back until thighs parallel, dumbbell stays at sternum. No two dumbbells.",
+    "instructions": [
+      "Segure um halter junto ao peito, na vertical.",
+      "Agache até as coxas ficarem paralelas ao chão.",
+      "Suba mantendo o peito alto."
+    ]
+  },
+  {
+    "id": "agachamento-kettlebell",
+    "name": "Agachamento com kettlebell",
+    "hold": false,
+    "directions": "Goblet squat holding ONE kettlebell by horns in BOTH hands close to chest. Feet flat fixed. Start standing then squat hips back until thighs parallel, neutral spine. Kettlebell stays near chest throughout.",
+    "instructions": [
+      "Segure o kettlebell junto ao peito.",
+      "Agache com peito alto e joelhos alinhados aos pés.",
+      "Suba empurrando o chão."
+    ]
+  },
+  {
+    "id": "agachamento-elastico",
+    "name": "Agachamento com elástico",
+    "hold": false,
+    "directions": "Band squat: stand on middle of long resistance band, ends held at shoulder height and band runs over FRONT shoulders. Keep hands at shoulders throughout. Descend hips back to thigh-parallel with feet flat then return. Do NOT lower hands to floor.",
+    "instructions": [
+      "Pise no elástico e apoie as pontas nos ombros.",
+      "Agache mantendo a tensão.",
+      "Suba resistindo à ajuda do elástico."
+    ]
+  },
+  {
+    "id": "terra-romeno-barra",
+    "name": "Levantamento terra romeno com barra",
+    "hold": false,
+    "directions": "Romanian deadlift with barbell in TWO hands. Start standing with bar at thighs. Hinge hips BACK, knees stay softly bent, lower horizontal bar close to shins until torso about horizontal; spine neutral. Fixed feet, bar stays close to legs, arms remain long.",
+    "instructions": [
+      "Barra à frente das coxas, joelhos levemente dobrados.",
+      "Empurre o quadril para trás descendo a barra rente às pernas.",
+      "Suba contraindo glúteos e posteriores."
+    ]
+  },
+  {
+    "id": "terra-romeno-halteres",
+    "name": "Terra romeno com halteres",
+    "hold": false,
+    "directions": "Romanian deadlift with ONE dumbbell in EACH hand. Start standing weights at thighs, hinge hips BACK while knees softly bent and torso neutral lowering dumbbells close to shins. Arms long, feet fixed. No squat and no round back.",
+    "instructions": [
+      "Halteres à frente das coxas.",
+      "Quadril para trás, desça até sentir alongar o posterior.",
+      "Suba apertando os glúteos no topo."
+    ]
+  },
+  {
+    "id": "hip-thrust-barra",
+    "name": "Elevação pélvica com barra (hip thrust)",
+    "hold": false,
+    "directions": "Barbell HIP THRUST: upper back/shoulder blades resting across low bench, feet planted shoulder width on floor, knees near90degrees. Padded BARBELL lies ACROSS HIP CREASE held stable by both hands. Start hips low then raise until shoulders hips knees align. Head follows torso, upper back stays supported on bench, hands never overhead.",
+    "instructions": [
+      "Costas apoiadas no banco, barra sobre o quadril.",
+      "Suba o quadril até o corpo ficar reto.",
+      "Desça com controle sem relaxar."
+    ]
+  },
+  {
+    "id": "swing-kettlebell",
+    "name": "Swing com kettlebell",
+    "hold": false,
+    "directions": "TWO-HANDED kettlebell swing. Both hands always together on ONE kettlebell handle. Start hip hinge with bell BETWEEN thighs behind knees, neutral back. Drive hips forward to stand tall and bell swings forward to chest height with long arms. Feet fixed, NOT a front raise or squat.",
+    "instructions": [
+      "Quadril para trás, kettlebell entre as pernas.",
+      "Estenda o quadril com força projetando o peso à frente.",
+      "Deixe voltar e repita em ritmo."
+    ]
+  },
+  {
+    "id": "terra-romeno-elastico",
+    "name": "Terra romeno com elástico",
+    "hold": false,
+    "directions": "Resistance-band Romanian deadlift. Both feet stand on center of band; each hand holds one end. Start upright hands beside thighs, hinge hips BACK knees softly bent and lower torso with arms long until hands near shins. Band remains under BOTH feet, back neutral.",
+    "instructions": [
+      "Pise no elástico, segure as pontas.",
+      "Quadril para trás, desça mantendo a coluna neutra.",
+      "Suba contraindo glúteos."
+    ]
+  },
+  {
+    "id": "afundo-halteres",
+    "name": "Afundo com halteres",
+    "hold": false,
+    "directions": "Dumbbell forward lunge. One dumbbell in each hand at sides. Start split stance, front foot flat and rear heel raised on TOES. Lower straight down until FRONT knee90degrees and REAR knee almost touches floor, rear shin angled toward toes. Torso upright. NOT a side split or long straight rear leg.",
+    "instructions": [
+      "Um halter em cada mão, dê um passo à frente.",
+      "Desça até o joelho de trás quase tocar o chão.",
+      "Volte à posição inicial e alterne."
+    ]
+  },
+  {
+    "id": "bulgaro",
+    "name": "Agachamento búlgaro",
+    "hold": false,
+    "directions": "Dumbbell Bulgarian split squat. Rear TOP OF FOOT fixed on LOW BENCH behind, front foot flat on floor. One dumbbell per hand. Start front knee nearly straight then bend front knee to90degrees while rear knee bends downward. Torso slight forward lean but neutral. Rear foot stays on bench.",
+    "instructions": [
+      "Pé de trás apoiado no banco, halteres nas mãos.",
+      "Desça dobrando o joelho da frente.",
+      "Suba empurrando o chão com o pé da frente."
+    ]
+  },
+  {
+    "id": "step-up",
+    "name": "Subida no banco (step-up)",
+    "hold": false,
+    "directions": "Step-up onto LOW STABLE BOX. Start one whole foot on box with knee90degrees, other foot on floor. Drive through raised foot to stand on box with that leg nearly straight; bring free leg up naturally. Whole body INCLUDING connected shoulders and arms moves UP with torso. Box and planted foot fixed. No detached arms, no hands holding box.",
+    "instructions": [
+      "Pé inteiro no banco ou degrau firme.",
+      "Suba empurrando com a perna de cima.",
+      "Desça com controle e alterne."
+    ]
+  },
+  {
+    "id": "crucifixo-halteres",
+    "name": "Crucifixo com halteres",
+    "hold": false,
+    "directions": "Dumbbell chest FLY on FLAT BENCH. Oblique front-side view clearly shows both arms. Head/back supported, feet flat. Start arms open WIDE at chest level, elbows slightly bent15degrees; bring TWO dumbbells together in an arc ABOVE chest while elbow bend stays constant. NOT pressing or bending elbows90degrees.",
+    "instructions": [
+      "Deitado, halteres acima do peito, cotovelos semiflexionados.",
+      "Abra os braços até alongar o peito.",
+      "Feche como se abraçasse um tronco."
+    ]
+  },
+  {
+    "id": "crossover-polia",
+    "name": "Crossover na polia",
+    "hold": false,
+    "directions": "Standing dual HIGH CABLE chest crossover. Two high pulley towers on OPPOSITE sides, one handle in EACH hand with TWO separate cables, both anchored HIGH. Start arms open, slight elbow bend, bring hands together in FRONT lower chest in controlled arc. Torso stable slight forward lean.",
+    "instructions": [
+      "Polias altas, um pegador em cada mão.",
+      "Feche os braços à frente do corpo.",
+      "Volte com controle abrindo o peito."
+    ]
+  },
+  {
+    "id": "crucifixo-elastico",
+    "name": "Crucifixo com elástico",
+    "hold": false,
+    "directions": "Standing band chest fly. Band runs BEHIND upper back, TWO ends held in hands. Oblique front view showing both arms. Start arms open wide at shoulder height elbows slightly bent, bring hands together in front chest in an arc; elbows stay softly bent. No single wall anchor.",
+    "instructions": [
+      "Elástico nas costas, braços abertos.",
+      "Feche os braços à frente do peito.",
+      "Volte devagar mantendo tensão."
+    ]
+  },
+  {
+    "id": "elevacao-lateral-halteres",
+    "name": "Elevação lateral com halteres",
+    "hold": false,
+    "directions": "Standing dumbbell lateral raise, FRONT three-quarter view. One dumbbell each hand. Start arms by sides, raise BOTH arms OUT SIDEWAYS to shoulder height with slight elbow bend, palms down. Stable torso, no overhead pressing. Both arms symmetrical, clear shoulders.",
+    "instructions": [
+      "Em pé, halteres ao lado do corpo.",
+      "Eleve os braços até a linha dos ombros.",
+      "Desça devagar resistindo."
+    ]
+  },
+  {
+    "id": "elevacao-lateral-polia",
+    "name": "Elevação lateral na polia",
+    "hold": false,
+    "directions": "ONE-ARM cable lateral raise, front three-quarter view. LOW pulley near floor on LEFT, cable crosses in front to RIGHT hand. Left hand holds machine for balance. Raise RIGHT arm sideways from hip to shoulder height. Left arm stays still. Only one cable and one moving arm.",
+    "instructions": [
+      "Polia baixa ao lado do corpo.",
+      "Eleve o braço até a linha do ombro.",
+      "Desça com controle."
+    ]
+  },
+  {
+    "id": "elevacao-lateral-elastico",
+    "name": "Elevação lateral com elástico",
+    "hold": false,
+    "directions": "Standing BAND lateral raise, FRONT three-quarter view. BOTH feet on center of band, one end in EACH hand. Start arms by sides and raise BOTH OUT SIDEWAYS to shoulder height, slight elbow bend. Clearly draw TWO band strands from feet to hands.",
+    "instructions": [
+      "Pise no elástico, pontas nas mãos.",
+      "Eleve os braços até os ombros.",
+      "Desça devagar."
+    ]
+  },
+  {
+    "id": "crucifixo-invertido-halteres",
+    "name": "Crucifixo invertido com halteres",
+    "hold": false,
+    "directions": "Bent-over reverse dumbbell FLY. Oblique REAR view clearly shows back and symmetric arms. Torso fixed inclined almost horizontal, knees soft. Start dumbbells hanging under shoulders, raise BOTH arms OUT SIDEWAYS to torso level keeping slight elbow bend. Do not raise one arm high and other low, do not row.",
+    "instructions": [
+      "Tronco inclinado à frente, halteres pendurados.",
+      "Abra os braços para os lados.",
+      "Volte com controle."
+    ]
+  },
+  {
+    "id": "face-pull",
+    "name": "Face pull na polia",
+    "hold": false,
+    "directions": "Face pull on cable machine. Pulley at EYE height in FRONT, rope with TWO ends held in BOTH hands. Start arms reaching toward pulley then pull rope ends toward temples with elbows wide and upper arms shoulder height. Upright stable torso, both hands end beside face, not chest.",
+    "instructions": [
+      "Polia na altura do rosto, corda com as duas mãos.",
+      "Puxe em direção ao rosto abrindo os cotovelos.",
+      "Volte devagar."
+    ]
+  },
+  {
+    "id": "band-pull-apart",
+    "name": "Pull-apart com elástico",
+    "hold": false,
+    "directions": "Standing band pull-apart, FRONT three-quarter view. Both straight arms forward at chest height hold ends of a clearly visible band between hands. Open BOTH arms outward until almostT, band stretches across chest. Same perspective throughout, elbows soft not flexing.",
+    "instructions": [
+      "Segure o elástico à frente, braços estendidos.",
+      "Abra os braços até o elástico tocar o peito.",
+      "Volte com controle."
+    ]
+  },
+  {
+    "id": "rosca-direta-barra",
+    "name": "Rosca direta com barra",
+    "hold": false,
+    "directions": "Standing BARBELL BICEPS curl. Two hands supinated on SAME horizontal bar, elbows fixed at sides. Start bar in front thighs with arms long, flex only elbows bringing bar toward lower chest. Torso and upper arms stay still, bar connects BOTH hands.",
+    "instructions": [
+      "Em pé, barra com pegada supinada.",
+      "Suba dobrando apenas os cotovelos.",
+      "Desça devagar até estender."
+    ]
+  },
+  {
+    "id": "rosca-alternada",
+    "name": "Rosca alternada com halteres",
+    "hold": false,
+    "directions": "ALTERNATING dumbbell curl. One dumbbell each hand. First three frames: RIGHT elbow flexes bringing dumbbell toward shoulder, LEFT arm hangs still. Next three frames: right lowers while LEFT curls toward shoulder. Upper arms at sides, supinated palm on raised hand, torso stable.",
+    "instructions": [
+      "Halteres ao lado do corpo.",
+      "Suba um de cada vez girando a palma para cima.",
+      "Desça com controle."
+    ]
+  },
+  {
+    "id": "rosca-polia",
+    "name": "Rosca na polia",
+    "hold": false,
+    "directions": "Standing low CABLE biceps curl. LOW pulley on floor directly ahead, TWO hands hold same short straight bar with palms up. Start elbows long bar near thighs, curl bar to lower chest bending elbows only. Elbows stay by sides, complete cable/handle connection visible.",
+    "instructions": [
+      "Polia baixa, barra ou corda.",
+      "Suba dobrando os cotovelos.",
+      "Desça mantendo tensão."
+    ]
+  },
+  {
+    "id": "rosca-elastico",
+    "name": "Rosca com elástico",
+    "hold": false,
+    "directions": "Standing BAND biceps curl. Both feet stand on middle of resistance band; each hand holds an end palm up. Start arms long by thighs then curl BOTH hands toward shoulders with elbows fixed at sides. Two band strands clearly visible from feet to hands.",
+    "instructions": [
+      "Pise no elástico, pontas nas mãos.",
+      "Suba dobrando os cotovelos.",
+      "Desça devagar."
+    ]
+  },
+  {
+    "id": "rosca-martelo",
+    "name": "Rosca martelo",
+    "hold": false,
+    "directions": "Dumbbell HAMMER curl. One dumbbell per hand held VERTICALLY with neutral thumbs-up grip, palms face each other THROUGHOUT. Elbows stay at sides, start arms long and curl both weights toward shoulders. No wrist rotation, torso still.",
+    "instructions": [
+      "Halteres com pegada neutra (palmas se olhando).",
+      "Suba dobrando os cotovelos.",
+      "Desça com controle."
+    ]
+  },
+  {
+    "id": "triceps-polia",
+    "name": "Tríceps na polia",
+    "hold": false,
+    "directions": "HIGH cable TRICEPS pushdown. Stand facing machine, high pulley ABOVE head, TWO hands on one rope/short bar. Upper arms fixed at sides; start elbows90degrees hands near lower chest, extend ONLY elbows down until hands beside thighs. Cable connects UP to high pulley, no shoulders swinging.",
+    "instructions": [
+      "Polia alta, corda ou barra.",
+      "Estenda os cotovelos até embaixo.",
+      "Volte com controle até ~90°."
+    ]
+  },
+  {
+    "id": "triceps-frances-halter",
+    "name": "Tríceps francês com halter",
+    "hold": false,
+    "directions": "Overhead TWO-HAND triceps extension with ONE dumbbell. Stand neutral. BOTH hands cradle same dumbbell behind head, elbows point UP close to ears. Start elbows bent then extend forearms UP nearly straight without moving upper arms. Weight/hands fully visible with margin above. Not two separate dumbbells.",
+    "instructions": [
+      "Halter atrás da cabeça, cotovelos apontando para cima.",
+      "Estenda os braços.",
+      "Desça devagar sem abrir os cotovelos."
+    ]
+  },
+  {
+    "id": "triceps-banco",
+    "name": "Mergulho no banco",
+    "hold": false,
+    "directions": "Bench triceps dip. Palms flat fixed on BENCH EDGE BEHIND hips, fingers forward; heels fixed on floor ahead, legs extended with slight knee bend. Start elbows straight lifting hips clear of bench, bend elbows to90degrees lowering hips close to bench. BOTH HANDS stay flat on top bench at same coordinates, never slide off.",
+    "instructions": [
+      "Mãos no banco atrás do corpo, pernas à frente.",
+      "Desça dobrando os cotovelos até ~90°.",
+      "Empurre de volta."
+    ]
+  },
+  {
+    "id": "flexao-diamante",
+    "name": "Flexão diamante",
+    "hold": false,
+    "directions": "Diamond pushup. Oblique front-side view showing BOTH HANDS close together with thumbs/index fingers forming DIAMOND under sternum. Toes on floor, straight head-hips-ankles. Start arms straight then elbows bend BACK close to torso lowering chest toward diamond hands. Not one-arm pushup.",
+    "instructions": [
+      "Mãos juntas formando um losango sob o peito.",
+      "Desça mantendo os cotovelos junto ao corpo.",
+      "Empurre de volta."
+    ]
+  },
+  {
+    "id": "triceps-elastico",
+    "name": "Tríceps com elástico",
+    "hold": false,
+    "directions": "HIGH anchored band triceps pushdown. Band secured above head in FRONT, both hands hold ends. Upper arms stay beside torso, start elbows90degrees hands lower chest then extend forearms DOWN to thighs. Two connected band strands clearly visible, feet and torso still.",
+    "instructions": [
+      "Prenda o elástico num ponto alto.",
+      "Estenda os cotovelos para baixo.",
+      "Volte com controle."
+    ]
+  },
+  {
+    "id": "mesa-flexora",
+    "name": "Mesa flexora",
+    "hold": false,
+    "directions": "PRONE lying leg CURL machine. Athlete clearly FACE DOWN belly/chest/hips supported on padded bench, head facing downward, hands on front handles. Machine roller behind BOTH ankles. Start knees almost straight then bend knees pulling heels UP toward glutes, roller moves with ankles. Hips stay on bench. Not supine leg raises.",
+    "instructions": [
+      "Deitado na máquina, rolo nos tornozelos.",
+      "Dobre os joelhos puxando o rolo.",
+      "Volte devagar sem soltar."
+    ]
+  },
+  {
+    "id": "flexora-deslizante",
+    "name": "Flexão de pernas deslizante",
+    "hold": false,
+    "directions": "Sliding floor hamstring curl. Supine, HEAD/SHOULDERS and palms SUPPORTED on floor; heels on small towels/sliders. Hips lifted in bridge throughout. Start legs nearly straight, slide BOTH heels toward hips until knees90degrees, keeping shoulders down and hips up. No floating head or bench.",
+    "instructions": [
+      "Deitado, calcanhares sobre toalha em piso liso.",
+      "Suba o quadril e puxe os calcanhares em direção ao corpo.",
+      "Estenda devagar e repita."
+    ]
+  },
+  {
+    "id": "flexora-elastico",
+    "name": "Flexão de perna com elástico",
+    "hold": false,
+    "directions": "STANDING single-leg band hamstring curl. One foot on floor, one hand supported on stable rail for balance. LOW band anchor ahead connects to MOVING ankle. Start moving knee long then bend knee bringing HEEL BACK toward buttock, thighs remain side by side, pelvis neutral. Not lying or hip extension.",
+    "instructions": [
+      "Elástico preso embaixo, no tornozelo.",
+      "Em pé, dobre o joelho puxando o calcanhar ao glúteo.",
+      "Volte devagar."
+    ]
+  },
+  {
+    "id": "cadeira-extensora",
+    "name": "Cadeira extensora",
+    "hold": false,
+    "directions": "SEATED leg EXTENSION machine. Back supported against visible padded backrest, hips on seat, both shins behind padded roller near ankles. Start knees90degrees with feet down, extend BOTH knees until legs almost straight horizontally forward. Roller moves with ankles; thighs stay on seat.",
+    "instructions": [
+      "Sentado, rolo nos tornozelos.",
+      "Estenda os joelhos até quase o topo.",
+      "Desça com controle."
+    ]
+  },
+  {
+    "id": "abducao-maquina",
+    "name": "Abdução de quadril na máquina",
+    "hold": false,
+    "directions": "SEATED hip ABDUCTION machine, FRONT oblique view. Back supported, hips fixed on seat, knees90degrees and feet on supports. Pads on OUTER knees. Start knees hip-width then open BOTH knees SIDEWAYS against pads, same perspective and leg lengths, no standing split squat.",
+    "instructions": [
+      "Sentado, joelhos contra os apoios.",
+      "Abra as pernas contra a resistência.",
+      "Volte devagar."
+    ]
+  },
+  {
+    "id": "abducao-elastico",
+    "name": "Abdução com elástico (lateral)",
+    "hold": false,
+    "directions": "MINIBAND lateral steps, FRONT view. Small loop band ABOVE BOTH KNEES. Maintain a real quarter SQUAT with hips BACK and knees bent30degrees, not tiny legs under upright torso. Step one foot SIDEWAYS widening stance while keeping band taut, then bring other foot toward it without losing tension.",
+    "instructions": [
+      "Mini band acima dos joelhos, semiagachado.",
+      "Dê passos laterais mantendo tensão.",
+      "Controle o retorno de cada passo."
+    ]
+  },
+  {
+    "id": "coice-polia",
+    "name": "Coice de glúteo na polia",
+    "hold": false,
+    "directions": "Standing cable GLUTE KICKBACK, strict SIDE view. Face cable machine to LEFT, both hands hold support, standing LEFT leg steady. LOW pulley ahead connects to RIGHT ankle cuff. Extend RIGHT leg BACK toward RIGHT with almost straight knee, torso neutral slight lean. Cable stays connected to ankle, no lumbar arch.",
+    "instructions": [
+      "Tornozeleira na polia baixa, tronco apoiado.",
+      "Estenda a perna para trás contraindo o glúteo.",
+      "Volte com controle."
+    ]
+  },
+  {
+    "id": "panturrilha-halteres",
+    "name": "Panturrilha em pé com halteres",
+    "hold": false,
+    "directions": "Standing dumbbell calf raise. One dumbbell each hand hangs at sides. BOTH forefeet planted on EDGE of LOW STEP, heels free. Start heels below step then raise HEELS to stand on tiptoes. TOES stay touching same step edge, whole body rises naturally, no floating shoes.",
+    "instructions": [
+      "Halteres nas mãos, ponta dos pés num degrau.",
+      "Suba o máximo na ponta dos pés.",
+      "Desça alongando devagar."
+    ]
+  },
+  {
+    "id": "panturrilha-maquina",
+    "name": "Panturrilha na máquina",
+    "hold": false,
+    "directions": "Standing calf raise MACHINE. Shoulders under visible padded shoulder supports, hands on handles, BOTH forefeet planted on footplate edge with heels free. Start heels down then raise heels/tiptoe while forefeet remain fixed on edge. Machine pads move with shoulders, no floating body.",
+    "instructions": [
+      "Posicione-se na máquina (sentado ou em pé).",
+      "Suba na ponta dos pés com pausa no topo.",
+      "Desça alongando."
+    ]
+  },
+  {
+    "id": "panturrilha-corporal",
+    "name": "Panturrilha unilateral (peso corporal)",
+    "hold": false,
+    "directions": "SINGLE-LEG bodyweight calf raise. One forefoot on LOW STEP, free knee bent and foot in air; hand on stable rail for balance. Raise supporting HEEL from below step to high tiptoe while TOES remain fixed to step edge. Other leg never supports body, no weights.",
+    "instructions": [
+      "Um pé num degrau, outro no ar, mão apoiada.",
+      "Suba na ponta do pé com pausa.",
+      "Desça alongando devagar."
+    ]
+  },
+  {
+    "id": "pallof-press",
+    "name": "Pallof press",
+    "hold": false,
+    "directions": "Pallof antirotation band press, FRONT three-quarter view. Band anchor at CHEST height clearly to athlete LEFT side (not behind). BOTH hands hold band at sternum then press STRAIGHT FORWARD away from chest while resisting SIDEWAYS pull. Torso/hips remain facing forward unchanged. Show sideways anchor and forward press in consistent perspective.",
+    "instructions": [
+      "Elástico preso ao lado, segure à frente do peito.",
+      "Estenda os braços resistindo à rotação.",
+      "Volte com controle e troque o lado."
+    ]
+  },
+  {
+    "id": "elevacao-pernas-barra",
+    "name": "Elevação de pernas na barra",
+    "hold": false,
+    "directions": "Hanging leg raise on overhead fixed bar. BOTH hands stay fixed overhead, arms long, FEET CLEAR of floor. Start hanging with legs long down, then flex HIPS raising both legs forward toward hip height, knees slightly soft. No body swing or torso shrink, body/limb lengths constant.",
+    "instructions": [
+      "Pendurado na barra fixa.",
+      "Suba as pernas (ou joelhos) até a linha do quadril.",
+      "Desça com controle sem balançar."
+    ]
+  }
+]

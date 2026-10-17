@@ -34,7 +34,7 @@ export default function Login() {
 
       <div style={{ paddingTop: 32 }}>
         <div className="eyebrow">Entrar</div>
-        <h1 style={{ marginTop: 10 }}>Acesse seu <em>caderno de treino.</em></h1>
+        <h1 style={{ marginTop: 10 }}>Acesse sua <em>conta WinFit.</em></h1>
         <p className="muted" style={{ marginTop: 8 }}>
           Seu plano, cargas e histórico acompanham você em qualquer aparelho.
         </p>

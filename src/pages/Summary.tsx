@@ -2,7 +2,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
 import { fmtDuration } from '../lib/helpers'
-import { fmtKg, volumeOf } from '../lib/progression'
+import { activityTotals, fmtKg, volumeOf } from '../lib/progression'
 
 export default function Summary() {
   const { id } = useParams()
@@ -13,6 +13,7 @@ export default function Summary() {
   if (!session) return <Navigate to="/home" replace />
 
   const volume = volumeOf(session.logs)
+  const activity = activityTotals(session.logs)
   // Um recorde por exercício: a melhor série marcada como PR na sessão.
   const prs = [...session.logs.filter((l) => l.isPR)
     .reduce((m, l) => {
@@ -28,7 +29,7 @@ export default function Summary() {
     <div className="page-full fade-in">
       <div style={{ paddingTop: 32 }}>
         <div className="sheet-head"><span>Treino concluído</span><span>{session.status === 'partial' ? 'Parcial' : 'Completo'}</span></div>
-        <h1>{prs.length > 0 ? <>Sessão com <em>{prs.length} {prs.length === 1 ? 'recorde' : 'recordes'}.</em></> : 'Mais uma sessão no caderno.'}</h1>
+        <h1>{prs.length > 0 ? <>Sessão com <em>{prs.length} {prs.length === 1 ? 'recorde' : 'recordes'}.</em></> : 'Treino concluído!'}</h1>
         <p className="muted" style={{ marginTop: 6 }}>{session.dayLabel}</p>
       </div>
 
@@ -42,14 +43,14 @@ export default function Summary() {
           <div className="k">Séries registradas</div>
         </div>
         <div className="stat">
-          <div className="v num">{volume >= 1000 ? `${(volume / 1000).toFixed(1).replace('.', ',')} t` : `${Math.round(volume)} kg`}</div>
-          <div className="k">Volume total</div>
+          <div className="v num">{!activity.hasLoad ? activity.reps : volume >= 1000 ? `${(volume / 1000).toFixed(1).replace('.', ',')} t` : `${Math.round(volume)} kg`}</div>
+          <div className="k">{activity.hasLoad ? 'Volume total' : 'Repetições'}</div>
         </div>
         <div className="stat">
           <div className="v num" style={{ color: delta != null && delta > 0 ? 'var(--accent)' : undefined }}>
-            {delta != null ? `${delta > 0 ? '+' : ''}${delta}%` : '—'}
+            {!activity.hasLoad ? `${activity.seconds} seg` : delta != null ? `${delta > 0 ? '+' : ''}${delta}%` : '—'}
           </div>
-          <div className="k">vs. último {session.dayLabel.split(' ')[0]}</div>
+          <div className="k">{activity.hasLoad ? `vs. último ${session.dayLabel.split(' ')[0]}` : 'Tempo de sustentação'}</div>
         </div>
       </div>
 

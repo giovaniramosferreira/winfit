@@ -1,0 +1,194 @@
+[
+  {
+    "id": "agachamento",
+    "frameWidth": 420,
+    "frameHeight": 420,
+    "selectedSourceFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "ground": 398,
+    "frames": [
+      {
+        "index": 0,
+        "minX": 82,
+        "maxX": 347,
+        "minY": 26,
+        "maxY": 505,
+        "anchor": 304
+      },
+      {
+        "index": 1,
+        "minX": 53,
+        "maxX": 362,
+        "minY": 46,
+        "maxY": 505,
+        "anchor": 278
+      },
+      {
+        "index": 2,
+        "minX": 31,
+        "maxX": 357,
+        "minY": 87,
+        "maxY": 505,
+        "anchor": 255
+      },
+      {
+        "index": 3,
+        "minX": 61,
+        "maxX": 398,
+        "minY": 69,
+        "maxY": 450,
+        "anchor": 285
+      },
+      {
+        "index": 4,
+        "minX": 52,
+        "maxX": 392,
+        "minY": 88,
+        "maxY": 450,
+        "anchor": 275
+      },
+      {
+        "index": 5,
+        "minX": 31,
+        "maxX": 378,
+        "minY": 106,
+        "maxY": 450,
+        "anchor": 262
+      }
+    ]
+  },
+  {
+    "id": "flexao",
+    "frameWidth": 600,
+    "frameHeight": 340,
+    "selectedSourceFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "ground": 318,
+    "frames": [
+      {
+        "index": 0,
+        "minX": 45,
+        "maxX": 492,
+        "minY": 171,
+        "maxY": 408,
+        "anchor": 492
+      },
+      {
+        "index": 1,
+        "minX": 24,
+        "maxX": 479,
+        "minY": 179,
+        "maxY": 408,
+        "anchor": 479
+      },
+      {
+        "index": 2,
+        "minX": 3,
+        "maxX": 467,
+        "minY": 199,
+        "maxY": 407,
+        "anchor": 467
+      },
+      {
+        "index": 3,
+        "minX": 40,
+        "maxX": 495,
+        "minY": 131,
+        "maxY": 320,
+        "anchor": 495
+      },
+      {
+        "index": 4,
+        "minX": 24,
+        "maxX": 479,
+        "minY": 152,
+        "maxY": 320,
+        "anchor": 479
+      },
+      {
+        "index": 5,
+        "minX": 2,
+        "maxX": 473,
+        "minY": 168,
+        "maxY": 321,
+        "anchor": 473
+      }
+    ]
+  },
+  {
+    "id": "leg-press",
+    "frameWidth": 600,
+    "frameHeight": 450,
+    "selectedSourceFrames": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      0
+    ],
+    "ground": 428,
+    "frames": [
+      {
+        "index": 0,
+        "minX": 18,
+        "maxX": 486,
+        "minY": 65,
+        "maxY": 434,
+        "anchor": 18
+      },
+      {
+        "index": 1,
+        "minX": 8,
+        "maxX": 484,
+        "minY": 64,
+        "maxY": 434,
+        "anchor": 8
+      },
+      {
+        "index": 2,
+        "minX": 1,
+        "maxX": 494,
+        "minY": 65,
+        "maxY": 434,
+        "anchor": 1
+      },
+      {
+        "index": 2,
+        "minX": 1,
+        "maxX": 494,
+        "minY": 65,
+        "maxY": 434,
+        "anchor": 1
+      },
+      {
+        "index": 1,
+        "minX": 8,
+        "maxX": 484,
+        "minY": 64,
+        "maxY": 434,
+        "anchor": 8
+      },
+      {
+        "index": 0,
+        "minX": 18,
+        "maxX": 486,
+        "minY": 65,
+        "maxY": 434,
+        "anchor": 18
+      }
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "id": "prancha-lateral",
+  "name": "Prancha lateral",
+  "hold": true,
+  "directions": "STATIC SIDE FOREARM PLANK. Chest/abdomen rotated to FACE viewer, legs straight with FEET STACKED on outer edge, one supporting elbow directly below shoulder, forearm flat. Hips lifted so head shoulder hips ankles align. Top hand on hip, clear lateral stance not front plank. ONE static pose.",
+  "instructions": [
+    "Antebraço no chão, corpo de lado, reto.",
+    "Sustente o quadril alto.",
+    "Segure o tempo e troque o lado."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/prancha-lateral.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. ONE single complete STATIC holding pose, landscape 1536x1024, no multiple people. STATIC SIDE FOREARM PLANK. Chest/abdomen rotated to FACE viewer, legs straight with FEET STACKED on outer edge, one supporting elbow directly below shoulder, forearm flat. Hips lifted so head shoulder hips ankles align. Top hand on hip, clear lateral stance not front plank. ONE static pose. Catalog instructions (Portuguese, must agree with drawing): Antebraço no chão, corpo de lado, reto. Sustente o quadril alto. Segure o tempo e troque o lado.",
+  "status": "generated"
+}

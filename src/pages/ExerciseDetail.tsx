@@ -7,6 +7,8 @@ import { fmtKg } from '../lib/progression'
 import Chart from '../components/Chart'
 import BodyPlate from '../components/BodyPlate'
 import { ANATOMY, plateNo } from '../data/anatomy'
+import ExerciseDemo from '../components/ExerciseDemo'
+import { isTimedExercise } from '../lib/exerciseRules'
 
 export default function ExerciseDetail() {
   const { id } = useParams()
@@ -24,8 +26,10 @@ export default function ExerciseDetail() {
         const logs = s.logs.filter((l) => l.exerciseId === exercise.id)
         return {
           ts: s.startedAt,
-          max: Math.max(...logs.map((l) => l.weight)),
-          sets: logs.map((l) => `${l.weight > 0 ? l.weight : '—'}×${l.reps}`).join('  '),
+          max: Math.max(...logs.map((l) => exercise.loadType === 'bodyweight' ? l.reps : l.weight)),
+          sets: logs.map((l) => exercise.loadType === 'bodyweight'
+            ? `${l.reps} ${isTimedExercise(exercise.id) ? 'seg' : 'reps'}`
+            : `${l.weight > 0 ? l.weight : '—'}×${l.reps}`).join(' · '),
         }
       })
   }, [sessions, exercise])
@@ -36,6 +40,8 @@ export default function ExerciseDetail() {
 
   const anat = ANATOMY[exercise.primary]
   const plate = plateNo(exercise.id)
+  const bodyweight = exercise.loadType === 'bodyweight'
+  const unit = isTimedExercise(exercise.id) ? 'seg' : 'reps'
 
   return (
     <div className="page fade-in">
@@ -43,7 +49,7 @@ export default function ExerciseDetail() {
         <button className="btn-quiet" onClick={() => nav(-1)} style={{ padding: '4px 0' }}>
           ← Voltar{active ? ' ao treino' : ''}
         </button>
-        <span className="eyebrow num">Prancha {plate}</span>
+        <span className="eyebrow num">Exercício {plate}</span>
       </div>
       <div className="rule-strong" />
 
@@ -53,11 +59,13 @@ export default function ExerciseDetail() {
         {anat.latin}{anat.also ? <span className="small"> — {anat.also}</span> : null}
       </p>
 
+      <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} />
+
       <figure className="plate-fig" style={{ marginTop: 14 }}>
         <BodyPlate primary={exercise.primary} secondary={exercise.secondary}
           label={`Figura do corpo com ${MUSCLE_LABEL[exercise.primary].toLowerCase()} em destaque`} />
         <figcaption>
-          <b>Fig. {plate}.</b> Em hachura, o músculo principal
+          Em hachura, o músculo principal
           {exercise.secondary.length > 0 && <>; em tom claro, apoio de {exercise.secondary.map((m) => MUSCLE_LABEL[m].toLowerCase()).join(', ')}</>}.
         </figcaption>
       </figure>
@@ -86,11 +94,11 @@ export default function ExerciseDetail() {
       {chartData.length >= 2 && (
         <section className="card" style={{ marginTop: 18 }}>
           <div className="between">
-            <div className="eyebrow">Sua carga</div>
-            <span className="mono num small accent-text">recorde {fmtKg(Math.max(...chartData.map((d) => d.value)))}</span>
+            <div className="eyebrow">{bodyweight ? isTimedExercise(exercise.id) ? 'Seu tempo' : 'Suas repetições' : 'Sua carga'}</div>
+            <span className="mono num small accent-text">melhor {bodyweight ? `${Math.max(...chartData.map((d) => d.value))} ${unit}` : fmtKg(Math.max(...chartData.map((d) => d.value)))}</span>
           </div>
           <div style={{ marginTop: 10 }}>
-            <Chart data={chartData} unit="" />
+              <Chart data={chartData} unit={bodyweight ? unit : ''} />
           </div>
         </section>
       )}

@@ -3,6 +3,7 @@ import type {
   TrainingProfile, WorkoutDay, MuscleGroup,
 } from '../types'
 import { EXERCISES, MUSCLE_LABEL } from '../data/exercises'
+import { isEquipmentFree, isTimedExercise, variationLabel } from './exerciseRules'
 
 // Gerador semi-determinístico por templates parametrizados (seção 19 da PRODUCT_SPEC).
 // Mesmo perfil + mesma seed → mesmo plano. Roda 100% no cliente.
@@ -127,6 +128,7 @@ function pickSplit(p: TrainingProfile): { split: SplitDef; notes: string[] } {
 const ALL_EQUIP: Equipment[] = ['halteres', 'barra', 'banco', 'elasticos', 'barra_fixa', 'kettlebell', 'maquinas', 'polia', 'peso_corporal']
 
 export function availableEquipment(p: TrainingProfile): Equipment[] {
+  if (p.location === 'home_none') return ['peso_corporal']
   if (p.location === 'gym_full') return ALL_EQUIP
   const set = new Set<Equipment>(p.equipment)
   set.add('peso_corporal')
@@ -152,7 +154,8 @@ function candidatesFor(slot: SlotType, p: TrainingProfile, equip: Equipment[], c
   // relaxa o teto antes de deixar o slot vazio — slot vazio é pior que exercício exigente.
   for (let cap = maxSkill(p); cap <= 3; cap++) {
     const found = catalog.filter(
-      (ex) => ex.slotTypes.includes(slot) && ex.skill <= cap && canPerform(ex, equip, p.limitations),
+      (ex) => ex.slotTypes.includes(slot) && ex.skill <= cap && canPerform(ex, equip, p.limitations)
+        && (p.location !== 'home_none' || isEquipmentFree(ex)),
     ).sort((a, b) => a.equivRank - b.equivRank)
     if (found.length > 0) return found
   }
@@ -265,8 +268,8 @@ export function generatePlan(p: TrainingProfile, seed: string, catalog = EXERCIS
         exerciseId: chosen.id,
         slotType: spec.slot,
         sets: baseSets(p, spec.slot),
-        repMin: rx.repMin,
-        repMax: rx.repMax,
+        repMin: isTimedExercise(chosen.id) ? 20 : rx.repMin,
+        repMax: isTimedExercise(chosen.id) ? 45 : rx.repMax,
         restSec: rx.rest,
         optional: spec.optional ?? false,
       })
@@ -348,7 +351,8 @@ export function equivalentsFor(exerciseId: string, p: TrainingProfile): Exercise
   return EXERCISES.filter(
     (e) =>
       e.id !== base.id &&
-      (e.equivGroup === base.equivGroup || e.slotTypes.some((s) => base.slotTypes.includes(s))) &&
+      (e.equivGroup === base.equivGroup || e.slotTypes.some((s) => base.slotTypes.includes(s)) || variationLabel(base.id, e.id) !== 'Outra variação') &&
+      (p.location !== 'home_none' || isEquipmentFree(e)) &&
       canPerform(e, equip, p.limitations),
   ).sort((a, b) => {
     const aSame = a.equivGroup === base.equivGroup ? 0 : 1
@@ -358,3 +362,21 @@ export function equivalentsFor(exerciseId: string, p: TrainingProfile): Exercise
 }
 
 export { MUSCLE_LABEL }
+
+/** Atualiza apenas opções de apoio de planos antigos feitos para o chão. */
+export function sanitizeEquipmentFreePlan(plan: Plan): Plan {
+  if (plan.profileSnapshot.location !== 'home_none') return plan
+  let changed = false
+  const days = plan.days.map((day) => {
+    const exercises = day.exercises.flatMap((item) => {
+      const exercise = EXERCISES.find((ex) => ex.id === item.exerciseId)
+      if (exercise && isEquipmentFree(exercise)) return [item]
+      changed = true
+      const replacement = equivalentsFor(item.exerciseId, plan.profileSnapshot)[0]
+      return replacement ? [{ ...item, exerciseId: replacement.id }] : []
+    })
+    return { ...day, exercises, estMin: estimateDayMin(exercises),
+      targetMuscles: [...new Set(exercises.map((item) => EXERCISES.find((ex) => ex.id === item.exerciseId)!.primary))] }
+  })
+  return changed ? { ...plan, days } : plan
+}

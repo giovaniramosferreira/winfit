@@ -1,0 +1,14 @@
+{
+  "id": "prancha-lateral-joelhos",
+  "name": "Prancha lateral com joelhos apoiados",
+  "hold": true,
+  "directions": "STATIC SIDE FOREARM PLANK with BOTH KNEES BENT TO90DEGREES. Full body at front-side oblique angle. Chest faces viewer, left supporting elbow under shoulder and forearm flat on floor. LEFT LATERAL KNEE supports body on floor at RIGHT, hips LIFTED so shoulder hip knee straight line. BOTH LOWER LEGS bend BACK at a right angle from thighs and point AWAY from viewer, visible shoes behind knees, NOT a straight leg side plank, NOT feet supporting. Top hand on hip. Clearly separate upper thighs (hip to knee) and folded shins (knee to ankle) at90degree angle, like short-lever side plank. ONE staticpose only.",
+  "instructions": [
+    "Deite de lado, joelhos dobrados e antebraço no chão, cotovelo abaixo do ombro.",
+    "Eleve o quadril alinhando ombro, quadril e joelhos.",
+    "Sustente respirando normalmente e repita do outro lado."
+  ],
+  "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/prancha-lateral-joelhos.png",
+  "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. ONE SINGLE complete static pose, landscape1536x1024, not a sprite sheet. STATIC SIDE FOREARM PLANK with BOTH KNEES BENT TO90DEGREES. Full body at front-side oblique angle. Chest faces viewer, left supporting elbow under shoulder and forearm flat on floor. LEFT LATERAL KNEE supports body on floor at RIGHT, hips LIFTED so shoulder hip knee straight line. BOTH LOWER LEGS bend BACK at a right angle from thighs and point AWAY from viewer, visible shoes behind knees, NOT a straight leg side plank, NOT feet supporting. Top hand on hip. Clearly separate upper thighs (hip to knee) and folded shins (knee to ankle) at90degree angle, like short-lever side plank. ONE staticpose only. Source instructions Portuguese: Deite de lado, joelhos dobrados e antebraço no chão, cotovelo abaixo do ombro. Eleve o quadril alinhando ombro, quadril e joelhos. Sustente respirando normalmente e repita do outro lado.",
+  "status": "generated"
+}
