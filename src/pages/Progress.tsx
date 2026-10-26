@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
 import { fmtDate, fmtDuration, sessionsInWeekOffset, sessionsThisWeek } from '../lib/helpers'
-import { activityTotals, fmtKg, volumeOf } from '../lib/progression'
+import { activityTotals, exerciseProgressSeries, fmtKg, volumeOf } from '../lib/progression'
 import { isTimedExercise } from '../lib/exerciseRules'
 import Chart from '../components/Chart'
 import { ANATOMY } from '../data/anatomy'
@@ -39,16 +39,15 @@ export default function Progress() {
   // Título-conclusão: o exercício mais registrado com carga, do primeiro ao último treino.
   const lead = useMemo(() => {
     for (const [exId] of exerciseStats) {
-      const series = [...sessions]
-        .sort((a, b) => a.startedAt - b.startedAt)
-        .map((s) => ({ ts: s.startedAt, max: Math.max(0, ...s.logs.filter((l) => l.exerciseId === exId).map((l) => l.weight)) }))
-        .filter((x) => x.max > 0)
-      if (series.length >= 2) return { exId, series }
+      const { unit, points } = exerciseProgressSeries(exId, sessions)
+      if (points.length >= 2) return { exId, unit, series: points }
     }
     return null
   }, [exerciseStats, sessions])
   const leadEx = lead ? byId.get(lead.exId) : undefined
-  const leadDelta = lead ? lead.series[lead.series.length - 1].max - lead.series[0].max : 0
+  const leadDelta = lead ? lead.series[lead.series.length - 1].value - lead.series[0].value : 0
+  const metricLabel = lead?.unit === 'kg' ? 'Carga' : lead?.unit === 'seg' ? 'Sustentação' : 'Repetições'
+  const formatLead = (value: number) => lead?.unit === 'kg' ? fmtKg(value) : `${value.toLocaleString('pt-BR')} ${lead?.unit ?? ''}`
 
   if (sessions.length === 0) {
     return (
@@ -66,15 +65,15 @@ export default function Progress() {
       <div className="sheet-head"><span>Progresso</span><span className="num">{sessions.length} treinos registrados</span></div>
       <h1>
         {lead && leadEx && leadDelta > 0
-          ? <>A carga do {leadEx.name.toLowerCase()} subiu <em>{fmtKg(leadDelta)}.</em></>
+          ? <>{leadEx.name}: {metricLabel.toLowerCase()} aumentou <em>{formatLead(leadDelta)}.</em></>
           : lead && leadEx
-            ? <>{leadEx.name}: carga estável em <em>{fmtKg(lead.series[lead.series.length - 1].max)}.</em></>
+            ? <>{leadEx.name}: {metricLabel.toLowerCase()} {leadDelta < 0 ? 'mais recente' : 'estável'} em <em>{formatLead(lead.series[lead.series.length - 1].value)}.</em></>
             : <>{sessions.length} {sessions.length === 1 ? 'treino registrado' : 'treinos registrados'}.</>}
       </h1>
       {lead && leadEx && (
         <figure className="plate-fig" style={{ marginTop: 14 }}>
-          <Chart data={lead.series.map((x) => ({ label: fmtDate(x.ts), value: x.max }))} unit="" />
-          <figcaption><b>Fig.</b> {leadEx.name} ({ANATOMY[leadEx.primary].latin}), carga máxima por sessão em kg.</figcaption>
+          <Chart data={lead.series.map((x) => ({ label: fmtDate(x.ts), value: x.value }))} unit={lead.unit === 'kg' ? '' : lead.unit} />
+          <figcaption><b>Fig.</b> {leadEx.name} ({ANATOMY[leadEx.primary].latin}), {metricLabel.toLowerCase()} máxima por série de cada sessão em {lead.unit}.</figcaption>
         </figure>
       )}
 
@@ -131,7 +130,7 @@ export default function Progress() {
         {sessions.slice(0, 15).map((s) => {
           const activity = activityTotals(s.logs)
           return (
-          <div key={s.id} className="list-item">
+          <Link key={s.id} to={`/session/${s.id}`} className="list-item">
             <div className="grow">
               <span className="small">{s.dayLabel} {s.status === 'partial' && <span className="pill">parcial</span>}</span>
               <div className="tiny faint num">
@@ -144,7 +143,7 @@ export default function Progress() {
               {activity.seconds > 0 && `${activity.seconds} seg`}
               {activity.sets === 0 && 'Sem séries'}
             </>}</span>
-          </div>
+          </Link>
         )})}
       </div>
     </div>

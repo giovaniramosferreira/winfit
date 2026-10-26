@@ -7,6 +7,12 @@ const weekday = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
 export default function Routine() {
   const r = useRoutineStore((s) => s.data)
   const update = useRoutineStore((s) => s.update)
+  const error = useRoutineStore((s) => s.error)
+  const blocked = useRoutineStore((s) => s.blocked)
+  const exportOriginal = () => {
+    const url = URL.createObjectURL(new Blob([useRoutineStore.getState().exportData()], { type: 'application/json' }))
+    const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'winfit-rotina-original.json'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000)
+  }
   const [now, setNow] = useState(Date.now())
   const [place, setPlace] = useState('academia')
   const [item, setItem] = useState('')
@@ -23,6 +29,9 @@ export default function Routine() {
   }
   const toggleDay = (kind: 'reminder' | 'checkin', day: number) => { const current = r[kind]; update({ [kind]: { ...current, days: current.days.includes(day) ? current.days.filter((d) => d !== day) : [...current.days, day].sort() } }) }
   return <div className="page"><Link to="/home">← Início</Link><h1>Minha rotina</h1>
+    {error && <section className="card" role="alert"><p>{error}</p><button className="btn" onClick={exportOriginal}>Exportar dados originais da rotina</button>
+      {blocked && <button className="btn" onClick={() => { if (window.confirm('Redefinir a rotina local? Exporte os dados originais antes de continuar.')) useRoutineStore.getState().resetAll() }}>Redefinir somente a rotina</button>}</section>}
+    <fieldset disabled={blocked} style={{ border: 0, padding: 0, margin: 0 }}>
     <p>Os avisos aparecem nesta tela enquanto o aplicativo está aberto. Para lembrar com o navegador fechado, importe o arquivo no seu calendário e confirme os alertas nele.</p>
     {due && <section className="card" role="status"><h2>{due.kind === 'reminder' ? 'Hora do treino' : due.kind === 'checkin' ? 'Como você está?' : 'Hora do treino e do check-in'}</h2>
       <button className="btn" onClick={acknowledge}>Dispensar hoje</button><button className="btn" onClick={() => update({ snoozedUntil: Date.now() + 30 * 60000 })}>Adiar 30 min</button></section>}
@@ -56,5 +65,6 @@ export default function Routine() {
         <button className="btn btn-primary" onClick={() => { const delivered = due ? [...r.delivered.slice(-89), due.date] : r.delivered; update({ entries: [{ id: crypto.randomUUID(), ts: Date.now(), energy, note: note.trim() }, ...r.entries], delivered }); setNote('') }}>Salvar check-in local</button></>}
       {r.entries.map((entry) => <article key={entry.id}><p>{new Date(entry.ts).toLocaleString('pt-BR', { timeZone: r.timezone })} · Energia {entry.energy}/5</p><p>{entry.note}</p><button className="btn" onClick={() => update({ entries: r.entries.filter((i) => i.id !== entry.id) })}>Excluir check-in</button></article>)}
     </section>
+    </fieldset>
   </div>
 }

@@ -2,6 +2,18 @@ import type { Exercise, PlanExercise, Session, SetLog } from '../types'
 import { byId } from '../data/exercises'
 import { isTimedExercise } from './exerciseRules'
 
+/** Compare one exercise and metric at a time, keeping variations separate. */
+export function exerciseProgressSeries(exerciseId: string, sessions: Session[]): { unit: 'kg' | 'reps' | 'seg'; points: { ts: number; value: number }[] } {
+  const completed = sessions.filter((s) => s.status === 'completed' || s.status === 'partial')
+  const loaded = completed.some((s) => s.logs.some((log) => log.exerciseId === exerciseId && Number.isFinite(log.weight) && log.weight > 0))
+  const unit = loaded ? 'kg' : isTimedExercise(exerciseId) ? 'seg' : 'reps'
+  const points = [...completed].sort((a, b) => a.startedAt - b.startedAt).flatMap((s) => {
+    const values = s.logs.filter((log) => log.exerciseId === exerciseId && (loaded ? log.weight > 0 : log.weight === 0)).map((log) => loaded ? log.weight : log.reps).filter((value) => Number.isFinite(value) && value > 0)
+    return values.length ? [{ ts: s.startedAt, value: Math.max(...values) }] : []
+  })
+  return { unit, points }
+}
+
 // Dupla progressão (seção 19 da spec): fechou todas as séries no teto da faixa → sobe carga,
 // volta ao piso. Senão → mesma carga, meta é adicionar repetições.
 
