@@ -10,6 +10,7 @@ import { fmtClock, beep, vibrate } from '../lib/helpers'
 import type { Exercise, PlanExercise } from '../types'
 import { useWatchSync } from '../lib/watchSync'
 import WatchModal from '../components/WatchModal'
+import NumberDial from '../components/NumberDial'
 import ExerciseDemo from '../components/ExerciseDemo'
 import { isEquipmentFreeSession, isTimedExercise, variationLabel } from '../lib/exerciseRules'
 
@@ -124,7 +125,6 @@ export default function Player() {
   }
 
   const unit = isTimed ? 'seg' : 'reps'
-  const inc = exercise.minIncrementKg
 
   return (
     <div className={`player${session.timer ? ' is-resting' : ''}`}>
@@ -253,34 +253,24 @@ export default function Player() {
 
       {editor && (
         <div className="modal-back" onClick={() => setEditor(null)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
+          <form className="modal" onClick={(e) => e.stopPropagation()} onSubmit={(e) => { e.preventDefault(); confirmEditor() }}>
             <h2>{editor.logId ? 'Editar série' : `Série ${nextSetNumber}`}</h2>
             {exercise.loadType === 'external' && (
-              <>
-                <label className="field">Carga (kg)</label>
-                <div className="stepper">
-                  <button onClick={() => setEditor({ ...editor, weight: Math.max(0, +(editor.weight - inc).toFixed(1)) })}>−</button>
-                  <span className="val num">{editor.weight}</span>
-                  <button onClick={() => setEditor({ ...editor, weight: +(editor.weight + inc).toFixed(1) })}>+</button>
-                </div>
-              </>
+              <NumberDial label="Carga (kg)" value={editor.weight} min={0}
+                onChange={(weight) => setEditor((current) => current ? { ...current, weight } : null)} />
             )}
-            <label className="field">{isTimed ? 'Segundos' : 'Repetições'}</label>
-            <div className="stepper">
-              <button onClick={() => setEditor({ ...editor, reps: Math.max(1, editor.reps - (isTimed ? 5 : 1)) })}>−</button>
-              <span className="val num">{editor.reps}</span>
-              <button onClick={() => setEditor({ ...editor, reps: editor.reps + (isTimed ? 5 : 1) })}>+</button>
-            </div>
-            <button className="btn btn-primary" style={{ marginTop: 20 }} onClick={confirmEditor}>
+            <NumberDial label={isTimed ? 'Segundos' : 'Repetições'} value={editor.reps} min={1} integer
+              onChange={(reps) => setEditor((current) => current ? { ...current, reps } : null)} />
+            <button type="submit" className="btn btn-primary" style={{ marginTop: 20 }}>
               {editor.logId ? 'Salvar' : 'Registrar série'}
             </button>
             {editor.logId && (
-              <button className="btn btn-danger" style={{ marginTop: 10 }}
+              <button type="button" className="btn btn-danger" style={{ marginTop: 10 }}
                 onClick={() => { deleteSet(editor.logId!); setEditor(null) }}>
                 Excluir série
               </button>
             )}
-          </div>
+          </form>
         </div>
       )}
 
