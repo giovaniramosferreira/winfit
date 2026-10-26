@@ -50,4 +50,5 @@ agenda.reminder = { enabled: true, days: [1], time: '09:00' }
 assert.match(calendarFile(agenda, Date.parse('2026-10-26T14:00:00Z')), /DTSTART;TZID=America\/New_York:20261102T090000/)
 assert.match(calendarFile(agenda, Date.parse('2026-10-25T12:00:00Z')), /DTSTART;TZID=America\/New_York:20261026T090000/)
 assert.throws(() => calendarFile({ ...agenda, reminder: { ...agenda.reminder, days: [] } }))
+assert.match(calendarFile(agenda, Date.parse('2026-10-26T13:00:30Z')), /DTSTART;TZID=America\/New_York:20261102T090000/)
 console.log('Routine timezone, coordination, dedup, pause and validation OK')

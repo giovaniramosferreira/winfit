@@ -1,4 +1,4 @@
-import type { Equipment, Plan, TrainingProfile, WorkoutDay } from '../types'
+import type { Equipment, Plan, Session, TrainingProfile, WorkoutDay } from '../types'
 import { EXERCISES, byId } from '../data/exercises'
 import { canPerform } from './generator'
 import { isEquipmentFree, isTimedExercise } from './exerciseRules'
@@ -7,6 +7,14 @@ export interface AssistantRequest { context: string; question: string; consentVe
 export interface AuthenticatedAssistantAdapter {
   // Implementation belongs on an authenticated backend. Never include API keys here.
   ask: (request: AssistantRequest, accessToken: string, signal?: AbortSignal) => Promise<{ answer: string }>
+}
+/** Small local preview, excluding biometrics, account identifiers and free-text health notes. */
+export function buildAssistantContext(plan: Plan | null, sessions: Session[], profile: TrainingProfile | null): string {
+  const profileLine = profile ? `Perfil informado: objetivo ${profile.goal}; experiência ${profile.experience}; local ${profile.location}; ${profile.frequency} treinos/semana; ${profile.sessionTimeMin} min disponíveis.` : 'Perfil não informado.'
+  const planLine = plan ? `Plano atual: ${plan.splitLabel}. ${plan.days.slice(0, 7).map((day) => `${day.label}: ${day.exercises.length} exercícios, ~${day.estMin} min`).join('; ')}.` : 'Plano atual não disponível.'
+  const recent = [...sessions].filter((session) => session.status === 'completed' || session.status === 'partial').sort((a, b) => b.startedAt - a.startedAt).slice(0, 3)
+  const historyLine = recent.length ? `Últimas ${recent.length} sessões: ${recent.map((session) => `${session.dayLabel} em ${new Date(session.startedAt).toISOString().slice(0, 10)}: ${session.logs.length} séries, ${session.status === 'completed' ? 'concluído' : 'parcial'}`).join('; ')}.` : 'Sem sessões finalizadas registradas.'
+  return [profileLine, planLine, historyLine, 'Fatos ausentes: disponibilidade de hoje, tempo real disponível e como você está não foram informados nesta consulta. Nenhum dado clínico foi inferido.'].join('\n').slice(0, 2000)
 }
 export function localExplanation(context: string, enabled: boolean): string {
   if (!enabled) return 'Ative o contexto local para consultar as explicações.'

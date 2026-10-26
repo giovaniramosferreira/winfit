@@ -39,8 +39,18 @@ export function duePrompt(r: RoutineData, now: number): { kind: 'reminder' | 'ch
   const checkin = q.enabled && q.days.includes(m.day) && m.time >= q.time && !quiet
   return reminder || checkin ? { kind: reminder && checkin ? 'combined' : reminder ? 'reminder' : 'checkin', date: m.date } : null
 }
-export function calendarFile(r: RoutineData): string {
+export function calendarFile(r: RoutineData, now = Date.now()): string {
+  if (!validateRoutine(r) || !r.reminder.days.length || !Number.isFinite(now)) throw Error('Agenda inválida para exportação.')
   const labels = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA']
-  const m = localMoment(Date.now(), r.timezone)
-  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Winfit//Routine//PT', 'BEGIN:VEVENT', 'UID:winfit-training-reminder', `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z')}`, `DTSTART;TZID=${r.timezone}:${m.date.replace(/-/g, '')}T${r.reminder.time.replace(':', '')}00`, `RRULE:FREQ=WEEKLY;BYDAY=${r.reminder.days.map((d) => labels[d]).join(',')}`, 'SUMMARY:Treino Winfit', 'DESCRIPTION:Abra o Winfit para registrar seu treino.', 'BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', 'DESCRIPTION:Hora do treino', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR', ''].join('\r\n')
+  const timezone = new Intl.DateTimeFormat('en', { timeZone: r.timezone }).resolvedOptions().timeZone
+  const m = localMoment(now, timezone)
+  // Calendar arithmetic uses a synthetic UTC date only for weekday/date increments;
+  // DTSTART remains a wall-clock value with IANA TZID, never a guessed UTC offset.
+  let date = m.date
+  for (let offset = 0; offset <= 7; offset++) {
+    const candidate = new Date(`${m.date}T12:00:00Z`)
+    candidate.setUTCDate(candidate.getUTCDate() + offset)
+    if (r.reminder.days.includes(candidate.getUTCDay()) && (offset > 0 || r.reminder.time > m.time || (r.reminder.time === m.time && now % 60000 === 0))) { date = candidate.toISOString().slice(0, 10); break }
+  }
+  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Winfit//Routine//PT', 'CALSCALE:GREGORIAN', `X-WR-TIMEZONE:${timezone}`, 'BEGIN:VEVENT', 'UID:winfit-training-reminder', `DTSTAMP:${new Date(now).toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z')}`, `DTSTART;TZID=${timezone}:${date.replace(/-/g, '')}T${r.reminder.time.replace(':', '')}00`, `RRULE:FREQ=WEEKLY;BYDAY=${[...new Set(r.reminder.days)].sort().map((d) => labels[d]).join(',')}`, 'SUMMARY:Treino Winfit', 'DESCRIPTION:Abra o Winfit para registrar seu treino.', 'BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', 'DESCRIPTION:Hora do treino', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR', ''].join('\r\n')
 }

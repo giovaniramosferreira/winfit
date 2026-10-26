@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../lib/store'
-import { adaptationWarnings, applyFutureDay, localExplanation, proposeAdaptation } from '../lib/assistantContext'
+import { adaptationWarnings, applyFutureDay, buildAssistantContext, localExplanation, proposeAdaptation } from '../lib/assistantContext'
 import { byId } from '../data/exercises'
 import type { Equipment, WorkoutDay } from '../types'
 
 export default function Assistant() {
   const plan = useStore((s) => s.plan)
   const profile = useStore((s) => s.profile)
+  const sessions = useStore((s) => s.sessions)
   const [enabled, setEnabled] = useState(false)
   const [context, setContext] = useState('')
   const [answer, setAnswer] = useState('')
@@ -33,7 +34,8 @@ export default function Assistant() {
   }
   return <div className="page"><Link to="/home">← Início</Link><h1>Assistente</h1>
     <section className="card"><h2>Explicações locais</h2><p>Regras do aplicativo. IA remota indisponível: o backend autenticado ainda não está configurado.</p>
-      <label><input type="checkbox" checked={enabled} onChange={(e) => { setEnabled(e.target.checked); setAnswer(''); if (!e.target.checked) setContext('') }} /> Usar o contexto que eu informar nesta consulta local</label>
+      <label><input type="checkbox" checked={enabled} onChange={(e) => { setEnabled(e.target.checked); setAnswer(''); setContext(e.target.checked ? buildAssistantContext(plan, sessions, profile) : '') }} /> Preparar contexto do plano e das 3 últimas sessões somente nesta consulta local</label>
+      <p className="small muted">Revise, remova ou edite os fatos antes de consultar. Dados da conta, medidas corporais e observações de saúde não entram nesta prévia.</p>
       <label>Contexto (opcional e editável)<textarea maxLength={2000} value={context} disabled={!enabled} onChange={(e) => setContext(e.target.value)} /></label>
       <button className="btn" disabled={!enabled} onClick={() => setAnswer(localExplanation(context, enabled))}>Como funciona a adaptação?</button>
       {answer && <p role="status">{answer}</p>}

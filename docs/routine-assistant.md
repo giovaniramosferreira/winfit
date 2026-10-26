@@ -20,6 +20,10 @@ Adaptação é uma prévia por regras: remove opcionais quando o tempo pedido é
 
 Não foi implementada prescrição clínica, análise de sintomas, adaptação automática de carga por check-in, chatbot remoto ou push de servidor.
 
+O contexto opcional do assistente agora prepara uma prévia curta de perfil, plano e até três sessões finalizadas, com fatos ausentes explícitos. Continua editável e local; não inclui conta, biometria ou notas de saúde. O histórico separa logs pelo par exercício/vaga do plano para manter o movimento realmente executado quando houve substituição após registrar séries.
+
+Exportação de calendário escolhe o próximo dia selecionado ainda futuro no fuso local, inclusive após mudar o horário de verão. `calendarFile(routine, now?)` permite teste determinístico. Usa `TZID` IANA canônico e `X-WR-TIMEZONE`; não fixa offsets UTC. Importação exige calendário que reconheça o identificador IANA (por exemplo Apple/Google); não contém uma definição `VTIMEZONE` própria para clientes que exigem zona embutida. A regra semanal permanece no horário local e a interpretação de horários inexistentes/ambíguos nas transições segue o calendário importador.
+
 ## Verificação
 
 TDD: testes adicionados e executados com falha `ERR_MODULE_NOT_FOUND` para os três módulos antes da implementação (commit `e100029`). Após implementação: `npx tsx scripts/test-routine.ts`, `npx tsx scripts/test-session-history.ts`, `npx tsx scripts/test-assistant-context.ts`. Cobrem fuso, silêncio cruzando meia-noite, deduplicação, pausa/adiamento, validação, histórico temporal/legado e adaptação imutável. Build TypeScript/Vite passou. Cobertura percentual e validação em aparelho físico não foram medidas; requer integração de rotas e QA móvel antes de afirmar conclusão do fluxo.
