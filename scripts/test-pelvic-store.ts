@@ -44,3 +44,16 @@ const brokenOriginal = '{broken pelvic original'
 const broken = createPelvicStore({ getItem: () => brokenOriginal, setItem() {}, removeItem() {} })
 assert.equal(broken.getState().exportData(), brokenOriginal, 'Corrupt raw payload remains exportable')
 console.log('Pelvic transactional import failure and corrupt original export OK')
+const absentStorage = createPelvicStore()
+absentStorage.getState().setSignals(true, false)
+assert.match(absentStorage.getState().error!, /salvar/, 'Unavailable storage must show a save error')
+const { spawnSync } = await import('node:child_process')
+const securityImport = spawnSync(process.execPath, ['-e', `
+const fs=require('node:fs'),ts=require('typescript');
+require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,f);
+Object.defineProperty(globalThis,'localStorage',{get(){throw Error('SecurityError')}});
+const {usePelvicStore}=require('./src/lib/pelvicStore.ts');
+usePelvicStore.getState().setSignals(true,false);
+if(!usePelvicStore.getState().error)process.exitCode=2;
+`], { cwd: process.cwd(), encoding: 'utf8' })
+assert.equal(securityImport.status, 0, securityImport.stderr)
