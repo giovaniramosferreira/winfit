@@ -35,3 +35,11 @@ reloaded.getState().resetAll()
 assert.equal(reloaded.getState().history.length, 0)
 assert.equal(map.has(PELVIC_STORAGE_KEY), false)
 console.log('Pelvic store: gate, reload pause, idempotence, independent history, validated import, quota and reset OK')
+const quotaImport = createPelvicStore({ getItem: () => null, setItem() { throw Error('quota') }, removeItem() {} })
+const quotaBefore = quotaImport.getState().exportData()
+const importCandidate = JSON.parse(quotaBefore); importCandidate.audio = true
+assert.equal(quotaImport.getState().importData(JSON.stringify(importCandidate)), false, 'Import must report write failure')
+assert.equal(quotaImport.getState().exportData(), quotaBefore, 'Failed import preserves previous state')
+const brokenOriginal = '{broken pelvic original'
+const broken = createPelvicStore({ getItem: () => brokenOriginal, setItem() {}, removeItem() {} })
+assert.equal(broken.getState().exportData(), brokenOriginal, 'Corrupt raw payload remains exportable')
