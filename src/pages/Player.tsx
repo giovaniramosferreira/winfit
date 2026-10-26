@@ -145,6 +145,21 @@ export default function Player() {
           <button className="btn-quiet" onClick={() => setMenuOpen(true)}>⋯</button>
         </div>
         <div className="player-progress"><div style={{ width: `${(doneSets / Math.max(totalSets, 1)) * 100}%` }} /></div>
+        <label className="exercise-picker">
+          <span className="tiny muted">Ir para exercício</span>
+          <select aria-label="Ir para exercício" value={idx} onChange={(event) => {
+            setEditor(null)
+            setSubOpen(false)
+            setCurrentIndex(Number(event.target.value))
+          }}>
+            {session.exercises.map((item, index) => {
+              const count = session.logs.filter((log) => log.planExerciseId === item.planExerciseId).length
+              return <option key={item.planExerciseId} value={index}>
+                {index + 1}. {byId.get(item.exerciseId)?.name ?? 'Exercício'} · {count}/{item.sets} séries{item.skipped ? ' · pulado' : ''}
+              </option>
+            })}
+          </select>
+        </label>
       </header>
 
       <main className="player-body">
@@ -231,14 +246,9 @@ export default function Player() {
         <RestTimer />
         <div className="row">
           <button className="btn btn-ghost" style={{ flex: 1 }} disabled={idx === 0} onClick={goPrev}>← Anterior</button>
-          {allExercisesDone || idx === session.exercises.length - 1 ? (
-            <button className="btn btn-primary" style={{ flex: 2 }} onClick={() => setFinishOpen(true)}>
-              Encerrar treino
-            </button>
-          ) : (
-            <button className="btn btn-primary" style={{ flex: 2 }} onClick={goNext}>Próximo →</button>
-          )}
+          <button className="btn btn-primary" style={{ flex: 1 }} disabled={idx === session.exercises.length - 1} onClick={goNext}>Próximo →</button>
         </div>
+        <button className={`btn ${allExercisesDone ? 'btn-primary' : 'btn-quiet'}`} style={{ width: '100%', marginTop: 8 }} onClick={() => setFinishOpen(true)}>Encerrar treino</button>
       </footer>
 
       {editor && (

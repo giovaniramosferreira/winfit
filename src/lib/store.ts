@@ -192,6 +192,8 @@ export const useStore = create<WinfitState>()(
         set({
           activeSession: {
             ...activeSession,
+            exercises: activeSession.exercises.map((item, index) =>
+              index === exerciseIdx && item.skipped ? { ...item, skipped: false } : item),
             logs: [...activeSession.logs, log],
             timer: { endsAt: Date.now() + ex.restSec * 1000, totalSec: ex.restSec },
           },
@@ -268,7 +270,7 @@ export const useStore = create<WinfitState>()(
 
       setCurrentIndex: (i) => {
         const s = get().activeSession
-        if (!s) return
+        if (!s || !Number.isInteger(i) || i < 0 || i >= s.exercises.length) return
         set({ activeSession: { ...s, currentIndex: i } })
       },
 
