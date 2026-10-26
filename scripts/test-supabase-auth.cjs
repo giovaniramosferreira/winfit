@@ -21,7 +21,7 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), { status
   a.deepEqual(await authenticate('synthetic-B'), { id: userB });
   a.deepEqual(await authenticate('synthetic-A'), { id: userA });
   a.equal(calls, 3, 'every request revalidates; no cross-account or revocation cache');
-  for (const token of ['', 'has space', 'line\nbreak', 'x'.repeat(8193)]) a.equal(await authenticate(token), null);
+  for (const token of ['', 'has space', 'line\nbreak', 'tab\tvalue', 'return\rvalue', 'x'.repeat(8193)]) a.equal(await authenticate(token), null);
   a.equal(calls, 3);
   for (const url of ['http://project.supabase.co', 'https://user:pass@project.supabase.co', 'https://project.supabase.co/path', 'https://project.supabase.co/?token=x', 'https://project.supabase.co/#x', 'invalid']) {
     a.throws(() => createSupabaseAuthenticator({ ...config, url }), /Configuração/);
@@ -31,7 +31,7 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), { status
   }
   for (const status of [401, 403]) a.equal(await createSupabaseAuthenticator(config, async () => json({ message: 'private' }, status))('synthetic-A'), null);
   const unavailable = /Autenticação indisponível/;
-  for (const status of [302, 429, 500, 503]) await a.rejects(() => createSupabaseAuthenticator(config, async () => json({ message: 'private' }, status))('synthetic-A'), unavailable);
+  for (const status of [302, 400, 404, 429, 500, 503]) await a.rejects(() => createSupabaseAuthenticator(config, async () => json({ message: 'private' }, status))('synthetic-A'), unavailable);
   for (const body of [{}, null, [], { id: '../../other' }, { id: userA, error: 'failure' }, { id: 123 }]) {
     await a.rejects(() => createSupabaseAuthenticator(config, async () => json(body))('synthetic-A'), unavailable);
   }
@@ -48,6 +48,20 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), { status
   const hangingBody = new ReadableStream({ pull() {}, cancel() { cancelled = true; } });
   await a.rejects(() => createSupabaseAuthenticator(config, async () => new Response(hangingBody, { headers: { 'Content-Type': 'application/json' } }))('synthetic-A'), unavailable);
   a.equal(cancelled, true, 'timeout covers body as well as headers');
+  let overflowCancelled = false;
+  const oversizedBody = new ReadableStream({
+    start(controller) { controller.enqueue(new Uint8Array(32768).fill(32)); controller.enqueue(new Uint8Array(32769).fill(32)); },
+    cancel() { overflowCancelled = true; },
+  });
+  await a.rejects(() => createSupabaseAuthenticator(config, async () => new Response(oversizedBody, { headers: { 'Content-Type': 'application/json', 'Content-Length': '2' } }))('synthetic-A'), unavailable);
+  a.equal(overflowCancelled, true, 'actual streamed bytes override false Content-Length');
+  let finishLate;
+  const lateFetch = new Promise(resolve => { finishLate = resolve; });
+  await a.rejects(() => createSupabaseAuthenticator(config, () => lateFetch)('synthetic-A'), unavailable);
+  let lateCancelled = false;
+  finishLate(new Response(new ReadableStream({ cancel() { lateCancelled = true; } }), { headers: { 'Content-Type': 'application/json' } }));
+  await new Promise(resolve => setImmediate(resolve));
+  a.equal(lateCancelled, true, 'late transports cannot authorize and their bodies are cancelled');
   // Integration: authority rejection/failure must stop before a paid provider is touched.
   let paidCalls = 0;
   const request = () => new Request('https://app.invalid/api/assistant', { method: 'POST', headers: { Authorization: 'Bearer synthetic-A', 'Content-Type': 'application/json' }, body: '{}' });

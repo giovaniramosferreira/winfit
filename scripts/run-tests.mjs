@@ -6,7 +6,7 @@ const suites = [
   'test-backup.ts', 'test-application-backup.ts', 'test-cloud-sync.ts', 'test-workout-storage.ts', 'test-privacy.cjs',
   'test-pelvic-timer.ts', 'test-pelvic-store.ts', 'test-session-modules.tsx',
   'test-routine.ts', 'test-session-history.ts', 'test-bodyweight-progress.ts',
-  'test-assistant-context.ts', 'test-nutrition.cjs', 'test-meal-analysis.cjs', 'test-assistant-api.cjs',
+  'test-assistant-context.ts', 'test-nutrition.cjs', 'test-meal-analysis.cjs', 'test-assistant-api.cjs', 'test-supabase-auth.cjs',
 ]
 let failures = 0
 for (const suite of suites) {
