@@ -24,3 +24,7 @@ Jornadas derivadas dos requisitos do Linear transmitidos na delegação: registr
 O teste cobre datas inexistentes, horário inválido, valores negativos/porção zero, distinção null/zero, total parcial, meta calculada/vigência/ausente, déficit inválido, upsert, reload, delete/restore, import inválido, export/reset/import, conteúdo corrompido preservado, falha de gravação sem mutação.
 
 `npx tsc --noEmit`: passou em 26/10/2026. Cobertura percentual e navegador ainda não medidos neste módulo; build e validação integrada ficam com o agente principal. Fotos, banco nutricional e IA não são simulados nesta entrega.
+
+## Cobertura complementar
+
+`node --test --experimental-test-coverage scripts/test-nutrition.cjs` passou (1 arquivo de teste, sem skips). V8 reportou agregados do domínio/persistência transpilados: 91,55% linhas, 97,98% branches e 93,62% funções. UI React não está incluída nessa medição. Adicionadas garantias de substituição de meta por data, remoção de meta, notificação/unsubscribe, ID desconhecido, versão incompatível e IDs duplicados. Linhas reportadas pelo V8 correspondem ao JS transpilado; não usar os números de linha do relatório como anchors TypeScript.

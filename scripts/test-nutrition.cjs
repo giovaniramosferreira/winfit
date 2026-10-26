@@ -23,3 +23,15 @@ const valid=store.exportData(); a.equal(store.importData('{bad'),false); a.equal
 raw='{broken'; store=createNutritionStore(storage); a.match(store.getState().error,/inválid/); a.equal(store.upsertMeal(meal),false); a.equal(raw,'{broken'); a.equal(store.reset(),true);
 store=createNutritionStore({...storage,setItem:()=>{throw Error('quota')}}); a.equal(store.upsertMeal(meal),false); a.match(store.getState().error,/salvar/); a.equal(store.getState().meals.length,0);
 console.log('nutrition: domain, versioned storage, upsert, undo, import and failure tests PASS');
+let changes=0; store=createNutritionStore(storage); const unsubscribe=store.subscribe(()=>changes++);
+a.equal(store.upsertGoal({id:'g1',date:'2026-10-20',mode:'direct',kcal:1800}),true);
+a.equal(store.upsertGoal({id:'g2',date:'2026-10-20',mode:'direct',kcal:1900}),true);
+a.equal(store.getState().goals.length,1); a.equal(n.goalForDate(store.getState().goals,'2026-10-26'),1900);
+a.equal(n.goalForDate(store.getState().goals,'2026-10-19'),null); a.equal(store.deleteGoal('g2'),true); a.equal(store.getState().goals.length,0);
+a.equal(store.deleteMeal('unknown'),false); a.equal(store.restoreMeal('unknown'),false); a.equal(changes,3); unsubscribe();
+a.throws(()=>store.upsertGoal({id:'bad',date:'2026-10-26',mode:'direct',kcal:NaN}));
+a.throws(()=>n.validateMeal({...meal,items:[item,item]}));
+a.throws(()=>n.validateGoal({id:'g',date:'bad',mode:'direct',kcal:1800}));
+raw=JSON.stringify({version:99,meals:[],goals:[],deleted:[]}); store=createNutritionStore(storage); a.equal(store.getState().blocked,true); a.equal(store.exportData(),raw); a.equal(store.reset(),true);
+raw=JSON.stringify({version:1,meals:[meal,meal],goals:[],deleted:[]}); store=createNutritionStore(storage); a.equal(store.getState().blocked,true); a.equal(store.reset(),true);
+const api=require('../src/lib/nutritionStore.ts'); a.equal(typeof api.exportNutritionData(),'string'); a.equal(api.importNutritionData('{invalid'),false); a.equal(api.resetNutritionData(),false);
