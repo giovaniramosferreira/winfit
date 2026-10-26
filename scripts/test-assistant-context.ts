@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { adaptationWarnings, applyFutureDay, localExplanation, proposeAdaptation } from '../src/lib/assistantContext'
+import { adaptationWarnings, applyFutureDay, buildAssistantContext, localExplanation, proposeAdaptation } from '../src/lib/assistantContext'
 import { EXERCISES } from '../src/data/exercises'
 assert.match(localExplanation('Treino curto', false), /Ative/)
 assert.match(localExplanation('Treino curto', true), /local/)
@@ -16,4 +16,10 @@ else assert.equal(adaptationWarnings(proposal, profile, ['peso_corporal']).lengt
 assert.equal(applyFutureDay({ days: [unsupportedDay] } as any, { ...proposal, id: 'other' }), null)
 assert.equal(applyFutureDay({ days: [unsupportedDay] } as any, { ...proposal, exercises: [] }), null)
 assert.equal(applyFutureDay({ days: [unsupportedDay] } as any, proposal)?.days[0], proposal)
+const context = buildAssistantContext(null, [], null)
+assert.match(context, /Perfil não informado/)
+assert.match(context, /Plano atual não disponível/)
+const limited = buildAssistantContext(null, [1, 2, 3, 4].map(n => ({ id: String(n), dayLabel: `Treino ${n}`, startedAt: n, status: 'completed', logs: [] })) as any, null)
+assert.match(limited, /Treino 4/)
+assert.doesNotMatch(limited, /Treino 1/)
 console.log('Explicit assistant opt-in and immutable adaptation proposal OK')
