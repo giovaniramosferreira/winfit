@@ -192,6 +192,8 @@ export const useStore = create<WinfitState>()(
         set({
           activeSession: {
             ...activeSession,
+            exercises: activeSession.exercises.map((item, index) =>
+              index === exerciseIdx && item.skipped ? { ...item, skipped: false } : item),
             logs: [...activeSession.logs, log],
             timer: { endsAt: Date.now() + ex.restSec * 1000, totalSec: ex.restSec },
           },
