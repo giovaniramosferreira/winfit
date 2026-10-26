@@ -268,7 +268,7 @@ export const useStore = create<WinfitState>()(
 
       setCurrentIndex: (i) => {
         const s = get().activeSession
-        if (!s) return
+        if (!s || !Number.isInteger(i) || i < 0 || i >= s.exercises.length) return
         set({ activeSession: { ...s, currentIndex: i } })
       },
 
