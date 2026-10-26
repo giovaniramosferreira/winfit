@@ -43,3 +43,4 @@ assert.equal(quotaImport.getState().exportData(), quotaBefore, 'Failed import pr
 const brokenOriginal = '{broken pelvic original'
 const broken = createPelvicStore({ getItem: () => brokenOriginal, setItem() {}, removeItem() {} })
 assert.equal(broken.getState().exportData(), brokenOriginal, 'Corrupt raw payload remains exportable')
+console.log('Pelvic transactional import failure and corrupt original export OK')

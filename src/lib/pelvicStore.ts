@@ -38,8 +38,8 @@ export function validatePelvicData(raw: unknown): PelvicData {
   return { version: 1, active: d.active, history: d.history.map(r => ({ id:r.id, programId:r.programId, programVersion:r.programVersion, startedAt:r.startedAt, endedAt:r.endedAt, elapsedMs:r.elapsedMs, status:r.status })), audio: d.audio, vibration: d.vibration }
 }
 export function createPelvicStore(storage?: Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>) {
-  let initial = empty(); let loadError: string | null = null
-  try { const value = storage?.getItem(PELVIC_STORAGE_KEY); if (value) initial = validatePelvicData(JSON.parse(value)) } catch { loadError = 'Não foi possível ler os dados pélvicos. O conteúdo salvo foi preservado; restaure um backup válido ou redefina estes dados.' }
+  let initial = empty(); let loadError: string | null = null; let original: string | null = null
+  try { original = storage?.getItem(PELVIC_STORAGE_KEY) ?? null; if (original) initial = validatePelvicData(JSON.parse(original)) } catch { loadError = 'Não foi possível ler os dados pélvicos. O conteúdo salvo foi preservado; restaure um backup válido ou redefina estes dados.' }
   let blocked = !!loadError
   return create<PelvicState>((set, get) => {
     const data = (): PelvicData => { const s = get(); return { version: 1, active:s.active, history:s.history, audio:s.audio, vibration:s.vibration } }
@@ -65,9 +65,18 @@ export function createPelvicStore(storage?: Pick<Storage, 'getItem' | 'setItem' 
       resume(now = Date.now()) { const a = get().active; if (a) { set({ active:{ ...a,timer:resumeTimer(a.timer,now) } }); save() } },
       stop(now = Date.now()) { const a = get().active; if (!a || !finite(now)) return; const timer = pauseTimer(a.timer,now); finish(timer,now,timer.status === 'completed' ? 'completed' : 'interrupted'); save() },
       setSignals(audio,vibration) { set({ audio,vibration }); save() },
-      exportData: () => JSON.stringify(data(),null,2),
-      importData(json) { try { const next = validatePelvicData(JSON.parse(json)); set(next); blocked = false; save(); return true } catch { set({ error:'Backup pélvico inválido. Os dados atuais foram preservados.' }); return false } },
-      resetAll() { try { storage?.removeItem(PELVIC_STORAGE_KEY); blocked = false; set({ ...empty(),error:null }) } catch { set({ error:'Não foi possível apagar os dados pélvicos salvos.' }) } },
+      exportData: () => blocked && original !== null ? original : JSON.stringify(data(),null,2),
+      importData(json) {
+        let next: PelvicData
+        try { next = validatePelvicData(JSON.parse(json)) }
+        catch { set({ error:'Backup pélvico inválido. Os dados atuais foram preservados.' }); return false }
+        try {
+          if (!storage) throw Error('unavailable')
+          storage.setItem(PELVIC_STORAGE_KEY, JSON.stringify(next))
+          blocked = false; original = null; set({ ...next,error:null }); return true
+        } catch { set({ error:'Não foi possível salvar os dados pélvicos neste dispositivo. Os dados atuais foram preservados.' }); return false }
+      },
+      resetAll() { try { storage?.removeItem(PELVIC_STORAGE_KEY); blocked = false; original = null; set({ ...empty(),error:null }) } catch { set({ error:'Não foi possível apagar os dados pélvicos salvos.' }) } },
     }
   })
 }
