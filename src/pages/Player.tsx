@@ -23,6 +23,8 @@ export default function Player() {
   const logSet = useStore((s) => s.logSet)
   const editSet = useStore((s) => s.editSet)
   const deleteSet = useStore((s) => s.deleteSet)
+  const lastSetUndo = useStore((s) => s.lastSetUndo)
+  const undoLastSet = useStore((s) => s.undoLastSet)
   const skipExercise = useStore((s) => s.skipExercise)
   const setCurrentIndex = useStore((s) => s.setCurrentIndex)
   const substitute = useStore((s) => s.substitute)
@@ -243,6 +245,7 @@ export default function Player() {
       </main>
 
       <footer className="player-foot">
+        {lastSetUndo?.sessionId === session.id && <div className="between" role="status" style={{ marginBottom: 8 }}><span className="small">Série registrada</span><button className="btn btn-ghost btn-sm" onClick={() => { undoLastSet(); setPrFlash(null) }}>Desfazer última série</button></div>}
         <RestTimer />
         <div className="row">
           <button className="btn btn-ghost" style={{ flex: 1 }} disabled={idx === 0} onClick={goPrev}>← Anterior</button>

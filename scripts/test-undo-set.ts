@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict'
+import { useStore } from '../src/lib/store'
+const s = () => useStore.getState()
+s().completeOnboarding({ goal:'health',experience:'intermediate',currentState:'active',location:'gym_full',equipment:[],frequency:3,sessionTimeMin:45,limitations:[],biometrics:{},version:1 })
+s().startSession(s().plan!.days[0].id)
+s().startTimer(120)
+const before = structuredClone(s().activeSession!)
+const log = s().logSet(0,7.25,12)!
+s().setCurrentIndex(1)
+assert.equal(s().undoLastSet(),true)
+assert.deepEqual(s().activeSession!.logs,before.logs)
+assert.deepEqual(s().activeSession!.timer,before.timer)
+assert.equal(s().activeSession!.currentIndex,1)
+assert.equal(s().undoLastSet(),false,'Undo is idempotent')
+s().skipExercise(0)
+assert.equal(s().activeSession!.exercises[0].skipped,true)
+s().logSet(0,8,10)
+assert.equal(s().activeSession!.exercises[0].skipped,false)
+assert.equal(s().undoLastSet(),true)
+assert.equal(s().activeSession!.exercises[0].skipped,true)
+const next=s().logSet(0,9,10)!
+s().editSet(next.id,10,10)
+assert.equal(s().undoLastSet(),false,'Editing invalidates stale undo')
+assert.ok(log.id)
+console.log('Undo set: logs, timer, skipped state, current navigation and idempotency OK')

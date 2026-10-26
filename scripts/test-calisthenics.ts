@@ -40,6 +40,7 @@ test('planos antigos sem equipamentos são saneados ao importar, sem modificar p
   useStore.getState().importCloudData({ profile, plan: old })
   assert.ok(useStore.getState().plan!.days.flatMap((day) => day.exercises).every((pe) => isEquipmentFree(byId.get(pe.exerciseId)!)))
   const gymPlan = { ...old, profileSnapshot: { ...profile, location: 'gym_full' as const } }
+  useStore.getState().resetAll() // Isolate plan sanitation from explicit local-first reconciliation.
   useStore.getState().importCloudData({ profile: gymPlan.profileSnapshot, plan: gymPlan })
   assert.deepEqual(useStore.getState().plan, gymPlan)
 })

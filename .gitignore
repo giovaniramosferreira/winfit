@@ -5,3 +5,4 @@ dev-dist/
 *.local
 tsconfig.tsbuildinfo
 coverage/
+.ecc/

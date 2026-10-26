@@ -1,0 +1,44 @@
+const fs=require('node:fs'),ts=require('typescript'),{strict:a}=require('node:assert');
+require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,f);
+const {validateImageFile,hasImageSignature,MAX_MEAL_PHOTO_BYTES}=require('../src/lib/mealPhoto.ts');
+const {validateCandidates,calculateConfirmedNutrition}=require('../src/lib/mealAnalysis.ts');
+const {createMealAnalysisHandler}=require('../server/meal-analysis.ts');
+(async()=>{
+a.throws(()=>validateImageFile({size:MAX_MEAL_PHOTO_BYTES+1,type:'image/jpeg'}));a.throws(()=>validateImageFile({size:1,type:'image/svg+xml'}));
+a.equal(hasImageSignature(new Uint8Array([255,216,255,224]),'image/jpeg'),true);a.equal(hasImageSignature(new Uint8Array([1,2,3]),'image/jpeg'),false);
+a.equal(hasImageSignature(new Uint8Array([137,80,78,71,13,10,26,10]),'image/png'),true);a.equal(hasImageSignature(new Uint8Array([82,73,70,70,0,0,0,0,87,69,66,80]),'image/webp'),true);a.equal(hasImageSignature(new Uint8Array([1]),'text/plain'),false);
+const originalImage=global.Image,originalDocument=global.document;let draws=0;
+const canvas={width:0,height:0,getContext:()=>({fillStyle:'',fillRect:()=>{},drawImage:()=>draws++}),toBlob:(fn,type)=>fn(new Blob([new Uint8Array([255,216,255,224])],{type}))};
+global.Image=class{naturalWidth=4000;naturalHeight=3000;set src(v){queueMicrotask(()=>this.onload())}};global.document={createElement:()=>canvas};
+try{const prepared=await require('../src/lib/mealPhoto.ts').prepareMealPhoto(new File([new Uint8Array([255,216,255,224])],'photo.jpg',{type:'image/jpeg'}));a.equal(prepared.type,'image/jpeg');a.equal(canvas.width,1920);a.equal(canvas.height,1440);a.equal(draws,1)}finally{global.Image=originalImage;global.document=originalDocument}
+a.throws(()=>validateCandidates({candidates:[{name:'arroz',confidence:.8,kcal:200}]}));a.throws(()=>validateCandidates({candidates:[{name:'arroz',confidence:2}]}));
+a.deepEqual(validateCandidates({candidates:[{name:'arroz',confidence:.8}]}),{candidates:[{name:'arroz',confidence:.8}]});
+const source={source:'user-label',recordId:'label-1',description:'Arroz cozido',kcalPer100g:130,version:'2026-10-26',license:'user-provided'};
+a.equal(calculateConfirmedNutrition(source,150,true).kcal,195);a.throws(()=>calculateConfirmedNutrition(source,150,false));a.throws(()=>calculateConfirmedNutrition({...source,kcalPer100g:NaN},100,true));
+const bytes=new Uint8Array([255,216,255,224]);let calls=0;const cache=new Map();
+const coordinator={run:async(user,key,fingerprint,fn)=>{const k=user+':'+key,old=cache.get(k);if(old)return old.fingerprint!==fingerprint?{kind:'conflict'}:{kind:'done',value:old.value};const value=await fn();cache.set(k,{fingerprint,value});return{kind:'done',value}}};
+const deps={authenticate:async token=>token==='valid'?{id:'user-1'}:null,destination:'Fornecedor teste, região de teste',readOwnedPhoto:async()=>({bytes,type:'image/jpeg'}),coordinator,provider:async()=>{calls++;return{candidates:[{name:'arroz',confidence:.8}]}}};
+const body={path:'user-1/photo.jpg',consent:{analysis:true,destination:deps.destination}};
+const req=(b=body,auth='valid',key='request-12345678')=>new Request('https://test/api/meal-analysis',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+auth,'Idempotency-Key':key},body:JSON.stringify(b)});
+deps.sanitizePhoto=async(photo)=>photo; // Test double only; production must independently decode/re-encode.
+let handler=createMealAnalysisHandler(deps);
+a.equal((await handler(req(body,'bad'))).status,401);a.equal((await handler(req({...body,path:'user-2/photo.jpg'}))).status,403);
+a.equal((await handler(req({...body,consent:{analysis:false,destination:deps.destination}}))).status,403);
+a.equal((await createMealAnalysisHandler({...deps,provider:null})(req())).status,503);
+a.equal((await createMealAnalysisHandler({...deps,sanitizePhoto:null})(req())).status,503);
+a.equal((await handler(req())).status,200);a.equal((await handler(req())).status,200);a.equal(calls,1);
+a.equal((await handler(req({...body,path:'user-1/other.jpg'}))).status,409);
+a.equal((await createMealAnalysisHandler({...deps,provider:async()=>({candidates:[{name:'x',confidence:.5,kcal:5}]})})(req(body,'valid','bad-schema-12345'))).status,502);
+a.equal((await createMealAnalysisHandler({...deps,readOwnedPhoto:async()=>null})(req())).status,404);
+a.equal((await createMealAnalysisHandler({...deps,readOwnedPhoto:async()=>({bytes:new Uint8Array([1]),type:'image/jpeg'})})(req())).status,415);
+a.equal((await createMealAnalysisHandler({...deps,coordinator:{run:async()=>({kind:'rate-limited'})}})(req())).status,429);
+const {signOwnedMealPhoto}=require('../server/meal-analysis.ts');let signingCalls=0;
+await a.rejects(()=>signOwnedMealPhoto('user-1','user-2/photo.jpg',async()=>{signingCalls++;return 'bad'}));a.equal(signingCalls,0);
+const signed=await signOwnedMealPhoto('user-1','user-1/photo.jpg',async(bucket,path,ttl)=>{a.equal(bucket,'winfit-meals-private');a.equal(ttl,60);return 'https://private.test/short-lived'});a.equal(signed.expiresIn,60);
+a.equal((await handler(new Request('https://test/api',{method:'GET'}))).status,405);
+a.equal((await handler(new Request('https://test/api',{method:'POST',headers:{Authorization:'Bearer valid','Content-Type':'application/json'},body:'x'.repeat(5000)}))).status,400);
+a.equal((await handler(req({...body,consent:{analysis:true,destination:'wrong provider'}}))).status,403);
+a.equal((await handler(req(body,'valid','bad'))).status,400);
+a.equal((await createMealAnalysisHandler({...deps,authenticate:async()=>{throw Error('network')}})(req())).status,503);
+console.log('meal-analysis: authentication, owner isolation, unavailable provider, consent, schema, idempotency, image and calculation PASS');
+})().catch(e=>{console.error(e);process.exitCode=1});
