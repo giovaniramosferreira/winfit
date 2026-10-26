@@ -6,10 +6,14 @@ async function run() {
   try {
     const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true })
     const errors = []
+    await page.addInitScript(() => {
+      window.__qaPath = (path) => performance.getEntriesByType('resource').filter((resource) => new URL(resource.name).pathname === path).at(-1)?.name || path
+    })
     page.on('pageerror', (error) => errors.push(error.message))
     await page.goto(process.env.WINFIT_URL || 'http://127.0.0.1:5173/')
+    await page.locator('.app-shell').waitFor()
     await page.evaluate(async () => {
-      const { useStore } = await import('/src/lib/store.ts')
+      const { useStore } = await import(window.__qaPath('/src/lib/store.ts'))
       useStore.getState().completeOnboarding({
         goal: 'hypertrophy', experience: 'intermediate', currentState: 'active',
         location: 'gym_full', equipment: [], frequency: 4, sessionTimeMin: 45,
@@ -18,6 +22,11 @@ async function run() {
       useStore.getState().startSession(useStore.getState().plan.days[0].id)
     })
     await page.goto(`${process.env.WINFIT_URL || 'http://127.0.0.1:5173/'}#/player`)
+    await page.locator('.player').waitFor({ timeout: 5000 }).catch(async (error) => {
+      console.error(await page.locator('body').innerText())
+      console.error(errors)
+      throw error
+    })
     await page.locator('.set-row.current .set-cell').first().click()
     const weight = page.getByLabel('Carga (kg)', { exact: true })
     const reps = page.getByLabel('Repetições', { exact: true })
@@ -73,7 +82,7 @@ async function run() {
     if (process.env.WINFIT_SCREENSHOT) await page.screenshot({ path: process.env.WINFIT_SCREENSHOT })
     await page.getByRole('button', { name: 'Registrar série', exact: true }).click()
     const logged = await page.evaluate(async () => {
-      const { useStore } = await import('/src/lib/store.ts')
+      const { useStore } = await import(window.__qaPath('/src/lib/store.ts'))
       return useStore.getState().activeSession.logs[0]
     })
     assert.equal(logged.weight, 7.25)
@@ -83,7 +92,7 @@ async function run() {
     await page.getByRole('button', { name: 'Salvar', exact: true }).click()
     assert.equal(await page.locator('form.modal').count(), 0)
     const edited = await page.evaluate(async () => {
-      const { useStore } = await import('/src/lib/store.ts')
+      const { useStore } = await import(window.__qaPath('/src/lib/store.ts'))
       return useStore.getState().activeSession.logs
     })
     assert.equal(edited.length, 1, 'Editing does not add another set')
@@ -93,7 +102,7 @@ async function run() {
     await page.getByRole('button', { name: 'Salvar', exact: true }).scrollIntoViewIfNeeded()
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'No horizontal overflow')
     await page.evaluate(async () => {
-      const { useStore } = await import('/src/lib/store.ts')
+      const { useStore } = await import(window.__qaPath('/src/lib/store.ts'))
       const session = useStore.getState().activeSession
       useStore.setState({ activeSession: { ...session, currentIndex: 0, logs: [],
         exercises: [{ ...session.exercises[0], exerciseId: 'prancha' }] } })
@@ -105,7 +114,7 @@ async function run() {
     await seconds.fill('41')
     await page.getByRole('button', { name: 'Registrar série', exact: true }).click()
     const timed = await page.evaluate(async () => {
-      const { useStore } = await import('/src/lib/store.ts')
+      const { useStore } = await import(window.__qaPath('/src/lib/store.ts'))
       return useStore.getState().activeSession.logs[0]
     })
     assert.equal(timed.reps, 41, 'Timed exercise supports single-second precision')

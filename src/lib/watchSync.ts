@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useStore } from './store'
 import type { WatchCommand, WatchStatusPayload } from '../types'
+import { privacy, usePrivacy, watchAllowed } from './privacy'
 
 // URL padrão do relay serverless (pode ser sobrescrita via localStorage ou .env)
 export const DEFAULT_RELAY_URL =
@@ -10,13 +11,18 @@ export const OFFICIAL_ICLOUD_SHORTCUT_URL = 'https://www.icloud.com/shortcuts/0a
 
 export function getRelayUrl(): string {
   try {
-    return localStorage.getItem('winfit_relay_url') || DEFAULT_RELAY_URL
+    const value = new URL(localStorage.getItem('winfit_relay_url') || DEFAULT_RELAY_URL)
+    return value.protocol === 'https:' && !value.username && !value.password ? value.href.replace(/\/+$/, '') : DEFAULT_RELAY_URL
   } catch {
     return DEFAULT_RELAY_URL
   }
 }
 
 export function setCustomRelayUrl(url: string) {
+  if (url.trim()) {
+    const parsed = new URL(url.trim())
+    if (parsed.protocol !== 'https:' || parsed.username || parsed.password) throw Error('Use um endereço HTTPS válido sem credenciais.')
+  }
   try {
     if (url.trim()) {
       localStorage.setItem('winfit_relay_url', url.trim())
@@ -36,15 +42,21 @@ export type SyncState = 'idle' | 'connecting' | 'connected' | 'error'
 export async function pushWatchStatus(token: string, payload: WatchStatusPayload): Promise<boolean> {
   if (!token) return false
   const relay = getRelayUrl().replace(/\/+$/, '')
+  if (!watchAllowed(relay)) return false
+  const controller = new AbortController()
+  const unsubscribe = privacy.subscribe(() => { if (!watchAllowed(relay)) controller.abort() })
   try {
     const res = await fetch(`${relay}/status/${encodeURIComponent(token)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
+      signal: controller.signal,
     })
     return res.ok
   } catch {
     return false
+  } finally {
+    unsubscribe()
   }
 }
 
@@ -52,6 +64,8 @@ export async function pushWatchStatus(token: string, payload: WatchStatusPayload
  * Hook que gerencia a conexão SSE em tempo real com o Apple Watch durante a sessão de treino
  */
 export function useWatchSync() {
+  const preference = usePrivacy()
+  const enabled = preference.watchDestination === getRelayUrl().replace(/\/+$/, '')
   const watchToken = useStore((s) => s.watchToken)
   const activeSession = useStore((s) => s.activeSession)
   const getWatchStatusPayload = useStore((s) => s.getWatchStatusPayload)
@@ -68,6 +82,7 @@ export function useWatchSync() {
 
   // Executa o comando evitando duplicidades entre SSE e Polling
   const processIncomingCommand = (cmd: WatchCommand) => {
+    if (!watchAllowed(getRelayUrl())) return
     if (cmd.id && processedIdsRef.current.has(cmd.id)) return
     if (cmd.id) {
       processedIdsRef.current.add(cmd.id)
@@ -90,14 +105,14 @@ export function useWatchSync() {
 
   // Publica o status sempre que houver mudança na sessão ativa
   useEffect(() => {
-    if (!activeSession || !watchToken) return
+    if (!enabled || !activeSession || !watchToken) return
     const payload = getWatchStatusPayload()
     pushWatchStatus(watchToken, payload)
-  }, [activeSession, watchToken, getWatchStatusPayload])
+  }, [activeSession, watchToken, getWatchStatusPayload, enabled])
 
   // Polling em background a cada 1s como garantia contra separação de instâncias serverless
   useEffect(() => {
-    if (!activeSession || !watchToken) return
+    if (!enabled || !activeSession || !watchToken) return
     let active = true
     const relay = getRelayUrl().replace(/\/+$/, '')
 
@@ -107,6 +122,7 @@ export function useWatchSync() {
         const res = await fetch(`${relay}/poll/${encodeURIComponent(watchToken)}?since=${lastSeenTsRef.current}`)
         if (!res.ok) return
         const data = (await res.json()) as { ok: boolean; commands?: WatchCommand[] }
+        if (!active || !watchAllowed(relay)) return
         if (data.commands && Array.isArray(data.commands)) {
           for (const cmd of data.commands) {
             if (cmd.ts && cmd.ts > lastSeenTsRef.current) {
@@ -124,13 +140,13 @@ export function useWatchSync() {
       active = false
       clearInterval(interval)
     }
-  }, [activeSession?.id, watchToken])
+  }, [activeSession?.id, watchToken, enabled])
 
   // Gerencia o ciclo de vida do EventSource SSE para tempo de resposta < 50ms
   useEffect(() => {
     isMountedRef.current = true
 
-    if (!activeSession || !watchToken) {
+    if (!enabled || !activeSession || !watchToken) {
       if (eventSourceRef.current) {
         eventSourceRef.current.close()
         eventSourceRef.current = null
@@ -197,7 +213,7 @@ export function useWatchSync() {
         eventSourceRef.current = null
       }
     }
-  }, [activeSession?.id, watchToken])
+  }, [activeSession?.id, watchToken, enabled])
 
   return {
     syncState,

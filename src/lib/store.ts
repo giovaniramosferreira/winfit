@@ -10,6 +10,8 @@ import { byId } from '../data/exercises'
 import { homeWorkout, isEquipmentFree } from './homeWorkout'
 import { isEquipmentFreeSession, isTimedExercise } from './exerciseRules'
 import { beep, vibrate } from './helpers'
+import { mergeWorkouts, parseWorkoutBackup } from './backup'
+import { safeWorkoutState, workoutStorage } from './workoutStorage'
 
 // Persistência write-through: o middleware `persist` grava em localStorage a cada `set`,
 // antes do próximo frame — princípio 1 da spec (nunca perder uma série logada).
@@ -32,6 +34,8 @@ interface WinfitState {
   sessions: Session[] // encerradas (completed | partial)
   activeSession: Session | null
   prs: PRRecord[]
+  lastSetUndo: { sessionId: string; logId: string; exerciseIdx: number; wasSkipped: boolean; timer: Session['timer'] } | null
+  undoLastSet: () => boolean
 
   setWatchToken: (t: string) => void
   setDraft: (d: OnboardingDraft | null) => void
@@ -112,6 +116,7 @@ export const useStore = create<WinfitState>()(
       sessions: [],
       activeSession: null,
       prs: [],
+      lastSetUndo: null,
 
       setWatchToken: (t) => set({ watchToken: t.trim().toUpperCase() }),
       setDraft: (d) => set({ draft: d }),
@@ -190,6 +195,7 @@ export const useStore = create<WinfitState>()(
           isPR,
         }
         set({
+          lastSetUndo: { sessionId: activeSession.id, logId: log.id, exerciseIdx, wasSkipped: ex.skipped, timer: activeSession.timer },
           activeSession: {
             ...activeSession,
             exercises: activeSession.exercises.map((item, index) =>
@@ -200,11 +206,20 @@ export const useStore = create<WinfitState>()(
         })
         return log
       },
+      undoLastSet: () => {
+        const { activeSession: s, lastSetUndo: undo } = get()
+        if (!s || !undo || undo.sessionId !== s.id || !s.logs.some((log) => log.id === undo.logId)) return false
+        set({ lastSetUndo: null, activeSession: { ...s, timer: undo.timer,
+          logs: s.logs.filter((log) => log.id !== undo.logId),
+          exercises: s.exercises.map((ex, index) => index === undo.exerciseIdx ? { ...ex, skipped: undo.wasSkipped } : ex) } })
+        return true
+      },
 
       editSet: (logId, weight, reps) => {
         const s = get().activeSession
         if (!s) return
         set({
+          lastSetUndo: null,
           activeSession: {
             ...s,
             logs: s.logs.map((l) => (l.id === logId ? { ...l, weight, reps } : l)),
@@ -215,7 +230,7 @@ export const useStore = create<WinfitState>()(
       deleteSet: (logId) => {
         const s = get().activeSession
         if (!s) return
-        set({ activeSession: { ...s, logs: s.logs.filter((l) => l.id !== logId) } })
+        set({ lastSetUndo: null, activeSession: { ...s, logs: s.logs.filter((l) => l.id !== logId) } })
       },
 
       substitute: (exerciseIdx, newExerciseId, scope) => {
@@ -251,7 +266,7 @@ export const useStore = create<WinfitState>()(
             })),
           }
         }
-        set({ activeSession: { ...activeSession, exercises }, plan: nextPlan })
+        set({ lastSetUndo: null, activeSession: { ...activeSession, exercises }, plan: nextPlan })
       },
 
       skipExercise: (exerciseIdx) => {
@@ -260,6 +275,7 @@ export const useStore = create<WinfitState>()(
         const exercises = s.exercises.map((e, i) => (i === exerciseIdx ? { ...e, skipped: true } : e))
         const next = exercises.findIndex((e, i) => i > exerciseIdx && !e.skipped)
         set({
+          lastSetUndo: null,
           activeSession: {
             ...s,
             exercises,
@@ -277,13 +293,13 @@ export const useStore = create<WinfitState>()(
       clearTimer: () => {
         const s = get().activeSession
         if (!s) return
-        set({ activeSession: { ...s, timer: null } })
+        set({ lastSetUndo: null, activeSession: { ...s, timer: null } })
       },
 
       startTimer: (sec) => {
         const s = get().activeSession
         if (!s) return
-        set({ activeSession: { ...s, timer: { endsAt: Date.now() + sec * 1000, totalSec: sec } } })
+        set({ lastSetUndo: null, activeSession: { ...s, timer: { endsAt: Date.now() + sec * 1000, totalSec: sec } } })
       },
 
       finishSession: (rpe) => {
@@ -506,9 +522,9 @@ export const useStore = create<WinfitState>()(
       },
 
       exportData: () => {
-        const { profile, plan, archivedPlans, sessions, prs } = get()
+        const { profile, plan, archivedPlans, sessions, prs, activeSession } = get()
         return JSON.stringify(
-          { app: 'winfit', exportedAt: new Date().toISOString(), profile, plan, archivedPlans, sessions, prs },
+          { app: 'winfit', schemaVersion: 2, exportedAt: new Date().toISOString(), profile, plan, archivedPlans, sessions, prs, activeSession },
           null,
           2,
         )
@@ -517,19 +533,11 @@ export const useStore = create<WinfitState>()(
       // A conta sincroniza apenas os dados, nunca as ações do Zustand. O player
       // continua local-first: se cair a internet, cada série ainda é gravada aqui.
       importCloudData: (data) => {
-        const safe = data as Partial<Pick<WinfitState,
-          'seed' | 'watchToken' | 'profile' | 'draft' | 'plan' | 'archivedPlans' | 'sessions' | 'activeSession' | 'prs'>>
-        set({
-          seed: typeof safe.seed === 'string' ? safe.seed : get().seed,
-          watchToken: typeof safe.watchToken === 'string' ? safe.watchToken : get().watchToken,
-          profile: safe.profile ?? null,
-          draft: safe.draft ?? null,
-          plan: safe.plan ? sanitizeEquipmentFreePlan(safe.plan) : null,
-          archivedPlans: Array.isArray(safe.archivedPlans) ? safe.archivedPlans : [],
-          sessions: Array.isArray(safe.sessions) ? safe.sessions : [],
-          activeSession: safe.activeSession ?? null,
-          prs: Array.isArray(safe.prs) ? safe.prs : [],
-        })
+        const remote = parseWorkoutBackup(data)
+        const local = parseWorkoutBackup(JSON.parse(get().exportData()))
+        const merged = mergeWorkouts(local, remote)
+        set({ profile: merged.profile, plan: merged.plan ? sanitizeEquipmentFreePlan(merged.plan) : null,
+          archivedPlans: merged.archivedPlans, sessions: merged.sessions, activeSession: merged.activeSession, prs: merged.prs })
       },
 
       resetAll: () =>
@@ -541,22 +549,11 @@ export const useStore = create<WinfitState>()(
     {
       name: 'winfit-v1',
       merge: (persisted, current) => {
-        const saved = persisted as Partial<WinfitState> | undefined
-        return { ...current, ...saved, plan: saved?.plan ? sanitizeEquipmentFreePlan(saved.plan) : current.plan }
+        if (!persisted) return current
+        const saved = safeWorkoutState(persisted)
+        return { ...current, ...saved, lastSetUndo: null, plan: saved.plan ? sanitizeEquipmentFreePlan(saved.plan) : null }
       },
-      storage: createJSONStorage(() => {
-        if (typeof window !== 'undefined' && window.localStorage) return window.localStorage
-        if (typeof globalThis !== 'undefined' && (globalThis as any).localStorage) return (globalThis as any).localStorage
-        const memory = new Map<string, string>()
-        return {
-          getItem: (k: string) => memory.get(k) ?? null,
-          setItem: (k: string, v: string) => { memory.set(k, v) },
-          removeItem: (k: string) => { memory.delete(k) },
-          clear: () => memory.clear(),
-          key: (i: number) => Array.from(memory.keys())[i] ?? null,
-          length: 0,
-        } as Storage
-      }),
+      storage: createJSONStorage(() => workoutStorage),
     },
   ),
 )
