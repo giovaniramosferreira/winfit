@@ -1,0 +1,22 @@
+const fs=require('node:fs'),ts=require('typescript'),{strict:a}=require('node:assert');
+require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,f);
+const {createAssistantHandler}=require('../server/assistant.ts');
+const {createAssistantApi,validateAssistantPayload,ASSISTANT_CONSENT_VERSION}=require('../src/lib/assistantApi.ts');
+(async()=>{
+const payload={version:1,question:'Como organizar meu treino hoje?',context:{mode:'home',availableMinutes:20,equipment:['peso_corporal']},consent:{send:true,destination:'Fornecedor teste · região teste',version:ASSISTANT_CONSENT_VERSION}};
+a.throws(()=>validateAssistantPayload({...payload,biometrics:{weight:80}}));a.throws(()=>validateAssistantPayload({...payload,context:{...payload.context,fullPlan:{}}}));a.throws(()=>validateAssistantPayload({...payload,question:'x'.repeat(1001)}));
+let calls=0;const cache=new Map();const deps={authenticate:async token=>token==='valid'?{id:'user-1'}:null,destination:payload.consent.destination,provider:async input=>{calls++;a.equal('userId' in input,false);return{answer:'Veja a proposta local antes de aplicar qualquer alteração.'}},coordinator:{run:async(user,key,fingerprint,task)=>{const id=user+':'+key,old=cache.get(id);if(old)return old.fingerprint===fingerprint?{kind:'done',value:old.value}:{kind:'conflict'};const value=await task();cache.set(id,{fingerprint,value});return{kind:'done',value}}}};
+const request=(body=payload,token='valid',key='assistant-request-123')=>new Request('https://test/api/assistant',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json','Idempotency-Key':key},body:JSON.stringify(body)});
+const handle=createAssistantHandler(deps);
+a.equal((await handle(request(payload,'invalid'))).status,401);a.equal((await handle(request({...payload,consent:{...payload.consent,send:false}}))).status,403);a.equal((await handle(request({...payload,consent:{...payload.consent,destination:'wrong'}}))).status,403);
+a.equal((await createAssistantHandler({...deps,provider:null})(request())).status,503);a.equal((await createAssistantHandler({...deps,coordinator:null})(request())).status,503);
+a.equal((await handle(request({...payload,sessions:[]}))).status,400);a.equal((await handle(request())).status,200);a.equal((await handle(request())).status,200);a.equal(calls,1);
+a.equal((await handle(request({...payload,question:'Outra pergunta'}))).status,409);
+a.equal((await createAssistantHandler({...deps,provider:async()=>({answer:'ok',plan:{}})})(request(payload,'valid','assistant-bad-schema'))).status,502);
+a.equal((await createAssistantHandler({...deps,coordinator:{run:async()=>({kind:'rate-limited'})}})(request())).status,429);
+const disabled=createAssistantApi(null);a.equal(disabled.available,false);await a.rejects(()=>disabled.ask(payload,'valid','assistant-request-123'),/indisponível/);
+let sent=0;const api=createAssistantApi({endpoint:'/api/assistant',destination:payload.consent.destination},async(url,init)=>{sent++;a.equal(url,'/api/assistant');a.equal(init.headers.Authorization,'Bearer valid');a.deepEqual(JSON.parse(init.body),payload);return new Response(JSON.stringify({answer:'Resposta textual'}),{status:200,headers:{'Content-Type':'application/json'}})});
+a.equal((await api.ask(payload,'valid','assistant-request-123')).answer,'Resposta textual');a.equal(sent,1);
+await a.rejects(()=>api.ask({...payload,consent:{...payload.consent,destination:'wrong'}},'valid','assistant-request-123'));a.equal(sent,1);
+console.log('assistant API: auth, consent, minimal schema, unavailable config/provider, quotas, idempotency, text-only response PASS');
+})().catch(e=>{console.error(e);process.exitCode=1});
