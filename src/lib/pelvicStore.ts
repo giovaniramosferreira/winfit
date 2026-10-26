@@ -72,4 +72,3 @@ export function createPelvicStore(storage?: Pick<Storage, 'getItem' | 'setItem' 
   })
 }
 export const usePelvicStore = createPelvicStore(typeof localStorage === 'undefined' ? undefined : localStorage)
-

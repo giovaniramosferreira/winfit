@@ -45,5 +45,3 @@ const activeHome = render(createElement(Training,{ mode:'home' }))
 assert.match(activeHome,/Academia em andamento/)
 assert.ok(activeHome.includes(first.dayLabel))
 console.log('Session modules: four links, separate training modes, active session and index preserved OK')
-
-

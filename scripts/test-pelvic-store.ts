@@ -35,4 +35,3 @@ reloaded.getState().resetAll()
 assert.equal(reloaded.getState().history.length, 0)
 assert.equal(map.has(PELVIC_STORAGE_KEY), false)
 console.log('Pelvic store: gate, reload pause, idempotence, independent history, validated import, quota and reset OK')
-
