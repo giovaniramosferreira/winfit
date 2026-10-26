@@ -32,7 +32,7 @@ export default function Assistant() {
     const next = applyFutureDay(current.plan, proposal)
     if (next && warnings.length === 0) { useStore.setState({ plan: next }); setProposal(null); setMessage('Adaptação salva para o próximo treino desse dia. O treino em andamento continua igual.') }
   }
-  return <div className="page"><Link to="/home">← Início</Link><h1>Assistente</h1>
+  return <div className="page assistant-page"><Link to="/home">← Início</Link><h1>Assistente</h1>
     <section className="card"><h2>Explicações locais</h2><p>Regras do aplicativo. IA remota indisponível: o backend autenticado ainda não está configurado.</p>
       <label><input type="checkbox" checked={enabled} onChange={(e) => { setEnabled(e.target.checked); setAnswer(''); setContext(e.target.checked ? buildAssistantContext(plan, sessions, profile) : '') }} /> Preparar contexto do plano e das 3 últimas sessões somente nesta consulta local</label>
       <p className="small muted">Revise, remova ou edite os fatos antes de consultar. Dados da conta, medidas corporais e observações de saúde não entram nesta prévia.</p>

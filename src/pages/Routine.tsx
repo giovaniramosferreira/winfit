@@ -28,7 +28,7 @@ export default function Routine() {
     const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'winfit-lembrete.ics'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
   const toggleDay = (kind: 'reminder' | 'checkin', day: number) => { const current = r[kind]; update({ [kind]: { ...current, days: current.days.includes(day) ? current.days.filter((d) => d !== day) : [...current.days, day].sort() } }) }
-  return <div className="page"><Link to="/home">← Início</Link><h1>Minha rotina</h1>
+  return <div className="page routine-page"><Link to="/home">← Início</Link><h1>Minha rotina</h1>
     {error && <section className="card" role="alert"><p>{error}</p><button className="btn" onClick={exportOriginal}>Exportar dados originais da rotina</button>
       {blocked && <button className="btn" onClick={() => { if (window.confirm('Redefinir a rotina local? Exporte os dados originais antes de continuar.')) useRoutineStore.getState().resetAll() }}>Redefinir somente a rotina</button>}</section>}
     <fieldset disabled={blocked} style={{ border: 0, padding: 0, margin: 0 }}>
