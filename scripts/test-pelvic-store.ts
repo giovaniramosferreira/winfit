@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { createPelvicStore, PELVIC_STORAGE_KEY } from '../src/lib/pelvicStore'
+import { createPelvicStore, PELVIC_STORAGE_KEY, validatePelvicData } from '../src/lib/pelvicStore'
 const map = new Map<string, string>()
 const storage = { getItem: (k: string) => map.get(k) ?? null, setItem: (k: string, v: string) => { map.set(k,v) }, removeItem: (k: string) => { map.delete(k) } }
 const store = createPelvicStore(storage)
@@ -7,6 +7,10 @@ assert.equal(store.getState().audio, false)
 assert.equal(store.getState().start('kegel-preview-v1', 1000), false)
 assert.equal(store.getState().start('breathing-v1', 1000), true)
 store.getState().tick(2000)
+const activePayload = JSON.parse(store.getState().exportData())
+const unchanged = JSON.stringify(activePayload)
+assert.equal(validatePelvicData(activePayload).active?.timer.status,'paused')
+assert.equal(JSON.stringify(activePayload),unchanged,'Validation must not mutate source backup')
 const reloaded = createPelvicStore(storage)
 assert.equal(reloaded.getState().active?.timer.status, 'paused')
 assert.equal(reloaded.getState().active?.timer.elapsedMs, 1000)
@@ -31,3 +35,4 @@ reloaded.getState().resetAll()
 assert.equal(reloaded.getState().history.length, 0)
 assert.equal(map.has(PELVIC_STORAGE_KEY), false)
 console.log('Pelvic store: gate, reload pause, idempotence, independent history, validated import, quota and reset OK')
+

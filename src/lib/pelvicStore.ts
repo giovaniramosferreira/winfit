@@ -14,9 +14,9 @@ interface PelvicState extends PelvicData {
 }
 const empty = (): PelvicData => ({ version: 1, active: null, history: [], audio: false, vibration: false })
 const finite = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v) && v >= 0
-function validate(raw: unknown): PelvicData {
+export function validatePelvicData(raw: unknown): PelvicData {
   if (!raw || typeof raw !== 'object') throw Error('Formato inválido')
-  const d = raw as PelvicData
+  const d = { ...(raw as PelvicData) }
   if (d.version !== 1 || typeof d.audio !== 'boolean' || typeof d.vibration !== 'boolean' || !Array.isArray(d.history) || d.history.length > 10000) throw Error('Versão ou formato inválido')
   const validProgram = (id: string, version: number) => pelvicPrograms.find(p => p.id === id && p.version === version && p.available)
   const ids = new Set<string>()
@@ -39,7 +39,7 @@ function validate(raw: unknown): PelvicData {
 }
 export function createPelvicStore(storage?: Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>) {
   let initial = empty(); let loadError: string | null = null
-  try { const value = storage?.getItem(PELVIC_STORAGE_KEY); if (value) initial = validate(JSON.parse(value)) } catch { loadError = 'Não foi possível ler os dados pélvicos. O conteúdo salvo foi preservado; restaure um backup válido ou redefina estes dados.' }
+  try { const value = storage?.getItem(PELVIC_STORAGE_KEY); if (value) initial = validatePelvicData(JSON.parse(value)) } catch { loadError = 'Não foi possível ler os dados pélvicos. O conteúdo salvo foi preservado; restaure um backup válido ou redefina estes dados.' }
   let blocked = !!loadError
   return create<PelvicState>((set, get) => {
     const data = (): PelvicData => { const s = get(); return { version: 1, active:s.active, history:s.history, audio:s.audio, vibration:s.vibration } }
@@ -66,9 +66,10 @@ export function createPelvicStore(storage?: Pick<Storage, 'getItem' | 'setItem' 
       stop(now = Date.now()) { const a = get().active; if (!a || !finite(now)) return; const timer = pauseTimer(a.timer,now); finish(timer,now,timer.status === 'completed' ? 'completed' : 'interrupted'); save() },
       setSignals(audio,vibration) { set({ audio,vibration }); save() },
       exportData: () => JSON.stringify(data(),null,2),
-      importData(json) { try { const next = validate(JSON.parse(json)); set(next); blocked = false; save(); return true } catch { set({ error:'Backup pélvico inválido. Os dados atuais foram preservados.' }); return false } },
+      importData(json) { try { const next = validatePelvicData(JSON.parse(json)); set(next); blocked = false; save(); return true } catch { set({ error:'Backup pélvico inválido. Os dados atuais foram preservados.' }); return false } },
       resetAll() { try { storage?.removeItem(PELVIC_STORAGE_KEY); blocked = false; set({ ...empty(),error:null }) } catch { set({ error:'Não foi possível apagar os dados pélvicos salvos.' }) } },
     }
   })
 }
 export const usePelvicStore = createPelvicStore(typeof localStorage === 'undefined' ? undefined : localStorage)
+

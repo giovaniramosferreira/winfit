@@ -14,7 +14,12 @@ const { default: Home } = await import('../src/pages/Home')
 const profile: TrainingProfile = { goal:'health', experience:'none', currentState:'sometimes', location:'gym_full', equipment:['halteres','barra','banco','maquinas','polia','peso_corporal'], frequency:3, sessionTimeMin:30, limitations:[], biometrics:{}, version:1 }
 const plan = generatePlan(profile,'module-test')
 useStore.setState({ profile,plan,sessions:[],activeSession:null,prs:[],seed:'module-test' })
-const render = (el: ReturnType<typeof createElement>) => renderToStaticMarkup(createElement(StaticRouter, { location:'/home' },el))
+const render = (el: ReturnType<typeof createElement>) => {
+  const initial = useStore.getInitialState(); const previous = { ...initial }
+  Object.assign(initial,useStore.getState())
+  try { return renderToStaticMarkup(createElement(StaticRouter,{ location:'/home' },el)) }
+  finally { Object.assign(initial,previous) }
+}
 assert.equal(sessionModules.length,4)
 const hub = render(createElement(Home))
 for (const path of ['/training','/calisthenics','/pelvic','/nutrition','/routine','/assistant']) assert.ok(hub.includes(`href="${path}"`),path)
@@ -40,4 +45,5 @@ const activeHome = render(createElement(Training,{ mode:'home' }))
 assert.match(activeHome,/Academia em andamento/)
 assert.ok(activeHome.includes(first.dayLabel))
 console.log('Session modules: four links, separate training modes, active session and index preserved OK')
+
 
