@@ -45,7 +45,7 @@ export function createPelvicStore(storage?: Pick<Storage, 'getItem' | 'setItem' 
     const data = (): PelvicData => { const s = get(); return { version: 1, active:s.active, history:s.history, audio:s.audio, vibration:s.vibration } }
     const save = () => {
       if (blocked) return
-      try { storage?.setItem(PELVIC_STORAGE_KEY, JSON.stringify(data())); set({ error:null }) }
+      try { if (!storage) throw Error('unavailable'); storage.setItem(PELVIC_STORAGE_KEY, JSON.stringify(data())); set({ error:null }) }
       catch { set({ error:'Não foi possível salvar os dados pélvicos neste dispositivo. Exporte um backup antes de sair.' }) }
     }
     const finish = (timer: PelvicTimer, now: number, status: PelvicRecord['status']) => {
@@ -80,4 +80,6 @@ export function createPelvicStore(storage?: Pick<Storage, 'getItem' | 'setItem' 
     }
   })
 }
-export const usePelvicStore = createPelvicStore(typeof localStorage === 'undefined' ? undefined : localStorage)
+let browserStorage: Pick<Storage, 'getItem' | 'setItem' | 'removeItem'> | undefined
+try { browserStorage = typeof localStorage === 'undefined' ? undefined : localStorage } catch { /* A failed save remains visible in the store. */ }
+export const usePelvicStore = createPelvicStore(browserStorage)
