@@ -15,6 +15,13 @@ import TabBar from './components/TabBar'
 import MiniBar from './components/MiniBar'
 import PwaToasts from './components/PwaToasts'
 import AuthProvider from './components/AuthProvider'
+import Training from './pages/Training'
+import Nutrition from './pages/Nutrition'
+import Pelvic from './pages/Pelvic'
+import Routine from './pages/Routine'
+import Assistant from './pages/Assistant'
+import SessionDetail from './pages/SessionDetail'
+import WorkoutStorageNotice from './components/WorkoutStorageNotice'
 
 export default function App() {
   const profile = useStore((s) => s.profile)
@@ -29,12 +36,20 @@ export default function App() {
   return (
     <AuthProvider><div className={`app-shell${isLanding ? ' wide' : ''}`}>
       <PwaToasts />
+      <WorkoutStorageNotice />
       <Routes>
         <Route path="/" element={onboarded ? <Navigate to="/home" replace /> : <Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/preview" element={<Preview />} />
         <Route path="/home" element={onboarded ? <Home /> : <Navigate to="/" replace />} />
+        <Route path="/training" element={onboarded ? <Training mode="gym" /> : <Navigate to="/" replace />} />
+        <Route path="/calisthenics" element={onboarded ? <Training mode="home" /> : <Navigate to="/" replace />} />
+        <Route path="/nutrition" element={<Nutrition />} />
+        <Route path="/pelvic" element={<Pelvic />} />
+        <Route path="/routine" element={<Routine />} />
+        <Route path="/assistant" element={onboarded ? <Assistant /> : <Navigate to="/" replace />} />
+        <Route path="/session/:id" element={<SessionDetail />} />
         <Route path="/player" element={<Player />} />
         <Route path="/summary/:id" element={<Summary />} />
         <Route path="/progress" element={onboarded ? <Progress /> : <Navigate to="/" replace />} />

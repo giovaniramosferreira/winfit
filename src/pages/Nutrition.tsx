@@ -26,7 +26,7 @@ export default function Nutrition() {
     const goal: NutritionGoal=mode==='direct'?{id:uid(),date:goalDate,mode,kcal:direct.trim()?Number(direct):NaN}:{id:uid(),date:goalDate,mode,maintenance:maintenance.trim()?Number(maintenance):NaN,deficit:deficit.trim()?Number(deficit):NaN}
     if(nutritionStore.upsertGoal(goal)){setGoalOpen(false);setMessage('Meta salva com vigência a partir da data informada.')}
   }catch(e){setMessage((e as Error).message)}}
-  return <div className="page fade-in">
+  return <div className="page nutrition-page fade-in">
     <div className="sheet-head"><span>Alimentação</span><span>Diário manual</span></div>
     <h1>Seu diário <em>alimentar.</em></h1>
     <p className="small muted">Registros locais. As calorias são informadas por você; análise por IA ainda não está disponível.</p>

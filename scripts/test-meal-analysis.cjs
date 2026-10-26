@@ -20,10 +20,12 @@ const coordinator={run:async(user,key,fingerprint,fn)=>{const k=user+':'+key,old
 const deps={authenticate:async token=>token==='valid'?{id:'user-1'}:null,destination:'Fornecedor teste, região de teste',readOwnedPhoto:async()=>({bytes,type:'image/jpeg'}),coordinator,provider:async()=>{calls++;return{candidates:[{name:'arroz',confidence:.8}]}}};
 const body={path:'user-1/photo.jpg',consent:{analysis:true,destination:deps.destination}};
 const req=(b=body,auth='valid',key='request-12345678')=>new Request('https://test/api/meal-analysis',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+auth,'Idempotency-Key':key},body:JSON.stringify(b)});
+deps.sanitizePhoto=async(photo)=>photo; // Test double only; production must independently decode/re-encode.
 let handler=createMealAnalysisHandler(deps);
 a.equal((await handler(req(body,'bad'))).status,401);a.equal((await handler(req({...body,path:'user-2/photo.jpg'}))).status,403);
 a.equal((await handler(req({...body,consent:{analysis:false,destination:deps.destination}}))).status,403);
 a.equal((await createMealAnalysisHandler({...deps,provider:null})(req())).status,503);
+a.equal((await createMealAnalysisHandler({...deps,sanitizePhoto:null})(req())).status,503);
 a.equal((await handler(req())).status,200);a.equal((await handler(req())).status,200);a.equal(calls,1);
 a.equal((await handler(req({...body,path:'user-1/other.jpg'}))).status,409);
 a.equal((await createMealAnalysisHandler({...deps,provider:async()=>({candidates:[{name:'x',confidence:.5,kcal:5}]})})(req(body,'valid','bad-schema-12345'))).status,502);

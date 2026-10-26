@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useStore } from '../lib/store'
+import { privacy, usePrivacy } from '../lib/privacy'
 import {
   getRelayUrl,
   getShortcutEndpoints,
@@ -16,6 +17,9 @@ export default function WatchModal({
   syncState?: SyncState
 }) {
   const watchToken = useStore((s) => s.watchToken)
+  const preference = usePrivacy()
+  const destination = getRelayUrl().replace(/\/+$/, '')
+  const enabled = preference.watchDestination === destination
   const setWatchToken = useStore((s) => s.setWatchToken)
 
   const [copied, setCopied] = useState<string | null>(null)
@@ -24,6 +28,7 @@ export default function WatchModal({
   const [editingToken, setEditingToken] = useState(false)
   const [tempToken, setTempToken] = useState(watchToken)
   const [tempRelay, setTempRelay] = useState(getRelayUrl())
+  const [relayError, setRelayError] = useState('')
 
   const endpoints = getShortcutEndpoints(watchToken)
 
@@ -49,7 +54,12 @@ export default function WatchModal({
   }
 
   const handleSaveRelay = () => {
-    setCustomRelayUrl(tempRelay)
+    try {
+      const parsed = new URL(tempRelay)
+      if (parsed.protocol !== 'https:' || parsed.username || parsed.password) throw Error('Use HTTPS sem credenciais no endereço.')
+      privacy.setWatchDestination(null)
+      setCustomRelayUrl(tempRelay); setRelayError('Destino salvo. Ative novamente para autorizar este endereço.')
+    } catch { setRelayError('Endereço inválido. Use uma URL HTTPS completa.') }
   }
 
   const statusLabel: Record<SyncState, { text: string; color: string }> = {
@@ -76,6 +86,16 @@ export default function WatchModal({
         <p className="small muted" style={{ marginTop: 4 }}>
           Bata séries e receba a vibração do timer direto no pulso.
         </p>
+        {relayError && <p role="status" className="small">{relayError}</p>}
+        <section className="card" style={{ marginTop: 12 }}>
+          <h3>{enabled ? 'Envio ao Watch ativado' : 'Envio ao Watch desativado'}</h3>
+          <p className="small muted" style={{ marginTop: 8 }}>Ao ativar, exercício atual, carga/repetições, séries e descanso são enviados para <b>{new URL(destination).hostname}</b>, usando seu código de pareamento. O relay permite consultar esse estado e enviar comandos a quem tiver o código. Não compartilhe o código.</p>
+          <p className="tiny muted" style={{ marginTop: 8 }}>Desligar interrompe novos envios e comandos neste aparelho. Não confirma exclusão do estado já recebido pelo relay; não há garantia de prazo de retenção configurada no aplicativo.</p>
+          <button className="btn btn-ghost" style={{ marginTop: 12 }} onClick={() => privacy.setWatchDestination(enabled ? null : destination)}>
+            {enabled ? 'Desativar envio ao Watch' : 'Ativar envio ao Watch'}
+          </button>
+          {preference.error && <p role="alert" className="small">{preference.error}</p>}
+        </section>
 
         {/* Status de Conexão */}
         <div

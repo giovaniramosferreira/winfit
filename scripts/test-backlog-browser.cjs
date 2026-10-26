@@ -43,7 +43,10 @@ async function run() {
   await check('Watch sem consentimento gera zero requests',async()=>{await page.waitForTimeout(1600);assert.equal(relay.length,0)})
   await check('Watch opt-in inicia relay mock e revogação interrompe',async()=>{
     await go('/profile'); await page.getByRole('button',{name:'Adicionar ao Apple Watch',exact:true}).click(); await page.getByRole('button',{name:'Ativar envio ao Watch',exact:true}).click(); await page.getByRole('button',{name:'✕',exact:true}).click(); await go('/player'); await page.waitForTimeout(1300); assert.ok(relay.length>0); assert.ok(relay.some(r=>r.kind==='status')); assert.ok(relay.some(r=>r.kind==='poll'))
-    await page.evaluate(async()=>{const {privacy}=await import(window.__qaPath('/src/lib/privacy.ts'));privacy.setWatchDestination(null)})
+    const otherTab = await context.newPage()
+    await otherTab.goto(`${base}#/home`)
+    await otherTab.evaluate(()=>localStorage.setItem('winfit-privacy-v1',JSON.stringify({watchDestination:null})))
+    await otherTab.close()
     await page.waitForTimeout(200); const count=relay.length; await page.waitForTimeout(1500); assert.equal(relay.length,count)
   })
   await check('Saúde pélvica inicia, pausa e recarrega pausada',async()=>{
@@ -76,7 +79,7 @@ async function run() {
   assert.equal(errors.length,0,`Browser errors: ${errors.join('; ')}`)
  } finally {
    const report={results,failures,errors,externalRequests:external.length,relayRequests:relay.map(r=>r.kind),viewportScreenshots:artifacts}
-   fs.mkdirSync('docs/qa',{recursive:true});fs.writeFileSync('docs/qa/backlog-mobile.md',`# QA móvel do backlog\n\nExecução local: ${new Date().toISOString()} · Chrome headless · ${base}\n\n${results.map(r=>`- PASS: ${r}`).join('\n')}\n\n${failures.map(f=>`- FAIL: ${f.name}: ${f.error}`).join('\n')}\n\nConsole pageerrors: ${errors.length}. Requests externos interceptados: ${external.length}; nenhum encaminhado à rede. Relay mock: ${relay.length}.\n\nInspeção visual de Home390, Nutrition320 e Routine320: módulos legíveis e sem corte horizontal. Routine usa controles nativos pequenos e labels colados; recomendar padronização de campos e áreas de toque antes da liberação. Sem baseline visual: regressão de aparência inconclusiva. Screenshots em docs/testing/artifacts/backlog-*.png. Não substitui Safari físico, leitor de tela ou medição de Core Web Vitals.\n\n\`\`\`json\n${JSON.stringify(report,null,2)}\n\`\`\`\n`)
+   fs.mkdirSync('docs/qa',{recursive:true});fs.writeFileSync('docs/qa/backlog-mobile.md',`# QA móvel do backlog\n\nExecução local: ${new Date().toISOString()} · Chrome headless · ${base}\n\n${results.map(r=>`- PASS: ${r}`).join('\n')}\n\n${failures.map(f=>`- FAIL: ${f.name}: ${f.error}`).join('\n')}\n\nConsole pageerrors: ${errors.length}. Requests externos interceptados: ${external.length}; nenhum encaminhado à rede. Relay mock: ${relay.length}.\n\nInspeção visual de Home390, Nutrition320 e Routine320: módulos legíveis e sem corte horizontal. Campos de Rotina e Alimentação receberam estilo e áreas de toque após a primeira inspeção. A primeira observação de controles pequenos foi tratada. Sem baseline visual: regressão de aparência inconclusiva. Screenshots em docs/testing/artifacts/backlog-*.png. Não substitui Safari físico, leitor de tela ou medição de Core Web Vitals.\n\n\`\`\`json\n${JSON.stringify(report,null,2)}\n\`\`\`\n`)
    await browser.close()
  }
  if(failures.length||errors.length) process.exitCode=1

@@ -1,6 +1,6 @@
 # QA móvel do backlog
 
-Execução local: 2026-10-26T18:54:49.029Z · Chrome headless · http://127.0.0.1:5173/
+Execução local: 2026-10-26T19:08:47.853Z · Chrome headless · http://127.0.0.1:5173/
 
 - PASS: Hub contém quatro módulos e links auxiliares
 - PASS: Academia e calistenia preservam sessão, índice, séries e descanso
@@ -32,7 +32,7 @@ Execução local: 2026-10-26T18:54:49.029Z · Chrome headless · http://127.0.0.
 
 Console pageerrors: 0. Requests externos interceptados: 4; nenhum encaminhado à rede. Relay mock: 4.
 
-Inspeção visual de Home390, Nutrition320 e Routine320: módulos legíveis e sem corte horizontal. Routine usa controles nativos pequenos e labels colados; recomendar padronização de campos e áreas de toque antes da liberação. Sem baseline visual: regressão de aparência inconclusiva. Screenshots em docs/testing/artifacts/backlog-*.png. Não substitui Safari físico, leitor de tela ou medição de Core Web Vitals.
+Inspeção visual de Home390, Nutrition320 e Routine320: módulos legíveis e sem corte horizontal. Campos de Rotina e Alimentação receberam estilo e áreas de toque após a primeira inspeção. A primeira observação de controles pequenos foi tratada. Sem baseline visual: regressão de aparência inconclusiva. Screenshots em docs/testing/artifacts/backlog-*.png. Não substitui Safari físico, leitor de tela ou medição de Core Web Vitals.
 
 ```json
 {

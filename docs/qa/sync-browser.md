@@ -1,6 +1,6 @@
 # QA browser de sincronização
 
-2026-10-26T18:59:59.602Z · Chrome headless · http://127.0.0.1:5174/
+2026-10-26T19:09:00.652Z · Chrome headless · http://127.0.0.1:5174/
 
 Configuração sintética: host winfit-test.invalid, chave pública fictícia. Todo HTTP externo interceptado; nenhuma chamada real ao Supabase ou relay. Dados e credenciais de teste sem identidade real.
 

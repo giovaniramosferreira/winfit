@@ -3,8 +3,9 @@ import { adaptationWarnings, applyFutureDay, buildAssistantContext, localExplana
 import { EXERCISES } from '../src/data/exercises'
 assert.match(localExplanation('Treino curto', false), /Ative/)
 assert.match(localExplanation('Treino curto', true), /local/)
-const day = { exercises: [{ id: 'a', optional: false }, { id: 'b', optional: true }], estMin: 45 } as any
+const day = { exercises: [{ id: 'a', optional: false, sets: 3, restSec: 60 }, { id: 'b', optional: true, sets: 3, restSec: 60 }], estMin: 45 } as any
 assert.equal(proposeAdaptation(day, 20).exercises.length, 1)
+assert.ok(proposeAdaptation(day, 20).estMin < proposeAdaptation(day, 60).estMin, 'Estimate includes actual remaining sets and rests')
 assert.equal(day.exercises.length, 2)
 assert.equal(proposeAdaptation(day, 60).exercises.length, 2)
 const profile = { equipment: ['peso_corporal'], limitations: [], location: 'home_none' } as any

@@ -19,6 +19,13 @@ const merged = mergeWorkouts(snapshot, parseWorkoutBackup({ ...old, sessions: [{
 assert.equal(merged.sessions.length, 1)
 assert.deepEqual(merged.activeSession, before)
 assert.deepEqual(mergeWorkouts(merged, merged), merged, 'Reconciliation is idempotent')
+const differentActive = { ...snapshot, activeSession: { ...before, id: 'other-active' } }
+const activeConflict = mergeWorkouts(snapshot, differentActive)
+assert.equal(activeConflict.activeSession!.id, before.id)
+assert.equal(activeConflict.sessions.find((s) => s.id === 'other-active')!.status, 'partial', 'Other active workout is recovered, not lost')
+const completed = { ...snapshot, activeSession: null, sessions: [{ ...before, status: 'completed' as const, timer: null }] }
+assert.equal(mergeWorkouts(completed, snapshot).activeSession, null, 'Completed workouts cannot be resurrected')
+assert.throws(() => parseWorkoutBackup({ ...old, sessions: [completed.sessions[0], completed.sessions[0]] }), 'Duplicate session IDs rejected')
 for (const bad of [{ schemaVersion: 999 }, { app: 'other' }, { sessions: [{}] }, { profile: { frequency: 'oops' } },
   { ...old, activeSession: { ...before, currentIndex: 999 } }, { ...old, plan: { days: [] } }]) {
   assert.throws(() => parseWorkoutBackup(bad), 'Malformed backup is rejected')

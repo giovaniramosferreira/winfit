@@ -2,12 +2,19 @@
  * Cliente mínimo do Supabase REST/Auth. Não traz SDK para manter o PWA leve.
  * Sem as variáveis VITE_SUPABASE_* o produto continua utilizável localmente.
  */
+import { cloudTransport } from './cloudTransport'
 const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/$/, '')
 const key = import.meta.env.VITE_SUPABASE_ANON_KEY
 const SESSION_KEY = 'winfit-auth-session'
+let authEpoch = 0
+let restoring: Promise<AuthSession | null> | null = null
 
 export interface AuthSession { access_token: string; refresh_token: string; expires_at?: number; user?: { id: string; email?: string } }
 export const isAuthConfigured = Boolean(url && key)
+export const cloudDestination = url ? new URL(url).hostname : null
+export const loadCloudRecord = (session: AuthSession) => cloudTransport(url!, key!).load(session)
+export const saveCloudRecord = (session: AuthSession, data: Record<string, unknown>, expected: string | null) => cloudTransport(url!, key!).save(session, data, expected)
+export const deleteCloudRecord = (session: AuthSession, expected: string) => cloudTransport(url!, key!).remove(session, expected)
 
 function headers(token?: string) {
   return { apikey: key!, Authorization: `Bearer ${token ?? key!}`, 'Content-Type': 'application/json' }
@@ -20,7 +27,8 @@ function saveSession(session: AuthSession | null) {
   else localStorage.removeItem(SESSION_KEY)
 }
 
-export async function restoreSession(): Promise<AuthSession | null> {
+async function restoreSessionRequest(): Promise<AuthSession | null> {
+  const run = authEpoch
   if (!isAuthConfigured) return null
   // Magic-link callbacks arrive in the URL fragment.
   const hash = new URLSearchParams(window.location.hash.slice(1))
@@ -34,16 +42,24 @@ export async function restoreSession(): Promise<AuthSession | null> {
   if (!session) return null
   if (session.expires_at && session.expires_at < Date.now() / 1000 + 30 && session.refresh_token) {
     const response = await fetch(`${url}/auth/v1/token?grant_type=refresh_token`, { method: 'POST', headers: headers(), body: JSON.stringify({ refresh_token: session.refresh_token }) })
+    if (run !== authEpoch) return null
     if (!response.ok) { saveSession(null); return null }
     session = await response.json()
+    if (run !== authEpoch) return null
     saveSession(session)
   }
   if (!session) return null
   const user = await fetch(`${url}/auth/v1/user`, { headers: headers(session.access_token) })
+  if (run !== authEpoch) return null
   if (!user.ok) { saveSession(null); return null }
   session.user = await user.json()
+  if (run !== authEpoch) return null
   saveSession(session)
   return session
+}
+export function restoreSession(): Promise<AuthSession | null> {
+  if (!restoring) restoring = restoreSessionRequest().finally(() => { restoring = null })
+  return restoring
 }
 
 export async function sendMagicLink(email: string) {
@@ -55,19 +71,4 @@ export async function sendMagicLink(email: string) {
   if (!response.ok) throw new Error('Não foi possível enviar o link. Tente novamente.')
 }
 
-export function signOut() { saveSession(null) }
-
-export async function loadCloudState(session: AuthSession): Promise<Record<string, unknown> | null> {
-  const response = await fetch(`${url}/rest/v1/user_state?select=data&id=eq.${session.user!.id}`, { headers: headers(session.access_token) })
-  if (!response.ok) throw new Error('Não foi possível buscar seus dados sincronizados.')
-  const rows = await response.json()
-  return rows[0]?.data ?? null
-}
-
-export async function saveCloudState(session: AuthSession, data: Record<string, unknown>) {
-  const response = await fetch(`${url}/rest/v1/user_state`, {
-    method: 'POST', headers: { ...headers(session.access_token), Prefer: 'resolution=merge-duplicates,return=minimal' },
-    body: JSON.stringify({ id: session.user!.id, data, updated_at: new Date().toISOString() }),
-  })
-  if (!response.ok) throw new Error('Não foi possível sincronizar seus dados.')
-}
+export function signOut() { authEpoch++; saveSession(null) }

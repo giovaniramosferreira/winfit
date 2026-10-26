@@ -26,6 +26,8 @@ SQL `supabase/meal-schema.sql` preparado, **não aplicado**: refeições/itens/f
 
 ## Gates antes de habilitar nuvem/IA
 
+O handler também fecha com 503 sem `sanitizePhoto`: o backend precisa de um decoder/re-encoder que remova metadados independentemente do cliente. Os testes usam um adapter simulado; não provam sanitização de bytes reais no servidor.
+
 1. Escolher e aprovar fornecedor, região exata, preço/teto e retenção; configurar backend autenticado, adapters de leitura/assinatura e coordenador durável. Não há contratação/chamada paga neste lote.
 2. Consentimentos separados e revogáveis: guardar foto em bucket privado com destino/retensão e enviar bytes ao fornecedor/região nomeados. Nenhum envio enquanto destino não estiver configurado; fallback manual sempre disponível.
 3. Aprovar fonte/licença e pipeline versionado; persistir proveniência. Imagem identifica candidatos, nunca fornece kcal ou quantidades confiáveis. Usuário confirma alimento/preparo/quantidade antes do cálculo.

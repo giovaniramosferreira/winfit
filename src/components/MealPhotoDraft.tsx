@@ -19,7 +19,7 @@ export default function MealPhotoDraft() {
       <div className="row" style={{marginTop:12,flexWrap:'wrap'}}><button type="button" className="btn btn-primary" disabled={!saveConsent} onClick={download}>Baixar cópia sem metadados</button><button type="button" className="btn btn-ghost" onClick={()=>{setPhoto(null);setSaveConsent(false);setMessage('Rascunho descartado.')}}>Descartar foto</button></div>
     </>}
     {message&&<p role="status">{message}</p>}
-    <p className="small muted" style={{marginTop:12}}>Análise por foto e armazenamento privado em nuvem indisponíveis: fornecedor, serviço autenticado e política de retenção ainda precisam de configuração e validação. Continue adicionando alimentos manualmente.</p>
+    <p className="small muted" style={{marginTop:12}}>A análise automática e o envio de fotos à nuvem ainda não estão disponíveis. Você pode consultar a foto e registrar os alimentos manualmente.</p>
   </section>
 }
 export function NutritionLabelCalculator({name,onConfirm}:{name:string;onConfirm:(value:ConfirmedNutrition)=>void}) {

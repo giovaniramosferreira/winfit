@@ -7,6 +7,10 @@ import InstallCard from '../components/InstallCard'
 import WatchModal from '../components/WatchModal'
 import { useOnline, useServiceWorker } from '../lib/pwa'
 import AccountCard from '../components/AccountCard'
+import DataControls from '../components/DataControls'
+import { applicationSnapshot, downloadBackup, resetApplicationData } from '../lib/applicationBackup'
+import { useAuth } from '../components/AuthProvider'
+import { privacy } from '../lib/privacy'
 
 const GOAL_LABEL: Record<Goal, string> = {
   hypertrophy: 'Ganhar músculo',
@@ -22,8 +26,8 @@ export default function Profile() {
   const plan = useStore((s) => s.plan)!
   const watchToken = useStore((s) => s.watchToken)
   const regenerate = useStore((s) => s.regenerate)
-  const exportData = useStore((s) => s.exportData)
-  const resetAll = useStore((s) => s.resetAll)
+  const { logout } = useAuth()
+  const [dataError, setDataError] = useState('')
   const setDraft = useStore((s) => s.setDraft)
   const online = useOnline()
   const { needRefresh, update } = useServiceWorker()
@@ -35,13 +39,8 @@ export default function Profile() {
   const [showPlan, setShowPlan] = useState(false)
 
   const doExport = () => {
-    const blob = new Blob([exportData()], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `winfit-export-${new Date().toISOString().slice(0, 10)}.json`
-    a.click()
-    URL.revokeObjectURL(url)
+    try { downloadBackup(applicationSnapshot()); setDataError('') }
+    catch (error) { setDataError(`Não foi possível exportar: ${String(error)}`) }
   }
 
   const applyAdjust = () => {
@@ -118,6 +117,7 @@ export default function Profile() {
       </div>
 
       <AccountCard />
+      <DataControls />
 
       <div style={{ marginTop: 12 }}>
         <InstallCard variant="settings" />
@@ -142,20 +142,21 @@ export default function Profile() {
       <div className="card" style={{ marginTop: 12 }}>
         <h3>Seus dados</h3>
         <p className="small muted" style={{ marginTop: 6 }}>
-          Tudo fica salvo neste aparelho (navegador). Exporte um backup antes de trocar de aparelho ou limpar dados.
+          Os registros ficam neste aparelho. Backup na conta só é enviado após sua confirmação; fotos ficam fora desse backup. Exporte uma cópia antes de limpar dados.
         </p>
         <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={doExport}>
           ⬇ Exportar meus dados (JSON)
         </button>
         <button className="btn btn-danger btn-sm" style={{ marginTop: 10 }}
           onClick={() => {
-            if (confirm('Apagar TODOS os dados (plano, histórico, recordes)? Essa ação não tem volta.')) {
-              resetAll()
-              nav('/')
+            if (confirm('Apagar dados locais de treino, alimentação, saúde pélvica e rotina? Exporte um backup antes. Esta ação não exclui backups na nuvem.')) {
+              try { resetApplicationData(); privacy.setWatchDestination(null); logout(); nav('/') }
+              catch (error) { setDataError(String(error)) }
             }
           }}>
-          Apagar todos os dados
+          Apagar dados deste aparelho
         </button>
+        {dataError && <p role="alert" className="small">{dataError}</p>}
       </div>
 
       <p className="tiny faint" style={{ marginTop: 20, textAlign: 'center' }}>

@@ -1,6 +1,6 @@
 import type { Equipment, Plan, Session, TrainingProfile, WorkoutDay } from '../types'
 import { EXERCISES, byId } from '../data/exercises'
-import { canPerform } from './generator'
+import { canPerform, estimateDayMin } from './generator'
 import { isEquipmentFree, isTimedExercise } from './exerciseRules'
 
 export interface AssistantRequest { context: string; question: string; consentVersion: string }
@@ -28,14 +28,15 @@ export function localExplanation(context: string, enabled: boolean): string {
 }
 export function proposeAdaptation(day: WorkoutDay, minutes: number, profile?: TrainingProfile, equipment?: Equipment[]): WorkoutDay {
   const shorter = Number.isFinite(minutes) && minutes > 0 && minutes < day.estMin
-  return { ...day, exercises: day.exercises.filter((item) => !shorter || !item.optional).map((item) => {
+  const exercises = day.exercises.filter((item) => !shorter || !item.optional).map((item) => {
     if (!profile || !equipment) return { ...item }
     const original = byId.get(item.exerciseId)
     const compatible = (exercise: (typeof EXERCISES)[number]) => canPerform(exercise, equipment, profile.limitations) && (equipment.some((e) => e !== 'peso_corporal') || isEquipmentFree(exercise))
     if (!original || compatible(original)) return { ...item }
     const replacement = [...EXERCISES].sort((a, b) => a.equivRank - b.equivRank).find((candidate) => candidate.equivGroup === original.equivGroup && candidate.slotTypes.includes(item.slotType) && candidate.skill <= original.skill && isTimedExercise(candidate.id) === isTimedExercise(original.id) && compatible(candidate))
     return replacement ? { ...item, exerciseId: replacement.id } : { ...item }
-  }) }
+  })
+  return { ...day, exercises, estMin: estimateDayMin(exercises) }
 }
 export function adaptationWarnings(day: WorkoutDay, profile: TrainingProfile, equipment: Equipment[]): string[] {
   return day.exercises.flatMap((item) => { const exercise = byId.get(item.exerciseId); return !exercise || !canPerform(exercise, equipment, profile.limitations) || (!equipment.some((e) => e !== 'peso_corporal') && !isEquipmentFree(exercise)) ? [`Sem alternativa compatível para ${exercise?.name ?? item.exerciseId}.`] : [] })
