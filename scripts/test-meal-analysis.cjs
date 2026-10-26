@@ -6,6 +6,11 @@ const {createMealAnalysisHandler}=require('../server/meal-analysis.ts');
 (async()=>{
 a.throws(()=>validateImageFile({size:MAX_MEAL_PHOTO_BYTES+1,type:'image/jpeg'}));a.throws(()=>validateImageFile({size:1,type:'image/svg+xml'}));
 a.equal(hasImageSignature(new Uint8Array([255,216,255,224]),'image/jpeg'),true);a.equal(hasImageSignature(new Uint8Array([1,2,3]),'image/jpeg'),false);
+a.equal(hasImageSignature(new Uint8Array([137,80,78,71,13,10,26,10]),'image/png'),true);a.equal(hasImageSignature(new Uint8Array([82,73,70,70,0,0,0,0,87,69,66,80]),'image/webp'),true);a.equal(hasImageSignature(new Uint8Array([1]),'text/plain'),false);
+const originalImage=global.Image,originalDocument=global.document;let draws=0;
+const canvas={width:0,height:0,getContext:()=>({fillStyle:'',fillRect:()=>{},drawImage:()=>draws++}),toBlob:(fn,type)=>fn(new Blob([new Uint8Array([255,216,255,224])],{type}))};
+global.Image=class{naturalWidth=4000;naturalHeight=3000;set src(v){queueMicrotask(()=>this.onload())}};global.document={createElement:()=>canvas};
+try{const prepared=await require('../src/lib/mealPhoto.ts').prepareMealPhoto(new File([new Uint8Array([255,216,255,224])],'photo.jpg',{type:'image/jpeg'}));a.equal(prepared.type,'image/jpeg');a.equal(canvas.width,1920);a.equal(canvas.height,1440);a.equal(draws,1)}finally{global.Image=originalImage;global.document=originalDocument}
 a.throws(()=>validateCandidates({candidates:[{name:'arroz',confidence:.8,kcal:200}]}));a.throws(()=>validateCandidates({candidates:[{name:'arroz',confidence:2}]}));
 a.deepEqual(validateCandidates({candidates:[{name:'arroz',confidence:.8}]}),{candidates:[{name:'arroz',confidence:.8}]});
 const source={source:'user-label',recordId:'label-1',description:'Arroz cozido',kcalPer100g:130,version:'2026-10-26',license:'user-provided'};
@@ -25,5 +30,13 @@ a.equal((await createMealAnalysisHandler({...deps,provider:async()=>({candidates
 a.equal((await createMealAnalysisHandler({...deps,readOwnedPhoto:async()=>null})(req())).status,404);
 a.equal((await createMealAnalysisHandler({...deps,readOwnedPhoto:async()=>({bytes:new Uint8Array([1]),type:'image/jpeg'})})(req())).status,415);
 a.equal((await createMealAnalysisHandler({...deps,coordinator:{run:async()=>({kind:'rate-limited'})}})(req())).status,429);
+const {signOwnedMealPhoto}=require('../server/meal-analysis.ts');let signingCalls=0;
+await a.rejects(()=>signOwnedMealPhoto('user-1','user-2/photo.jpg',async()=>{signingCalls++;return 'bad'}));a.equal(signingCalls,0);
+const signed=await signOwnedMealPhoto('user-1','user-1/photo.jpg',async(bucket,path,ttl)=>{a.equal(bucket,'winfit-meals-private');a.equal(ttl,60);return 'https://private.test/short-lived'});a.equal(signed.expiresIn,60);
+a.equal((await handler(new Request('https://test/api',{method:'GET'}))).status,405);
+a.equal((await handler(new Request('https://test/api',{method:'POST',headers:{Authorization:'Bearer valid','Content-Type':'application/json'},body:'x'.repeat(5000)}))).status,400);
+a.equal((await handler(req({...body,consent:{analysis:true,destination:'wrong provider'}}))).status,403);
+a.equal((await handler(req(body,'valid','bad'))).status,400);
+a.equal((await createMealAnalysisHandler({...deps,authenticate:async()=>{throw Error('network')}})(req())).status,503);
 console.log('meal-analysis: authentication, owner isolation, unavailable provider, consent, schema, idempotency, image and calculation PASS');
 })().catch(e=>{console.error(e);process.exitCode=1});

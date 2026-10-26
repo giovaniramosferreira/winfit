@@ -1,4 +1,5 @@
 import { useState, useSyncExternalStore } from 'react'
+import MealPhotoDraft, { NutritionLabelCalculator } from '../components/MealPhotoDraft'
 import { daySummary, goalForDate, localDate, type Meal, type FoodItem, type NutritionGoal } from '../lib/nutrition'
 import { nutritionStore } from '../lib/nutritionStore'
 const uid = () => crypto.randomUUID()
@@ -19,7 +20,7 @@ export default function Nutrition() {
   const summary=daySummary(state.meals,date)
   const target=goalForDate(state.goals,date)
   const meals=state.meals.filter(m=>m.date===date).sort((a,b)=>a.time.localeCompare(b.time))
-  const updateItem=(id:string,patch:Partial<FoodItem>)=>setMeal(m=>m?{...m,items:m.items.map(i=>i.id===id?{...i,...patch}:i)}:m)
+  const updateItem=(id:string,patch:Partial<FoodItem>)=>setMeal(m=>m?{...m,items:m.items.map(i=>i.id===id?{...i,provenance:undefined,...patch}:i)}:m)
   const saveMeal=()=>{try{if(meal && nutritionStore.upsertMeal(meal)){setMeal(null);setMessage('Refeição salva neste dispositivo.')}}catch(e){setMessage((e as Error).message)}}
   const saveGoal=()=>{try{
     const goal: NutritionGoal=mode==='direct'?{id:uid(),date:goalDate,mode,kcal:direct.trim()?Number(direct):NaN}:{id:uid(),date:goalDate,mode,maintenance:maintenance.trim()?Number(maintenance):NaN,deficit:deficit.trim()?Number(deficit):NaN}
@@ -28,9 +29,10 @@ export default function Nutrition() {
   return <div className="page fade-in">
     <div className="sheet-head"><span>Alimentação</span><span>Diário manual</span></div>
     <h1>Seu diário <em>alimentar.</em></h1>
-    <p className="small muted">Registros locais. As calorias são informadas por você; fotos e análise por IA ainda não estão disponíveis.</p>
+    <p className="small muted">Registros locais. As calorias são informadas por você; análise por IA ainda não está disponível.</p>
     {state.error && <div role="alert" className="card" style={{marginTop:12}}>{state.error}</div>}
     {message && <p role="status" style={{marginTop:12}}>{message}</p>}
+    <MealPhotoDraft/>
     <section className="card" style={{marginTop:16}}>
       <label>Dia do diário<input aria-label="Dia do diário" type="date" style={inputStyle} value={date} onChange={e=>setDate(e.target.value)}/></label>
       <h2 style={{marginTop:16}}>{summary.kcal.toLocaleString('pt-BR')} kcal {summary.partial && <span className="pill">Total parcial</span>}</h2>
@@ -61,6 +63,7 @@ export default function Nutrition() {
         <label>Alimento<input required maxLength={200} style={inputStyle} value={item.name} onChange={e=>updateItem(item.id,{name:e.target.value})}/></label>
         <label>Porção em gramas (opcional)<input type="number" min="0.01" step="any" style={inputStyle} value={item.portion??''} onChange={e=>updateItem(item.id,{portion:e.target.value===''?null:Number(e.target.value)})}/></label>
         <label>Calorias da porção (opcional)<input type="number" min="0" step="any" style={inputStyle} value={item.kcal??''} onChange={e=>updateItem(item.id,{kcal:e.target.value===''?null:Number(e.target.value)})}/></label>
+        <NutritionLabelCalculator name={item.name} onConfirm={value=>updateItem(item.id,{portion:value.portion,kcal:value.kcal,provenance:value.provenance})}/>
         <button type="button" className="btn btn-ghost btn-sm" disabled={meal.items.length===1} onClick={()=>setMeal({...meal,items:meal.items.filter(i=>i.id!==item.id)})}>Remover item</button>
       </fieldset>)}
       <p className="tiny muted">Campo vazio significa informação pendente. Zero kcal é um valor informado.</p>

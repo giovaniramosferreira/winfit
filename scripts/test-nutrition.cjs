@@ -35,3 +35,9 @@ a.throws(()=>n.validateGoal({id:'g',date:'bad',mode:'direct',kcal:1800}));
 raw=JSON.stringify({version:99,meals:[],goals:[],deleted:[]}); store=createNutritionStore(storage); a.equal(store.getState().blocked,true); a.equal(store.exportData(),raw); a.equal(store.reset(),true);
 raw=JSON.stringify({version:1,meals:[meal,meal],goals:[],deleted:[]}); store=createNutritionStore(storage); a.equal(store.getState().blocked,true); a.equal(store.reset(),true);
 const api=require('../src/lib/nutritionStore.ts'); a.equal(typeof api.exportNutritionData(),'string'); a.equal(api.importNutritionData('{invalid'),false); a.equal(api.resetNutritionData(),false);
+
+// Pure backup validation and provenance are also safe across diary import.
+const prov=require('../src/lib/mealAnalysis.ts').calculateConfirmedNutrition({source:'user-label',recordId:'r',description:'Arroz',kcalPer100g:130,version:'2026-10-26',license:'user-provided'},150,true);
+n.validateMeal({...meal,items:[{...item,...prov}]});
+a.throws(()=>n.validateMeal({...meal,items:[{...item,...prov,kcal:999}]}));
+const parsed=require('../src/lib/nutritionStore.ts').parseNutritionData(JSON.stringify({version:1,meals:[meal],goals:[],deleted:[]}));a.equal(parsed.meals[0].id,'m');

@@ -4,7 +4,7 @@ export interface NutritionData { version: 1; meals: Meal[]; goals: NutritionGoal
 interface State extends NutritionData { error: string | null; blocked: boolean }
 type StoragePort = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>
 const empty = (): NutritionData => ({version:1,meals:[],goals:[],deleted:[]})
-function parse(raw: string): NutritionData {
+export function parseNutritionData(raw: string): NutritionData {
   const d = JSON.parse(raw)
   if (!d || d.version!==1 || !Array.isArray(d.meals) || !Array.isArray(d.goals) || !Array.isArray(d.deleted)) throw Error('Dados inválidos')
   d.meals.forEach(validateMeal); d.deleted.forEach(validateMeal); d.goals.forEach(validateGoal)
@@ -15,7 +15,7 @@ export function createNutritionStore(storage: StoragePort | null) {
   let state: State = {...empty(),error:null,blocked:false}
   const listeners = new Set<()=>void>()
   const notify = () => listeners.forEach(fn=>fn())
-  try { const raw=storage?.getItem(NUTRITION_STORAGE_KEY); if(raw) state={...parse(raw),error:null,blocked:false} } catch { state={...state,error:'Dados alimentares inválidos ou indisponíveis. Exporte uma cópia antes de redefinir; o conteúdo original foi preservado.',blocked:true} }
+  try { const raw=storage?.getItem(NUTRITION_STORAGE_KEY); if(raw) state={...parseNutritionData(raw),error:null,blocked:false} } catch { state={...state,error:'Dados alimentares inválidos ou indisponíveis. Exporte uma cópia antes de redefinir; o conteúdo original foi preservado.',blocked:true} }
   function persist(data: NutritionData, force=false) {
     if(state.blocked && !force) return false
     try { if(!storage) throw Error('unavailable'); storage.setItem(NUTRITION_STORAGE_KEY,JSON.stringify(data)); state={...data,error:null,blocked:false}; notify(); return true }
@@ -31,7 +31,7 @@ export function createNutritionStore(storage: StoragePort | null) {
     upsertGoal:(goal:NutritionGoal)=>{validateGoal(goal);return persist({...data(),goals:[...state.goals.filter(g=>g.id!==goal.id && g.date!==goal.date),structuredClone(goal)]})},
     deleteGoal:(id:string)=>persist({...data(),goals:state.goals.filter(g=>g.id!==id)}),
     exportData:()=>{if(state.blocked) {try{return storage?.getItem(NUTRITION_STORAGE_KEY) ?? JSON.stringify(data())}catch{return JSON.stringify(data())}}return JSON.stringify(data())},
-    importData:(raw:string)=>{try{return persist(parse(raw))}catch{state={...state,error:'Arquivo alimentar inválido. Seus dados atuais foram preservados.'};notify();return false}},
+    importData:(raw:string)=>{try{return persist(parseNutritionData(raw))}catch{state={...state,error:'Arquivo alimentar inválido. Seus dados atuais foram preservados.'};notify();return false}},
     reset:()=>persist(empty(),true),
   }
 }
