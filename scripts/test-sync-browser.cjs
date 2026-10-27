@@ -51,7 +51,7 @@ async function run(){
   remote.activeSession.id='remote-active';remote.activeSession.logs=remote.activeSession.logs.map(l=>({...l,id:`remote-${l.id}`}));remote.activeSession.startedAt-=10000
   const localId=seed.snapshot.activeSession.id
   await check('Sem dados locais restaura plano remoto sem onboarding e sem envio automático',async()=>{
-   const s=await scenario({storage:{'winfit-auth-session':auth},remote});await s.page.getByRole('heading',{name:'Como vamos cuidar de você hoje?'}).waitFor();assert.equal((await s.snap()).plan.id,remote.plan.id);assert.equal(s.writes().length,0);await s.context.close()
+   const s=await scenario({storage:{'winfit-auth-session':auth},remote});await s.page.getByRole('heading',{name:'Seu momento de cuidar.'}).waitFor();assert.equal((await s.snap()).plan.id,remote.plan.id);assert.equal(s.writes().length,0);await s.context.close()
   })
   await check('Local ativo é preservado ao entrar sem backup remoto; envio privado desligado por padrão',async()=>{
    const s=await scenario({storage:{...seed.storage,'winfit-auth-session':auth}});await s.go('/profile');await s.page.getByText('Alterações locais',{exact:true}).waitFor();assert.equal(s.writes().length,0);assert.equal((await s.snap()).activeSession.id,localId);assert.equal(await s.page.getByLabel('Incluir alimentação, saúde pélvica e rotina neste envio').isChecked(),false)

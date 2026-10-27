@@ -28,25 +28,25 @@ export default function Routine() {
     const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'winfit-lembrete.ics'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
   const toggleDay = (kind: 'reminder' | 'checkin', day: number) => { const current = r[kind]; update({ [kind]: { ...current, days: current.days.includes(day) ? current.days.filter((d) => d !== day) : [...current.days, day].sort() } }) }
-  return <div className="page routine-page"><Link to="/home">← Início</Link><h1>Minha rotina</h1>
+  return <div className="page routine-page fade-in"><header className="wellness-heading"><div className="screen-topline"><Link to="/home">← Início</Link><span className="screen-kicker">No seu ritmo</span></div><h1 className="screen-title">Minha <em>rotina.</em></h1><p className="screen-subtitle">Organize seus dias. Crie espaço para cuidar de você.</p><nav className="wellness-section-nav" aria-label="Seções da rotina"><button type="button" onClick={() => document.getElementById('routine-agenda')?.scrollIntoView()}>Agenda</button><button type="button" onClick={() => document.getElementById('routine-checklist')?.scrollIntoView()}>Checklist</button><button type="button" onClick={() => document.getElementById('routine-checkin')?.scrollIntoView()}>Check-in</button></nav></header>
     {error && <section className="card" role="alert"><p>{error}</p><button className="btn" onClick={exportOriginal}>Exportar dados originais da rotina</button>
       {blocked && <button className="btn" onClick={() => { if (window.confirm('Redefinir a rotina local? Exporte os dados originais antes de continuar.')) useRoutineStore.getState().resetAll() }}>Redefinir somente a rotina</button>}</section>}
     <fieldset disabled={blocked} style={{ border: 0, padding: 0, margin: 0 }}>
     <p>Os avisos aparecem nesta tela enquanto o aplicativo está aberto. Para lembrar com o navegador fechado, importe o arquivo no seu calendário e confirme os alertas nele.</p>
     {due && <section className="card" role="status"><h2>{due.kind === 'reminder' ? 'Hora do treino' : due.kind === 'checkin' ? 'Como você está?' : 'Hora do treino e do check-in'}</h2>
       <button className="btn" onClick={acknowledge}>Dispensar hoje</button><button className="btn" onClick={() => update({ snoozedUntil: Date.now() + 30 * 60000 })}>Adiar 30 min</button></section>}
-    <section className="card"><h2>Agenda</h2><label>Fuso horário<input value={timezone} onChange={(e) => setTimezone(e.target.value)} placeholder="America/Sao_Paulo" /></label>
+    <section className="card" id="routine-agenda"><span className="screen-kicker">01 · Seus horários</span><h2>Agenda</h2><label>Fuso horário<input value={timezone} onChange={(e) => setTimezone(e.target.value)} placeholder="America/Sao_Paulo" /></label>
       <button className="btn" onClick={() => { try { new Intl.DateTimeFormat('pt', { timeZone: timezone }).format(); update({ timezone }); setZoneError('') } catch { setZoneError('Fuso inválido. Exemplo: America/Sao_Paulo') } }}>Salvar fuso</button>{zoneError && <p role="alert">{zoneError}</p>}
       <label><input type="checkbox" checked={r.reminder.enabled} onChange={(e) => update({ reminder: { ...r.reminder, enabled: e.target.checked } })} /> Lembrete de treino</label>
       <label>Horário do treino<input type="time" value={r.reminder.time} onChange={(e) => update({ reminder: { ...r.reminder, time: e.target.value } })} /></label>
-      <fieldset><legend>Dias de treino</legend>{weekday.map((name, day) => <label key={name}><input type="checkbox" checked={r.reminder.days.includes(day)} onChange={() => toggleDay('reminder', day)} />{name} </label>)}</fieldset>
+      <fieldset className="wellness-weekdays"><legend>Dias de treino</legend>{weekday.map((name, day) => <label key={name}><input type="checkbox" checked={r.reminder.days.includes(day)} onChange={() => toggleDay('reminder', day)} />{name} </label>)}</fieldset>
       <button className="btn" disabled={!r.reminder.enabled || !r.reminder.days.length} onClick={downloadCalendar}>Baixar lembrete para calendário (.ics)</button>
       <p className="small muted">Alterar ou desativar aqui não altera eventos já importados. Atualize ou remova o evento no calendário também.</p>
       <button className="btn" onClick={() => update({ pausedUntil: Date.now() + 7 * 86400000 })}>Pausar avisos por 7 dias</button>
       {r.pausedUntil > now && <button className="btn" onClick={() => update({ pausedUntil: 0, snoozedUntil: 0 })}>Retomar avisos</button>}
       <button className="btn" onClick={() => update({ reminder: { ...r.reminder, enabled: false }, checkin: { ...r.checkin, enabled: false } })}>Desativar todos os avisos</button>
     </section>
-    <section className="card"><h2>Checklist por local</h2><label>Local<select value={place} onChange={(e) => setPlace(e.target.value)}><option value="academia">Academia</option><option value="casa">Casa</option><option value="viagem">Viagem</option></select></label>
+    <section className="card" id="routine-checklist"><span className="screen-kicker">02 · Prepare seu momento</span><h2>Checklist por local</h2><label>Local<select value={place} onChange={(e) => setPlace(e.target.value)}><option value="academia">Academia</option><option value="casa">Casa</option><option value="viagem">Viagem</option></select></label>
       {(r.checklists[place] ?? []).map((entry) => <div key={entry.id}><label><input type="checkbox" checked={entry.done} onChange={(e) => update({ checklists: { ...r.checklists, [place]: r.checklists[place].map((i) => i.id === entry.id ? { ...i, done: e.target.checked } : i) } })} />
         <input aria-label="Texto do item" maxLength={200} value={entry.text} onChange={(e) => update({ checklists: { ...r.checklists, [place]: r.checklists[place].map((i) => i.id === entry.id ? { ...i, text: e.target.value } : i) } })} /></label>
         <button className="btn" onClick={() => update({ checklists: { ...r.checklists, [place]: r.checklists[place].filter((i) => i.id !== entry.id) } })}>Remover</button></div>)}
@@ -54,9 +54,9 @@ export default function Routine() {
         <label>Novo item<input maxLength={200} value={item} onChange={(e) => setItem(e.target.value)} /></label><button className="btn" disabled={!item.trim()}>Adicionar</button></form>
       <button className="btn" onClick={() => update({ checklists: { ...r.checklists, [place]: (r.checklists[place] ?? []).map((i) => ({ ...i, done: false })) } })}>Desmarcar checklist</button>
     </section>
-    <section className="card"><h2>Check-in opcional</h2><label><input type="checkbox" checked={r.checkin.enabled} onChange={(e) => update({ checkin: { ...r.checkin, enabled: e.target.checked } })} /> Quero registrar como estou</label>
+    <section className="card" id="routine-checkin"><span className="screen-kicker">03 · Olhe para você</span><h2>Check-in opcional</h2><label><input type="checkbox" checked={r.checkin.enabled} onChange={(e) => update({ checkin: { ...r.checkin, enabled: e.target.checked } })} /> Quero registrar como estou</label>
       {r.checkin.enabled && <><label>Horário do check-in<input type="time" value={r.checkin.time} onChange={(e) => update({ checkin: { ...r.checkin, time: e.target.value } })} /></label>
-        <fieldset><legend>Dias de check-in</legend>{weekday.map((name, day) => <label key={name}><input type="checkbox" checked={r.checkin.days.includes(day)} onChange={() => toggleDay('checkin', day)} />{name} </label>)}</fieldset>
+        <fieldset className="wellness-weekdays"><legend>Dias de check-in</legend>{weekday.map((name, day) => <label key={name}><input type="checkbox" checked={r.checkin.days.includes(day)} onChange={() => toggleDay('checkin', day)} />{name} </label>)}</fieldset>
         <label>Silêncio a partir de<input type="time" value={r.checkin.quietStart} onChange={(e) => update({ checkin: { ...r.checkin, quietStart: e.target.value } })} /></label>
         <label>Silêncio até<input type="time" value={r.checkin.quietEnd} onChange={(e) => update({ checkin: { ...r.checkin, quietEnd: e.target.value } })} /></label>
         <p>Um único aviso por dia coordena treino e check-in. Você pode registrar manualmente quando quiser.</p>

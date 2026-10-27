@@ -1,0 +1,584 @@
+{
+  "version": 1,
+  "coordinates": "normalized [x,y,width,height] within original source cell; referenceFrame is original source frame index",
+  "status": "initial visual diagnosis; validate registration before publishing",
+  "assets": {
+    "supino-reto-barra": {
+      "region": [
+        0.59,
+        0.62,
+        0.25,
+        0.18
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "supino-halteres": {
+      "region": [
+        0.7,
+        0.58,
+        0.25,
+        0.22
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "supino-maquina": {
+      "region": [
+        0.16,
+        0.1,
+        0.1,
+        0.33
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "flexao-inclinada": {
+      "region": [
+        0.04,
+        0.66,
+        0.2,
+        0.22
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "flexao-declinada": {
+      "region": [
+        0.82,
+        0.68,
+        0.16,
+        0.17
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "desenvolvimento-maquina": {
+      "region": [
+        0.69,
+        0.69,
+        0.13,
+        0.23
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "remada-serrote": {
+      "region": [
+        0.72,
+        0.74,
+        0.16,
+        0.15
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "remada-maquina": {
+      "region": [
+        0.73,
+        0.79,
+        0.2,
+        0.15
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "remada-baixa-polia": {
+      "region": [
+        0.015,
+        0.78,
+        0.09,
+        0.065
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "remada-toalha": {
+      "region": [
+        0.12,
+        0.22,
+        0.16,
+        0.17
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Batente vertical é fixo, toalha e corpo se movem. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa."
+    },
+    "puxada-polia": {
+      "region": [
+        0.2,
+        0.01,
+        0.29,
+        0.11
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Torre superior é fixa. Não registrar pela pilha de pesos ou barra móvel. Fonte primeira linha tem tinta contaminante em y511, que desloca ground dos quadros0-2. Fonte nova usa só ida0–4 e retorno invertido; quadro5redundante descartado para fechar sem salto.",
+      "sourceFrames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "cycle": "return"
+    },
+    "barra-fixa": {
+      "region": [
+        0.21,
+        0.035,
+        0.085,
+        0.145
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa."
+    },
+    "hip-thrust-barra": {
+      "region": [
+        0.025,
+        0.64,
+        0.2,
+        0.2
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "bulgaro": {
+      "region": [
+        0.72,
+        0.77,
+        0.16,
+        0.14
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "step-up": {
+      "region": [
+        0.22,
+        0.84,
+        0.3,
+        0.13
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo. Nova fonte composta0/1originais+2incremento+3/4posesgeradasindividualmente+5final; seisetapasdeida e inversão. Poses3/4substituídas: pélivresemprena parte traseira/direita doapoio, semcruzarpernasàfrente.",
+      "cycle": "return",
+      "sourceFrames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "crucifixo-halteres": {
+      "region": [
+        0.3,
+        0.79,
+        0.17,
+        0.07
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": true,
+      "notes": "Perspectiva do banco/corpo muda; posição e orientação não se recuperam só com translação. Regenerar mantendo câmera e banco.",
+      "cycle": "return"
+    },
+    "crossover-polia": {
+      "region": [
+        0.07,
+        0.025,
+        0.11,
+        0.42
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Parte superior da torre esquerda fixa, pilha sobe. Fonte primeira linha tem contaminação em y511 e segunda linha base local455; ground por tinta cria salto."
+    },
+    "elevacao-lateral-polia": {
+      "region": [
+        0.13,
+        0.4,
+        0.035,
+        0.2
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "face-pull": {
+      "region": [
+        0.1,
+        0.015,
+        0.17,
+        0.21
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa."
+    },
+    "rosca-polia": {
+      "region": [
+        0.1,
+        0.8,
+        0.28,
+        0.14
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa."
+    },
+    "triceps-polia": {
+      "region": [
+        0.25,
+        0.01,
+        0.19,
+        0.13
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa."
+    },
+    "triceps-banco": {
+      "region": [
+        0.79,
+        0.68,
+        0.19,
+        0.21
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "mesa-flexora": {
+      "region": [
+        0.4,
+        0.1,
+        0.24,
+        0.14
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Topo da torre é fixo. Alavanca/rolo devem mover; banco/base não. Quadros3-5 deslocam a fonte ~15px acima em relação aos0-2."
+    },
+    "flexora-elastico": {
+      "region": [
+        0.16,
+        0.84,
+        0.14,
+        0.1
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa. Sequência de ida auditada; retorno invertido evita salto e fantasma.",
+      "sourceFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cycle": "return"
+    },
+    "cadeira-extensora": {
+      "region": [
+        0.25,
+        0.05,
+        0.25,
+        0.18
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "abducao-maquina": {
+      "region": [
+        0.14,
+        0.14,
+        0.19,
+        0.09
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "coice-polia": {
+      "region": [
+        0.13,
+        0.04,
+        0.07,
+        0.15
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "panturrilha-halteres": {
+      "region": [
+        0.38,
+        0.91,
+        0.1,
+        0.05
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Frente do degrau fixa; calcanhares/corpo devem subir e descer."
+    },
+    "panturrilha-maquina": {
+      "region": [
+        0.19,
+        0.82,
+        0.2,
+        0.08
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Base fixa; apoio sobre ombros e pilha de pesos podem mover."
+    },
+    "panturrilha-corporal": {
+      "region": [
+        0.21,
+        0.65,
+        0.04,
+        0.3
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo."
+    },
+    "pallof-press": {
+      "region": [
+        0.075,
+        0.2,
+        0.07,
+        0.12
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Região contém estrutura de apoio fixa; não travar cargas/pegadores junto ao corpo. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa. Sequência de ida auditada; retorno invertido evita salto e fantasma.",
+      "sourceFrames": [
+        0,
+        3,
+        2
+      ],
+      "cycle": "return"
+    },
+    "elevacao-pernas-barra": {
+      "region": [
+        0.2,
+        0.01,
+        0.09,
+        0.15
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Poste e barra fixos; corpo/pernas devem mover. Região refinada para incluir canto/junção/olhal/polia fixa de posição; evita ambiguidade de translação ao longo de haste lisa."
+    },
+    "leg-press": {
+      "region": [
+        0.04,
+        0.85,
+        0.89,
+        0.13
+      ],
+      "space": "published-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Piloto usa atlas público como fonte. Base inferior completa fixa; plataforma, pesos e pernas se movem. Registro em espaço normalizadoquadrado sem recorte: resizefitfill e restauração da proporção4/3 na saída."
+    },
+    "dead-bug": {
+      "region": [
+        0.175,
+        0.66,
+        0.1,
+        0.1
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "notes": "Nova fonte motion-sources/dead-bug.png: cabeça apoiada é referência anatômica fixa, distante dos braços/pernas móveis. Linha2 tem deslocamento vertical de ~60–80px na fonte; ampliar busca para40px a256 ou pré-alinhar antes RIFE. Esta região não deve ser aplicada à fonte antiga. Translações manuais pela pelve apoiada, auditadas por quadro; template de cabeça é ambíguo. Nova fonteprogressiva: usar0,1,3,4, descartar2/5 compontamão na borda. Quadro2agoraéposeindividualmínima comduaspernas90visíveis, entre0e1, pararesolversurgimentodapernaoculta. Quadros2/5substituídos por posesindividuaisbraço20/35graus, mesma pelve epernasdobradas; fecha a lacunadobraço.",
+      "translations": [
+        [
+          0,
+          0
+        ],
+        [
+          -16,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          -14,
+          106
+        ],
+        [
+          -12,
+          106
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "sourceFrames": [
+        0,
+        2,
+        5,
+        1,
+        3,
+        4
+      ],
+      "cycle": "return"
+    },
+    "abdominal-infra": {
+      "region": [
+        0.8,
+        0.6,
+        0.13,
+        0.13
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "trimBottom": 32,
+      "translations": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          40,
+          67
+        ],
+        [
+          3,
+          66
+        ],
+        [
+          14,
+          68
+        ]
+      ],
+      "notes": "Fonte tem fragmento vizinho na margem inferior quadro0; remove32px sem atingir corpo. Cabeça apoiada alinhada manualmente entre linhas antes da interpolação."
+    },
+    "rosca-martelo": {
+      "region": [
+        0.38,
+        0.88,
+        0.28,
+        0.1
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "sourceFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cycle": "return",
+      "notes": "Pés fixos; usa0–3 progressivos e retorno invertido para evitar salto da segunda linha."
+    },
+    "puxada-elastico": {
+      "region": [
+        0.4,
+        0.85,
+        0.35,
+        0.13
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "trimBottom": 10,
+      "notes": "Joelhostornozelos apoiadosfixos; remove10pxdecontaminação de célula vizinha na margem inferior sem cortar corpo."
+    },
+    "swing-kettlebell": {
+      "region": [
+        0.4,
+        0.85,
+        0.3,
+        0.12
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": true,
+      "cycle": "return",
+      "notes": "Fonte nova com6poses progressivas daida, pés plantados registrados; retorno invertido evita carga teleportando."
+    },
+    "rosca-direta-barra": {
+      "region": [
+        0.35,
+        0.85,
+        0.3,
+        0.13
+      ],
+      "space": "source-cell",
+      "referenceFrame": 0,
+      "regenerate": false,
+      "sourceFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cycle": "return",
+      "notes": "Auditoria playback identificou mudança de cabeça/torso na volta4–5; usa ida0–3 e inversão, pés fixos."
+    }
+  }
+}

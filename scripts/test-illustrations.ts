@@ -18,7 +18,7 @@ test('catálogo inteiro tem execução ilustrada, sem mídia externa', () => {
     const html = renderToStaticMarkup(createElement(ExerciseDemo, { exerciseId: exercise.id, name: exercise.name }))
     assert.match(html, /Demonstração ilustrada/)
     assert.ok(EXERCISE_ILLUSTRATIONS[exercise.id], `Arte do catálogo ausente: ${exercise.id}`)
-    assert.match(html, /\/media\/(pilots|catalog)\//)
+    assert.match(html, /\/media\/(pilots|catalog|motion)\//)
     assert.ok(!html.includes('<svg') && !html.includes('<video') && !/https?:/.test(html), 'Personagem usa atlas locais')
     assert.ok(demo.hold ? !html.includes('<animate') : html.includes('Reproduzir demonstração'))
   }

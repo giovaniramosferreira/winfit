@@ -1,0 +1,61 @@
+/* Account, first steps and history share the calm Pump House surface. */
+.account-screen { color:var(--text); }
+.account-screen .card { border-radius:24px; padding:21px; box-shadow:0 5px 22px #51367c05; }
+.account-screen .screen-title { max-width:560px; }
+.account-screen h1 em { font-style:normal; color:var(--accent); }
+.account-screen .screen-subtitle { margin-top:10px; }
+.account-screen .between { gap:12px; }
+.account-screen .between>.grow { min-width:0; }
+.account-screen .btn { min-height:46px; border-radius:15px; }
+.account-screen .btn-sm { min-height:42px; }
+.account-screen .input { border-radius:16px; min-height:52px; background:#fff; }
+.account-screen .pill { border-radius:100px; }
+.account-brand { font-weight:750; letter-spacing:-.8px; font-size:19px; }
+.account-brand em { font-style:normal; color:var(--accent); }
+.account-section-heading { margin-top:30px; margin-bottom:10px; }
+.account-entry-mark { height:68px; width:68px; border-radius:23px; display:flex; align-items:center; justify-content:center; background:#e8defa; color:#7657e8; font-size:34px; font-weight:750; letter-spacing:-4px; margin:0 0 28px; }
+.account-entry-mark span { font-weight:500; }
+.login-screen { max-width:560px; }
+.login-screen>div:nth-of-type(1) { padding-top:24px !important; }
+.login-screen form { background:white; padding:22px; border:1px solid var(--line); border-radius:24px; }
+.login-screen form .field:first-child { margin-top:0; }
+.account-screen .google-button { border:1px solid var(--line); border-radius:15px; background:white; color:var(--text); }
+.account-screen .google-button:disabled { background:#ece7f3; color:#746985; }
+.onboarding-screen { max-width:620px; }
+.onboarding-screen .progressbar { height:6px; border-radius:20px; background:#e8e0f2; overflow:hidden; margin:10px 0 30px; }
+.onboarding-screen .progressbar>div { background:var(--accent); border-radius:20px; }
+.account-question>.screen-kicker { margin-bottom:12px; }
+.onboarding-screen .option { background:white; border:1px solid var(--line); border-radius:20px; min-height:72px; padding:16px 18px; box-shadow:0 3px 12px #51367c03; margin-top:10px; }
+.onboarding-screen .option.selected { background:#eee7fc; border-color:var(--accent); box-shadow:inset 3px 0 0 var(--accent); }
+.onboarding-screen .option .icon { background:#f1ebfa; border-radius:14px; color:var(--accent); }
+.preview-screen .stack>.card { position:relative; border-left:4px solid #cbb9f3; }
+.preview-screen .muscle-tag { background:#f0eafa; color:#7952bc; border:0; border-radius:8px; }
+.preview-screen .note { background:#ece5f8; border-color:#d9ccef; color:#5f487c; border-radius:18px; }
+.profile-screen>.account-plan-card { background:linear-gradient(125deg,#fff 0%,#f0e8fd 100%); border-color:#ddd0f0; }
+.profile-screen .account-data-card { border-color:#e5d7e9; }
+.profile-screen .row { flex-wrap:wrap; }
+.profile-screen .row>.grow { flex-basis:140px; }
+.progress-screen .stat-grid { gap:10px; }
+.progress-screen .stat { background:white; border:1px solid var(--line); border-radius:22px; padding:19px 16px; }
+.progress-screen .stat:first-child { background:#e8def9; border-color:#dfd1f3; }
+.progress-screen .stat .v { font-size:29px; line-height:1.2; color:#7657e8; letter-spacing:-1px; }
+.progress-screen .stat .k { margin-top:9px; line-height:1.5; }
+.progress-screen .plate-fig { padding:18px; border:1px solid var(--line); border-radius:24px; background:white; }
+.progress-screen .plate-fig figcaption { line-height:1.6; margin-top:10px; }
+.progress-screen .list-item { padding-block:16px; gap:13px; }
+.progress-screen .list-item .small { line-height:1.5; }
+.progress-screen .list-item .tiny { margin-top:4px; }
+.progress-screen .list-item>.mono { flex-shrink:0; font-size:12px; text-align:right; max-width:115px; }
+.progress-screen .gold { color:#895716; }
+.account-empty-art { width:90px; height:90px; border-radius:30px; background:#e7dcf7; display:grid; place-items:center; margin:36px 0 26px; }
+.account-empty-art img { width:35px; height:44px; }
+.session-detail-screen>.screen-topline { margin-top:24px; }
+.session-detail-screen>.card { margin-top:16px; }
+.session-detail-screen .card h2 { font-size:18px; line-height:1.4; }
+.account-set-count { font-size:11px; color:var(--text-dim); white-space:nowrap; }
+.session-detail-screen .card>p { font-size:13px; color:var(--text-dim); margin-top:8px; }
+.session-detail-screen ul { list-style:none; margin-top:15px; padding:0; }
+.session-detail-screen li { padding:12px 14px; background:#f6f2fb; border-radius:12px; font-size:14px; margin-top:7px; }
+@media(max-width:360px) { .account-screen .card { padding:18px; }.progress-screen .stat { padding:16px 12px; }.progress-screen .stat .v { font-size:25px; }.progress-screen .list-item { gap:8px; }.progress-screen .list-item>.mono { max-width:85px; }.account-screen .screen-title { overflow-wrap:anywhere; } }
+/* Native file controls otherwise keep a desktop intrinsic width at 320px. */
+.profile-screen input[type="file"] { width:100%; min-width:0; max-width:100%; }

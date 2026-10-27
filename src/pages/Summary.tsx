@@ -26,10 +26,10 @@ export default function Summary() {
   const delta = prevVolume != null && prevVolume > 0 ? Math.round(((volume - prevVolume) / prevVolume) * 100) : null
 
   return (
-    <div className="page-full fade-in">
-      <div style={{ paddingTop: 32 }}>
+    <div className="page-full fade-in training-summary">
+      <div className="summary-heading" style={{ paddingTop: 32 }}><div className="summary-award"><img src="/media/pump-house/award.svg" width="32" height="40" alt="" /></div>
         <div className="sheet-head"><span>Treino concluído</span><span>{session.status === 'partial' ? 'Parcial' : 'Completo'}</span></div>
-        <h1>{prs.length > 0 ? <>Sessão com <em>{prs.length} {prs.length === 1 ? 'recorde' : 'recordes'}.</em></> : 'Treino concluído!'}</h1>
+        <h1 className="screen-title">{prs.length > 0 ? <>Sessão com <em>{prs.length} {prs.length === 1 ? 'recorde' : 'recordes'}.</em></> : 'Treino concluído!'}</h1>
         <p className="muted" style={{ marginTop: 6 }}>{session.dayLabel}</p>
       </div>
 
@@ -66,7 +66,7 @@ export default function Summary() {
         </div>
       )}
 
-      <div className="grow" />
+      <p className="summary-note">Seu treino foi salvo. Cada sessão conta na sua evolução.</p><div className="grow" />
       <button className="btn btn-primary" style={{ marginTop: 24 }} onClick={() => nav('/home', { replace: true })}>
         Concluir
       </button>

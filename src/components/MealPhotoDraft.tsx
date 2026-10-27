@@ -7,7 +7,7 @@ export default function MealPhotoDraft() {
   useEffect(()=>{if(!photo){setPreview('');return}const url=URL.createObjectURL(photo);setPreview(url);return()=>URL.revokeObjectURL(url)},[photo])
   const choose=async(file:File|undefined)=>{if(!file)return;setBusy(true);setMessage('');setSaveConsent(false);try{setPhoto(await prepareMealPhoto(file))}catch(e){setMessage((e as Error).message)}finally{setBusy(false)}}
   const download=()=>{if(!photo || !saveConsent)return;const url=URL.createObjectURL(photo);const a=document.createElement('a');a.href=url;a.download=`winfit-refeicao-${Date.now()}.jpg`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);setMessage('Download solicitado. A foto não foi anexada ao diário. Confira seus arquivos.')}
-  return <section className="card" style={{marginTop:16}}><h2>Foto da refeição</h2>
+  return <section className="card nutrition-photo" style={{marginTop:16}}><span className="screen-kicker">Uma referência visual</span><h2>Foto da refeição</h2>
     <p className="small muted">Opcional: prepare uma foto para consulta. Ela fica apenas na memória desta página; sair ou recarregar descarta o rascunho. Nada será enviado.</p>
     <p className="tiny muted">JPG, PNG ou WebP, até 5 MB. A cópia é redimensionada e recriada sem os metadados originais de localização.</p>
     <input ref={camera} hidden aria-label="Tirar foto da refeição" type="file" capture="environment" accept="image/jpeg,image/png,image/webp" onChange={e=>{void choose(e.target.files?.[0]);e.target.value=''}}/>

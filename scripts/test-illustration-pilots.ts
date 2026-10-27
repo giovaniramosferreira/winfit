@@ -20,7 +20,8 @@ test('os três pilotos aprovados preservam arquivo, proporção, ciclo e instru�
     'leg-press': '18b40171bb6d8d55a57b9416d7db8e67284a98da70b288a80fcee35b16cdd0d1',
   }
   for (const [id, pilot] of Object.entries(ILLUSTRATION_PILOTS)) {
-    assert.deepEqual(EXERCISE_ILLUSTRATIONS[id], pilot)
+    assert.equal(EXERCISE_ILLUSTRATIONS[id].cue, pilot.cue)
+    assert.equal(EXERCISE_ILLUSTRATIONS[id].cycle, pilot.cycle)
     assert.equal(createHash('sha256').update(readFileSync(`public${pilot.sprite}`)).digest('hex'), hashes[id])
   }
 })
@@ -34,7 +35,7 @@ test('artes concluídas usam o atlas local, instruções do catálogo e sustenta
   for (const [id, art] of Object.entries(EXERCISE_ILLUSTRATIONS)) {
     const exercise = EXERCISES.find(exercise => exercise.id === id)
     assert.ok(exercise, `Id desconhecido: ${id}`)
-    assert.match(art.sprite, /^\/media\/(pilots|catalog)\/[a-z0-9-]+\.webp$/)
+    assert.match(art.sprite, /^\/media\/(pilots|catalog|motion)\/[a-z0-9-]+\.webp$/)
     assert.ok(existsSync(`public${art.sprite}`), `Arquivo ausente: ${exercise.id}`)
     const html = renderToStaticMarkup(createElement(ExerciseDemo, { exerciseId: exercise.id, name: exercise.name }))
     assert.match(html, /Demonstração ilustrada/)

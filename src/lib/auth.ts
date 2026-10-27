@@ -3,6 +3,7 @@
  * Sem as variáveis VITE_SUPABASE_* o produto continua utilizável localmente.
  */
 import { cloudTransport } from './cloudTransport'
+import { exchangeGoogleCode, googleOAuthReady, prepareGoogleOAuth, readGoogleCallback, GOOGLE_VERIFIER_KEY } from './googleOAuth'
 const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/$/, '')
 const key = import.meta.env.VITE_SUPABASE_ANON_KEY
 const SESSION_KEY = 'winfit-auth-session'
@@ -11,6 +12,12 @@ let restoring: Promise<AuthSession | null> | null = null
 
 export interface AuthSession { access_token: string; refresh_token: string; expires_at?: number; user?: { id: string; email?: string } }
 export const isAuthConfigured = Boolean(url && key)
+const googleConfig = { url, key, enabled: import.meta.env.VITE_GOOGLE_AUTH_ENABLED === 'true' }
+export const isGoogleAuthConfigured = googleOAuthReady(googleConfig)
+export async function signInWithGoogle() {
+  const target = await prepareGoogleOAuth(googleConfig, `${window.location.origin}${window.location.pathname}`, window.sessionStorage)
+  window.location.assign(target)
+}
 export const cloudDestination = url ? new URL(url).hostname : null
 export const loadCloudRecord = (session: AuthSession) => cloudTransport(url!, key!).load(session)
 export const saveCloudRecord = (session: AuthSession, data: Record<string, unknown>, expected: string | null) => cloudTransport(url!, key!).save(session, data, expected)
@@ -30,6 +37,19 @@ function saveSession(session: AuthSession | null) {
 async function restoreSessionRequest(): Promise<AuthSession | null> {
   const run = authEpoch
   if (!isAuthConfigured) return null
+  const callback = readGoogleCallback(window.location.href)
+  if (callback) {
+    history.replaceState(null, '', callback.cleanUrl)
+    // HashRouter listens to popstate; replaceState alone does not notify it.
+    window.dispatchEvent(new PopStateEvent('popstate'))
+    if (callback.error) {
+      sessionStorage.removeItem(GOOGLE_VERIFIER_KEY)
+      throw new Error('O acesso não foi concluído. Tente novamente ou continue sem conta.')
+    }
+    const session = await exchangeGoogleCode(googleConfig, callback.code!, sessionStorage)
+    if (run !== authEpoch) return null
+    saveSession(session)
+  }
   // Magic-link callbacks arrive in the URL fragment.
   const hash = new URLSearchParams(window.location.hash.slice(1))
   const access = hash.get('access_token')

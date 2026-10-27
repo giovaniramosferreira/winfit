@@ -129,7 +129,7 @@ export default function Player() {
   const unit = isTimed ? 'seg' : 'reps'
 
   return (
-    <div className={`player${session.timer ? ' is-resting' : ''}`}>
+    <div className={`player training-player${session.timer ? ' is-resting' : ''}`}>
       <header className="player-head">
         <div className="between">
           <button className="btn-quiet" onClick={() => nav('/home')}>▾ Minimizar</button>
@@ -165,7 +165,7 @@ export default function Player() {
       </header>
 
       <main className="player-body">
-        <div className="between">
+        <div className="player-exercise-heading"><div className="between">
           <span className="eyebrow num">Exercício {idx + 1} de {session.exercises.length}</span>
           {sx.substitutedFrom && <span className="pill">substituído</span>}
         </div>
@@ -179,7 +179,7 @@ export default function Player() {
         </p>
         <p className="tiny faint" style={{ marginTop: 4 }}>{suggestion.note}</p>
 
-        <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} />
+        </div><ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} />
 
         {watchToast && (
           <div className="pr-flash ok" style={{ marginTop: 12 }}>
@@ -188,7 +188,8 @@ export default function Player() {
         )}
         {prFlash && <div className="pr-flash" style={{ marginTop: 12 }}>{prFlash}</div>}
 
-        <div style={{ marginTop: 16 }}>
+        <div className="player-set-sheet" style={{ marginTop: 16 }}>
+          <div className="player-set-heading"><h2>Suas séries</h2><span className="small muted">{logsHere.length} de {sx.sets} feitas</span></div>
           <div className={`set-row head${bodyweight ? ' bodyweight' : ''}`}>
             <span>Série</span>
             <span>Anterior</span>

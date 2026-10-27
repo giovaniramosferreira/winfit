@@ -44,22 +44,22 @@ export default function ExerciseDetail() {
   const unit = isTimedExercise(exercise.id) ? 'seg' : 'reps'
 
   return (
-    <div className="page fade-in">
+    <div className="page fade-in exercise-detail-page">
       <div className="between" style={{ marginBottom: 6 }}>
         <button className="btn-quiet" onClick={() => nav(-1)} style={{ padding: '4px 0' }}>
           ← Voltar{active ? ' ao treino' : ''}
         </button>
         <span className="eyebrow num">Exercício {plate}</span>
       </div>
-      <div className="rule-strong" />
+      <div className="exercise-detail-heading">
 
       <div className="eyebrow" style={{ marginTop: 16 }}>{MUSCLE_LABEL[exercise.primary]}</div>
-      <h1 style={{ marginTop: 6 }}>{exercise.name}</h1>
+      <h1 className="screen-title" style={{ marginTop: 6 }}>{exercise.name}</h1>
       <p className="latin" style={{ fontSize: 17, marginTop: 4 }}>
         {anat.latin}{anat.also ? <span className="small"> — {anat.also}</span> : null}
       </p>
 
-      <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} />
+      </div><ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} />
 
       <figure className="plate-fig" style={{ marginTop: 14 }}>
         <BodyPlate primary={exercise.primary} secondary={exercise.secondary}
@@ -70,7 +70,7 @@ export default function ExerciseDetail() {
         </figcaption>
       </figure>
 
-      <dl className="defs" style={{ marginTop: 18, paddingTop: 14, borderTop: '1px solid var(--line)' }}>
+      <dl className="defs exercise-anatomy" style={{ marginTop: 18, paddingTop: 14, borderTop: '1px solid var(--line)' }}>
         <dt>Origem</dt><dd>{anat.origin}</dd>
         <dt>Inserção</dt><dd>{anat.insertion}</dd>
         <dt>Ação</dt><dd>{anat.action}</dd>
