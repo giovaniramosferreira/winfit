@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { protectIllustrationPrecache } from './scripts/precache-integrity'
 
 const icons = [
   { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' as const },
@@ -57,6 +58,7 @@ export default defineConfig({
         ],
       },
       workbox: {
+        manifestTransforms: [(entries) => protectIllustrationPrecache(entries)],
         // (o manifest.webmanifest é adicionado ao precache pelo próprio plugin)
         globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff2}'],
         // As splash screens do iOS só são lidas na instalação: ficam fora do

@@ -1,7 +1,7 @@
 import { spawnSync } from 'node:child_process'
 
 const suites = [
-  'test-google-oauth.ts', 'test-sprite-motion.ts', 'test-illustration-pilots.ts', 'test-illustrations.ts',
+  'test-google-oauth.ts', 'test-sprite-motion.ts', 'test-precache-integrity.ts', 'test-illustration-pilots.ts', 'test-illustrations.ts',
   'test-generator.ts', 'test-home-workout.ts', 'test-calisthenics.ts', 'test-watch-sync.ts',
   'test-exercise-navigation.ts', 'test-number-dial.ts', 'test-undo-set.ts',
   'test-backup.ts', 'test-application-backup.ts', 'test-cloud-sync.ts', 'test-workout-storage.ts', 'test-privacy.cjs',
