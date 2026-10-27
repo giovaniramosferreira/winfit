@@ -27,15 +27,13 @@ export default function Nutrition() {
     if(nutritionStore.upsertGoal(goal)){setGoalOpen(false);setMessage('Meta salva com vigência a partir da data informada.')}
   }catch(e){setMessage((e as Error).message)}}
   return <div className="page nutrition-page fade-in">
-    <div className="sheet-head"><span>Alimentação</span><span>Diário manual</span></div>
-    <h1>Seu diário <em>alimentar.</em></h1>
-    <p className="small muted">Registros locais. As calorias são informadas por você; análise por IA ainda não está disponível.</p>
+    <header className="wellness-heading"><div className="screen-topline"><span className="screen-kicker">Alimentação</span><span className="wellness-badge">Diário manual</span></div><div className="wellness-heading-copy"><div><h1 className="screen-title">Seu diário <em>alimentar.</em></h1><p className="screen-subtitle">Um espaço para acompanhar suas refeições, no seu ritmo.</p></div><span className="wellness-art" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="43" r="25" fill="#ddd1f5"/><circle cx="40" cy="43" r="17" stroke="currentColor" strokeWidth="2"/><path d="M37 39c-7-15 9-24 15-21-1 12-6 21-15 21Zm-19-13v34m-5-34v13h10V26m41 0v34m0-34c-8 6-8 18 0 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg></span></div></header>
+    <p className="tiny muted wellness-local-note">Registros locais. As calorias são informadas por você; análise por IA ainda não está disponível.</p>
     {state.error && <div role="alert" className="card" style={{marginTop:12}}>{state.error}</div>}
     {message && <p role="status" style={{marginTop:12}}>{message}</p>}
-    <MealPhotoDraft/>
-    <section className="card" style={{marginTop:16}}>
+    <section className="card nutrition-overview" style={{marginTop:16}}>
       <label>Dia do diário<input aria-label="Dia do diário" type="date" style={inputStyle} value={date} onChange={e=>setDate(e.target.value)}/></label>
-      <h2 style={{marginTop:16}}>{summary.kcal.toLocaleString('pt-BR')} kcal {summary.partial && <span className="pill">Total parcial</span>}</h2>
+      <div className="nutrition-total-label">Consumo registrado</div><h2 className="nutrition-total" style={{marginTop:16}}>{summary.kcal.toLocaleString('pt-BR')} kcal {summary.partial && <span className="pill">Total parcial</span>}</h2>
       <p className="small muted">{summary.pending ? `${summary.pending} item(ns) sem calorias informadas.` : 'Todos os itens registrados têm calorias informadas.'}</p>
       <p>{target===null?'Sem meta calórica definida.':`Meta informada: ${target.toLocaleString('pt-BR')} kcal`}</p>
       <p className="tiny muted">O diário não determina gasto energético ou déficit real.</p>
@@ -70,9 +68,10 @@ export default function Nutrition() {
       <button type="button" className="btn btn-ghost" onClick={()=>setMeal({...meal,items:[...meal.items,freshItem()]})}>Adicionar item</button>
       <div className="row" style={{marginTop:12}}><button type="submit" className="btn btn-primary">Salvar refeição</button><button type="button" className="btn btn-ghost" onClick={()=>setMeal(null)}>Cancelar</button></div>
     </form></section>}
-    <h2 style={{marginTop:24}}>Refeições do dia</h2>
-    {!meals.length && <p className="muted">Nenhuma refeição registrada nesta data.</p>}
-    {meals.map(m=><article key={m.id} className="card" style={{marginTop:12}}><h3>{m.time} · {m.type}</h3>{m.items.map(i=><p key={i.id}>{i.name}{i.portion!==null?` · ${i.portion} g`:''} · {i.kcal===null?'kcal pendentes':`${i.kcal} kcal`}</p>)}<div className="row"><button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>setMeal(structuredClone(m))}>Editar refeição</button><button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>{if(nutritionStore.deleteMeal(m.id))setMessage('Refeição excluída. Você pode restaurá-la abaixo.')}}>Excluir refeição</button></div></article>)}
+    <div className="ui-section-heading nutrition-list-heading"><h2>Refeições do dia</h2><span className="wellness-badge">{meals.length} {meals.length === 1 ? 'refeição' : 'refeições'}</span></div>
+    {!meals.length && <div className="wellness-empty"><span aria-hidden="true">＋</span><p>Nenhuma refeição registrada nesta data.</p><p className="small muted">Use “Adicionar refeição” para começar seu diário.</p></div>}
+    {meals.map(m=><article key={m.id} className="card nutrition-meal" style={{marginTop:12}}><h3>{m.time} · {m.type}</h3>{m.items.map(i=><p key={i.id}>{i.name}{i.portion!==null?` · ${i.portion} g`:''} · {i.kcal===null?'kcal pendentes':`${i.kcal} kcal`}</p>)}<div className="row"><button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>setMeal(structuredClone(m))}>Editar refeição</button><button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>{if(nutritionStore.deleteMeal(m.id))setMessage('Refeição excluída. Você pode restaurá-la abaixo.')}}>Excluir refeição</button></div></article>)}
+    <MealPhotoDraft/>
     {state.deleted.length>0 && <details style={{marginTop:20}}><summary>Refeições excluídas ({state.deleted.length})</summary>{state.deleted.map(m=><div className="card" key={m.id} style={{marginTop:8}}>{m.date} · {m.time} · {m.type}<button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>nutritionStore.restoreMeal(m.id)}>Restaurar refeição</button></div>)}</details>}
     <details style={{marginTop:20}}><summary>Histórico de metas ({state.goals.length})</summary>{state.goals.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(g=><div className="card" key={g.id} style={{marginTop:8}}>Desde {g.date}: {g.mode==='direct'?g.kcal:g.maintenance-g.deficit} kcal {g.mode==='calculated'&&<span>({g.maintenance} − {g.deficit} informados)</span>}<button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>nutritionStore.deleteGoal(g.id)}>Remover meta</button></div>)}</details>
     <details style={{marginTop:20}}><summary>Dias com registros</summary>{[...new Set(state.meals.map(m=>m.date))].sort().reverse().map(d=><button className="btn btn-ghost btn-sm" style={{margin:4}} key={d} onClick={()=>setDate(d)}>{d}</button>)}</details>

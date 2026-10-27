@@ -55,13 +55,13 @@ export default function Profile() {
   }
 
   return (
-    <div className="page fade-in">
-      <div className="sheet-head"><span>Perfil</span><span>Ficha de treino</span></div>
-      <h1>Seu plano e <em>suas preferências.</em></h1>
+    <div className="page product-shell account-screen profile-screen fade-in">
+      <div className="screen-topline"><span className="screen-kicker">Seu espaço</span><span className="account-brand">Win<em>Fit</em></span></div>
+      <h1 className="screen-title">Seu plano e <em>suas preferências.</em></h1><p className="screen-subtitle">Tudo do seu jeito, em um só lugar.</p>
 
-      <div className="card" style={{ marginTop: 16 }}>
+      <div className="card account-plan-card" style={{ marginTop: 16 }}>
         <div className="between">
-          <h3>Meu plano</h3>
+          <h3>Seu treino, do seu jeito</h3>
           <span className="pill accent">{plan.splitLabel}</span>
         </div>
         <p className="small muted num" style={{ marginTop: 6 }}>
@@ -116,6 +116,7 @@ export default function Profile() {
         </button>
       </div>
 
+      <h2 className="ui-section-heading account-section-heading">Conta e conexão</h2>
       <AccountCard />
       <DataControls />
 
@@ -139,7 +140,8 @@ export default function Profile() {
         )}
       </div>
 
-      <div className="card" style={{ marginTop: 12 }}>
+      <h2 className="ui-section-heading account-section-heading">Privacidade e dados</h2>
+      <div className="card account-data-card" style={{ marginTop: 12 }}>
         <h3>Seus dados</h3>
         <p className="small muted" style={{ marginTop: 6 }}>
           Os registros ficam neste aparelho. Backup na conta só é enviado após sua confirmação; fotos ficam fora desse backup. Exporte uma cópia antes de limpar dados.
@@ -198,6 +200,9 @@ export default function Profile() {
         </div>
       )}
 
+      <p className="tiny faint" style={{ marginTop: 24, lineHeight: 1.7 }}>
+        Interface e ícones adaptados do <a href="https://www.figma.com/community/file/1091263687486055207/free-fitness-app-ui-kit" target="_blank" rel="noreferrer">Pump House / Free Fitness App UI Kit, por Figma Pro</a>, sob <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>. Cores, tipografia e organização adaptadas para o WinFit.
+      </p>
       {watchModal && <WatchModal onClose={() => setWatchModal(false)} />}
     </div>
   )

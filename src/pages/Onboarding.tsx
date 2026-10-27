@@ -107,12 +107,12 @@ export default function Onboarding() {
   }
 
   return (
-    <div className="page-full fade-in" key={d.step}>
-      <div className="between" style={{ marginBottom: 8 }}>
+    <div className="page-full product-shell account-screen onboarding-screen fade-in" key={d.step}>
+      <div className="screen-topline" style={{ marginBottom: 8 }}>
         <button className="btn-quiet" onClick={back} style={{ padding: '8px 0' }}>← Voltar</button>
         <span className="eyebrow num">Pergunta {d.step} de {totalSteps}</span>
       </div>
-      <div className="progressbar"><div style={{ width: `${(d.step / totalSteps) * 100}%` }} /></div>
+      <div className="progressbar" role="progressbar" aria-label="Perguntas do seu plano" aria-valuemin={1} aria-valuemax={totalSteps} aria-valuenow={d.step}><div style={{ width: `${(d.step / totalSteps) * 100}%` }} /></div>
 
       {d.step === 1 && (
         <Step title="Qual seu objetivo principal?">
@@ -247,8 +247,9 @@ export default function Onboarding() {
 
 function Step({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
-    <div>
-      <h1 style={{ fontSize: 27 }}>{title}</h1>
+    <div className="account-question">
+      <p className="screen-kicker">Vamos conhecer seu ritmo</p>
+      <h1 className="screen-title" style={{ fontSize: 27 }}>{title}</h1>
       {sub && <p className="muted small" style={{ marginTop: 6 }}>{sub}</p>}
       <div style={{ marginTop: 16 }}>{children}</div>
     </div>

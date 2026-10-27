@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/AuthProvider'
 import { sendMagicLink } from '../lib/auth'
 import { useStore } from '../lib/store'
+import GoogleSignInButton from '../components/GoogleSignInButton'
 
 export default function Login() {
   const nav = useNavigate()
-  const { configured, loading, session } = useAuth()
+  const { configured, loading, session, error } = useAuth()
   const onboarded = useStore((s) => s.profile !== null && s.plan !== null)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -27,27 +28,29 @@ export default function Login() {
   }
 
   return (
-    <div className="page-full fade-in">
+    <div className="page-full product-shell account-screen login-screen fade-in">
       <button className="btn btn-quiet btn-sm" style={{ alignSelf: 'flex-start', paddingLeft: 0 }} onClick={() => nav('/')}>
         ← Voltar
       </button>
 
       <div style={{ paddingTop: 32 }}>
-        <div className="eyebrow">Entrar</div>
-        <h1 style={{ marginTop: 10 }}>Acesse sua <em>conta WinFit.</em></h1>
+        <div className="account-entry-mark" aria-hidden="true">W<span>f</span></div><div className="screen-kicker">Bem-vindo ao seu ritmo</div>
+        <h1 className="screen-title" style={{ marginTop: 10 }}>Acesse sua <em>conta WinFit.</em></h1>
         <p className="muted" style={{ marginTop: 8 }}>
-          Seu plano, cargas e histórico acompanham você em qualquer aparelho.
+          Seu espaço para treinar e cuidar da rotina. Entre na sua conta ou comece sem cadastro.
         </p>
       </div>
 
-      {!configured ? (
+      <div style={{ marginTop: 24 }}><GoogleSignInButton /></div>
+      {error && <p role="alert" className="small" style={{ marginTop: 12 }}>{error}</p>}
+      {loading ? <p role="status" className="muted" style={{ marginTop: 24 }}>Preparando sua conta e verificando seus dados…</p> : !configured ? (
         <div className="card" style={{ marginTop: 24 }}>
-          <h3>Login indisponível nesta versão</h3>
+          <h3>Comece no seu ritmo</h3>
           <p className="small muted" style={{ marginTop: 6 }}>
-            Esta instalação roda 100% local. Você pode treinar normalmente; seus dados ficam salvos neste aparelho.
+            Enquanto o login não está disponível, você pode experimentar o WinFit. Seus registros ficam neste aparelho.
           </p>
-          <button className="btn btn-primary" style={{ marginTop: 14 }} onClick={() => nav('/onboarding')}>
-            Continuar sem conta
+          <button className="btn btn-primary" style={{ marginTop: 14 }} onClick={() => nav(onboarded ? '/home' : '/onboarding')}>
+            Experimentar sem conta
           </button>
         </div>
       ) : sent ? (
@@ -74,6 +77,7 @@ export default function Login() {
           {message && <p className="tiny" style={{ marginTop: 8, color: 'var(--red)' }}>{message}</p>}
         </form>
       )}
+      {configured && !loading && <button className="btn btn-quiet" style={{ marginTop: 20 }} onClick={() => nav(onboarded ? '/home' : '/onboarding')}>Experimentar sem conta</button>}
     </div>
   )
 }

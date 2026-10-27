@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import App from './App'
 import './styles.css'
+import './product-ui.css'
+import './training-ui.css'
+import './wellness-ui.css'
+import './account-ui.css'
 
 // HashRouter: funciona em qualquer hosting estático sem config de rewrite — custo zero de infra.
 ReactDOM.createRoot(document.getElementById('root')!).render(

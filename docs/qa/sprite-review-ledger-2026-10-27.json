@@ -1,0 +1,790 @@
+{
+  "date": "2026-10-27",
+  "reviewer": "independent audit_sprites agent",
+  "scope": "all78assets; visual quality, not medical validation",
+  "limitations": "Runtime playback observed through temporal screenshots; all assets covered, not a manual per-pixel inspection of every intermediate.",
+  "approved": 78,
+  "pending": [],
+  "assets": [
+    {
+      "id": "agachamento-corporal",
+      "sprite": "/media/motion/agachamento-corporal.webp",
+      "sha256": "7485b3b57062b46fb540c861dab4a8be761214464d8f14e3da83566cec29be72",
+      "width": 2880,
+      "height": 2880,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "flexao",
+      "sprite": "/media/motion/flexao.webp",
+      "sha256": "be6b392496ffc8d97358148916c1322f5f4bb9a86d5e98dea26803dd67258db1",
+      "width": 3008,
+      "height": 1704,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "leg-press",
+      "sprite": "/media/motion/leg-press.webp",
+      "sha256": "64fcce73b7b91e6f801c8dd9e5cee99d086ea1e18aa4a27107e38b47abe901c2",
+      "width": 2560,
+      "height": 1920,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "flexao-joelhos",
+      "sprite": "/media/motion/flexao-joelhos.webp",
+      "sha256": "77740a8339c6acaaacf21aaf6cd5e0412e5bfa103f53c8dc76cd87c4d001b70a",
+      "width": 2928,
+      "height": 1928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "prancha",
+      "sprite": "/media/catalog/prancha.webp",
+      "sha256": "b68cf8868ae52e09a679638bc13e14c87115c38bd83fb63565c4d6f48bbce609",
+      "width": 480,
+      "height": 280,
+      "frameCount": 1,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "static image inspected"
+    },
+    {
+      "id": "prancha-joelhos",
+      "sprite": "/media/catalog/prancha-joelhos.webp",
+      "sha256": "534537bd3a409c5d43f1c498b6b48fa8ea7943319815ff6b1e0b5f1796e719ee",
+      "width": 480,
+      "height": 280,
+      "frameCount": 1,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "static image inspected"
+    },
+    {
+      "id": "prancha-lateral",
+      "sprite": "/media/catalog/prancha-lateral.webp",
+      "sha256": "be8bae501576ac857e01725edd94990c5389a101f799c0e7691af8f284d59184",
+      "width": 480,
+      "height": 280,
+      "frameCount": 1,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "static image inspected"
+    },
+    {
+      "id": "prancha-lateral-joelhos",
+      "sprite": "/media/catalog/prancha-lateral-joelhos.webp",
+      "sha256": "06b1bcc1eeda7352ffffd99e63738163ba283d0bd8ec67b58d95074410e78082",
+      "width": 480,
+      "height": 280,
+      "frameCount": 1,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "static image inspected"
+    },
+    {
+      "id": "ponte-gluteo",
+      "sprite": "/media/motion/ponte-gluteo.webp",
+      "sha256": "aacb3e10468f5c148f525bfd9c186ad70705f5d2e894187884a2f2fb110a6c6f",
+      "width": 2928,
+      "height": 1704,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "ponte-unilateral",
+      "sprite": "/media/motion/ponte-unilateral.webp",
+      "sha256": "0ef2da607af577c0ffc1e899861e302dcb242b1dd8438d7b3390addf68286ee1",
+      "width": 2928,
+      "height": 2088,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "puxada-prona-solo",
+      "sprite": "/media/motion/puxada-prona-solo.webp",
+      "sha256": "e1b18a0238c7379f86129334bd6bf7dd378333d36d77f54832aa97aba7e8f225",
+      "width": 2928,
+      "height": 2064,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "avanco-corporal",
+      "sprite": "/media/motion/avanco-corporal.webp",
+      "sha256": "62467e8d928570f5018130d9b9bc2499d078a3c1b2aa6c1d75397f9603651174",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "dead-bug",
+      "sprite": "/media/motion/dead-bug.webp",
+      "sha256": "fd0c9d0c55918d3e3ac5faa846d9ff506b7a343feb2cb61130a5cd875b54354e",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "abdominal-infra",
+      "sprite": "/media/motion/abdominal-infra.webp",
+      "sha256": "c1c6b18cac8036edd1a28ec2561795368b25d246445c3579ce6e2f9a17f6f5e1",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "abdominal-supra",
+      "sprite": "/media/motion/abdominal-supra.webp",
+      "sha256": "d43da1b4780dd5981eb84be11e6840713378b238728258d2e68a70a11656fe34",
+      "width": 2928,
+      "height": 1704,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "supino-reto-barra",
+      "sprite": "/media/motion/supino-reto-barra.webp",
+      "sha256": "0ae9ca771757511c1367b880917e552af21d581f39abe18094cfac1f23a0d3fa",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "supino-halteres",
+      "sprite": "/media/motion/supino-halteres.webp",
+      "sha256": "000e66da10635285078462a8e0c6c8770ed49e87e845e72f889f372902168e43",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "supino-maquina",
+      "sprite": "/media/motion/supino-maquina.webp",
+      "sha256": "e4fe853b5ae037c47492084b9a95ab90a2dff5289f40a9b7a5dace3642e4e4ba",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "flexao-inclinada",
+      "sprite": "/media/motion/flexao-inclinada.webp",
+      "sha256": "6ccc04bdc0379b07ffb7996f56da2444e3eabfada6c5519f58797b5aac35a110",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "flexao-declinada",
+      "sprite": "/media/motion/flexao-declinada.webp",
+      "sha256": "69e5467124243e28524e65723a0bce36a83b8e7532542b1236942dd994c061b1",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "supino-elastico",
+      "sprite": "/media/motion/supino-elastico.webp",
+      "sha256": "014c21a4de546a08cc089858f42ef9b5f5c260aae0ad1a0a77c1918f18aeca8d",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "desenvolvimento-halteres",
+      "sprite": "/media/motion/desenvolvimento-halteres.webp",
+      "sha256": "f9ef32bbc511fcca77e7b5b8c499302dc7493de247d6c74a5d1e9b7ca63c5316",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "desenvolvimento-maquina",
+      "sprite": "/media/motion/desenvolvimento-maquina.webp",
+      "sha256": "90c530db62e54439d8d517479602ec8d6937b4b9269a0ffd2fd2cfa3035dd274",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "desenvolvimento-barra",
+      "sprite": "/media/motion/desenvolvimento-barra.webp",
+      "sha256": "5f9522656aca09f8b0386535780fa992387050b54b4c7724e07236694b4c7c55",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "pike-pushup",
+      "sprite": "/media/motion/pike-pushup.webp",
+      "sha256": "1e15840f26214a9e4a772df39491c7c01dca412c2b62c3f3cb4eb0fa151c92b0",
+      "width": 2928,
+      "height": 2408,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "desenvolvimento-elastico",
+      "sprite": "/media/motion/desenvolvimento-elastico.webp",
+      "sha256": "75c880509733940ee51a904b17ca936b4626cb8b983a99a1d05ee56553baf5a4",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "remada-curvada-barra",
+      "sprite": "/media/motion/remada-curvada-barra.webp",
+      "sha256": "598af3ebb92c318ba5031f1c43491d15690641e57b35741e85854422d3b0130b",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "remada-serrote",
+      "sprite": "/media/motion/remada-serrote.webp",
+      "sha256": "03d0a343d564d294e5c3d5f591ae1f580cb608186c4d6b2d00b75b9063c03022",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "remada-maquina",
+      "sprite": "/media/motion/remada-maquina.webp",
+      "sha256": "48c80d6eab8f26bbe2a4cdcfbed60c055eebc1d50d62ba880dd1bdb8a8b25775",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "remada-baixa-polia",
+      "sprite": "/media/motion/remada-baixa-polia.webp",
+      "sha256": "a014d17e8d6e029eb3ade408dda3ab28bedd648b872028220d29066bc2fdc8e0",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "remada-elastico",
+      "sprite": "/media/motion/remada-elastico.webp",
+      "sha256": "1e5b5c32c7ca7777261cb2c37d2f05de6c2373562b54a1a8935df9365828d77c",
+      "width": 2928,
+      "height": 2432,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "remada-toalha",
+      "sprite": "/media/motion/remada-toalha.webp",
+      "sha256": "ae7af0e31068cf3415865e9c0a661cde04e67243c7a423ab342a025857671991",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "puxada-polia",
+      "sprite": "/media/motion/puxada-polia.webp",
+      "sha256": "3be02e844e1610d68e158ba346d3d1ac958f22c19920333c63bc0612d608734a",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "barra-fixa",
+      "sprite": "/media/motion/barra-fixa.webp",
+      "sha256": "a3aa1445fee24fdbb1fff42e0dc29817c99d383fcaacb0b347113bf5f4724aaf",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "puxada-elastico",
+      "sprite": "/media/motion/puxada-elastico.webp",
+      "sha256": "b134c050d633f10e073f7de8e3f9841183ed14ee46aa4c0f4c3828479deac77d",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "agachamento-barra",
+      "sprite": "/media/motion/agachamento-barra.webp",
+      "sha256": "1953cb11ec65709eff3088cae49f9f58167834192c3fb31d88ebd3333a898b03",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "agachamento-goblet",
+      "sprite": "/media/motion/agachamento-goblet.webp",
+      "sha256": "72940f1bf93179b67e69f9bf265aae1140eba736844a1d285983ee47a1dbd85a",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "agachamento-kettlebell",
+      "sprite": "/media/motion/agachamento-kettlebell.webp",
+      "sha256": "82eed8b5abd2a634ffbf4af13288e3412fb23e4b604c00d8c4be61297ca8a052",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "agachamento-elastico",
+      "sprite": "/media/motion/agachamento-elastico.webp",
+      "sha256": "45f1476a84058f4165a868850f9e37358d43ec2a67036ae9fbcf475424c473c5",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "terra-romeno-barra",
+      "sprite": "/media/motion/terra-romeno-barra.webp",
+      "sha256": "2e0ffff0879a343c6a1bcfe58cc73745446d389b61c1f241643fdfcba8719d0d",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "terra-romeno-halteres",
+      "sprite": "/media/motion/terra-romeno-halteres.webp",
+      "sha256": "07b1ba2d599242e59d596f7853cf44050b749f2e9c4c1dab437f3dd6cc34f7a1",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "hip-thrust-barra",
+      "sprite": "/media/motion/hip-thrust-barra.webp",
+      "sha256": "b3a9fa8b49684c540fa9ce8f2ea1ea1cda29d5d6076f305ea4107c1da7272194",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "swing-kettlebell",
+      "sprite": "/media/motion/swing-kettlebell.webp",
+      "sha256": "9e13db6a8079b861bde49272305c7faacdcc735ae71c96200db74cedbe170d93",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "terra-romeno-elastico",
+      "sprite": "/media/motion/terra-romeno-elastico.webp",
+      "sha256": "afe61e07868cb64ad446e7158b9d477360bfc4953cc9fb31de3baaa923246615",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "afundo-halteres",
+      "sprite": "/media/motion/afundo-halteres.webp",
+      "sha256": "b39d0371d35108260b59a6d1d9325f3dfe0d8c826c7ec3af50815f92db88d15e",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "bulgaro",
+      "sprite": "/media/motion/bulgaro.webp",
+      "sha256": "039b261c4a6a8d62b92a32a132ba4fc8b8036467d2f2cbd56bab10c5f4ba5d18",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "step-up",
+      "sprite": "/media/motion/step-up.webp",
+      "sha256": "0fbc3dba6ccd9026fb87369ea43c1a40ad23b23c08d91af2ba769990eab28cb4",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "crucifixo-halteres",
+      "sprite": "/media/motion/crucifixo-halteres.webp",
+      "sha256": "9ffdc6d4551e1e3367d6b97341b55bf6290921a1cf908c8575de78f5fc50aef7",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "crossover-polia",
+      "sprite": "/media/motion/crossover-polia.webp",
+      "sha256": "5651cae061a887090b19dd2a11afd0295c80469a6f5ff991d523e5e5af5a3319",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "crucifixo-elastico",
+      "sprite": "/media/motion/crucifixo-elastico.webp",
+      "sha256": "662e70e3206d56578958d93e517d3eadd859412da8ed4ac966829b1053ed840a",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "elevacao-lateral-halteres",
+      "sprite": "/media/motion/elevacao-lateral-halteres.webp",
+      "sha256": "7edc0d5d74050fd9969338e7b6a45f9690c50fd65633085c6712a6859c3ff1e4",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "elevacao-lateral-polia",
+      "sprite": "/media/motion/elevacao-lateral-polia.webp",
+      "sha256": "db92f5568b0afc76386c4f70fba5534242d7faa9900d8c86508fa6e271abc201",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "elevacao-lateral-elastico",
+      "sprite": "/media/motion/elevacao-lateral-elastico.webp",
+      "sha256": "ca7086bbc16d1a8a08315c3bafcfd33caae480e6a0e26e66bd479c6aa5ce3dbe",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "crucifixo-invertido-halteres",
+      "sprite": "/media/motion/crucifixo-invertido-halteres.webp",
+      "sha256": "b2030cbfd28da72d679afc48a10d0827a879eb58b2fef93966cd188479237f64",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "face-pull",
+      "sprite": "/media/motion/face-pull.webp",
+      "sha256": "c21b3ecdf5f62d6167a15301976d4dfe6c3f948172b882bae644706558901762",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "band-pull-apart",
+      "sprite": "/media/motion/band-pull-apart.webp",
+      "sha256": "66a4e6369fc5c95a260523feb97a74160b7d57f400fad94f106462a5a1dc5f58",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "rosca-direta-barra",
+      "sprite": "/media/motion/rosca-direta-barra.webp",
+      "sha256": "7b0d3114143a880d36f32babdf6e6e8989213b87e42df486a9d1b3d1fbf4457b",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "rosca-alternada",
+      "sprite": "/media/motion/rosca-alternada.webp",
+      "sha256": "f8b566e4295b9ac6bfda21c7d463fb24cbbe5ecca19e0c3e45b4ecae3cc9394d",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "rosca-polia",
+      "sprite": "/media/motion/rosca-polia.webp",
+      "sha256": "e3bbb28991d269477aa5651e944b7f7cc5d4be9ba6ce355ad47dd8eb2adcb254",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "rosca-elastico",
+      "sprite": "/media/motion/rosca-elastico.webp",
+      "sha256": "ac2f62d0e78001f2742b060801a64edccd02868e7ba36d0a01064c1d25c27b72",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "rosca-martelo",
+      "sprite": "/media/motion/rosca-martelo.webp",
+      "sha256": "2ad3568a0fcf7d975d4a4930f303adf2f4f74a4f09e911effa3af5a0ecf48e57",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "triceps-polia",
+      "sprite": "/media/motion/triceps-polia.webp",
+      "sha256": "d081aa4907e08fcfc8f26b7fe92fb143961ff0fb78b946f145380377a2b1281b",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "triceps-frances-halter",
+      "sprite": "/media/motion/triceps-frances-halter.webp",
+      "sha256": "58d22e18e266080592d2c3689e5eec1bec917117a0f1355eb5bb95458f04bc6d",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "triceps-banco",
+      "sprite": "/media/motion/triceps-banco.webp",
+      "sha256": "b17a420fc16de7ebaee4dd543c4999b242776ed6ce299a0c83c7e1b7479fa7f3",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "flexao-diamante",
+      "sprite": "/media/motion/flexao-diamante.webp",
+      "sha256": "c44e2d28ba8f83a5bcba5ef4f7afcc841ea53a032c6e212c723ad209f304c55b",
+      "width": 2928,
+      "height": 2048,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "triceps-elastico",
+      "sprite": "/media/motion/triceps-elastico.webp",
+      "sha256": "23955e7cd50b107563aa33faf897cf62590d4d636087a72b2bb192cd8ffbce00",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "mesa-flexora",
+      "sprite": "/media/motion/mesa-flexora.webp",
+      "sha256": "e42263838929fcef93fd9b98423a17e779a1836537e152191d68350704f39292",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "flexora-deslizante",
+      "sprite": "/media/motion/flexora-deslizante.webp",
+      "sha256": "e9c16a4508a0eed4f047057d75a5789aeae2e6254082053370f53498b0b122e5",
+      "width": 2928,
+      "height": 1704,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "flexora-elastico",
+      "sprite": "/media/motion/flexora-elastico.webp",
+      "sha256": "8bf86d741e8e7fae1f145dea305b38eaf24c227355f03f51c31a19af076396b1",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "cadeira-extensora",
+      "sprite": "/media/motion/cadeira-extensora.webp",
+      "sha256": "e7206845a101f6ccdcfed95932f617b8f3933660805c79031fc9dfb7fef843c5",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "abducao-maquina",
+      "sprite": "/media/motion/abducao-maquina.webp",
+      "sha256": "7f2bb08eda1c94154c7f5d89261b3b5b24a18c43cf569d7312543394a6dc3d65",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "abducao-elastico",
+      "sprite": "/media/motion/abducao-elastico.webp",
+      "sha256": "4a914d3ec609d3e95df0316d532637213b8fd020fd0dafa2c390c4cfe55707fc",
+      "width": 2928,
+      "height": 2928,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "coice-polia",
+      "sprite": "/media/motion/coice-polia.webp",
+      "sha256": "cecdd69f6457c136b82bf4441ee3ae4bdb07370d69ee46d0ba5d051e484dc758",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "panturrilha-halteres",
+      "sprite": "/media/motion/panturrilha-halteres.webp",
+      "sha256": "a2552519ee37dbd69fb91edd88b8c2a8054bb46d1929ee4063cb2c1327e10310",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "panturrilha-maquina",
+      "sprite": "/media/motion/panturrilha-maquina.webp",
+      "sha256": "0311501cd64ccc6003cd81a746b1c8336610002689a22905596c7814dacfcb30",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "panturrilha-corporal",
+      "sprite": "/media/motion/panturrilha-corporal.webp",
+      "sha256": "cf58a19c92aa43e75a6f4ab324cf0a4c0aec39c6979ec8610683f6433c9b457a",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "pallof-press",
+      "sprite": "/media/motion/pallof-press.webp",
+      "sha256": "ee247eccf0c8328890f96023b9f9f429f118924a4b7c427bfa7f16791ec82054",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    },
+    {
+      "id": "elevacao-pernas-barra",
+      "sprite": "/media/motion/elevacao-pernas-barra.webp",
+      "sha256": "0d5e63d7304f6fd327523590ec356ba7c904907befae8cbebc57770bca2dec00",
+      "width": 2560,
+      "height": 2560,
+      "frameCount": 64,
+      "verdict": "no-gross-defect-in-inspected-material",
+      "method": "source poses inspected; runtime playback sampled; new intermediate samples inspected; all64frames contact sheets for corrected sprites"
+    }
+  ]
+}

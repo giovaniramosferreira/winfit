@@ -28,7 +28,7 @@ async function run() {
     useStore.getState().completeOnboarding({goal:'health',experience:'none',currentState:'sometimes',location:'gym_full',equipment:['halteres','barra','banco','maquinas','polia','peso_corporal'],frequency:3,sessionTimeMin:30,limitations:[],biometrics:{},version:1})
     const {privacy}=await import(window.__qaPath('/src/lib/privacy.ts')); privacy.setWatchDestination(null)
   })
-  await go('/home'); await page.reload(); await page.getByRole('heading',{name:'Como vamos cuidar de você hoje?'}).waitFor()
+  await go('/home'); await page.reload(); await page.getByRole('heading',{name:'Seu momento de cuidar.'}).waitFor()
   await check('Hub contém quatro módulos e links auxiliares',async()=>{
     for(const href of ['/training','/calisthenics','/pelvic','/nutrition','/routine','/assistant']) assert.ok(await page.locator(`a[href="#${href}"]`).count(),href)
     assert.match(await page.locator('body').innerText(),/Respiração disponível/)

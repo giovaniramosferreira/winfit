@@ -20,7 +20,7 @@ export default function Preview() {
 
   if (building) {
     return (
-      <div className="page-full center" style={{ justifyContent: 'center' }}>
+      <div className="page-full product-shell account-screen preview-screen center" style={{ justifyContent: 'center' }}>
         <div className="fade-in">
           <div className="eyebrow accent">Escrevendo</div>
           <h2 style={{ marginTop: 10, fontSize: 26 }}>Montando seu plano…</h2>
@@ -33,9 +33,9 @@ export default function Preview() {
   }
 
   return (
-    <div className="page-full fade-in">
-      <div className="eyebrow accent">Seu plano está pronto</div>
-      <h1 style={{ marginTop: 8 }}>{plan.splitLabel}</h1>
+    <div className="page-full product-shell account-screen preview-screen fade-in">
+      <div className="account-entry-mark" aria-hidden="true">✓</div><div className="screen-kicker">Seu plano está pronto</div>
+      <h1 className="screen-title" style={{ marginTop: 8 }}>{plan.splitLabel}</h1>
       <p className="muted" style={{ marginTop: 6 }}>
         {plan.days.length} treinos/semana · ~{Math.round(plan.days.reduce((a, d) => a + d.estMin, 0) / plan.days.length)} min por sessão
       </p>
@@ -46,7 +46,7 @@ export default function Preview() {
         </div>
       ))}
 
-      <button className="card" style={{ marginTop: 14, width: '100%', textAlign: 'left' }} onClick={() => setShowWhy(!showWhy)}>
+      <button className="card" style={{ marginTop: 14, width: '100%', textAlign: 'left' }} aria-expanded={showWhy} onClick={() => setShowWhy(!showWhy)}>
         <div className="between">
           <h3>Por que este plano?</h3>
           <span className="chev">{showWhy ? '−' : '+'}</span>
@@ -61,7 +61,7 @@ export default function Preview() {
       <div className="stack" style={{ marginTop: 14, flex: 1 }}>
         {plan.days.map((day) => (
           <button key={day.id} className="card" style={{ width: '100%', textAlign: 'left' }}
-            onClick={() => setExpanded(expanded === day.id ? null : day.id)}>
+            aria-expanded={expanded === day.id} onClick={() => setExpanded(expanded === day.id ? null : day.id)}>
             <div className="between">
               <div>
                 <h3>{day.label}</h3>

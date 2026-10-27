@@ -37,17 +37,15 @@ export default function Pelvic() {
       catch { s.setSignals(false,s.vibration); setNotice('Áudio indisponível neste navegador. As instruções continuam na tela.') }
     }
   }
-  return <div className="page">
-    <div className="eyebrow accent">Bem-estar · histórico separado</div>
-    <h1>Saúde pélvica</h1>
-    <p className="small muted">Conheça a proposta e faça uma pausa para respirar. Não substitui avaliação individual de saúde.</p>
+  return <div className="page pelvic-page fade-in">
+    <header className="wellness-heading"><div className="screen-topline"><span className="screen-kicker">Bem-estar</span><span className="wellness-badge">Seu momento de pausa</span></div><div className="wellness-heading-copy"><div><h1 className="screen-title">Saúde <em>pélvica.</em></h1><p className="screen-subtitle">Uma pausa para respirar e cuidar de você.</p></div><span className="wellness-art breath-art" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="32" stroke="currentColor" opacity=".15"/><circle cx="40" cy="40" r="24" fill="#ddd1f5"/><path d="M40 54S22 43 22 33a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-18 21-18 21Z" stroke="currentColor" strokeWidth="2"/></svg></span></div></header><p className="tiny muted wellness-local-note">Conheça a proposta e faça uma pausa para respirar. Não substitui avaliação individual de saúde.</p>
     <section className="note" style={{ marginTop:16 }}>
       <b>Antes de começar</b>
       <p className="small">Não prenda a respiração, não empurre para baixo e não treine interrompendo o xixi. Pare se sentir dor ou desconforto. Dor pélvica ou sintomas urinários merecem avaliação profissional; contrações não são indicadas para todas as pessoas.</p>
       <p className="small">Não prometemos melhora sexual ou tratamento de sintomas. A pausa disponível é apenas respiração confortável, sem contrações.</p>
     </section>
     {(s.error || notice) && <p className="note" role="alert">{s.error || notice}</p>}
-    {s.active && timer && phase ? <section className="card" style={{ marginTop:18 }} aria-labelledby="pelvic-phase">
+    {s.active && timer && phase ? <section className="card pelvic-session" style={{ marginTop:18 }} aria-labelledby="pelvic-phase">
       <p className="eyebrow">{pelvicPrograms.find(p => p.id === s.active!.programId)?.title}</p>
       <h2 id="pelvic-phase">{phaseLabels[phase.kind]}</h2>
       <p>{phaseInstructions[phase.kind]}</p>
@@ -56,14 +54,14 @@ export default function Pelvic() {
       <button className="btn btn-primary" onClick={() => timer.status === 'paused' ? s.resume() : s.pause()}>{timer.status === 'paused' ? 'Retomar' : 'Pausar'}</button>
       <button className="btn btn-ghost" style={{ marginTop:10 }} onClick={() => s.stop()}>Interromper sessão</button>
       <p className="tiny muted">Ao sair desta tela ou colocar o app em segundo plano, a sessão pausa. Sessões interrompidas não contam como concluídas.</p>
-    </section> : pelvicPrograms.map(p => <section key={p.id} className="card" style={{ marginTop:18 }}>
-      <div className="eyebrow">{p.kind === 'relaxation' ? 'Relaxamento sem contração' : 'Prévia · indisponível'}</div>
+    </section> : pelvicPrograms.map(p => <section key={p.id} className={`card pelvic-program ${p.available ? 'pelvic-program-available' : 'pelvic-program-locked'}`} style={{ marginTop:18 }}>
+      <div className="wellness-badge">{p.kind === 'relaxation' ? 'Relaxamento sem contração' : 'Prévia · indisponível'}</div>
       <h2>{p.title}</h2><p className="small muted">{p.description}</p>
       {p.available ? <button className="btn btn-primary" style={{ marginTop:12 }} onClick={() => s.start(p.id)}>Começar pausa · 70 segundos</button> : <><button className="btn btn-ghost" style={{ marginTop:12 }} disabled>Aguardando revisão profissional</button><p className="tiny muted">A prévia não contém prescrição de tempo, intensidade ou progressão. A liberação exige revisão registrada por profissional.</p></>}
       <p className="tiny muted">Conteúdo versão {p.version} · {p.reviewStatus === 'general-wellbeing' ? 'Bem-estar geral; sem protocolo clínico' : 'Revisão profissional pendente'}</p>
     </section>)}
     <section className="card" style={{ marginTop:18 }}>
-      <h2>Sinais opcionais</h2>
+      <h2>Sinais opcionais</h2><p className="small muted">Escolha como acompanhar cada etapa.</p>
       <label style={{ display:'block', padding:'12px 0' }}><input type="checkbox" checked={s.audio} onChange={e => void enableAudio(e.target.checked)} /> Som na mudança de etapa</label>
       <label style={{ display:'block', padding:'12px 0' }}><input type="checkbox" checked={s.vibration} onChange={e => { s.setSignals(s.audio,e.target.checked); if (e.target.checked && !navigator.vibrate) setNotice('Este navegador não oferece vibração. Use o texto e o contador na tela.') }} /> Vibração na mudança de etapa</label>
       <p className="tiny muted">Desligados por padrão. Som pode precisar ser reativado após recarregar. Sem animação obrigatória; texto e segundos ficam sempre visíveis.</p>

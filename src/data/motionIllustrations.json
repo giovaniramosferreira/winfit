@@ -1,0 +1,754 @@
+{
+  "flexao-joelhos": {
+    "sprite": "/media/motion/flexao-joelhos.webp",
+    "aspectRatio": "366 / 241",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "ponte-gluteo": {
+    "sprite": "/media/motion/ponte-gluteo.webp",
+    "aspectRatio": "366 / 213",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "ponte-unilateral": {
+    "sprite": "/media/motion/ponte-unilateral.webp",
+    "aspectRatio": "366 / 261",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "puxada-prona-solo": {
+    "sprite": "/media/motion/puxada-prona-solo.webp",
+    "aspectRatio": "366 / 258",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "avanco-corporal": {
+    "sprite": "/media/motion/avanco-corporal.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "dead-bug": {
+    "sprite": "/media/motion/dead-bug.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "abdominal-infra": {
+    "sprite": "/media/motion/abdominal-infra.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "loop",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "abdominal-supra": {
+    "sprite": "/media/motion/abdominal-supra.webp",
+    "aspectRatio": "366 / 213",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "supino-reto-barra": {
+    "sprite": "/media/motion/supino-reto-barra.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "supino-halteres": {
+    "sprite": "/media/motion/supino-halteres.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "supino-maquina": {
+    "sprite": "/media/motion/supino-maquina.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "flexao-inclinada": {
+    "sprite": "/media/motion/flexao-inclinada.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "flexao-declinada": {
+    "sprite": "/media/motion/flexao-declinada.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "supino-elastico": {
+    "sprite": "/media/motion/supino-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "desenvolvimento-halteres": {
+    "sprite": "/media/motion/desenvolvimento-halteres.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "desenvolvimento-maquina": {
+    "sprite": "/media/motion/desenvolvimento-maquina.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "desenvolvimento-barra": {
+    "sprite": "/media/motion/desenvolvimento-barra.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "pike-pushup": {
+    "sprite": "/media/motion/pike-pushup.webp",
+    "aspectRatio": "366 / 301",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "desenvolvimento-elastico": {
+    "sprite": "/media/motion/desenvolvimento-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "remada-curvada-barra": {
+    "sprite": "/media/motion/remada-curvada-barra.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "remada-serrote": {
+    "sprite": "/media/motion/remada-serrote.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "remada-maquina": {
+    "sprite": "/media/motion/remada-maquina.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "remada-baixa-polia": {
+    "sprite": "/media/motion/remada-baixa-polia.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "remada-elastico": {
+    "sprite": "/media/motion/remada-elastico.webp",
+    "aspectRatio": "366 / 304",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "remada-toalha": {
+    "sprite": "/media/motion/remada-toalha.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "puxada-polia": {
+    "sprite": "/media/motion/puxada-polia.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "barra-fixa": {
+    "sprite": "/media/motion/barra-fixa.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "puxada-elastico": {
+    "sprite": "/media/motion/puxada-elastico.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "loop",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "agachamento-barra": {
+    "sprite": "/media/motion/agachamento-barra.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "agachamento-goblet": {
+    "sprite": "/media/motion/agachamento-goblet.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "agachamento-kettlebell": {
+    "sprite": "/media/motion/agachamento-kettlebell.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "agachamento-elastico": {
+    "sprite": "/media/motion/agachamento-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "terra-romeno-barra": {
+    "sprite": "/media/motion/terra-romeno-barra.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "terra-romeno-halteres": {
+    "sprite": "/media/motion/terra-romeno-halteres.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "hip-thrust-barra": {
+    "sprite": "/media/motion/hip-thrust-barra.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "swing-kettlebell": {
+    "sprite": "/media/motion/swing-kettlebell.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "terra-romeno-elastico": {
+    "sprite": "/media/motion/terra-romeno-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "afundo-halteres": {
+    "sprite": "/media/motion/afundo-halteres.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "bulgaro": {
+    "sprite": "/media/motion/bulgaro.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "step-up": {
+    "sprite": "/media/motion/step-up.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "crucifixo-halteres": {
+    "sprite": "/media/motion/crucifixo-halteres.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "crossover-polia": {
+    "sprite": "/media/motion/crossover-polia.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "crucifixo-elastico": {
+    "sprite": "/media/motion/crucifixo-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "elevacao-lateral-halteres": {
+    "sprite": "/media/motion/elevacao-lateral-halteres.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "elevacao-lateral-polia": {
+    "sprite": "/media/motion/elevacao-lateral-polia.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "elevacao-lateral-elastico": {
+    "sprite": "/media/motion/elevacao-lateral-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "crucifixo-invertido-halteres": {
+    "sprite": "/media/motion/crucifixo-invertido-halteres.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "face-pull": {
+    "sprite": "/media/motion/face-pull.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "band-pull-apart": {
+    "sprite": "/media/motion/band-pull-apart.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "rosca-direta-barra": {
+    "sprite": "/media/motion/rosca-direta-barra.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "rosca-alternada": {
+    "sprite": "/media/motion/rosca-alternada.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "rosca-polia": {
+    "sprite": "/media/motion/rosca-polia.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "rosca-elastico": {
+    "sprite": "/media/motion/rosca-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "rosca-martelo": {
+    "sprite": "/media/motion/rosca-martelo.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "triceps-polia": {
+    "sprite": "/media/motion/triceps-polia.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "triceps-frances-halter": {
+    "sprite": "/media/motion/triceps-frances-halter.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "triceps-banco": {
+    "sprite": "/media/motion/triceps-banco.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "flexao-diamante": {
+    "sprite": "/media/motion/flexao-diamante.webp",
+    "aspectRatio": "366 / 256",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "triceps-elastico": {
+    "sprite": "/media/motion/triceps-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "mesa-flexora": {
+    "sprite": "/media/motion/mesa-flexora.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "flexora-deslizante": {
+    "sprite": "/media/motion/flexora-deslizante.webp",
+    "aspectRatio": "366 / 213",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "flexora-elastico": {
+    "sprite": "/media/motion/flexora-elastico.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "cadeira-extensora": {
+    "sprite": "/media/motion/cadeira-extensora.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "abducao-maquina": {
+    "sprite": "/media/motion/abducao-maquina.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "abducao-elastico": {
+    "sprite": "/media/motion/abducao-elastico.webp",
+    "aspectRatio": "366 / 366",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "coice-polia": {
+    "sprite": "/media/motion/coice-polia.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "panturrilha-halteres": {
+    "sprite": "/media/motion/panturrilha-halteres.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "panturrilha-maquina": {
+    "sprite": "/media/motion/panturrilha-maquina.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "panturrilha-corporal": {
+    "sprite": "/media/motion/panturrilha-corporal.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  },
+  "pallof-press": {
+    "sprite": "/media/motion/pallof-press.webp",
+    "aspectRatio": "320 / 320",
+    "cycle": "return",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "elevacao-pernas-barra": {
+    "sprite": "/media/motion/elevacao-pernas-barra.webp",
+    "aspectRatio": "320 / 320",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "agachamento-corporal": {
+    "sprite": "/media/motion/agachamento-corporal.webp",
+    "aspectRatio": "360 / 360",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "flexao": {
+    "sprite": "/media/motion/flexao.webp",
+    "aspectRatio": "376 / 213",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 5
+    }
+  },
+  "leg-press": {
+    "sprite": "/media/motion/leg-press.webp",
+    "aspectRatio": "320 / 240",
+    "cycle": "loop",
+    "motion": {
+      "columns": 8,
+      "rows": 8,
+      "frameCount": 64,
+      "duration": 4
+    }
+  }
+}

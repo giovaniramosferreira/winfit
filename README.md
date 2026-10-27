@@ -67,6 +67,8 @@ npx tsx scripts/test-watch-sync.ts
 
 ## Receber usuários: conta e sincronização
 
+A entrada do produto é uma landing responsiva com opção de experimentar sem conta. O login Google está preparado e desativado por padrão; veja o [guia de configuração](./docs/google-login.md). Login por link de e-mail continua disponível quando o Supabase está configurado.
+
 O app continua aberto para experimentar sem cadastro. Para ativar conta real e backup entre aparelhos:
 
 1. Crie um projeto no Supabase e execute [`supabase/schema.sql`](./supabase/schema.sql) no SQL Editor.

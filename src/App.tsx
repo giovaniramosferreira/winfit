@@ -26,19 +26,20 @@ import WorkoutStorageNotice from './components/WorkoutStorageNotice'
 export default function App() {
   const profile = useStore((s) => s.profile)
   const plan = useStore((s) => s.plan)
+  const hasActiveSession = useStore((s) => s.activeSession !== null)
   const loc = useLocation()
 
   const onboarded = profile !== null && plan !== null
   const inPlayer = loc.pathname === '/player'
   const inFlow = ['/', '/login', '/onboarding', '/preview'].includes(loc.pathname)
-  const isLanding = loc.pathname === '/' && !onboarded
+  const isLanding = loc.pathname === '/'
 
   return (
-    <AuthProvider><div className={`app-shell${isLanding ? ' wide' : ''}`}>
+    <AuthProvider><div className={`app-shell${isLanding ? ' wide' : ' product-shell'}${loc.pathname === '/home' ? ' home-shell' : ''}${hasActiveSession ? ' with-active-session' : ''}`}>
       <PwaToasts />
       <WorkoutStorageNotice />
       <Routes>
-        <Route path="/" element={onboarded ? <Navigate to="/home" replace /> : <Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/preview" element={<Preview />} />
@@ -60,7 +61,7 @@ export default function App() {
       </Routes>
       {onboarded && !inPlayer && !inFlow && !loc.pathname.startsWith('/summary') && (
         <>
-          <MiniBar />
+          {loc.pathname !== '/home' && <MiniBar />}
           <TabBar />
         </>
       )}

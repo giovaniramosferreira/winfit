@@ -545,7 +545,7 @@ details[open] > summary::after { content: ' −'; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  *:not(.pilot-frames), *::before, *::after { animation: none !important; transition: none !important; }
 }
 
 /* Identidade de ilustração: tinta, contornos orgânicos e hachuras em papel claro. */
@@ -599,8 +599,7 @@ svg.body .ink-contour { fill: none; stroke: #777067; stroke-width: .6; stroke-li
 }
 @media (prefers-reduced-motion: reduce) {
   /* A reprodução só começa após o pedido explícito no botão, também neste modo. */
-  .pilot-frames { animation: pilot-return 5s steps(1, end) infinite !important; animation-play-state: paused !important; }
-  .pilot-cycle-loop { animation-name: pilot-loop !important; animation-duration: 4s !important; }
+  .pilot-frames { animation-play-state: paused !important; }
   .pilot-frames.is-playing { animation-play-state: running !important; }
 }
 
@@ -637,4 +636,135 @@ svg.body .ink-contour { fill: none; stroke: #777067; stroke-width: .6; stroke-li
   .player .set-row { padding-block: 4px; }
   .player .set-row.head { padding-top: 0; }
   .player .timer-bar { padding: 8px; gap: 8px; }
+}
+
+/* Pump House: superfícies claras e componentes adaptados para o roxo WinFit. */
+.home-shell {
+  --text: #2b203c;
+  --text-dim: #746985;
+  --text-faint: #80748f;
+  --line: #e3daed;
+  --bg: #f6f3fa;
+  --bg-elev: #ffffff;
+  --accent-strong: #7952bc;
+  --olive: var(--accent-strong);
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: light;
+}
+/* Home: um painel de quatro escolhas que usa a altura disponível do aparelho. */
+.home-hub {
+  height: calc(100dvh - var(--tabbar-h) - var(--safe-b) - 12px);
+  padding: calc(var(--safe-t) + 22px) 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.home-heading { flex: 0 0 auto; }
+.home-heading-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.home-greeting { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-dim); }
+.home-greeting-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-strong); }
+.home-brand { font-size: 19px; font-weight: 650; letter-spacing: -.8px; }
+.home-brand em { color: var(--accent-strong); font-style: normal; }
+.home-heading h1 { font-size: clamp(28px, 8.4vw, 36px); font-weight: 600; line-height: 1.08; letter-spacing: -1.2px; }
+.home-heading h1 em { color: var(--accent-strong); font-style: normal; }
+.home-heading > p { font-size: 12px; color: var(--text-dim); margin-top: 9px; }
+.home-module-grid { flex: 1 1 0; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.home-module { display: flex; flex-direction: column; position: relative; min-height: 0; min-width: 0; border: 1px solid #e7e0ef; border-radius: 24px; text-decoration: none; background: #fff; color: var(--text); box-shadow: 0 4px 18px #45305e08; overflow: hidden; transition: transform .15s, border-color .15s; }
+.home-module:hover { border-color: var(--accent-strong); }
+.home-module:active { transform: scale(.98); }
+.home-module:focus-visible, .home-shortcuts a:focus-visible, .home-resume:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
+.home-module-art { position: relative; flex: 1 1 0; min-height: 0; display: flex; justify-content: center; align-items: center; background: #eee9f4; color: #65516f; overflow: hidden; }
+.home-module-art-home { background: #eee7f7; }
+.home-module-art-pelvic { background: #e9e1f3; padding: 12px 5px 0; }
+.home-module-art-nutrition { background: #f1eaf5; padding: 5px; }
+.home-module-art svg { position: relative; height: 100%; max-width: 100%; width: auto; }
+.home-art-orbit { position: absolute; width: 76%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #bcafc2; }
+.home-art-orbit::after { content: ''; position: absolute; inset: 9px; border: 1px dashed #c7bdc9; border-radius: 50%; }
+.home-module-art-gym svg, .home-module-art-home svg { mix-blend-mode: multiply; width: 100%; height: 100%; overflow: hidden; }
+.home-module-badge { position: absolute; top: 8px; left: 8px; border-radius: 20px; padding: 4px 7px; color: #624d76; background: #f5eff8e8; border: 1px solid #c9bbd6; font-size: 8px; line-height: 1.2; }
+.home-module-copy { position: relative; flex: 0 0 auto; padding: 12px 12px 13px; }
+.home-module-title { display: flex; justify-content: space-between; align-items: center; gap: 4px; }
+.home-module-title h2 { color: var(--text); font-size: 17px; line-height: 1.2; font-weight: 600; letter-spacing: -.5px; }
+.home-module-title > span { color: var(--accent-strong); font-size: 15px; }
+.home-module-copy p { margin-top: 5px; font-size: 10px; line-height: 1.3; color: var(--text-dim); }
+.home-shortcuts { flex: 0 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.home-shortcuts a { display: flex; align-items: center; gap: 8px; min-height: 60px; color: var(--text); text-decoration: none; border: 1px solid #e7e0ef; border-radius: 19px; background: #fff; padding: 10px 9px; }
+.home-shortcuts svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--accent-strong); }
+.home-shortcuts a > span:nth-child(2) { flex: 1; min-width: 0; }
+.home-shortcuts strong { display: block; font-size: 12px; line-height: 1.3; font-weight: 550; }
+.home-shortcuts a > span > span { display: block; font-size: 9px; color: var(--text-dim); margin-top: 4px; }
+.home-shortcuts a > span:last-child { color: var(--text-faint); }
+.home-resume { flex: 0 0 auto; display: flex; align-items: center; gap: 9px; border: 1px solid #d4c4ef; background: #e8ddfa; border-radius: 14px; min-height: 57px; padding: 10px 11px; text-align: left; }
+.home-resume-play { color: var(--accent-strong); font-size: 23px; }
+.home-resume-info { flex: 1; min-width: 0; }
+.home-resume-info strong { display: block; font-size: 12px; font-weight: 550; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-resume-info > span { display: block; color: var(--text-dim); font-size: 9px; margin-top: 3px; }
+.home-resume-action { font-size: 10px; color: #56358b; white-space: nowrap; }
+.home-resume-action > span { margin-left: 2px; }
+@media (max-height: 740px) {
+  .home-hub { gap: 12px; padding-top: calc(var(--safe-t) + 16px); padding-bottom: 10px; }
+  .home-heading-top { margin-bottom: 10px; }
+  .home-heading h1 { font-size: 29px; }
+  .home-heading > p { margin-top: 7px; }
+  .home-module-grid { gap: 10px; }
+  .home-module-copy { padding: 10px 10px 11px; }
+  .home-shortcuts a { min-height: 52px; padding-block: 8px; }
+}
+@media (max-height: 620px) {
+  .home-hub { gap: 9px; padding-top: calc(var(--safe-t) + 10px); }
+  .home-heading-top { margin-bottom: 8px; }
+  .home-heading h1 { font-size: 25px; }
+  .home-heading h1 br { display: none; }
+  .home-heading > p { margin-top: 5px; font-size: 11px; }
+  .home-module-copy { padding: 8px 10px; }
+  .home-module-title h2 { font-size: 15px; }
+  .home-module-copy p { font-size: 9px; margin-top: 3px; }
+  .home-resume { min-height: 48px; padding-block: 7px; }
+}
+/* Telas muito baixas e texto ampliado mantêm conteúdo acessível, sem recorte forçado. */
+@media (max-height: 450px) {
+  .home-hub { height: auto; min-height: calc(100dvh - var(--tabbar-h) - var(--safe-b)); }
+  .home-module-grid { flex-basis: auto; grid-template-rows: repeat(2, 150px); }
+}
+
+.home-welcome { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: relative; border-radius: 25px; padding: 18px 19px; background: #7450bd; color: white; overflow: hidden; }
+.home-welcome::before { content: ''; position: absolute; width: 205px; height: 205px; border-radius: 50%; border: 30px solid #ffffff0b; right: -67px; top: -75px; pointer-events: none; }
+.home-welcome > div { position: relative; min-width: 0; }
+.home-heading .home-welcome h1 { font-size: 28px; font-weight: 550; line-height: 1.12; letter-spacing: -.8px; }
+.home-welcome h1 em { color: #eee4ff; }
+.home-welcome p { max-width: 175px; font-size: 10px; line-height: 1.5; color: #e8ddf8; margin-top: 8px; }
+.home-week { position: relative; flex: 0 0 76px; display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #fff; padding-block: 6px; }
+.home-week img { filter: brightness(0) invert(1); opacity: .9; margin-bottom: 2px; }
+.home-week strong { font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: -1px; }
+.home-week small { font-size: 17px; font-weight: 400; color: #dfd0f3; letter-spacing: 0; }
+.home-week > span { color: #eadff8; font-size: 9px; }
+.home-kit-icon { position: absolute; right: 12px; top: -16px; width: 34px; height: 34px; border: 3px solid white; background: #8b67c7; border-radius: 50%; display: grid; place-items: center; }
+.home-kit-heart { background: #e9dff7; }
+.home-resume-play { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #7952bc; flex-shrink: 0; }
+.home-shell .tabbar { width: calc(100% - 28px); max-width: 452px; height: var(--tabbar-h); bottom: calc(var(--safe-b) + 10px); padding: 5px; background: #fff; border: 1px solid #e8e1ef; border-radius: 27px; box-shadow: 0 5px 20px #3c25540a; }
+.home-shell .tabbar a { font-size: 10px; border-radius: 20px; gap: 5px; }
+.home-shell .tabbar a.active { color: #6d45ad; background: #eee6fa; }
+.home-shell .home-shortcuts svg { width: 18px; height: 18px; }
+.home-shell .home-shortcuts a { gap: 6px; }
+.home-shell .home-shortcuts strong { font-size: 11px; }
+.home-shell .home-shortcuts a > span > span { font-size: 8px; }
+.home-shell .home-module-title > span { margin-top: 5px; }
+@media (max-height: 740px) {
+  .home-welcome { padding: 13px 16px; border-radius: 21px; }
+  .home-heading .home-welcome h1 { font-size: 25px; }
+  .home-welcome p { margin-top: 6px; }
+  .home-week strong { font-size: 27px; }
+}
+@media (max-height: 620px) {
+  .home-heading-top { margin-bottom: 7px; }
+  .home-welcome { padding: 9px 12px; gap: 6px; border-radius: 18px; }
+  .home-heading .home-welcome h1 { font-size: 23px; }
+  .home-heading .home-welcome h1 br { display: initial; }
+  .home-welcome p { font-size: 9px; margin-top: 4px; }
+  .home-week { flex-basis: 65px; gap: 1px; padding: 0; }
+  .home-week strong { font-size: 24px; }
+  .home-week img { display: none; }
+  .home-week > span { font-size: 8px; }
+  .home-kit-icon { width: 28px; height: 28px; top: -14px; right: 9px; border-width: 2px; }
 }

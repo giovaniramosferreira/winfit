@@ -1,0 +1,2659 @@
+{
+  "version": 4,
+  "engine": "RIFE4.6",
+  "assets": {
+    "flexao-joelhos": {
+      "signature": "1e95728e7bab1d083d479a29d712c4b2e3700aa95ea674bc888d54a6f5fcf1e0",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/flexao-joelhos.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/flexao-joelhos.webp",
+        "aspectRatio": "366 / 241",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "77740a8339c6acaaacf21aaf6cd5e0412e5bfa103f53c8dc76cd87c4d001b70a"
+    },
+    "ponte-gluteo": {
+      "signature": "fd85ffebec92dc5d23a2bb186d4364ff74a5e5f1e73f05577bfb1df56b207715",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/ponte-gluteo.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/ponte-gluteo.webp",
+        "aspectRatio": "366 / 213",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "aacb3e10468f5c148f525bfd9c186ad70705f5d2e894187884a2f2fb110a6c6f"
+    },
+    "ponte-unilateral": {
+      "signature": "008e4ca1b4e259e5c927d8c76b596bb2ffe9b97e9ca395c6c1be13ee28241bd4",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/ponte-unilateral.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/ponte-unilateral.webp",
+        "aspectRatio": "366 / 261",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "0ef2da607af577c0ffc1e899861e302dcb242b1dd8438d7b3390addf68286ee1"
+    },
+    "puxada-prona-solo": {
+      "signature": "c931f916017a631e400be5f7604f7b8da17e6d97093123024f066149edf964b8",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/puxada-prona-solo.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/puxada-prona-solo.webp",
+        "aspectRatio": "366 / 258",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "e1b18a0238c7379f86129334bd6bf7dd378333d36d77f54832aa97aba7e8f225"
+    },
+    "avanco-corporal": {
+      "signature": "5a1428ed3090f1c11c097eb7272e99f856b3815bfd1d5a26bd3521642f19bbe3",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/avanco-corporal.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/avanco-corporal.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "62467e8d928570f5018130d9b9bc2499d078a3c1b2aa6c1d75397f9603651174"
+    },
+    "dead-bug": {
+      "signature": "8adc2e3e7aa7a74f209d848fc2b9329ce60d38510294b162e332b89a961418f8",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/motion-sources/dead-bug.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 8,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 7,
+          "dy": -53,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 6,
+          "dy": -53,
+          "scale": 1,
+          "error": 0
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/dead-bug.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "fd0c9d0c55918d3e3ac5faa846d9ff506b7a343feb2cb61130a5cd875b54354e"
+    },
+    "abdominal-infra": {
+      "signature": "c0d775ee7f408ba6774a5f1d691f28896b6e1189402654c5154c390d910478b6",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/abdominal-infra.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -1.5,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -7.5,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -20,
+          "dy": -33.5,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -1.5,
+          "dy": -33,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -7,
+          "dy": -34,
+          "scale": 1,
+          "error": 0
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/abdominal-infra.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "loop",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "c1c6b18cac8036edd1a28ec2561795368b25d246445c3579ce6e2f9a17f6f5e1"
+    },
+    "abdominal-supra": {
+      "signature": "63a15309f84fa003edb96f4955f09842fdccebb7bbd5ca4c8ac0a00c9ff65cfc",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/abdominal-supra.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/abdominal-supra.webp",
+        "aspectRatio": "366 / 213",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "d43da1b4780dd5981eb84be11e6840713378b238728258d2e68a70a11656fe34"
+    },
+    "supino-reto-barra": {
+      "signature": "c9dfe2c007866657964c69990ce77903484754dd948f0f4df6f3eb9e389f421f",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/supino-reto-barra.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -4,
+          "dy": 0,
+          "scale": 1,
+          "error": 8.333253571679842
+        },
+        {
+          "dx": -4,
+          "dy": 0,
+          "scale": 1,
+          "error": 7.7306073615313675
+        },
+        {
+          "dx": 2,
+          "dy": -23,
+          "scale": 1,
+          "error": 16.700049264550522
+        },
+        {
+          "dx": 0,
+          "dy": -22,
+          "scale": 1,
+          "error": 18.989555915264837
+        },
+        {
+          "dx": -4,
+          "dy": -22,
+          "scale": 1,
+          "error": 17.810247026532327
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/supino-reto-barra.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "0ae9ca771757511c1367b880917e552af21d581f39abe18094cfac1f23a0d3fa"
+    },
+    "supino-halteres": {
+      "signature": "e972aed0e9a0a038241047a53bb1ff2c70e55589adf6179675850f0e2c70252b",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/supino-halteres.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -18,
+          "dy": 0,
+          "scale": 1,
+          "error": 17.851644736841955
+        },
+        {
+          "dx": -25,
+          "dy": 0,
+          "scale": 1,
+          "error": 25.20968172119472
+        },
+        {
+          "dx": 0,
+          "dy": -24,
+          "scale": 1,
+          "error": 18.517994310099425
+        },
+        {
+          "dx": -17,
+          "dy": -24,
+          "scale": 1,
+          "error": 26.6909317211948
+        },
+        {
+          "dx": -25,
+          "dy": -23,
+          "scale": 1,
+          "error": 28.357067923186275
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/supino-halteres.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "000e66da10635285078462a8e0c6c8770ed49e87e845e72f889f372902168e43"
+    },
+    "supino-maquina": {
+      "signature": "21dd874eaba9847fd40ca90a254700fd707793545f9f5615ce13c094de5b23be",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/supino-maquina.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 4,
+          "dy": 0,
+          "scale": 1,
+          "error": 19.640558905158187
+        },
+        {
+          "dx": -9,
+          "dy": 0,
+          "scale": 1,
+          "error": 16.401588668771968
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "scale": 1,
+          "error": 6.005148818068648
+        },
+        {
+          "dx": 2,
+          "dy": -1,
+          "scale": 1,
+          "error": 10.43883625227284
+        },
+        {
+          "dx": -10,
+          "dy": -1,
+          "scale": 1,
+          "error": 12.628270647908781
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/supino-maquina.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "e4fe853b5ae037c47492084b9a95ab90a2dff5289f40a9b7a5dace3642e4e4ba"
+    },
+    "flexao-inclinada": {
+      "signature": "9c8cff4ccd82d60ba2e6c418a59f05b2d5a4aefba81f96cf5c241aa73a7c2541",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/flexao-inclinada.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -7,
+          "dy": 0,
+          "scale": 1,
+          "error": 15.773834163791891
+        },
+        {
+          "dx": -12,
+          "dy": 0,
+          "scale": 1,
+          "error": 9.445036412418483
+        },
+        {
+          "dx": 0,
+          "dy": -7,
+          "scale": 1,
+          "error": 13.855794046250054
+        },
+        {
+          "dx": -6,
+          "dy": -7,
+          "scale": 1,
+          "error": 21.04685064520236
+        },
+        {
+          "dx": -11,
+          "dy": -9,
+          "scale": 0.98,
+          "error": 23.862884885652065
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/flexao-inclinada.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "6ccc04bdc0379b07ffb7996f56da2444e3eabfada6c5519f58797b5aac35a110"
+    },
+    "flexao-declinada": {
+      "signature": "1b63ef1e5394bc93cb46977b6b96619bf79fce27be9d7ffca7c657bcd53c35e3",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/flexao-declinada.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -1,
+          "dy": 0,
+          "scale": 1,
+          "error": 16.683695216729337
+        },
+        {
+          "dx": -3,
+          "dy": 0,
+          "scale": 1,
+          "error": 23.53486098870271
+        },
+        {
+          "dx": 0,
+          "dy": -32,
+          "scale": 1,
+          "error": 21.861902091178504
+        },
+        {
+          "dx": -1,
+          "dy": -32,
+          "scale": 1,
+          "error": 25.31116096466619
+        },
+        {
+          "dx": -8,
+          "dy": -32,
+          "scale": 1,
+          "error": 21.223139171540666
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/flexao-declinada.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "69e5467124243e28524e65723a0bce36a83b8e7532542b1236942dd994c061b1"
+    },
+    "supino-elastico": {
+      "signature": "5308a4a4f4770e4958c51b528a1a9bcc33c484586b43f9adf590e8fa7d22b90f",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/supino-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/supino-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "014c21a4de546a08cc089858f42ef9b5f5c260aae0ad1a0a77c1918f18aeca8d"
+    },
+    "desenvolvimento-halteres": {
+      "signature": "6989e58509621fe37c16e837e456595835f45055ab37094d1fb31edb1f534125",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/desenvolvimento-halteres.webp",
+      "registrations": [],
+      "originalFrames": 4,
+      "illustration": {
+        "sprite": "/media/motion/desenvolvimento-halteres.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "f9ef32bbc511fcca77e7b5b8c499302dc7493de247d6c74a5d1e9b7ca63c5316"
+    },
+    "desenvolvimento-maquina": {
+      "signature": "6e3bb7ba06de9ac3b4c6c1f9562efb030597b5220fb504e34dda9f0919b4e00b",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/desenvolvimento-maquina.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 1,
+          "dy": 0,
+          "scale": 1,
+          "error": 24.619566563467277
+        },
+        {
+          "dx": 18,
+          "dy": 0,
+          "scale": 1,
+          "error": 31.54848297213605
+        },
+        {
+          "dx": 8,
+          "dy": -6,
+          "scale": 1,
+          "error": 28.59331269349827
+        },
+        {
+          "dx": 4,
+          "dy": -6,
+          "scale": 1,
+          "error": 28.66266253869951
+        },
+        {
+          "dx": 4,
+          "dy": -6,
+          "scale": 1,
+          "error": 14.637770897832745
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/desenvolvimento-maquina.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "90c530db62e54439d8d517479602ec8d6937b4b9269a0ffd2fd2cfa3035dd274"
+    },
+    "desenvolvimento-barra": {
+      "signature": "771b68d5563ee5674d995a75a257a0c42770fa6a2ac7f3116195a69679a53e1d",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/desenvolvimento-barra.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/desenvolvimento-barra.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "5f9522656aca09f8b0386535780fa992387050b54b4c7724e07236694b4c7c55"
+    },
+    "pike-pushup": {
+      "signature": "b171eae7a519ef528df3e56a5416812ebf42bc7db63245ba884fac79a38246dd",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/pike-pushup.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/pike-pushup.webp",
+        "aspectRatio": "366 / 301",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "1e15840f26214a9e4a772df39491c7c01dca412c2b62c3f3cb4eb0fa151c92b0"
+    },
+    "desenvolvimento-elastico": {
+      "signature": "da86272472c1e789071045c17da79aae25cfb4b75f62b0fbe0aa342d2659cb20",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/desenvolvimento-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/desenvolvimento-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "75c880509733940ee51a904b17ca936b4626cb8b983a99a1d05ee56553baf5a4"
+    },
+    "remada-curvada-barra": {
+      "signature": "d2e648908ba5f222d69afe7eda1378d41649ca8dcd788e1b68ca48f2128a4785",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/remada-curvada-barra.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/remada-curvada-barra.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "598af3ebb92c318ba5031f1c43491d15690641e57b35741e85854422d3b0130b"
+    },
+    "remada-serrote": {
+      "signature": "becedab79912f112b9fc97a356bc6ce6e7df365c64a35a949039d90ee57137a8",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/remada-serrote.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -1,
+          "dy": 0,
+          "scale": 1,
+          "error": 11.126542103915977
+        },
+        {
+          "dx": -1,
+          "dy": 0,
+          "scale": 1,
+          "error": 4.168518044535415
+        },
+        {
+          "dx": 0,
+          "dy": -7,
+          "scale": 1,
+          "error": 7.85738418223695
+        },
+        {
+          "dx": -1,
+          "dy": -7,
+          "scale": 1,
+          "error": 14.647350908625455
+        },
+        {
+          "dx": -1,
+          "dy": -7,
+          "scale": 1,
+          "error": 9.260353212183214
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/remada-serrote.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "03d0a343d564d294e5c3d5f591ae1f580cb608186c4d6b2d00b75b9063c03022"
+    },
+    "remada-maquina": {
+      "signature": "a379aeb40aebf30da27b28b78f81f26c20d9fbd9f031afd95916ed399308a7fe",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/remada-maquina.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -6,
+          "dy": 1,
+          "scale": 1,
+          "error": 10.78444007044436
+        },
+        {
+          "dx": -4,
+          "dy": 1,
+          "scale": 1,
+          "error": 16.03719051072181
+        },
+        {
+          "dx": 3,
+          "dy": -7,
+          "scale": 1,
+          "error": 11.020097379053091
+        },
+        {
+          "dx": -4,
+          "dy": -7,
+          "scale": 1,
+          "error": 13.61510411271087
+        },
+        {
+          "dx": -11,
+          "dy": -9,
+          "scale": 0.98,
+          "error": 13.332974204910336
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/remada-maquina.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "48c80d6eab8f26bbe2a4cdcfbed60c055eebc1d50d62ba880dd1bdb8a8b25775"
+    },
+    "remada-baixa-polia": {
+      "signature": "a2a57a86c36b3ba13eaa78cb145d30b109b7555cf2bf466e983ca01fe06ff146",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/remada-baixa-polia.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 3,
+          "dy": 1,
+          "scale": 1,
+          "error": 14.085960676095203
+        },
+        {
+          "dx": 8,
+          "dy": 2,
+          "scale": 1,
+          "error": 13.100034494653324
+        },
+        {
+          "dx": 0,
+          "dy": 2,
+          "scale": 1,
+          "error": 13.076095205243194
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "scale": 1,
+          "error": 11.341842014487758
+        },
+        {
+          "dx": 8,
+          "dy": 3,
+          "scale": 1,
+          "error": 14.41938599517075
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/remada-baixa-polia.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "a014d17e8d6e029eb3ade408dda3ab28bedd648b872028220d29066bc2fdc8e0"
+    },
+    "remada-elastico": {
+      "signature": "03a27e11cb56f9af73117ccae57e27f6ad68d1c2b74fdadbe40815aa713fb697",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/remada-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/remada-elastico.webp",
+        "aspectRatio": "366 / 304",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "1e5b5c32c7ca7777261cb2c37d2f05de6c2373562b54a1a8935df9365828d77c"
+    },
+    "remada-toalha": {
+      "signature": "8bd239a84a67ceb02e4a26e89922fc64244c04551c36ce8adcddd4d74cefa090",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/remada-toalha.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 8.733712558883603
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 7.233223713447648
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 7.233223713447648
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 8.733712558883603
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        }
+      ],
+      "originalFrames": 4,
+      "illustration": {
+        "sprite": "/media/motion/remada-toalha.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "ae7af0e31068cf3415865e9c0a661cde04e67243c7a423ab342a025857671991"
+    },
+    "puxada-polia": {
+      "signature": "d92a91868e9dab2e0b495bde41684bfda03f9ce3b484c2521af23c08c9d97c81",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/motion-sources/puxada-polia.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -5,
+          "dy": -1,
+          "scale": 1,
+          "error": 11.967650976909358
+        },
+        {
+          "dx": 0,
+          "dy": 1,
+          "scale": 0.98,
+          "error": 14.3577708703374
+        },
+        {
+          "dx": 0,
+          "dy": -9,
+          "scale": 1,
+          "error": 9.090741563055023
+        },
+        {
+          "dx": -5,
+          "dy": -9,
+          "scale": 1,
+          "error": 10.281793960923588
+        }
+      ],
+      "originalFrames": 5,
+      "illustration": {
+        "sprite": "/media/motion/puxada-polia.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "3be02e844e1610d68e158ba346d3d1ac958f22c19920333c63bc0612d608734a"
+    },
+    "barra-fixa": {
+      "signature": "d34138f8ca5930978be889ba513a7ef65d4f9f76a2820b24516d1a3b169c1301",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/barra-fixa.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -7,
+          "dy": 0,
+          "scale": 1,
+          "error": 6.982535211267584
+        },
+        {
+          "dx": -14,
+          "dy": 2,
+          "scale": 1,
+          "error": 16.497276995305125
+        },
+        {
+          "dx": 0,
+          "dy": -6,
+          "scale": 1,
+          "error": 6.400375586854437
+        },
+        {
+          "dx": -6,
+          "dy": -4,
+          "scale": 0.98,
+          "error": 10.638122065727663
+        },
+        {
+          "dx": -13,
+          "dy": -4,
+          "scale": 0.98,
+          "error": 15.010704225352075
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/barra-fixa.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "a3aa1445fee24fdbb1fff42e0dc29817c99d383fcaacb0b347113bf5f4724aaf"
+    },
+    "puxada-elastico": {
+      "signature": "36b0acb81d29fd27376ab1159f046334db4ed8cd31917479862af27166ad22d2",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/puxada-elastico.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 11,
+          "dy": 0,
+          "scale": 1,
+          "error": 11.264421944902189
+        },
+        {
+          "dx": -4,
+          "dy": 0,
+          "scale": 1,
+          "error": 13.646385684012172
+        },
+        {
+          "dx": 4,
+          "dy": -13,
+          "scale": 1,
+          "error": 16.86357428773245
+        },
+        {
+          "dx": 8,
+          "dy": -13,
+          "scale": 1,
+          "error": 14.946173769719735
+        },
+        {
+          "dx": -5,
+          "dy": -13,
+          "scale": 1,
+          "error": 13.837108547209741
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/puxada-elastico.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "loop",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "b134c050d633f10e073f7de8e3f9841183ed14ee46aa4c0f4c3828479deac77d"
+    },
+    "agachamento-barra": {
+      "signature": "09491b78bfc30fe97f52b2673e5dc9952a2628855cea84983ee35157ee74f52c",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/agachamento-barra.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/agachamento-barra.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "1953cb11ec65709eff3088cae49f9f58167834192c3fb31d88ebd3333a898b03"
+    },
+    "agachamento-goblet": {
+      "signature": "fc9d27b276504478cbdc30ae9bc45f403ccd6de9579fc4bddf43373cfdd067fc",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/agachamento-goblet.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/agachamento-goblet.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "72940f1bf93179b67e69f9bf265aae1140eba736844a1d285983ee47a1dbd85a"
+    },
+    "agachamento-kettlebell": {
+      "signature": "5a8dc93f5b34913c9f81073cee3a9008564e45a651938123db99ab1e92321b54",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/agachamento-kettlebell.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/agachamento-kettlebell.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "82eed8b5abd2a634ffbf4af13288e3412fb23e4b604c00d8c4be61297ca8a052"
+    },
+    "agachamento-elastico": {
+      "signature": "26f64874cfe905ef145e859d2efa22988e795e80b2b2407f1c6e8ff30798871d",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/agachamento-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/agachamento-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "45f1476a84058f4165a868850f9e37358d43ec2a67036ae9fbcf475424c473c5"
+    },
+    "terra-romeno-barra": {
+      "signature": "2a4c43c72370638d3cf95fc42837d5e22655e045649f3e611c1902f2220c7059",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/terra-romeno-barra.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/terra-romeno-barra.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "2e0ffff0879a343c6a1bcfe58cc73745446d389b61c1f241643fdfcba8719d0d"
+    },
+    "terra-romeno-halteres": {
+      "signature": "790f6206896ecdb502510ac00f817508e7dfd73a58680a18fa3f844fd6836d13",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/terra-romeno-halteres.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/terra-romeno-halteres.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "07b1ba2d599242e59d596f7853cf44050b749f2e9c4c1dab437f3dd6cc34f7a1"
+    },
+    "hip-thrust-barra": {
+      "signature": "4b3082dc8feb563549713358f81443023970889eb595b1135475268ceb1b3db8",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/hip-thrust-barra.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -3,
+          "dy": 2,
+          "scale": 1,
+          "error": 29.506058211510435
+        },
+        {
+          "dx": -3,
+          "dy": 1,
+          "scale": 1,
+          "error": 33.56912946134579
+        },
+        {
+          "dx": 8,
+          "dy": -24,
+          "scale": 1,
+          "error": 39.99647043329366
+        },
+        {
+          "dx": -1,
+          "dy": -22,
+          "scale": 0.98,
+          "error": 28.306334782035968
+        },
+        {
+          "dx": -6,
+          "dy": -18,
+          "scale": 1,
+          "error": 28.968115369419056
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/hip-thrust-barra.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "b3a9fa8b49684c540fa9ce8f2ea1ea1cda29d5d6076f305ea4107c1da7272194"
+    },
+    "swing-kettlebell": {
+      "signature": "74a81118a1d97ddef182824e6ddaf97fe26c8e4cab112e6abeb9e2e324ab3ec9",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/motion-sources/swing-kettlebell.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -9,
+          "dy": 1,
+          "scale": 1,
+          "error": 31.304960505529156
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "scale": 1.02,
+          "error": 24.295608214849835
+        },
+        {
+          "dx": 3,
+          "dy": -13,
+          "scale": 1,
+          "error": 19.261737756714016
+        },
+        {
+          "dx": 13,
+          "dy": -13,
+          "scale": 1,
+          "error": 18.662622432859347
+        },
+        {
+          "dx": 5,
+          "dy": -12,
+          "scale": 1,
+          "error": 23.81883096366503
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/swing-kettlebell.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "9e13db6a8079b861bde49272305c7faacdcc735ae71c96200db74cedbe170d93"
+    },
+    "terra-romeno-elastico": {
+      "signature": "e3fca73b0134af3305f99def0e7aa0a3169e54f859c63b158f239313f8a617c6",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/terra-romeno-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/terra-romeno-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "afe61e07868cb64ad446e7158b9d477360bfc4953cc9fb31de3baaa923246615"
+    },
+    "afundo-halteres": {
+      "signature": "0f079a76b1adb41939675128b760179e7afa9c02850baeb960eeab80229614fb",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/afundo-halteres.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/afundo-halteres.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "b39d0371d35108260b59a6d1d9325f3dfe0d8c826c7ec3af50815f92db88d15e"
+    },
+    "bulgaro": {
+      "signature": "7447880460c62460c595aad0e9eaac58c337bfc34fb4105cd9edfa9a2e16c5f5",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/bulgaro.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 5,
+          "dy": 0,
+          "scale": 1,
+          "error": 6.459653707938557
+        },
+        {
+          "dx": 5,
+          "dy": -13,
+          "scale": 1,
+          "error": 22.635609278013632
+        },
+        {
+          "dx": 5,
+          "dy": -13,
+          "scale": 1,
+          "error": 22.635609278013632
+        },
+        {
+          "dx": 7,
+          "dy": -13,
+          "scale": 1,
+          "error": 19.006098224980875
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        }
+      ],
+      "originalFrames": 4,
+      "illustration": {
+        "sprite": "/media/motion/bulgaro.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "039b261c4a6a8d62b92a32a132ba4fc8b8036467d2f2cbd56bab10c5f4ba5d18"
+    },
+    "step-up": {
+      "signature": "1442860d268b3dd91ef543ba1f61851e20d4f1d4a63d4d44c6e5c5bad554b1e0",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/motion-sources/step-up.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 1,
+          "dy": 1,
+          "scale": 1,
+          "error": 16.30918632270887
+        },
+        {
+          "dx": -2,
+          "dy": 2,
+          "scale": 1.02,
+          "error": 26.555521184333976
+        },
+        {
+          "dx": 1,
+          "dy": 1,
+          "scale": 1,
+          "error": 19.64487653979994
+        },
+        {
+          "dx": 11,
+          "dy": 0,
+          "scale": 1.02,
+          "error": 17.810130917527403
+        },
+        {
+          "dx": 17,
+          "dy": 4,
+          "scale": 1,
+          "error": 19.35881345633313
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/step-up.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "0fbc3dba6ccd9026fb87369ea43c1a40ad23b23c08d91af2ba769990eab28cb4"
+    },
+    "crucifixo-halteres": {
+      "signature": "34fc4c8e69dc2e9e8afe6648c897da0af6738698bcb7222e7f65277d1e051dcd",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/motion-sources/crucifixo-halteres.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -1,
+          "dy": 0,
+          "scale": 1,
+          "error": 8.93334316037734
+        },
+        {
+          "dx": -12,
+          "dy": 2,
+          "scale": 1,
+          "error": 17.477329009433934
+        },
+        {
+          "dx": 0,
+          "dy": -16,
+          "scale": 1,
+          "error": 9.990241745283004
+        },
+        {
+          "dx": -2,
+          "dy": -18,
+          "scale": 0.98,
+          "error": 17.28811910377356
+        },
+        {
+          "dx": -12,
+          "dy": -16,
+          "scale": 1,
+          "error": 21.25919811320752
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/crucifixo-halteres.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "9ffdc6d4551e1e3367d6b97341b55bf6290921a1cf908c8575de78f5fc50aef7"
+    },
+    "crossover-polia": {
+      "signature": "429ee503b10ebd3bcd70f3699e3594d9203a363366d9c4e7ac3406bc7969a2a7",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/crossover-polia.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -7,
+          "dy": -2,
+          "scale": 1.02,
+          "error": 19.960876016380652
+        },
+        {
+          "dx": -12,
+          "dy": 0,
+          "scale": 1,
+          "error": 26.82097453854807
+        },
+        {
+          "dx": 0,
+          "dy": -10,
+          "scale": 1,
+          "error": 16.71315805092277
+        },
+        {
+          "dx": -4,
+          "dy": -8,
+          "scale": 0.98,
+          "error": 27.155807466318258
+        },
+        {
+          "dx": -11,
+          "dy": -10,
+          "scale": 1,
+          "error": 21.536933942667076
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/crossover-polia.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "5651cae061a887090b19dd2a11afd0295c80469a6f5ff991d523e5e5af5a3319"
+    },
+    "crucifixo-elastico": {
+      "signature": "7af0d01cb35d9e80f47153627199f9387e43c3cfa9ef77d81f1c47b5eeed18d8",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/crucifixo-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/crucifixo-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "662e70e3206d56578958d93e517d3eadd859412da8ed4ac966829b1053ed840a"
+    },
+    "elevacao-lateral-halteres": {
+      "signature": "bc0a391910053214d65e6aea6fb192c26f20c2f3e096d1804a83bbb01c73303c",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/elevacao-lateral-halteres.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/elevacao-lateral-halteres.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "7edc0d5d74050fd9969338e7b6a45f9690c50fd65633085c6712a6859c3ff1e4"
+    },
+    "elevacao-lateral-polia": {
+      "signature": "b6865ec4cb5a4a05760ddd190cb7c2fef21ad2c8f5e81862032608798256e4b5",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/elevacao-lateral-polia.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 3.6304076019004747
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 4.594398599649913
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 6.02000500125031
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 5.475118779694923
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 7.103775943985997
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/elevacao-lateral-polia.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "db92f5568b0afc76386c4f70fba5534242d7faa9900d8c86508fa6e271abc201"
+    },
+    "elevacao-lateral-elastico": {
+      "signature": "47f977d569b0e039d696b9b870d2c1f9036130cad645537f969dd34250a22faa",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/elevacao-lateral-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/elevacao-lateral-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "ca7086bbc16d1a8a08315c3bafcfd33caae480e6a0e26e66bd479c6aa5ce3dbe"
+    },
+    "crucifixo-invertido-halteres": {
+      "signature": "24bbc7337806ff6f34649bc9147edd42f5c087738489a24dc75a1e8d7f2ae0a2",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/crucifixo-invertido-halteres.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/crucifixo-invertido-halteres.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "b2030cbfd28da72d679afc48a10d0827a879eb58b2fef93966cd188479237f64"
+    },
+    "face-pull": {
+      "signature": "04e975a628e20f99c360033565e64571c3c41754b6063577a6c0634be5cb2926",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/face-pull.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 4.3332811153755495
+        },
+        {
+          "dx": -5,
+          "dy": 0,
+          "scale": 1,
+          "error": 7.31252447716766
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "scale": 1,
+          "error": 4.9014177175530325
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "scale": 1,
+          "error": 6.555290984569549
+        },
+        {
+          "dx": -5,
+          "dy": -1,
+          "scale": 1,
+          "error": 8.428714654969795
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/face-pull.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "c21b3ecdf5f62d6167a15301976d4dfe6c3f948172b882bae644706558901762"
+    },
+    "band-pull-apart": {
+      "signature": "ffd682d9f9f95fc9007b80c3f85cb07a2ea7798429f8d38148feea3b9e8e4b32",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/band-pull-apart.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/band-pull-apart.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "66a4e6369fc5c95a260523feb97a74160b7d57f400fad94f106462a5a1dc5f58"
+    },
+    "rosca-direta-barra": {
+      "signature": "5b60e84e93e54917b364a5e419a9941dae746dcca1716af54ca8c9696b3fd68b",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/rosca-direta-barra.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -14,
+          "dy": 0,
+          "scale": 1,
+          "error": 12.79752539723875
+        },
+        {
+          "dx": -21,
+          "dy": 0,
+          "scale": 1,
+          "error": 10.970187548840782
+        },
+        {
+          "dx": 0,
+          "dy": -4,
+          "scale": 0.98,
+          "error": 18.00326908048966
+        }
+      ],
+      "originalFrames": 4,
+      "illustration": {
+        "sprite": "/media/motion/rosca-direta-barra.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "7b0d3114143a880d36f32babdf6e6e8989213b87e42df486a9d1b3d1fbf4457b"
+    },
+    "rosca-alternada": {
+      "signature": "f9b93b8edf4c35216d18a156117151b4e3709350b710e1fbf287cb0ccd607ae4",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/rosca-alternada.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/rosca-alternada.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "f8b566e4295b9ac6bfda21c7d463fb24cbbe5ecca19e0c3e45b4ecae3cc9394d"
+    },
+    "rosca-polia": {
+      "signature": "488ff510160ccf501f977e806a5a102ce3be17251b3415a02b6b74b159e32873",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/rosca-polia.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 2,
+          "dy": 0,
+          "scale": 1,
+          "error": 14.3311237328347
+        },
+        {
+          "dx": 3,
+          "dy": 0,
+          "scale": 1,
+          "error": 15.769099144438727
+        },
+        {
+          "dx": 1,
+          "dy": -9,
+          "scale": 1,
+          "error": 14.611546480695825
+        },
+        {
+          "dx": 1,
+          "dy": -9,
+          "scale": 1,
+          "error": 18.159680782227223
+        },
+        {
+          "dx": 3,
+          "dy": -9,
+          "scale": 1,
+          "error": 19.743878064562374
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/rosca-polia.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "e3bbb28991d269477aa5651e944b7f7cc5d4be9ba6ce355ad47dd8eb2adcb254"
+    },
+    "rosca-elastico": {
+      "signature": "a4bd105d7d42841518529810d624593447832acc92f14555131014aab2e12473",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/rosca-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/rosca-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "ac2f62d0e78001f2742b060801a64edccd02868e7ba36d0a01064c1d25c27b72"
+    },
+    "rosca-martelo": {
+      "signature": "a128ec0e951c3e4111adfda4d7fb2990734bcb13335820d23a22b3320078419d",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/rosca-martelo.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -12,
+          "dy": 0,
+          "scale": 1,
+          "error": 16.836718692210898
+        },
+        {
+          "dx": -21,
+          "dy": 1,
+          "scale": 1,
+          "error": 20.689740365411595
+        },
+        {
+          "dx": 0,
+          "dy": -5,
+          "scale": 1,
+          "error": 12.217915526296274
+        }
+      ],
+      "originalFrames": 4,
+      "illustration": {
+        "sprite": "/media/motion/rosca-martelo.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "2ad3568a0fcf7d975d4a4930f303adf2f4f74a4f09e911effa3af5a0ecf48e57"
+    },
+    "triceps-polia": {
+      "signature": "86faf1f3b3f215e79cf1061941b45b6615ce53ae38a9e0f8b1b915a5785b5e7c",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/triceps-polia.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -5,
+          "dy": 0,
+          "scale": 1,
+          "error": 11.751754748141957
+        },
+        {
+          "dx": -8,
+          "dy": 0,
+          "scale": 1,
+          "error": 17.92514450867039
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 12.768579686209634
+        },
+        {
+          "dx": -5,
+          "dy": 0,
+          "scale": 1,
+          "error": 17.660817506193098
+        },
+        {
+          "dx": -7,
+          "dy": 0,
+          "scale": 1,
+          "error": 15.34446738232852
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/triceps-polia.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "d081aa4907e08fcfc8f26b7fe92fb143961ff0fb78b946f145380377a2b1281b"
+    },
+    "triceps-frances-halter": {
+      "signature": "f11bd1f091fec6c3ad8510dc4d56676b905b41986e749f323faa8ddf3d0a71a2",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/triceps-frances-halter.webp",
+      "registrations": [],
+      "originalFrames": 3,
+      "illustration": {
+        "sprite": "/media/motion/triceps-frances-halter.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "58d22e18e266080592d2c3689e5eec1bec917117a0f1355eb5bb95458f04bc6d"
+    },
+    "triceps-banco": {
+      "signature": "7aab8d9401363a8e011c977320422a94841007fc5694671bd91bd6fb35ad570e",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/triceps-banco.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -13,
+          "dy": 0,
+          "scale": 1,
+          "error": 9.460995850622345
+        },
+        {
+          "dx": -21,
+          "dy": 0,
+          "scale": 1,
+          "error": 12.277059869590925
+        },
+        {
+          "dx": 0,
+          "dy": 1,
+          "scale": 1,
+          "error": 3.927622999407205
+        },
+        {
+          "dx": -13,
+          "dy": 1,
+          "scale": 1,
+          "error": 10.091790160047358
+        },
+        {
+          "dx": -21,
+          "dy": 1,
+          "scale": 1,
+          "error": 12.166449318316463
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/triceps-banco.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "b17a420fc16de7ebaee4dd543c4999b242776ed6ce299a0c83c7e1b7479fa7f3"
+    },
+    "flexao-diamante": {
+      "signature": "cf935cdcec1279f637d4f57ec73995361d2659cef036f941cec73a4d4a7413c3",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/flexao-diamante.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/flexao-diamante.webp",
+        "aspectRatio": "366 / 256",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "c44e2d28ba8f83a5bcba5ef4f7afcc841ea53a032c6e212c723ad209f304c55b"
+    },
+    "triceps-elastico": {
+      "signature": "10d19fa404f472cc40e225c9c9834b1bfb4ea64d374deabd7dba8afe4cd9a95e",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/triceps-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/triceps-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "23955e7cd50b107563aa33faf897cf62590d4d636087a72b2bb192cd8ffbce00"
+    },
+    "mesa-flexora": {
+      "signature": "b7caf8e435f0bcbc1a20c981f8f722c05622f1f7f2098d4d788e2baf2bdfc235",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/mesa-flexora.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -1,
+          "dy": 0,
+          "scale": 1,
+          "error": 10.131688499557917
+        },
+        {
+          "dx": -4,
+          "dy": 0,
+          "scale": 1,
+          "error": 13.300120549706591
+        },
+        {
+          "dx": 1,
+          "dy": -7,
+          "scale": 1,
+          "error": 16.982062203648518
+        },
+        {
+          "dx": -1,
+          "dy": -7,
+          "scale": 1,
+          "error": 15.877103592381149
+        },
+        {
+          "dx": -4,
+          "dy": -7,
+          "scale": 1,
+          "error": 17.484738407136433
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/mesa-flexora.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "e42263838929fcef93fd9b98423a17e779a1836537e152191d68350704f39292"
+    },
+    "flexora-deslizante": {
+      "signature": "0f96d4148a224ec4548d37fa1c5aa287f120dbbbd14199210e344fd125d00f0a",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/flexora-deslizante.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/flexora-deslizante.webp",
+        "aspectRatio": "366 / 213",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "e9c16a4508a0eed4f047057d75a5789aeae2e6254082053370f53498b0b122e5"
+    },
+    "flexora-elastico": {
+      "signature": "4c1c98f736daf362b7ca81ddba91a7d622eee9bfcd526ae6f9a38f21df1a8d09",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/flexora-elastico.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -5,
+          "dy": 0,
+          "scale": 1,
+          "error": 28.768063692353802
+        },
+        {
+          "dx": -5,
+          "dy": 0,
+          "scale": 1,
+          "error": 32.3141054529066
+        },
+        {
+          "dx": 0,
+          "dy": -8,
+          "scale": 1,
+          "error": 33.0111461619347
+        }
+      ],
+      "originalFrames": 4,
+      "illustration": {
+        "sprite": "/media/motion/flexora-elastico.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "8bf86d741e8e7fae1f145dea305b38eaf24c227355f03f51c31a19af076396b1"
+    },
+    "cadeira-extensora": {
+      "signature": "08e3b36e570408c817da6ea50c7d61a88f6ec787f563e5fe69901f1b70d4101d",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/cadeira-extensora.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 15,
+          "dy": 0,
+          "scale": 1,
+          "error": 14.251542630251587
+        },
+        {
+          "dx": 20,
+          "dy": 0,
+          "scale": 1,
+          "error": 21.89531576970535
+        },
+        {
+          "dx": 0,
+          "dy": 4,
+          "scale": 1,
+          "error": 9.32036271932172
+        },
+        {
+          "dx": 15,
+          "dy": 4,
+          "scale": 1,
+          "error": 17.118023287009603
+        },
+        {
+          "dx": 20,
+          "dy": 6,
+          "scale": 0.98,
+          "error": 31.783237645543707
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/cadeira-extensora.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "e7206845a101f6ccdcfed95932f617b8f3933660805c79031fc9dfb7fef843c5"
+    },
+    "abducao-maquina": {
+      "signature": "2762ff59a612bc08826cc4dc2ed8fb14136d9053b1a6ea940693f00816e7d669",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/abducao-maquina.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -10,
+          "dy": 0,
+          "scale": 1,
+          "error": 15.90875399361019
+        },
+        {
+          "dx": -22,
+          "dy": 0,
+          "scale": 1,
+          "error": 14.97674121405748
+        },
+        {
+          "dx": 0,
+          "dy": -2,
+          "scale": 1,
+          "error": 9.259424920127767
+        },
+        {
+          "dx": -8,
+          "dy": 0,
+          "scale": 0.98,
+          "error": 20.045367412140507
+        },
+        {
+          "dx": -18,
+          "dy": -2,
+          "scale": 1,
+          "error": 19.565750798722
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/abducao-maquina.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "7f2bb08eda1c94154c7f5d89261b3b5b24a18c43cf569d7312543394a6dc3d65"
+    },
+    "abducao-elastico": {
+      "signature": "07f3851ffb60727b6c0fbe2332266bf2bdbdd53e5897829fcde8dec25768d34e",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/catalog/abducao-elastico.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/abducao-elastico.webp",
+        "aspectRatio": "366 / 366",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "4a914d3ec609d3e95df0316d532637213b8fd020fd0dafa2c390c4cfe55707fc"
+    },
+    "coice-polia": {
+      "signature": "267b47e1702d8224ec62c141037b38c8f1ece7e7df2afc28e0d8e5be8440b6bb",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/coice-polia.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -13,
+          "dy": 0,
+          "scale": 1,
+          "error": 17.84603652418217
+        },
+        {
+          "dx": -16,
+          "dy": 0,
+          "scale": 1,
+          "error": 13.438811960666236
+        },
+        {
+          "dx": 0,
+          "dy": 1,
+          "scale": 1,
+          "error": 8.9987156331527
+        },
+        {
+          "dx": -14,
+          "dy": 1,
+          "scale": 1,
+          "error": 19.831226168974467
+        },
+        {
+          "dx": -16,
+          "dy": 1,
+          "scale": 1,
+          "error": 14.101384708007194
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/coice-polia.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "cecdd69f6457c136b82bf4441ee3ae4bdb07370d69ee46d0ba5d051e484dc758"
+    },
+    "panturrilha-halteres": {
+      "signature": "77f89fb9d1c7bf0e4429f964f351ed28556595224a22d611df2a8c5c021df264",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/panturrilha-halteres.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -16,
+          "dy": 0,
+          "scale": 1,
+          "error": 14.533821376281125
+        },
+        {
+          "dx": -29,
+          "dy": 0,
+          "scale": 1,
+          "error": 16.008394338701812
+        },
+        {
+          "dx": 0,
+          "dy": -8,
+          "scale": 1,
+          "error": 7.7561737432894144
+        },
+        {
+          "dx": -16,
+          "dy": -8,
+          "scale": 1,
+          "error": 16.63992191312837
+        },
+        {
+          "dx": -29,
+          "dy": -8,
+          "scale": 1,
+          "error": 18.420985846754526
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/panturrilha-halteres.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "a2552519ee37dbd69fb91edd88b8c2a8054bb46d1929ee4063cb2c1327e10310"
+    },
+    "panturrilha-maquina": {
+      "signature": "40b17d4ad28955fca3c5c2457fd125cc67154982b895476b80c4536f7d6902a1",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/panturrilha-maquina.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 4.4447153055894
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 5.713912589239047
+        },
+        {
+          "dx": 0,
+          "dy": -3,
+          "scale": 1,
+          "error": 6.957304544663035
+        },
+        {
+          "dx": 0,
+          "dy": -3,
+          "scale": 1,
+          "error": 8.406198850774816
+        },
+        {
+          "dx": 0,
+          "dy": -3,
+          "scale": 1,
+          "error": 9.243217830402184
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/panturrilha-maquina.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "0311501cd64ccc6003cd81a746b1c8336610002689a22905596c7814dacfcb30"
+    },
+    "panturrilha-corporal": {
+      "signature": "f6e21ee9e0c2068b6789e35770a5ed438ee9c56081f9ac8709091d2a83bf0ebe",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/panturrilha-corporal.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -5,
+          "dy": 0,
+          "scale": 1,
+          "error": 14.307227332457286
+        },
+        {
+          "dx": -20,
+          "dy": 0,
+          "scale": 1,
+          "error": 10.511695137976359
+        },
+        {
+          "dx": 0,
+          "dy": -8,
+          "scale": 1,
+          "error": 6.381077529566365
+        },
+        {
+          "dx": -5,
+          "dy": -8,
+          "scale": 1,
+          "error": 16.090670170827853
+        },
+        {
+          "dx": -20,
+          "dy": -8,
+          "scale": 1,
+          "error": 12.184756898817358
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/panturrilha-corporal.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "cf58a19c92aa43e75a6f4ab324cf0a4c0aec39c6979ec8610683f6433c9b457a"
+    },
+    "pallof-press": {
+      "signature": "d7e6a4248132c3ebbcce4abf0f9cb2d7efe630a1e9cd34d400ce9e7692a6cdac",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/pallof-press.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": -2,
+          "scale": 1,
+          "error": 9.231388698238371
+        },
+        {
+          "dx": 9,
+          "dy": -1,
+          "scale": 1,
+          "error": 13.096545412948963
+        }
+      ],
+      "originalFrames": 3,
+      "illustration": {
+        "sprite": "/media/motion/pallof-press.webp",
+        "aspectRatio": "320 / 320",
+        "cycle": "return",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "ee247eccf0c8328890f96023b9f9f429f118924a4b7c427bfa7f16791ec82054"
+    },
+    "elevacao-pernas-barra": {
+      "signature": "58ddade65ebee65465a51aa6becd922f6a7305963abb023142651cad0711283c",
+      "sourcePath": "/Volumes/ssd/AI/winfit/docs/media/catalog/sources/elevacao-pernas-barra.png",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": -3,
+          "dy": 0,
+          "scale": 1,
+          "error": 14.33974231912781
+        },
+        {
+          "dx": -3,
+          "dy": 0,
+          "scale": 1,
+          "error": 14.33974231912781
+        },
+        {
+          "dx": -2,
+          "dy": 0,
+          "scale": 1,
+          "error": 11.617244796828501
+        },
+        {
+          "dx": -2,
+          "dy": 0,
+          "scale": 1,
+          "error": 11.617244796828501
+        }
+      ],
+      "originalFrames": 3,
+      "illustration": {
+        "sprite": "/media/motion/elevacao-pernas-barra.webp",
+        "aspectRatio": "320 / 320",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "0d5e63d7304f6fd327523590ec356ba7c904907befae8cbebc57770bca2dec00"
+    },
+    "agachamento-corporal": {
+      "signature": "e5ca1dd723cc4ecc0cc12d61133f6cdbf977d67efb959a3aeba180cda5e3e133",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/pilots/agachamento-v2.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/agachamento-corporal.webp",
+        "aspectRatio": "360 / 360",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "7485b3b57062b46fb540c861dab4a8be761214464d8f14e3da83566cec29be72"
+    },
+    "flexao": {
+      "signature": "bab21dd77678a68367af6d5c468638d6cf693f0bae4bcc010b920cee87674a27",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/pilots/flexao-v2.webp",
+      "registrations": [],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/flexao.webp",
+        "aspectRatio": "376 / 213",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 5
+        }
+      },
+      "outputHash": "be6b392496ffc8d97358148916c1322f5f4bb9a86d5e98dea26803dd67258db1"
+    },
+    "leg-press": {
+      "signature": "362a82205c62bf5e53a0960b9769891188545d5c4cf0bb23c0677ac2f0103a1c",
+      "sourcePath": "/Volumes/ssd/AI/winfit/public/media/pilots/leg-press-v2.webp",
+      "registrations": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 10.681056113139146
+        },
+        {
+          "dx": 2,
+          "dy": -2,
+          "scale": 0.98,
+          "error": 16.591508895986067
+        },
+        {
+          "dx": 2,
+          "dy": -2,
+          "scale": 0.98,
+          "error": 16.583411268248852
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 10.694286040146439
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "scale": 1,
+          "error": 0.43393590328469184
+        }
+      ],
+      "originalFrames": 6,
+      "illustration": {
+        "sprite": "/media/motion/leg-press.webp",
+        "aspectRatio": "320 / 240",
+        "cycle": "loop",
+        "motion": {
+          "columns": 8,
+          "rows": 8,
+          "frameCount": 64,
+          "duration": 4
+        }
+      },
+      "outputHash": "64fcce73b7b91e6f801c8dd9e5cee99d086ea1e18aa4a27107e38b47abe901c2"
+    }
+  }
+}

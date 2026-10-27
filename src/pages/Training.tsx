@@ -7,6 +7,7 @@ import { sessionsThisWeek, startOfWeek } from '../lib/helpers'
 import { fmtKg } from '../lib/progression'
 import { homeWorkout } from '../lib/homeWorkout'
 import { startTraining, type TrainingMode } from '../data/sessionModules'
+import HomeArtwork from '../components/HomeArtwork'
 import { isTimedExercise } from '../lib/exerciseRules'
 
 export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
@@ -47,12 +48,12 @@ export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
   const toc = active ? active.exercises.map(e => ({ id:e.planExerciseId, exerciseId:e.exerciseId, sets:e.sets, repMin:e.repMin, repMax:e.repMax })) : day.exercises
   const origin = active ? active.source === 'home' ? 'Calistenia' : 'Academia' : mode === 'home' ? 'Calistenia' : 'Academia'
   const lastPR = mode === 'gym' ? prs[0] : null
-  return <div className="page">
+  return <div className="page training-page">
     <div className="sheet-head"><Link to="/home">‹ Início</Link><span className="num">Semana {weekSessions.length}/{goal}</span></div>
-    <div className="eyebrow accent">{mode === 'home' ? 'Calistenia · só o peso do corpo' : 'Academia · seu plano'}</div>
-    <h1>{mode === 'home' ? 'Calistenia' : 'Academia'}</h1>
-    <p className="small muted">{mode === 'home' ? 'Seu ciclo de corpo inteiro, sem equipamentos. Cada treino concluído avança o ciclo em casa e preserva a sequência do plano.' : plan.splitLabel}</p>
-    <section className="hero-card" style={{ marginTop:16 }}>
+    <div className="training-heading"><div><div className="screen-kicker">{mode === 'home' ? 'Calistenia · só o peso do corpo' : 'Academia · seu plano'}</div>
+    <h1 className="screen-title">{mode === 'home' ? 'Calistenia' : 'Academia'}</h1>
+    <p className="small muted">{mode === 'home' ? 'Seu ciclo de corpo inteiro, sem equipamentos. Cada treino concluído avança o ciclo em casa e preserva a sequência do plano.' : plan.splitLabel}</p></div><div className="training-art" aria-hidden="true"><HomeArtwork module={mode === 'home' ? 'home' : 'gym'} /></div></div>
+    <section className="hero-card training-session" style={{ marginTop:16 }}>
       <div className="eyebrow accent">{active ? `${origin} em andamento` : 'Próximo treino'}</div>
       <h2 style={{ marginTop:8 }}>{active ? active.dayLabel : day.label}</h2>
       {active && <p className="small muted">{active.logs.length} séries registradas. Retomar mantém exercício atual, séries e descanso, mesmo ao entrar por outro módulo.</p>}
@@ -69,7 +70,7 @@ export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
       {mode === 'home' && <p className="tiny muted" style={{ marginTop:12 }}>Demonstrações e variações no treino. Sem porta, sofá ou acessórios improvisados.</p>}
       {unavailable && <p className="note" role="alert">Não foi possível iniciar este treino. Revise seu plano e limitações no perfil.</p>}
     </section>
-    <section className="card" style={{ marginTop:18 }}><div className="between"><h2>Minha semana</h2><span className="tiny muted num">{weekSessions.length} de {goal} treinos</span></div>
+    <section className="card training-week" style={{ marginTop:18 }}><div className="between"><h2>Minha semana</h2><span className="tiny muted num">{weekSessions.length} de {goal} treinos</span></div>
       <div className="week-dots" style={{ marginTop:12 }}>{week.map((d,i) => <div key={i} className={`week-dot ${d.done ? 'done' : ''} ${d.today ? 'today' : ''}`}><div className="dot">{d.done ? '✓' : ''}</div><div className="lbl">{d.label}</div></div>)}</div>
       <p className="tiny muted" style={{ marginTop:10 }}>Academia e calistenia compartilham sua meta semanal.</p>
     </section>

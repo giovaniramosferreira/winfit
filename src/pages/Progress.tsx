@@ -51,9 +51,9 @@ export default function Progress() {
 
   if (sessions.length === 0) {
     return (
-      <div className="page">
-        <div className="sheet-head"><span>Progresso</span><span>Seu histórico</span></div>
-        <h1>Seus números começam no <em>primeiro treino.</em></h1>
+      <div className="page product-shell account-screen progress-screen">
+        <div className="screen-topline"><span className="screen-kicker">Progresso</span><span>Seu histórico</span></div><div className="account-empty-art" aria-hidden="true"><img src="/media/pump-house/award.svg" alt="" /></div>
+        <h1 className="screen-title">Seus números começam no <em>primeiro treino.</em></h1>
         <p className="muted small" style={{ marginTop: 8 }}>Conclua uma sessão para acompanhar sua frequência e evolução nos exercícios.</p>
         <Link to="/home" className="btn btn-primary" style={{ marginTop: 20 }}>Ir para o treino</Link>
       </div>
@@ -61,9 +61,9 @@ export default function Progress() {
   }
 
   return (
-    <div className="page fade-in">
-      <div className="sheet-head"><span>Progresso</span><span className="num">{sessions.length} treinos registrados</span></div>
-      <h1>
+    <div className="page product-shell account-screen progress-screen fade-in">
+      <div className="screen-topline"><span className="screen-kicker">Seu progresso</span><span className="num">{sessions.length} treinos registrados</span></div>
+      <h1 className="screen-title">
         {lead && leadEx && leadDelta > 0
           ? <>{leadEx.name}: {metricLabel.toLowerCase()} aumentou <em>{formatLead(leadDelta)}.</em></>
           : lead && leadEx
@@ -126,7 +126,7 @@ export default function Progress() {
       </div>
 
       <div className="card" style={{ marginTop: 14 }}>
-        <h3>Histórico</h3>
+        <div className="between"><h3>Seu histórico</h3><span className="pill">{sessions.length} sessões</span></div>
         {sessions.slice(0, 15).map((s) => {
           const activity = activityTotals(s.logs)
           return (
