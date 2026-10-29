@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
-import { ANATOMY, plateNo } from '../data/anatomy'
 import { lastPerformance, suggestFor, fmtKg } from '../lib/progression'
 import { equivalentsFor } from '../lib/generator'
 import { isEquipmentFree } from '../lib/homeWorkout'
@@ -11,7 +10,9 @@ import type { Exercise, PlanExercise } from '../types'
 import { useWatchSync } from '../lib/watchSync'
 import WatchModal from '../components/WatchModal'
 import NumberDial from '../components/NumberDial'
+import { maximumInputLoad } from '../lib/setInputLimits'
 import ExerciseDemo from '../components/ExerciseDemo'
+import { EXERCISE_ILLUSTRATIONS } from '../data/exerciseIllustrations'
 import { isEquipmentFreeSession, isTimedExercise, variationLabel } from '../lib/exerciseRules'
 
 export default function Player() {
@@ -41,6 +42,22 @@ export default function Player() {
   const [prFlash, setPrFlash] = useState<string | null>(null)
   const [watchToast, setWatchToast] = useState<string | null>(null)
   const finishing = useRef(false)
+  const [instructionsOpen, setInstructionsOpen] = useState(false)
+  const instructionsRef = useRef<HTMLDivElement>(null)
+  const infoButtonRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (!instructionsOpen) return
+    const outside = (event: PointerEvent) => {
+      if (!instructionsRef.current?.contains(event.target as Node)) setInstructionsOpen(false)
+    }
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setInstructionsOpen(false); infoButtonRef.current?.focus() }
+    }
+    document.addEventListener('pointerdown', outside)
+    document.addEventListener('keydown', escape)
+    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape) }
+  }, [instructionsOpen])
+  useEffect(() => setInstructionsOpen(false), [session?.currentIndex])
 
   useEffect(() => {
     if (lastCommand) {
@@ -92,7 +109,7 @@ export default function Player() {
       setEditor({ weight: 0, reps: defaultReps() })
       return
     }
-    const log = logSet(idx, defaultWeight(), defaultReps())
+    const log = logSet(idx, Math.round(defaultWeight()), isTimed ? defaultReps() : Math.min(30, Math.max(0, Math.round(defaultReps()))))
     vibrate(30)
     if (log?.isPR) {
       setPrFlash(`Novo recorde: ${fmtKg(log.weight)}.`)
@@ -102,10 +119,12 @@ export default function Player() {
 
   const confirmEditor = () => {
     if (!editor) return
+    const weight = Math.round(editor.weight)
+    const reps = isTimed ? editor.reps : Math.min(30, Math.max(0, Math.round(editor.reps)))
     if (editor.logId) {
-      editSet(editor.logId, editor.weight, editor.reps)
+      editSet(editor.logId, weight, reps)
     } else {
-      const log = logSet(idx, editor.weight, editor.reps)
+      const log = logSet(idx, weight, reps)
       vibrate(30)
       if (log?.isPR) {
         setPrFlash(`Novo recorde: ${fmtKg(log.weight)}.`)
@@ -132,36 +151,12 @@ export default function Player() {
     <div className={`player training-player${session.timer ? ' is-resting' : ''}`}>
       <header className="player-head">
         <div className="between">
-          <button className="btn-quiet" onClick={() => nav('/home')}>▾ Minimizar</button>
-          <div className="row" style={{ gap: 8 }}>
-            <button
-              className={`watch-badge ${syncState}`}
-              onClick={() => setWatchModalOpen(true)}
-              title="Sincronização com Apple Watch"
-            >
-              <span className="dot-pulse" />
-              <span>Watch</span>
-            </button>
-            <span className="small muted num">{doneSets}/{totalSets} séries</span>
-          </div>
-          <button className="btn-quiet" onClick={() => setMenuOpen(true)}>⋯</button>
+          <button className="btn btn-ghost btn-sm player-minimize" aria-label="Voltar ao início e manter treino em andamento" onClick={() => nav('/home')}><span aria-hidden="true">⌄</span> Minimizar treino</button>
+          <span className="tiny muted num" role="status">{idx + 1}/{session.exercises.length} exercícios · {doneSets}/{totalSets} séries</span>
+          <button className="btn btn-ghost btn-sm player-options" aria-label="Opções do treino" onClick={() => setMenuOpen(true)}>⋯</button>
         </div>
         <div className="player-progress"><div style={{ width: `${(doneSets / Math.max(totalSets, 1)) * 100}%` }} /></div>
-        <label className="exercise-picker">
-          <span className="tiny muted">Ir para exercício</span>
-          <select aria-label="Ir para exercício" value={idx} onChange={(event) => {
-            setEditor(null)
-            setSubOpen(false)
-            setCurrentIndex(Number(event.target.value))
-          }}>
-            {session.exercises.map((item, index) => {
-              const count = session.logs.filter((log) => log.planExerciseId === item.planExerciseId).length
-              return <option key={item.planExerciseId} value={index}>
-                {index + 1}. {byId.get(item.exerciseId)?.name ?? 'Exercício'} · {count}/{item.sets} séries{item.skipped ? ' · pulado' : ''}
-              </option>
-            })}
-          </select>
-        </label>
+
       </header>
 
       <main className="player-body">
@@ -169,17 +164,28 @@ export default function Player() {
           <span className="eyebrow num">Exercício {idx + 1} de {session.exercises.length}</span>
           {sx.substitutedFrom && <span className="pill">substituído</span>}
         </div>
-        <h1 style={{ marginTop: 6, fontSize: 27 }}>{exercise.name}</h1>
-        <p className="latin small" style={{ marginTop: 2 }}>{ANATOMY[exercise.primary].latin}</p>
+        <h1>{exercise.name}</h1>
         <p className="small muted num" style={{ marginTop: 4 }}>
           Meta: {sx.sets} × {sx.repMin}–{sx.repMax} {unit}
           {exercise.loadType === 'external' && suggestion.weight != null && suggestion.weight > 0 && (
             <> · <b className={`mono${suggestion.isIncrease ? ' accent-text' : ''}`}>{fmtKg(suggestion.weight)}</b></>
           )}
         </p>
-        <p className="tiny faint" style={{ marginTop: 4 }}>{suggestion.note}</p>
 
-        </div><ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} />
+
+        </div><div className="player-demo-wrap" ref={instructionsRef}>
+          <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} autoPlay compact />
+          <button ref={infoButtonRef} className="btn btn-ghost player-info" aria-label="Como fazer este exercício" aria-expanded={instructionsOpen} aria-controls="exercise-instructions" onClick={() => setInstructionsOpen(!instructionsOpen)}><span aria-hidden="true">i</span></button>
+          {instructionsOpen && <section className="player-instructions" id="exercise-instructions" role="region" aria-label="Como fazer o exercício">
+            <div className="between"><strong>Como fazer</strong><button className="btn btn-quiet btn-sm" aria-label="Fechar instruções" onClick={() => { setInstructionsOpen(false); infoButtonRef.current?.focus() }}>Fechar</button></div>
+            <ol>{exercise.instructions.map(instruction => <li key={instruction}>{instruction}</li>)}</ol>
+            <div className="player-info-actions">
+              <button className="btn btn-ghost" disabled={equipmentFreeSession && logsHere.length > 0} onClick={() => { setInstructionsOpen(false); setSubOpen(true) }}>Substituir exercício</button>
+              <button className="btn btn-ghost" onClick={() => { setInstructionsOpen(false); skipExercise(idx) }}>Pular exercício →</button>
+            </div>
+            {equipmentFreeSession && logsHere.length > 0 && <p className="tiny faint">Escolha a variação antes da primeira série deste exercício. As séries registradas permanecem no histórico.</p>}
+          </section>}
+        </div>
 
         {watchToast && (
           <div className="pr-flash ok" style={{ marginTop: 12 }}>
@@ -233,15 +239,6 @@ export default function Player() {
           })}
         </div>
 
-        <div className="row" style={{ marginTop: 12 }}>
-          <button className="btn btn-ghost btn-sm grow" disabled={equipmentFreeSession && logsHere.length > 0}
-            onClick={() => setSubOpen(true)}>{bodyweight ? 'Variações' : 'Trocar'}</button>
-          <button className="btn btn-ghost btn-sm grow" onClick={() => nav(`/exercise/${exercise.id}`)}>Como fazer</button>
-          <button className="btn btn-ghost btn-sm grow" onClick={() => { skipExercise(idx) }}>Pular →</button>
-        </div>
-        {equipmentFreeSession && logsHere.length > 0 && <p className="tiny faint" style={{ marginTop: 8 }}>
-          Escolha a variação antes da primeira série deste exercício. As séries registradas permanecem no histórico.
-        </p>}
 
       </main>
 
@@ -260,10 +257,10 @@ export default function Player() {
           <form className="modal" onClick={(e) => e.stopPropagation()} onSubmit={(e) => { e.preventDefault(); confirmEditor() }}>
             <h2>{editor.logId ? 'Editar série' : `Série ${nextSetNumber}`}</h2>
             {exercise.loadType === 'external' && (
-              <NumberDial label="Carga (kg)" value={editor.weight} min={0}
+              <NumberDial label="Carga (kg)" value={editor.weight} min={0} integer max={maximumInputLoad(exercise, [...sessions.flatMap(s => s.logs.filter(l => l.exerciseId === exercise.id).map(l => l.weight)), ...logsHere.map(l => l.weight), suggestion.weight ?? 0])}
                 onChange={(weight) => setEditor((current) => current ? { ...current, weight } : null)} />
             )}
-            <NumberDial label={isTimed ? 'Segundos' : 'Repetições'} value={editor.reps} min={1} integer
+            <NumberDial label={isTimed ? 'Segundos' : 'Repetições'} value={editor.reps} min={isTimed ? 1 : 0} max={isTimed ? undefined : 30} integer
               onChange={(reps) => setEditor((current) => current ? { ...current, reps } : null)} />
             <button type="submit" className="btn btn-primary" style={{ marginTop: 20 }}>
               {editor.logId ? 'Salvar' : 'Registrar série'}
@@ -291,6 +288,10 @@ export default function Player() {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h2>Opções</h2>
             <div style={{ marginTop: 12 }}>
+              <label className="exercise-picker"><span className="small">Ir para exercício</span><select aria-label="Ir para exercício" value={idx} onChange={(event) => { setEditor(null); setCurrentIndex(Number(event.target.value)); setMenuOpen(false) }}>
+                {session.exercises.map((item, index) => <option key={item.planExerciseId} value={index}>{index + 1}. {byId.get(item.exerciseId)?.name}</option>)}
+              </select></label>
+              <button className="btn btn-ghost" style={{ marginTop: 10 }} onClick={() => { setMenuOpen(false); setWatchModalOpen(true) }}>Apple Watch</button>
               <button className="btn btn-ghost" onClick={() => { setMenuOpen(false); setFinishOpen(true) }}>
                 Encerrar treino agora
               </button>
@@ -392,7 +393,7 @@ function SubstituteModal({ exercise, onClose, onPick }: {
 
   return (
     <div className="modal-back" onClick={onClose}>
-      <div className="modal" role="dialog" aria-modal="true" aria-label={`Variações de ${exercise.name}`} onClick={(e) => e.stopPropagation()}>
+      <div className="modal substitution-sheet" role="dialog" aria-modal="true" aria-label={`Variações de ${exercise.name}`} onClick={(e) => e.stopPropagation()}>
         <div className="between" style={{ marginBottom: 12 }}>
           <span className="eyebrow">{exercise.loadType === 'bodyweight' ? 'Ajuste a dificuldade' : 'Substituir exercício'}</span>
           <button className="btn-quiet" onClick={onClose}>Fechar</button>
@@ -404,7 +405,8 @@ function SubstituteModal({ exercise, onClose, onPick }: {
             <div style={{ marginTop: 8 }}>
               {options.length === 0 && <p className="muted small">Nenhum equivalente disponível — você pode pular este exercício.</p>}
               {options.slice(0, 8).map((o) => (
-                <button key={o.id} className="list-item" onClick={() => setChosen(o)}>
+                <button key={o.id} className="list-item substitution-option" onClick={() => setChosen(o)}>
+                  <SubstitutionThumbnail exercise={o} />
                   <div className="grow">
                     <h3>{o.name}</h3>
                     <span className="tiny faint">{exercise.loadType === 'bodyweight' ? variationLabel(exercise.id, o.id) : o.equivGroup === exercise.equivGroup ? 'Mesmo padrão de movimento' : 'Estímulo semelhante'}</span>
@@ -430,4 +432,15 @@ function SubstituteModal({ exercise, onClose, onPick }: {
       </div>
     </div>
   )
+}
+
+function SubstitutionThumbnail({ exercise }: { exercise: Exercise }) {
+  const art = EXERCISE_ILLUSTRATIONS[exercise.id]
+  return <span className="substitution-thumbnail" aria-hidden="true">
+    {art ? <span className="substitution-thumbnail-frame" style={{
+      aspectRatio: art.aspectRatio,
+      backgroundImage: `url(${art.sprite})`,
+      backgroundSize: art.hold ? '100% 100%' : `${(art.motion?.columns ?? 3) * 100}% ${(art.motion?.rows ?? 2) * 100}%`,
+    }} /> : <ExerciseDemo exerciseId={exercise.id} name={exercise.name} compact />}
+  </span>
 }

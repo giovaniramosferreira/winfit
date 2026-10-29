@@ -22,7 +22,8 @@ const render = (el: ReturnType<typeof createElement>) => {
 }
 assert.equal(sessionModules.length,4)
 const hub = render(createElement(Home))
-for (const path of ['/training','/calisthenics','/pelvic','/nutrition','/routine','/assistant']) assert.ok(hub.includes(`href="${path}"`),path)
+for (const path of ['/training','/calisthenics','/pelvic','/nutrition']) assert.ok(hub.includes(`href="${path}"`),path)
+for (const path of ['/routine','/assistant']) assert.ok(!hub.includes(`href="${path}"`), 'Secondary shortcuts stay outside Home')
 assert.match(hub,/Respiração disponível/)
 assert.match(hub,/home-hub/, 'Home owns a viewport-sized layout')
 assert.match(hub,/home-module-grid/, 'Four modules share a compact grid')

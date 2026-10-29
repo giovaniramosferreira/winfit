@@ -1,4 +1,5 @@
 import { useStore } from './store'
+import { sanitizeEquipmentFreePlan } from './generator'
 import { mergeWorkouts, parseWorkoutBackup, type WorkoutBackup } from './backup'
 import { exportNutritionData, importNutritionData, parseNutritionData, resetNutritionData } from './nutritionStore'
 import { usePelvicStore, validatePelvicData } from './pelvicStore'
@@ -31,8 +32,17 @@ export function parseApplicationBackup(raw: unknown): ApplicationBackup {
   }
   return result
 }
-export function mergeApplications(local: ApplicationBackup, remote: ApplicationBackup): ApplicationBackup {
+export function mergeApplications(local: ApplicationBackup, remote: ApplicationBackup, options: { useBackupPlan?: boolean } = {}): ApplicationBackup {
   const result: ApplicationBackup = mergeWorkouts(local, remote)
+  if (options.useBackupPlan) {
+    result.profile = remote.profile
+    result.plan = remote.plan
+    result.archivedPlans = [...new Map([...result.archivedPlans, ...(local.plan ? [local.plan] : [])].map(p => [p.id,p])).values()].filter(p => p.id !== remote.plan?.id)
+    if (local.activeSession && local.activeSession.id !== remote.activeSession?.id && !result.sessions.some(s => s.id === local.activeSession!.id)) {
+      result.sessions.push({ ...local.activeSession, status:'partial', timer:null })
+    }
+    result.activeSession = remote.activeSession
+  }
   result.modules = { ...remote.modules, ...local.modules }
   const ln = local.modules?.nutrition, rn = remote.modules?.nutrition
   if (ln && rn) {
@@ -61,17 +71,21 @@ export function mergeApplications(local: ApplicationBackup, remote: ApplicationB
   }
   return parseApplicationBackup(result)
 }
-export function applyApplicationBackup(snapshot: ApplicationBackup, originalIncoming: ApplicationBackup = snapshot): void {
-  const next = parseApplicationBackup(snapshot)
+export function applyApplicationBackup(snapshot: ApplicationBackup, originalIncoming: ApplicationBackup = snapshot, options: { workoutOnly?: boolean } = {}): void {
+  const next = parseApplicationBackup(options.workoutOnly ? { ...snapshot, modules:undefined } : snapshot)
   // Keep both originals before the first state change; storage failure aborts here.
-  const previous = applicationSnapshot()
+  const previous = applicationSnapshot(!options.workoutOnly)
   const previousWorkoutState = useStore.getState()
-  localStorage.setItem('winfit-recovery-v2', JSON.stringify({ previous, incoming: originalIncoming }))
+  const rawModules = Object.fromEntries(['winfit-nutrition-v1','winfit-pelvic-v1','winfit-routine-v1'].map(key => [key,localStorage.getItem(key)]))
+  localStorage.setItem('winfit-recovery-v2', JSON.stringify({ previous, incoming: originalIncoming, rawModules }))
   try {
     if (next.modules?.nutrition && !importNutritionData(JSON.stringify(next.modules.nutrition))) throw Error('Falha ao salvar alimentação.')
     if (next.modules?.pelvic && !usePelvicStore.getState().importData(JSON.stringify(next.modules.pelvic))) throw Error('Falha ao salvar dados pélvicos.')
     if (next.modules?.routine && !importRoutineData(next.modules.routine)) throw Error('Falha ao salvar rotina.')
-    useStore.getState().importCloudData(next as unknown as Record<string, unknown>)
+    // The snapshot was already reconciled. A second cloud merge would select
+    // the old local plan again and undo an explicit backup-plan choice.
+    useStore.setState({ profile:next.profile, plan:next.plan ? sanitizeEquipmentFreePlan(next.plan) : null,
+      archivedPlans:next.archivedPlans, sessions:next.sessions, activeSession:next.activeSession, prs:next.prs, lastSetUndo:null })
     if (getWorkoutStorageError()) throw Error(getWorkoutStorageError()!)
   } catch (error) {
     // Recovery remains available even if storage quota prevents rollback.

@@ -1,7 +1,7 @@
 /** Keep typed hundredths; gesture precision is finer than the displayed tenth. */
-export function dialValue(value: number, min: number, integer = false): number | null {
+export function dialValue(value: number, min: number, integer = false, max = Infinity): number | null {
   if (!Number.isFinite(value)) return null
-  return Math.max(min, integer ? Math.round(value) : Math.round(value * 100) / 100)
+  return Math.min(max, Math.max(min, integer ? Math.round(value) : Math.round(value * 100) / 100))
 }
 
 /** Slow movement is precise; acceleration is continuous and bounded. */

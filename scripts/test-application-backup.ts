@@ -36,3 +36,22 @@ assert.equal(nutritionStore.getState().meals.length,2)
 assert.equal(JSON.parse(disk.get('winfit-recovery-v2')!).incoming.modules.nutrition.meals[0].id,'remote-meal')
 assert.throws(()=>parseApplicationBackup({...local,modules:{nutrition:{version:999}}}))
 console.log('Application backup: module union, original recovery, validated import and quota rollback OK')
+
+const phone = structuredClone(remote)
+phone.plan = { ...phone.plan!, id:'phone-plan' }
+phone.activeSession = null
+const preferred = mergeApplications(local, phone, { useBackupPlan:true })
+assert.equal(preferred.plan!.id,'phone-plan')
+assert.equal(preferred.activeSession,null)
+assert.ok(preferred.sessions.some(s => s.id === local.activeSession!.id),'Local active session archived rather than lost')
+applyApplicationBackup(preferred,phone)
+assert.equal(useStore.getState().plan!.id,'phone-plan','Applying reconciled snapshot must not reselect local plan')
+assert.equal(useStore.getState().activeSession,null)
+
+// Corrupt non-workout data must not prevent an explicit workout-only recovery.
+disk.set('winfit-nutrition-v1','{"legacy":true}')
+const only = mergeApplications(applicationSnapshot(false),phone,{useBackupPlan:true})
+applyApplicationBackup(only,phone,{workoutOnly:true})
+assert.equal(disk.get('winfit-nutrition-v1'),'{"legacy":true}')
+assert.equal(JSON.parse(disk.get('winfit-recovery-v2')!).rawModules['winfit-nutrition-v1'],'{"legacy":true}')
+assert.equal(useStore.getState().plan!.id,'phone-plan')

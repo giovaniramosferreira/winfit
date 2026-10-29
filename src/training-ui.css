@@ -99,3 +99,83 @@
  .exercise-detail-page .defs { grid-template-columns:1fr;gap:6px; }
  .exercise-detail-page .defs dd { margin-bottom:10px; }
 }
+
+/* Compact workout overview, without clipping longer plans or smaller screens. */
+.training-page { padding-top:calc(var(--safe-t) + 12px); }
+.training-page .training-session { padding:18px!important; }
+.training-session-heading { display:flex;align-items:center;justify-content:space-between;gap:12px; }
+.training-session-heading h2 { margin:5px 0 0;font-size:22px;line-height:1.2;letter-spacing:-.5px; }
+.training-page .training-session-heading .training-art { width:68px;height:76px;flex-shrink:0;border-radius:18px; }
+.training-page .training-session .kpis { gap:24px;padding:8px 0 10px; }
+.training-page .training-session .kpis b { font-size:25px; }
+.training-page .training-session .kpis span { font-size:11px; }
+.training-page .toc-item { padding:10px 0;gap:9px; }
+.training-page .toc-item .t { font-size:13px; }
+.training-page .toc-item .t small { font-size:11px; }
+.training-page .toc-item .n { width:28px;height:28px;border-radius:10px;font-size:11px; }
+.training-page .toc-item .m { font-size:11px;padding:5px; }
+.training-page .training-week { padding:16px!important; }
+.training-week h2 { font-size:18px; }
+.training-page .training-session .btn { min-height:44px;font-size:13px; }
+
+/* Exercise-first player: compact at every viewport width. */
+.training-player .player-head { padding:calc(var(--safe-t) + 6px) 16px 0;background:transparent;border-radius:0; }
+.training-player .player-head .btn-quiet { min-height:36px;font-size:12px; }
+.training-player .player-progress { margin:4px 0;height:3px; }
+.training-player .player-body { padding:6px 16px; }
+.training-player .player-exercise-heading { padding:4px 2px; }
+.training-player .player-exercise-heading h1 { margin:5px 0 0;font-size:22px;line-height:1.15; }
+.training-player .player-exercise-heading .eyebrow { font-size:10px; }
+.training-player .exercise-demo.is-compact { display:block;padding:6px;margin:6px 0; }
+.training-player .exercise-demo.is-compact > .between,
+.training-player .exercise-demo.is-compact > figcaption,
+.training-player .exercise-demo.is-compact > p { display:none; }
+.training-player .exercise-demo.is-compact .pilot-artboard { width:min(100%, calc(clamp(120px, 23dvh, 220px) * var(--illustration-ratio)));margin:0 auto; }
+.training-player.is-resting .exercise-demo.is-compact .pilot-artboard { width:min(100%, calc(clamp(100px, 17dvh, 170px) * var(--illustration-ratio))); }
+.training-player .exercise-demo.is-compact .movement-illustration { height:20dvh;max-height:200px; }
+.training-player .player-set-sheet { margin-top:8px!important;padding:10px 8px 4px;border-radius:18px; }
+.training-player .player-set-heading { margin-bottom:8px; }
+.training-player .player-set-heading h2 { font-size:15px; }
+.training-player .set-row { padding-block:3px; }
+.training-player .set-cell,.training-player .check-btn { min-height:40px;font-size:16px; }
+.training-player .player-body > .row { margin-top:6px!important;gap:6px; }
+.training-player .player-body > .row .btn { min-height:36px;padding:6px;font-size:12px; }
+.training-player .player-foot { padding:8px 16px calc(8px + var(--safe-b)); }
+.training-player .player-foot .btn { min-height:40px;padding:8px;font-size:13px; }
+.training-player .timer-bar { padding:6px 10px;gap:6px;border-radius:14px; }
+.training-player .timer-bar .t { font-size:26px; }
+@media (prefers-reduced-motion: reduce) {
+ .is-autoplay .pilot-frames.is-playing { animation-play-state:paused!important; }
+}
+
+.training-player .player-head .player-minimize { width:auto;min-height:40px;padding:8px 12px;font-size:12px; }
+.training-player .player-head .player-options { width:40px;min-height:40px;padding:8px;font-size:20px; }
+.player-demo-wrap { position:relative; }
+.training-player .player-info { position:absolute;right:10px;top:10px;width:40px;min-height:40px;padding:0;border-radius:50%;background:#f0eaf8;font:700 18px/1 Georgia,serif; }
+.player-instructions { position:absolute;z-index:5;top:56px;right:8px;left:8px;padding:12px 16px;background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 28px #2b203c22;font-size:13px;line-height:1.5; }
+.player-instructions ol { padding-left:20px;margin-top:6px; }
+.player-instructions li+li { margin-top:6px; }
+
+.training-player .player-head .player-minimize,.training-player .player-head .player-options,.training-player .player-info { min-height:44px; }
+.training-player .player-options,.training-player .player-info { width:44px; }
+
+/* Roomy replacement chooser: each option previews one atlas frame. */
+.training-player .substitution-sheet { width:min(100%,600px);max-width:600px;max-height:90dvh;min-height:min(680px,86dvh);padding:22px 20px calc(22px + var(--safe-b)); }
+.substitution-sheet .substitution-option { width:100%;gap:14px;min-height:108px;padding:12px 0;text-align:left; }
+.substitution-option .grow { min-width:0; }
+.substitution-option h3 { line-height:1.35; }
+.substitution-thumbnail { flex:0 0 100px;width:100px;height:88px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:14px;background:#f4eff9; }
+.substitution-thumbnail-frame { display:block;width:100%;max-height:100%;background-repeat:no-repeat;background-position:0 0;mix-blend-mode:multiply; }
+.substitution-thumbnail .exercise-demo { margin:0;padding:0;border:0;width:100%;pointer-events:none; }
+.substitution-thumbnail .exercise-demo > :not(svg):not(.pilot-artboard) { display:none; }
+@media(max-width:380px) { .substitution-thumbnail { flex-basis:80px;width:80px;height:76px; } .training-player .substitution-sheet { padding-left:14px;padding-right:14px; } }
+
+/* Keep recording within thumb reach, with exercise context above it. */
+.training-player .player-body { display:flex;flex-direction:column;gap:0; }
+.training-player .player-body > .player-set-sheet { margin-top:auto!important;flex-shrink:0; }
+.training-player .player-demo-wrap { flex-shrink:0;margin-bottom:12px; }
+.training-player .player-exercise-heading { flex-shrink:0; }
+.training-player .player-head [role="status"] { text-align:center;font-size:11px; }
+.player-info-actions { display:grid;gap:8px;margin-top:12px; }
+.player-info-actions .btn { width:100%;min-height:44px; }
+.player-instructions { max-height: min(65dvh, 460px);overflow-y:auto; }

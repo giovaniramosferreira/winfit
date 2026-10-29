@@ -5,21 +5,21 @@ import ExerciseEquipment from './ExerciseEquipment'
 import { EXERCISE_ILLUSTRATIONS } from '../data/exerciseIllustrations'
 import IllustratedExerciseDemo from './IllustratedExerciseDemo'
 
-export default function ExerciseDemo({ exerciseId, name }: { exerciseId: string; name: string }) {
+export default function ExerciseDemo({ exerciseId, name, autoPlay = false, compact = false }: { exerciseId: string; name: string; autoPlay?: boolean; compact?: boolean }) {
   const pilot = EXERCISE_ILLUSTRATIONS[exerciseId]
-  return pilot ? <IllustratedExerciseDemo key={exerciseId} pilot={pilot} name={name} />
-    : <VectorExerciseDemo key={exerciseId} exerciseId={exerciseId} name={name} />
+  return pilot ? <IllustratedExerciseDemo key={exerciseId} pilot={pilot} name={name} autoPlay={autoPlay} compact={compact} />
+    : <VectorExerciseDemo key={exerciseId} exerciseId={exerciseId} name={name} autoPlay={autoPlay} compact={compact} />
 }
 
-function VectorExerciseDemo({ exerciseId, name }: { exerciseId: string; name: string }) {
+function VectorExerciseDemo({ exerciseId, name, autoPlay = false, compact = false }: { exerciseId: string; name: string; autoPlay?: boolean; compact?: boolean }) {
   const demo = MOVEMENT_DEMOS[exerciseId]
   const titleId = useId()
   const svg = useRef<SVGSVGElement | null>(null)
-  const [playing, setPlaying] = useState(false)
+  const [playing, setPlaying] = useState(autoPlay)
   const bindSvg = useCallback((element: SVGSVGElement | null) => {
     svg.current = element
-    element?.pauseAnimations()
-  }, [])
+    if (!autoPlay || window.matchMedia('(prefers-reduced-motion: reduce)').matches) element?.pauseAnimations()
+  }, [autoPlay])
   if (!demo) return null
 
   const toggle = () => {
@@ -30,7 +30,7 @@ function VectorExerciseDemo({ exerciseId, name }: { exerciseId: string; name: st
   }
 
   return (
-    <figure className="exercise-demo">
+    <figure className={`exercise-demo${compact ? ' is-compact' : ''}`}>
       <div className="between">
         <span className="eyebrow">Demonstração ilustrada</span>
         <span className="tiny faint">{demo.view}</span>
@@ -46,7 +46,7 @@ function VectorExerciseDemo({ exerciseId, name }: { exerciseId: string; name: st
       <figcaption id={`${titleId}-cue`} className="small muted">{demo.cue}</figcaption>
       {demo.hold
         ? <p className="tiny faint" style={{ marginTop: 8 }}>Posição de sustentação · conte o tempo em segundos.</p>
-        : <button type="button" className="btn-quiet demo-control" aria-pressed={playing}
+        : !autoPlay && <button type="button" className="btn-quiet demo-control" aria-pressed={playing}
             aria-describedby={`${titleId}-cue`} onClick={toggle}>{playing ? 'Pausar demonstração' : 'Reproduzir demonstração'}</button>}
     </figure>
   )

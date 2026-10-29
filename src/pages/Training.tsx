@@ -49,29 +49,28 @@ export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
   const origin = active ? active.source === 'home' ? 'Calistenia' : 'Academia' : mode === 'home' ? 'Calistenia' : 'Academia'
   const lastPR = mode === 'gym' ? prs[0] : null
   return <div className="page training-page">
-    <div className="sheet-head"><Link to="/home">‹ Início</Link><span className="num">Semana {weekSessions.length}/{goal}</span></div>
-    <div className="training-heading"><div><div className="screen-kicker">{mode === 'home' ? 'Calistenia · só o peso do corpo' : 'Academia · seu plano'}</div>
-    <h1 className="screen-title">{mode === 'home' ? 'Calistenia' : 'Academia'}</h1>
-    <p className="small muted">{mode === 'home' ? 'Seu ciclo de corpo inteiro, sem equipamentos. Cada treino concluído avança o ciclo em casa e preserva a sequência do plano.' : plan.splitLabel}</p></div><div className="training-art" aria-hidden="true"><HomeArtwork module={mode === 'home' ? 'home' : 'gym'} /></div></div>
-    <section className="hero-card training-session" style={{ marginTop:16 }}>
-      <div className="eyebrow accent">{active ? `${origin} em andamento` : 'Próximo treino'}</div>
-      <h2 style={{ marginTop:8 }}>{active ? active.dayLabel : day.label}</h2>
+    <h1 className="sr-only">{mode === 'home' ? 'Calistenia' : 'Academia'}</h1>
+    <section className="hero-card training-session">
+      <div className="training-session-heading"><div>
+        <div className="eyebrow accent">{active ? `${origin} em andamento` : 'Próximo treino'}</div>
+        <h2>{active ? active.dayLabel : day.label}</h2>
+      </div><div className="training-art" aria-hidden="true"><HomeArtwork module={mode === 'home' ? 'home' : 'gym'} /></div></div>
       {active && <p className="small muted">{active.logs.length} séries registradas. Retomar mantém exercício atual, séries e descanso, mesmo ao entrar por outro módulo.</p>}
-      {!active && <div className="kpis" style={{ marginTop:14 }}><div><b className="num">{day.exercises.length}</b><span>exercícios</span></div><div><b className="num">~{day.estMin}</b><span>minutos</span></div></div>}
-      <div className="eyebrow" style={{ marginTop:18 }}>Exercícios de hoje</div>
+      {!active && <div className="kpis" style={{ marginTop:8 }}><div><b className="num">{day.exercises.length}</b><span>exercícios</span></div><div><b className="num">~{day.estMin}</b><span>minutos</span></div></div>}
+      <div className="eyebrow" style={{ marginTop:12 }}>Exercícios de hoje</div>
       <ol className="toc" style={{ marginTop:4 }}>{toc.map((pe,i) => {
         const ex = byId.get(pe.exerciseId); if (!ex) return null
         return <li key={pe.id}><Link to={`/exercise/${ex.id}`} className={`toc-item${i === 0 && !active ? ' on' : ''}`}>
           <span className="n num">{plateNo(ex.id)}</span><span className="t">{ex.name}<small>{ANATOMY[ex.primary].latin}</small></span><span className="m num">{pe.sets}×{pe.repMin}–{pe.repMax}{isTimedExercise(ex.id) ? ' s' : ''}</span>
         </Link></li>
       })}</ol>
-      {active || day.exercises.length ? <button className="btn btn-primary" style={{ marginTop:16 }} onClick={() => start()}>{active ? 'Retomar treino' : mode === 'home' ? 'Começar em casa' : 'Começar treino'}</button> : <p className="note">Não há exercícios sem equipamentos compatíveis com as limitações do seu perfil.</p>}
+      {active || day.exercises.length ? <button className="btn btn-primary" style={{ marginTop:10 }} onClick={() => start()}>{active ? 'Retomar treino' : mode === 'home' ? 'Começar em casa' : 'Começar treino'}</button> : <p className="note">Não há exercícios sem equipamentos compatíveis com as limitações do seu perfil.</p>}
       {!active && mode === 'gym' && <button className="btn btn-quiet" onClick={() => setPickDay(true)}>Treinar outro dia do plano</button>}
       {mode === 'home' && <p className="tiny muted" style={{ marginTop:12 }}>Demonstrações e variações no treino. Sem porta, sofá ou acessórios improvisados.</p>}
       {unavailable && <p className="note" role="alert">Não foi possível iniciar este treino. Revise seu plano e limitações no perfil.</p>}
     </section>
-    <section className="card training-week" style={{ marginTop:18 }}><div className="between"><h2>Minha semana</h2><span className="tiny muted num">{weekSessions.length} de {goal} treinos</span></div>
-      <div className="week-dots" style={{ marginTop:12 }}>{week.map((d,i) => <div key={i} className={`week-dot ${d.done ? 'done' : ''} ${d.today ? 'today' : ''}`}><div className="dot">{d.done ? '✓' : ''}</div><div className="lbl">{d.label}</div></div>)}</div>
+    <section className="card training-week" style={{ marginTop:12 }}><div className="between"><h2>Minha semana</h2><span className="tiny muted num">{weekSessions.length} de {goal} treinos</span></div>
+      <div className="week-dots" style={{ marginTop:8 }}>{week.map((d,i) => <div key={i} className={`week-dot ${d.done ? 'done' : ''} ${d.today ? 'today' : ''}`}><div className="dot">{d.done ? '✓' : ''}</div><div className="lbl">{d.label}</div></div>)}</div>
       <p className="tiny muted" style={{ marginTop:10 }}>Academia e calistenia compartilham sua meta semanal.</p>
     </section>
     {lastPR && <Link to={`/exercise/${lastPR.exerciseId}`} className="note" style={{ display:'block', marginTop:14, color:'inherit', textDecoration:'none' }}><b>Último recorde.</b> {byId.get(lastPR.exerciseId)?.name}: <span className="mono num">{fmtKg(lastPR.value)} × {lastPR.reps}</span></Link>}

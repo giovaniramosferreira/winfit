@@ -4,15 +4,15 @@
  */
 import { cloudTransport } from './cloudTransport'
 import { exchangeGoogleCode, googleOAuthReady, prepareGoogleOAuth, readGoogleCallback, GOOGLE_VERIFIER_KEY } from './googleOAuth'
-const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/$/, '')
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY
+const url = import.meta.env?.VITE_SUPABASE_URL?.replace(/\/$/, '')
+const key = import.meta.env?.VITE_SUPABASE_ANON_KEY
 const SESSION_KEY = 'winfit-auth-session'
 let authEpoch = 0
 let restoring: Promise<AuthSession | null> | null = null
 
-export interface AuthSession { access_token: string; refresh_token: string; expires_at?: number; user?: { id: string; email?: string } }
+export interface AuthSession { access_token: string; refresh_token: string; expires_at?: number; user?: { id: string; email?: string; user_metadata?: { full_name?: unknown; name?: unknown } } }
 export const isAuthConfigured = Boolean(url && key)
-const googleConfig = { url, key, enabled: import.meta.env.VITE_GOOGLE_AUTH_ENABLED === 'true' }
+const googleConfig = { url, key, enabled: import.meta.env?.VITE_GOOGLE_AUTH_ENABLED === 'true' }
 export const isGoogleAuthConfigured = googleOAuthReady(googleConfig)
 export async function signInWithGoogle() {
   const target = await prepareGoogleOAuth(googleConfig, `${window.location.origin}${window.location.pathname}`, window.sessionStorage)

@@ -5,12 +5,13 @@ import { dialMotion, dialValue } from '../lib/numberDial'
 interface Props {
   label: string
   value: number
+  max?: number
   min: number
   integer?: boolean
   onChange: (value: number) => void
 }
 
-export default function NumberDial({ label, value, min, integer = false, onChange }: Props) {
+export default function NumberDial({ label, value, min, max = Infinity, integer = false, onChange }: Props) {
   const id = useId()
   const [draft, setDraft] = useState(String(value))
   const typing = useRef(false)
@@ -20,14 +21,14 @@ export default function NumberDial({ label, value, min, integer = false, onChang
   const drag = useRef<{ id: number; x: number; time: number; raw: number } | null>(null)
   const step = integer ? 1 : 0.1
   const update = (raw: number) => {
-    const next = dialValue(raw, min, integer)
+    const next = dialValue(raw, min, integer, max)
     if (next !== null) onChange(next)
   }
   const move = (event: PointerEvent<HTMLDivElement>) => {
     const previous = drag.current
     if (!previous || previous.id !== event.pointerId) return
     const change = dialMotion(event.clientX - previous.x, event.timeStamp - previous.time, integer)
-    previous.raw = Math.max(min, previous.raw + change)
+    previous.raw = Math.min(max, Math.max(min, previous.raw + change))
     previous.x = event.clientX
     previous.time = event.timeStamp
     update(previous.raw)
@@ -47,21 +48,21 @@ export default function NumberDial({ label, value, min, integer = false, onChang
     <div className="number-dial">
       <label className="field" htmlFor={id}>{label}</label>
       <input id={id} className="dial-value num" type="number" inputMode={integer ? 'numeric' : 'decimal'}
-        min={min} step={integer ? 1 : 'any'} required value={draft}
+        min={min} max={Number.isFinite(max) ? max : undefined} step={integer ? 1 : 'any'} required value={draft}
         onFocus={() => { typing.current = true }}
         onBlur={(event) => {
           typing.current = false
-          if (event.target.value !== '' && event.target.validity.valid) {
-            const normalized = dialValue(event.target.valueAsNumber, min, integer)
+          if (event.target.value !== '') {
+            const normalized = dialValue(event.target.valueAsNumber, min, integer, max)
             if (normalized !== null) setDraft(String(normalized))
           }
         }}
         onChange={(event) => {
           setDraft(event.target.value)
-          if (event.target.value !== '' && event.target.validity.valid) update(event.target.valueAsNumber)
+          if (event.target.value !== '') update(event.target.valueAsNumber)
         }} />
       <div className="dial-track" role="spinbutton" tabIndex={0} aria-label={`Ajustar ${label}`}
-        aria-valuemin={min} aria-valuenow={value} aria-describedby={`${id}-hint`}
+        aria-valuemax={Number.isFinite(max) ? max : undefined} aria-valuemin={min} aria-valuenow={value} aria-describedby={`${id}-hint`}
         onKeyDown={key}
         onPointerDown={(event) => {
           if (event.button !== 0 || drag.current) return

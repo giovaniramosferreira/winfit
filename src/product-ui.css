@@ -94,3 +94,11 @@ body { background: #ece7f3; }
 @media (prefers-reduced-motion: reduce) {
   .product-shell *, .product-shell *::before, .product-shell *::after { scroll-behavior: auto; }
 }
+
+/* Shared action language: rounded controls, clear interaction and keyboard focus. */
+.product-shell :is(.btn,.btn-quiet) { border-radius:18px;font-weight:600;line-height:1.25; }
+.product-shell button:focus-visible,.product-shell a:focus-visible { outline:3px solid #7450bd;outline-offset:3px; }
+.product-shell button:disabled { cursor:not-allowed;opacity:.45; }
+.product-shell .btn:disabled:active { transform:none; }
+.product-shell button.btn-quiet:not(.btn) { min-height:44px;padding:8px 12px; }
+.product-shell .btn-quiet:hover:not(:disabled) { background:#f0eaf8; }

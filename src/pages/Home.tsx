@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
-import { greeting, sessionsThisWeek } from '../lib/helpers'
+import { homeSummary } from '../lib/homeSummary'
+import { useAuth } from '../components/AuthProvider'
 import { sessionModules } from '../data/sessionModules'
 import HomeArtwork from '../components/HomeArtwork'
 
@@ -18,8 +19,10 @@ export default function Home() {
   const sessions = useStore(s => s.sessions)
   const profile = useStore(s => s.profile)
   const plan = useStore(s => s.plan)
-  const weekCount = sessionsThisWeek(sessions).length
-  const weekGoal = profile && plan ? Math.min(profile.frequency, plan.days.length) : 0
+  const { session } = useAuth()
+  const metadata = session?.user?.user_metadata
+  const name = typeof metadata?.full_name === 'string' ? metadata.full_name : typeof metadata?.name === 'string' ? metadata.name : undefined
+  const { message, weekCount, weekGoal } = homeSummary({ profile, plan, sessions, active, name })
   const resumeState = useStore(s => s.resumeOrExpireSession)
   const saveExpired = useStore(s => s.saveExpiredAsPartial)
   const [expired, setExpired] = useState(false)
@@ -27,15 +30,11 @@ export default function Home() {
 
   return <main className={`home-hub${active ? ' home-hub-with-session' : ''}`}>
     <header className="home-heading">
-      <div className="home-heading-top">
-        <span className="home-greeting">{greeting()}<span className="home-greeting-dot" /></span>
-        <span className="home-brand">Win<em>Fit</em></span>
-      </div>
       <div className="home-welcome">
-        <div><h1>Seu momento<br /> <em>de cuidar.</em></h1><p>Um passo de cada vez, no seu ritmo.</p></div>
+        <div><h1>{message}</h1></div>
         {weekGoal > 0 && <Link to="/progress" className="home-week" aria-label={`${weekCount} de ${weekGoal} treinos nesta semana. Ver progresso`}>
           <img src="/media/pump-house/award.svg" width="15.9994" height="20" alt="" />
-          <strong>{weekCount}<small>/{weekGoal}</small></strong><span>nesta semana</span>
+          <strong>{weekCount}<small>/{weekGoal}</small></strong><span>treinos na semana</span>
         </Link>}
       </div>
     </header>
@@ -62,16 +61,7 @@ export default function Home() {
       })}
     </div>
 
-    <nav className="home-shortcuts" aria-label="Sua rotina e acompanhamento">
-      <Link to="/routine">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="3" /><path d="M8 3v4m8-4v4M4 11h16m-12 5 2 2 5-4" /></svg>
-        <span><strong>Minha rotina</strong><span>Lembretes e checklist</span></span><span aria-hidden="true">›</span>
-      </Link>
-      <Link to="/assistant">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 18 0ZM7 10h8m-8 4h5" /></svg>
-        <span><strong>Assistente</strong><span>Adapte seu treino</span></span><span aria-hidden="true">›</span>
-      </Link>
-    </nav>
+
 
     {expired && active && <div className="modal-back"><div className="modal" role="dialog" aria-modal="true" aria-labelledby="hub-expired">
       <h2 id="hub-expired">Treino inacabado</h2><p className="small muted">{active.dayLabel} tem {active.logs.length} séries registradas. Preserve o registro como treino parcial ou continue de onde parou.</p>
