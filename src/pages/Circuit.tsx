@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { cardioCoreCircuit as program, LEVEL_ORDER } from '../data/circuits'
 import { useCircuitStore } from '../lib/circuitStore'
 import { useStore } from '../lib/store'
+import { circuitDemoFor } from '../data/circuitDemos'
+import { InkDemo } from '../components/ExerciseDemo'
 import { buildPhases, fmtDuration, positionAt, resolveMove, suggestProgression, totalSeconds, workSeconds, type CircuitPhaseKind, type ModifyReason } from '../lib/circuit'
 
 const KIND_LABEL: Record<CircuitPhaseKind, string> = {
@@ -87,11 +89,11 @@ export default function Circuit() {
   const finished = finishedId ? s.history.find((r) => r.id === finishedId) : undefined
 
   return <div className="page training-page circuit-page fade-in">
-    <header className="training-heading"><div>
+    {active ? <h1 className="sr-only">{program.title}</h1> : <header className="training-heading"><div>
       <span className="screen-kicker">Calistenia · circuito por tempo</span>
       <h1 className="screen-title">{program.title}</h1>
-      {!active && <p className="small muted">{program.description}</p>}
-    </div></header>
+      <p className="small muted">{program.description}</p>
+    </div></header>}
     {(s.error || notice) && <p className="note" role="alert">{s.error || notice}</p>}
 
     {active && phase && pos ? <section className={`card training-session circuit-live circuit-${phase.kind}`} aria-labelledby="circuit-phase">
@@ -99,6 +101,7 @@ export default function Circuit() {
         {phase.round > 0 && <span className="tiny muted num">Volta {phase.round} de {active.settings.rounds}</span>}</div>
       <h2 id="circuit-phase">{phase.name}{phase.kind === 'work' && phase.modified && <span className="pill accent circuit-pill">versão modificada</span>}</h2>
       <p className="circuit-clock num" aria-live="off" aria-label={`${pos.remainingSec} segundos restantes`}>{pos.remainingSec}<span className="small"> s</span></p>
+      {phase.moveId && (() => { const d = circuitDemoFor(phase.moveId, !!phase.modified); return d ? <InkDemo key={`${pos.index}`} demo={d} name={phase.kind === 'work' ? phase.name : `Próximo: ${phase.how}`} autoPlay compact /> : null })()}
       <p className="small">{phase.how}</p>
       {phase.kind === 'work' && phase.moveId && <p className="tiny muted" style={{ marginTop: 6 }}>{program.moves.find((m) => m.id === phase.moveId)?.watch}</p>}
       {phase.kind === 'work' && (() => { const next = activePhases.slice(pos.index + 1).find((p) => p.kind === 'work'); return next ? <p className="tiny muted" style={{ marginTop: 6 }}>Depois: {next.name}</p> : null })()}
@@ -145,11 +148,12 @@ export default function Circuit() {
 
       <section className="card" style={{ marginTop: 12 }}>
         <h2>Estações</h2>
-        <p className="tiny muted">Demonstrações ilustradas destas estações ainda estão em produção. Siga as instruções em texto.</p>
+        <p className="tiny muted">Toque numa estação para ver a demonstração e as instruções.</p>
         <ol className="circuit-moves">{program.moves.map((m, i) => { const r = resolveMove(m, setup, limitations)
           return <li key={m.id}><details>
             <summary><span className="n num">{i + 1}</span><span className="t">{r.name}<small>{m.focus}</small>
               {r.modified && <span className="pill accent circuit-tag">{r.reasons.map((x) => REASON_LABEL[x]).join(' · ')}</span>}</span></summary>
+            {(() => { const d = circuitDemoFor(m.id, r.modified); return d ? <InkDemo demo={d} name={r.name} compact /> : null })()}
             <ol className="small">{r.how.map((h) => <li key={h}>{h}</li>)}</ol>
             <p className="tiny muted">{m.watch}</p>
             {r.modified ? <p className="tiny faint">Original: {m.name}.</p> : <p className="tiny faint">Versão mais fácil: {m.modified.name}.</p>}

@@ -124,3 +124,26 @@ test('store: aviso de saúde, reload pausado, registro, backup validado e reset'
   failing.getState().setSignals(true, false)
   assert.match(failing.getState().error!, /salvar/)
 })
+
+test('cada estação e versão modificada tem boneco animado válido', async () => {
+  const { CIRCUIT_DEMOS, circuitDemoFor } = await import('../src/data/circuitDemos')
+  const { inkFigurePaths } = await import('../src/lib/inkFigure')
+  const { createElement } = await import('react')
+  const { renderToStaticMarkup } = await import('react-dom/server')
+  const { InkDemo } = await import('../src/components/ExerciseDemo')
+  assert.equal(Object.keys(CIRCUIT_DEMOS).length, program.moves.length * 2)
+  for (const move of program.moves) for (const modified of [false, true]) {
+    const demo = circuitDemoFor(move.id, modified)
+    assert.ok(demo, `${move.id} ${modified}`)
+    const start = inkFigurePaths(demo.start), end = inkFigurePaths(demo.end)
+    assert.notDeepEqual(demo.start, demo.end, `${move.id} precisa de movimento`)
+    for (let i = 0; i < start.length; i++) {
+      assert.ok(!/NaN|Infinity/.test(start[i].d + end[i].d), move.id)
+      assert.deepEqual(start[i].d.match(/[A-Z]/g), end[i].d.match(/[A-Z]/g), `Interpolação inválida: ${move.id}`)
+    }
+    const html = renderToStaticMarkup(createElement(InkDemo, { demo, name: move.name }))
+    assert.match(html, /<animate/)
+    assert.match(html, /Reproduzir demonstração/)
+    assert.ok(!/https?:/.test(html))
+  }
+})
