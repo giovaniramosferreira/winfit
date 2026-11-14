@@ -1,0 +1,227 @@
+[
+  {
+    "id": "polichinelo",
+    "name": "Polichinelo",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "JUMPING JACK, strict FRONT view. Frame1 standing feet together arms by sides. Frame2 small hop, arms rising sideways to shoulder height, feet leaving floor slightly apart. Frame3 airborne, arms overhead in V, legs wide. Frame4 landing soft on balls of feet, legs wide, knees slightly bent, arms overhead. Frame5 small hop back, arms descending to shoulder height. Frame6 back to start feet together arms by sides. Same floor line every frame; airborne frames show a small gap only.",
+    "instructions": [
+      "Salte abrindo pernas e braços ao mesmo tempo.",
+      "Volte unindo as pernas e baixando os braços.",
+      "Aterrisse na ponta dos pés, com os joelhos levemente dobrados."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. JUMPING JACK, strict FRONT view. Frame1 standing feet together arms by sides. Frame2 small hop, arms rising sideways to shoulder height, feet leaving floor slightly apart. Frame3 airborne, arms overhead in V, legs wide. Frame4 landing soft on balls of feet, legs wide, knees slightly bent, arms overhead. Frame5 small hop back, arms descending to shoulder height. Frame6 back to start feet together arms by sides. Same floor line every frame; airborne frames show a small gap only. Source instructions Portuguese: Salte abrindo pernas e braços ao mesmo tempo. Volte unindo as pernas e baixando os braços. Aterrisse na ponta dos pés, com os joelhos levemente dobrados."
+  },
+  {
+    "id": "polichinelo-mod",
+    "name": "Polichinelo sem salto",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "STEP JACK WITHOUT JUMP, strict FRONT view. One foot ALWAYS on floor, no airborne frame. Frame1 standing feet together arms by sides. Frame2 right foot steps out sideways, arms rising to shoulder height. Frame3 right foot planted wide, arms overhead in V. Frame4 return to center feet together arms by sides. Frame5 left foot steps out sideways arms rising. Frame6 left foot planted wide arms overhead.",
+    "instructions": [
+      "Dê um passo para o lado enquanto eleva os braços.",
+      "Volte ao centro e alterne o lado."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. STEP JACK WITHOUT JUMP, strict FRONT view. One foot ALWAYS on floor, no airborne frame. Frame1 standing feet together arms by sides. Frame2 right foot steps out sideways, arms rising to shoulder height. Frame3 right foot planted wide, arms overhead in V. Frame4 return to center feet together arms by sides. Frame5 left foot steps out sideways arms rising. Frame6 left foot planted wide arms overhead. Source instructions Portuguese: Dê um passo para o lado enquanto eleva os braços. Volte ao centro e alterne o lado."
+  },
+  {
+    "id": "rotacao-russa",
+    "name": "Rotação russa",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "RUSSIAN TWIST, strict SIDE view facing left. Seated on floor, buttocks fixed at SAME coordinate, torso leaning back about 45 degrees with long neutral spine, knees bent, BOTH FEET HOVERING off floor. Hands clasped in front of chest. Frames rotate the ribcage: frame1 center, frame2 hands toward near hip, frame3 hands touching floor beside near hip, frame4 center, frame5 hands toward far side, frame6 hands beside far hip. Shoulders rotate with hands, not only arms.",
+    "instructions": [
+      "Sentado, incline o tronco para trás com as costas retas e tire os pés do chão.",
+      "Gire o tronco levando as mãos de um lado ao outro.",
+      "O movimento vem das costelas, não só dos braços."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. RUSSIAN TWIST, strict SIDE view facing left. Seated on floor, buttocks fixed at SAME coordinate, torso leaning back about 45 degrees with long neutral spine, knees bent, BOTH FEET HOVERING off floor. Hands clasped in front of chest. Frames rotate the ribcage: frame1 center, frame2 hands toward near hip, frame3 hands touching floor beside near hip, frame4 center, frame5 hands toward far side, frame6 hands beside far hip. Shoulders rotate with hands, not only arms. Source instructions Portuguese: Sentado, incline o tronco para trás com as costas retas e tire os pés do chão. Gire o tronco levando as mãos de um lado ao outro. O movimento vem das costelas, não só dos braços."
+  },
+  {
+    "id": "rotacao-russa-mod",
+    "name": "Rotação russa com pés no chão",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "RUSSIAN TWIST FEET DOWN, strict SIDE view facing left. Seated, BOTH HEELS ON FLOOR in all frames, knees bent, torso slightly reclined about 30 degrees, long neutral spine. Hands clasped at chest. Frame1 center, frame2 rotate toward near side, frame3 hands beside near hip, frame4 center, frame5 rotate toward far side, frame6 hands beside far hip. Buttocks and heels fixed.",
+    "instructions": [
+      "Sentado, calcanhares apoiados e tronco pouco inclinado.",
+      "Gire devagar de um lado ao outro."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. RUSSIAN TWIST FEET DOWN, strict SIDE view facing left. Seated, BOTH HEELS ON FLOOR in all frames, knees bent, torso slightly reclined about 30 degrees, long neutral spine. Hands clasped at chest. Frame1 center, frame2 rotate toward near side, frame3 hands beside near hip, frame4 center, frame5 rotate toward far side, frame6 hands beside far hip. Buttocks and heels fixed. Source instructions Portuguese: Sentado, calcanhares apoiados e tronco pouco inclinado. Gire devagar de um lado ao outro."
+  },
+  {
+    "id": "elevacao-pernas",
+    "name": "Elevação de pernas",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "SUPINE FLOOR LEG RAISE, strict SIDE view, head to the left. Head, shoulders, entire back AND PELVIS stay FLAT on floor in all six frames; only both straight legs rotate at hips. Frame1 legs hovering just above floor, frame2 legs 30 degrees, frame3 60 degrees, frame4 90 degrees vertical above hips with buttocks still on floor, frame5 45 degrees, frame6 hovering again. Arms resting on floor palms down.",
+    "instructions": [
+      "Deitado, mãos ao lado do corpo ou sob o quadril.",
+      "Suba as pernas estendidas até cerca de 90°.",
+      "Desça devagar sem deixar a lombar sair do chão."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. SUPINE FLOOR LEG RAISE, strict SIDE view, head to the left. Head, shoulders, entire back AND PELVIS stay FLAT on floor in all six frames; only both straight legs rotate at hips. Frame1 legs hovering just above floor, frame2 legs 30 degrees, frame3 60 degrees, frame4 90 degrees vertical above hips with buttocks still on floor, frame5 45 degrees, frame6 hovering again. Arms resting on floor palms down. Source instructions Portuguese: Deitado, mãos ao lado do corpo ou sob o quadril. Suba as pernas estendidas até cerca de 90°. Desça devagar sem deixar a lombar sair do chão."
+  },
+  {
+    "id": "elevacao-pernas-mod",
+    "name": "Elevação alternada com joelhos dobrados",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "ALTERNATING BENT-KNEE MARCH, supine, strict SIDE view, head to the left. Lower back flat on floor all frames, both knees bent with feet flat on floor at start. Frame1 both feet on floor. Frame2 near knee lifting. Frame3 near knee drawn toward chest, other foot stays planted. Frame4 near foot back on floor. Frame5 far knee lifting. Frame6 far knee toward chest, near foot planted. Arms resting on floor.",
+    "instructions": [
+      "Deitado, joelhos dobrados e lombar apoiada.",
+      "Leve um joelho ao peito e volte, alternando as pernas."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. ALTERNATING BENT-KNEE MARCH, supine, strict SIDE view, head to the left. Lower back flat on floor all frames, both knees bent with feet flat on floor at start. Frame1 both feet on floor. Frame2 near knee lifting. Frame3 near knee drawn toward chest, other foot stays planted. Frame4 near foot back on floor. Frame5 far knee lifting. Frame6 far knee toward chest, near foot planted. Arms resting on floor. Source instructions Portuguese: Deitado, joelhos dobrados e lombar apoiada. Leve um joelho ao peito e volte, alternando as pernas."
+  },
+  {
+    "id": "abdominal-estrela",
+    "name": "Abdominal estrela",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "STAR CRUNCH, strict SIDE view, head to the left. Frame1 lying flat, arms extended overhead on floor, legs straight on floor. Frame2 shoulders peeling up, near arm reaching forward, far leg starting to lift straight. Frame3 V position: torso raised about 45 degrees, reaching hand touching or near the raised straight leg foot, other leg and other arm stay down toward floor for balance. Frame4 lowering. Frame5 almost flat. Frame6 flat start pose. Neck neutral, no pulling on head.",
+    "instructions": [
+      "Deitado em X, braços e pernas abertos.",
+      "Suba o tronco e uma perna, levando a mão em direção ao pé oposto.",
+      "Desça com controle e alterne o lado."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. STAR CRUNCH, strict SIDE view, head to the left. Frame1 lying flat, arms extended overhead on floor, legs straight on floor. Frame2 shoulders peeling up, near arm reaching forward, far leg starting to lift straight. Frame3 V position: torso raised about 45 degrees, reaching hand touching or near the raised straight leg foot, other leg and other arm stay down toward floor for balance. Frame4 lowering. Frame5 almost flat. Frame6 flat start pose. Neck neutral, no pulling on head. Source instructions Portuguese: Deitado em X, braços e pernas abertos. Suba o tronco e uma perna, levando a mão em direção ao pé oposto. Desça com controle e alterne o lado."
+  },
+  {
+    "id": "abdominal-estrela-mod",
+    "name": "Abdominal com alcance cruzado",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "CROSS-REACH CRUNCH, strict SIDE view, head to the left. Lying with knees bent and both feet flat on floor in all frames. Frame1 flat, arms by sides. Frame2 shoulder blades lifting. Frame3 shoulder blades off floor, near hand reaching across toward opposite knee. Frame4 lowering. Frame5 lifting again reaching other hand to other knee. Frame6 flat start. Lower back stays on floor, neck neutral.",
+    "instructions": [
+      "Deitado, joelhos dobrados e pés apoiados.",
+      "Tire as escápulas do chão e leve a mão em direção ao joelho oposto. Alterne."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. CROSS-REACH CRUNCH, strict SIDE view, head to the left. Lying with knees bent and both feet flat on floor in all frames. Frame1 flat, arms by sides. Frame2 shoulder blades lifting. Frame3 shoulder blades off floor, near hand reaching across toward opposite knee. Frame4 lowering. Frame5 lifting again reaching other hand to other knee. Frame6 flat start. Lower back stays on floor, neck neutral. Source instructions Portuguese: Deitado, joelhos dobrados e pés apoiados. Tire as escápulas do chão e leve a mão em direção ao joelho oposto. Alterne."
+  },
+  {
+    "id": "prancha-giro",
+    "name": "Prancha com giro de quadril",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "FOREARM PLANK HIP DIPS, three-quarter FRONT view from slightly above. Forearms flat on floor, elbows directly below shoulders, toes on floor, body straight. Frame1 neutral plank. Frame2 hips rotating toward near side. Frame3 near hip almost touching floor, feet stacked rotating. Frame4 back to neutral plank. Frame5 hips rotating toward far side. Frame6 far hip almost touching floor. Elbows and forearms fixed; shoulders stay over elbows.",
+    "instructions": [
+      "Em prancha nos antebraços, cotovelos abaixo dos ombros.",
+      "Gire o quadril até quase tocar o chão de um lado.",
+      "Volte ao centro e gire para o outro lado."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. FOREARM PLANK HIP DIPS, three-quarter FRONT view from slightly above. Forearms flat on floor, elbows directly below shoulders, toes on floor, body straight. Frame1 neutral plank. Frame2 hips rotating toward near side. Frame3 near hip almost touching floor, feet stacked rotating. Frame4 back to neutral plank. Frame5 hips rotating toward far side. Frame6 far hip almost touching floor. Elbows and forearms fixed; shoulders stay over elbows. Source instructions Portuguese: Em prancha nos antebraços, cotovelos abaixo dos ombros. Gire o quadril até quase tocar o chão de um lado. Volte ao centro e gire para o outro lado."
+  },
+  {
+    "id": "prancha-giro-mod",
+    "name": "Dead bug alternado",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "DEAD BUG, supine, strict SIDE view, head to the left. Lower back flat on floor all frames. Start arms pointing straight up to ceiling, knees bent 90 degrees above hips. Frame1 start. Frame2 near arm lowering overhead while opposite leg extends. Frame3 near arm and opposite leg fully extended hovering above floor. Frame4 back to start. Frame5 other arm and other leg extending. Frame6 fully extended other side.",
+    "instructions": [
+      "Deitado, braços para cima e joelhos dobrados a 90°.",
+      "Estenda braço e perna opostos sem tirar a lombar do chão. Alterne."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. DEAD BUG, supine, strict SIDE view, head to the left. Lower back flat on floor all frames. Start arms pointing straight up to ceiling, knees bent 90 degrees above hips. Frame1 start. Frame2 near arm lowering overhead while opposite leg extends. Frame3 near arm and opposite leg fully extended hovering above floor. Frame4 back to start. Frame5 other arm and other leg extending. Frame6 fully extended other side. Source instructions Portuguese: Deitado, braços para cima e joelhos dobrados a 90°. Estenda braço e perna opostos sem tirar a lombar do chão. Alterne."
+  },
+  {
+    "id": "escalador",
+    "name": "Escalador",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "MOUNTAIN CLIMBER, strict SIDE view facing left. High plank: straight arms, hands directly under shoulders, FIXED hand position all frames, hips level with shoulders, never piked. Frame1 plank both legs straight back. Frame2 near knee driving toward chest. Frame3 near knee under chest, far leg straight back. Frame4 legs switching, both feet near middle. Frame5 far knee under chest, near leg straight back. Frame6 plank start.",
+    "instructions": [
+      "Em prancha alta, mãos abaixo dos ombros.",
+      "Leve um joelho ao peito e troque as pernas em ritmo.",
+      "Quadril alinhado com os ombros, sem subir."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. MOUNTAIN CLIMBER, strict SIDE view facing left. High plank: straight arms, hands directly under shoulders, FIXED hand position all frames, hips level with shoulders, never piked. Frame1 plank both legs straight back. Frame2 near knee driving toward chest. Frame3 near knee under chest, far leg straight back. Frame4 legs switching, both feet near middle. Frame5 far knee under chest, near leg straight back. Frame6 plank start. Source instructions Portuguese: Em prancha alta, mãos abaixo dos ombros. Leve um joelho ao peito e troque as pernas em ritmo. Quadril alinhado com os ombros, sem subir."
+  },
+  {
+    "id": "escalador-mod",
+    "name": "Joelho ao peito em pé",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "STANDING KNEE DRIVE, strict SIDE view facing left. Standing tall, no jumping, one foot always flat on floor. Frame1 standing arms bent at sides. Frame2 near knee lifting, opposite arm swinging forward. Frame3 near knee at hip height toward chest. Frame4 foot down standing. Frame5 far knee lifting. Frame6 far knee at hip height with opposite arm forward.",
+    "instructions": [
+      "Em pé, eleve um joelho em direção ao peito.",
+      "Alterne as pernas em ritmo confortável, sem saltar."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. STANDING KNEE DRIVE, strict SIDE view facing left. Standing tall, no jumping, one foot always flat on floor. Frame1 standing arms bent at sides. Frame2 near knee lifting, opposite arm swinging forward. Frame3 near knee at hip height toward chest. Frame4 foot down standing. Frame5 far knee lifting. Frame6 far knee at hip height with opposite arm forward. Source instructions Portuguese: Em pé, eleve um joelho em direção ao peito. Alterne as pernas em ritmo confortável, sem saltar."
+  },
+  {
+    "id": "chute-sentado",
+    "name": "Chute sentado",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "SEATED LEG KICKS (seated in-and-outs), strict SIDE view facing left. Seated on floor, hands planted on floor slightly behind hips, arms straight, chest open, torso leaning back about 35 degrees. Hands and buttocks FIXED. Both feet off floor all frames. Frame1 knees tucked toward chest. Frame2 legs extending. Frame3 legs fully straight forward hovering low. Frame4 bending back. Frame5 halfway tucked. Frame6 tucked again.",
+    "instructions": [
+      "Sentado, mãos apoiadas atrás e tronco levemente inclinado.",
+      "Estenda e dobre as pernas juntas, sem tocar os pés no chão.",
+      "Mantenha o peito aberto."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. SEATED LEG KICKS (seated in-and-outs), strict SIDE view facing left. Seated on floor, hands planted on floor slightly behind hips, arms straight, chest open, torso leaning back about 35 degrees. Hands and buttocks FIXED. Both feet off floor all frames. Frame1 knees tucked toward chest. Frame2 legs extending. Frame3 legs fully straight forward hovering low. Frame4 bending back. Frame5 halfway tucked. Frame6 tucked again. Source instructions Portuguese: Sentado, mãos apoiadas atrás e tronco levemente inclinado. Estenda e dobre as pernas juntas, sem tocar os pés no chão. Mantenha o peito aberto."
+  },
+  {
+    "id": "chute-sentado-mod",
+    "name": "Chute sentado alternado",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "SEATED SINGLE-LEG KICK, strict SIDE view facing left. Seated, hands planted behind hips, torso leaning back about 35 degrees. FAR FOOT FLAT ON FLOOR with knee bent in all frames. Only the near leg moves: frame1 near knee tucked, frame2 extending, frame3 straight forward hovering, frame4 bending, frame5 halfway, frame6 tucked.",
+    "instructions": [
+      "Sentado, mãos atrás, um pé apoiado no chão.",
+      "Estenda e dobre uma perna por vez."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. SEATED SINGLE-LEG KICK, strict SIDE view facing left. Seated, hands planted behind hips, torso leaning back about 35 degrees. FAR FOOT FLAT ON FLOOR with knee bent in all frames. Only the near leg moves: frame1 near knee tucked, frame2 extending, frame3 straight forward hovering, frame4 bending, frame5 halfway, frame6 tucked. Source instructions Portuguese: Sentado, mãos atrás, um pé apoiado no chão. Estenda e dobre uma perna por vez."
+  },
+  {
+    "id": "bicicleta",
+    "name": "Abdominal bicicleta",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "BICYCLE CRUNCH, strict SIDE view, head to the left. Lower back on floor, shoulder blades lifted, hands lightly behind head with elbows wide, neck neutral. Frame1 near knee toward chest, far leg extended hovering. Frame2 torso rotating, far elbow toward near knee. Frame3 elbow meets opposite knee. Frame4 legs switching midway. Frame5 far knee toward chest, near leg extended. Frame6 near elbow toward far knee.",
+    "instructions": [
+      "Deitado, mãos ao lado da cabeça e escápulas fora do chão.",
+      "Leve o cotovelo em direção ao joelho oposto enquanto estende a outra perna.",
+      "Alterne com controle."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. BICYCLE CRUNCH, strict SIDE view, head to the left. Lower back on floor, shoulder blades lifted, hands lightly behind head with elbows wide, neck neutral. Frame1 near knee toward chest, far leg extended hovering. Frame2 torso rotating, far elbow toward near knee. Frame3 elbow meets opposite knee. Frame4 legs switching midway. Frame5 far knee toward chest, near leg extended. Frame6 near elbow toward far knee. Source instructions Portuguese: Deitado, mãos ao lado da cabeça e escápulas fora do chão. Leve o cotovelo em direção ao joelho oposto enquanto estende a outra perna. Alterne com controle."
+  },
+  {
+    "id": "bicicleta-mod",
+    "name": "Bicicleta lenta com amplitude curta",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "SLOW SHORT-RANGE BICYCLE, strict SIDE view, head to the left. Lower back on floor, shoulder blades lightly lifted, hands beside head without pulling. Legs held HIGH with knees bent, never extending low. Frame1 near knee to chest, far knee bent at 45 degrees up. Frame2 gentle rotation. Frame3 elbow toward opposite knee. Frame4 legs swapping. Frame5 far knee to chest. Frame6 opposite elbow toward knee.",
+    "instructions": [
+      "Mesma posição, pernas mais altas e joelhos mais dobrados.",
+      "Gire devagar, sem estender a perna até o fim."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. SLOW SHORT-RANGE BICYCLE, strict SIDE view, head to the left. Lower back on floor, shoulder blades lightly lifted, hands beside head without pulling. Legs held HIGH with knees bent, never extending low. Frame1 near knee to chest, far knee bent at 45 degrees up. Frame2 gentle rotation. Frame3 elbow toward opposite knee. Frame4 legs swapping. Frame5 far knee to chest. Frame6 opposite elbow toward knee. Source instructions Portuguese: Mesma posição, pernas mais altas e joelhos mais dobrados. Gire devagar, sem estender a perna até o fim."
+  },
+  {
+    "id": "joelho-alto",
+    "name": "Joelho alto com toque",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "HIGH KNEES WITH HAND TAP, strict SIDE view facing left. Running in place on balls of feet, torso upright. Hands held in front at hip height palms down. Frame1 near knee rising. Frame2 near knee at hip height tapping near palm, small airborne lift. Frame3 near foot landing. Frame4 far knee rising. Frame5 far knee at hip height tapping palm. Frame6 far foot landing. Same floor line.",
+    "instructions": [
+      "Corra no lugar elevando os joelhos à altura do quadril.",
+      "Toque as mãos nos joelhos a cada passada.",
+      "Pise na ponta dos pés com o tronco ereto."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. HIGH KNEES WITH HAND TAP, strict SIDE view facing left. Running in place on balls of feet, torso upright. Hands held in front at hip height palms down. Frame1 near knee rising. Frame2 near knee at hip height tapping near palm, small airborne lift. Frame3 near foot landing. Frame4 far knee rising. Frame5 far knee at hip height tapping palm. Frame6 far foot landing. Same floor line. Source instructions Portuguese: Corra no lugar elevando os joelhos à altura do quadril. Toque as mãos nos joelhos a cada passada. Pise na ponta dos pés com o tronco ereto."
+  },
+  {
+    "id": "joelho-alto-mod",
+    "name": "Marcha alta com toque",
+    "hold": false,
+    "cycle": "loop",
+    "directions": "HIGH MARCH WITH HAND TAP, strict SIDE view facing left. NO jumping, one foot always flat on floor. Hands in front at hip height palms down. Frame1 standing. Frame2 near knee lifting. Frame3 near knee touching near palm at hip height. Frame4 foot down. Frame5 far knee lifting. Frame6 far knee touching palm.",
+    "instructions": [
+      "Marche elevando os joelhos sem saltar.",
+      "Toque a mão no joelho a cada passo."
+    ],
+    "prompt": "Use case: scientific-educational. ORIGINAL hand-inked exercise animation sheet for Winfit. Use EXACT same natural athletic adult male character, shirtless, hatched knee-length shorts, sneakers, simplified blank face, bold charcoal-gray variable pen contours and organic muscle volume as supplied approved character reference. White paper background, no color, no mannequin/geometric limbs/mechanical joints. Connected realistic shoulders/elbows/wrists/hips/knees/ankles; all hand fingers and feet anatomically clear. NO text, captions, gridlines, borders, arrows, watermarks or logos. Always include the whole character AND all apparatus with generous margin. Same camera, scale, limb lengths, ground height and FIXED support points across every frame. All moving loads remain connected to hands or feet, all supports remain visible; match the exact exercise, not a generic pose. EXACT THREE COLUMNS by TWO ROWS of SIX equal square cells, landscape1536x1024. One whole athlete per cell, consistent same camera/scale/support points. Six progressive poses from START to END; do not crop or join figures between cells. HIGH MARCH WITH HAND TAP, strict SIDE view facing left. NO jumping, one foot always flat on floor. Hands in front at hip height palms down. Frame1 standing. Frame2 near knee lifting. Frame3 near knee touching near palm at hip height. Frame4 foot down. Frame5 far knee lifting. Frame6 far knee touching palm. Source instructions Portuguese: Marche elevando os joelhos sem saltar. Toque a mão no joelho a cada passo."
+  }
+]

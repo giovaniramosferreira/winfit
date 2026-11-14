@@ -7,6 +7,11 @@ import { fileURLToPath } from 'node:url'
 // One scale per exercise, with a common floor and centered ink. The original PNG is read only.
 const VERSION = 3
 const RESERVED = new Set(['agachamento-corporal', 'flexao', 'leg-press'])
+// Mesmo fluxo para o catálogo e para as estações do circuito (docs/media/circuit).
+export const ART_SETS = {
+  catalog: { docs: 'docs/media/catalog', media: 'catalog', manifest: 'src/data/catalogIllustrations.json' },
+  circuit: { docs: 'docs/media/circuit', media: 'circuit', manifest: 'src/data/circuitIllustrations.json' },
+}
 const hash = bytes => createHash('sha256').update(bytes).digest('hex')
 const exists = async path => access(path).then(() => true, error => { if (error.code === 'ENOENT') return false; throw error })
 const json = async path => JSON.parse(await readFile(path, 'utf8'))
@@ -26,7 +31,7 @@ function inkBounds(data, info, id) {
   return { minX, maxX, minY, maxY }
 }
 
-async function packAsset(source, metadata, outputPath) {
+async function packAsset(source, metadata, outputPath, media = 'catalog') {
   const image = await sharp(source).metadata()
   if (image.format !== 'png' || !image.width || !image.height) throw new Error(`${metadata.id}: fonte deve ser PNG válido`)
   const columns = metadata.hold ? 1 : 3, rows = metadata.hold ? 1 : 2
@@ -85,11 +90,13 @@ async function packAsset(source, metadata, outputPath) {
     frame.translation = { left, top }
   }
   await sharp({ create: { width: frameWidth * columns, height: frameHeight * rows, channels: 3, background: '#fff' } }).composite(tiles).webp({ quality: 84, effort: 6 }).toFile(outputPath)
-  return { alignment, frameWidth, frameHeight, scale, selectedFrames: selection, frames, illustration: { sprite: `/media/catalog/${metadata.id}.webp`, aspectRatio: `${frameWidth} / ${frameHeight}`, cycle: metadata.cycle ?? 'return', hold: metadata.hold } }
+  return { alignment, frameWidth, frameHeight, scale, selectedFrames: selection, frames, illustration: { sprite: `/media/${media}/${metadata.id}.webp`, aspectRatio: `${frameWidth} / ${frameHeight}`, cycle: metadata.cycle ?? 'return', hold: metadata.hold } }
 }
 
-export async function packCatalog({ root = resolve(fileURLToPath(new URL('..', import.meta.url))), partial = false, quiet = false } = {}) {
-  const directory = join(root, 'docs/media/catalog')
+export async function packCatalog({ root = resolve(fileURLToPath(new URL('..', import.meta.url))), partial = false, quiet = false, set = 'catalog' } = {}) {
+  const config = ART_SETS[set]
+  if (!config) throw new Error(`Conjunto desconhecido: ${set}`)
+  const directory = join(root, config.docs)
   const jobs = await json(join(directory, 'jobs.json'))
   const ids = jobs.map(job => job.id)
   if (new Set(ids).size !== ids.length || ids.some(id => typeof id !== 'string' || !/^[a-z0-9-]+$/.test(id) || RESERVED.has(id))) throw new Error('jobs.json contém ids inválidos, duplicados ou reservados aos pilotos')
@@ -97,7 +104,7 @@ export async function packCatalog({ root = resolve(fileURLToPath(new URL('..', i
   const previous = await exists(cachePath) ? await json(cachePath) : { assets: {} }
   const assets = {}, manifest = {}, missing = []
   let packed = 0, cached = 0
-  await mkdir(join(root, 'public/media/catalog'), { recursive: true })
+  await mkdir(join(root, 'public/media', config.media), { recursive: true })
   for (const job of jobs) {
     const metadataPath = join(directory, 'generated', `${job.id}.json`)
     if (!await exists(metadataPath)) { missing.push(job.id); continue }
@@ -109,7 +116,7 @@ export async function packCatalog({ root = resolve(fileURLToPath(new URL('..', i
     if (!await exists(metadata.sourcePath)) { missing.push(job.id); continue }
     const source = await readFile(metadata.sourcePath)
     const fileHash = hash(source), metadataHash = hash(JSON.stringify(metadata))
-    const outputPath = join(root, 'public/media/catalog', `${job.id}.webp`)
+    const outputPath = join(root, 'public/media', config.media, `${job.id}.webp`)
     const old = previous.assets[job.id]
     if (previous.version === VERSION && old?.fileHash === fileHash && old?.metadataHash === metadataHash && await exists(outputPath)) {
       assets[job.id] = old
@@ -117,14 +124,14 @@ export async function packCatalog({ root = resolve(fileURLToPath(new URL('..', i
       cached++
       continue
     }
-    const packedAsset = await packAsset(source, metadata, outputPath)
+    const packedAsset = await packAsset(source, metadata, outputPath, config.media)
     assets[job.id] = { fileHash, metadataHash, ...packedAsset }
     manifest[job.id] = packedAsset.illustration
     packed++
     if (!quiet) console.log(`Empacotado ${job.id}`)
   }
   await save(cachePath, { version: VERSION, assets })
-  await save(join(root, 'src/data/catalogIllustrations.json'), manifest)
+  await save(join(root, config.manifest), manifest)
   if (!quiet) console.log(`${packed} novos atlas; ${cached} em cache; ${Object.keys(manifest).length}/${jobs.length} artes disponíveis.`)
   if (missing.length) {
     const message = `Faltam ${missing.length} artes: ${missing.join(', ')}`
@@ -136,6 +143,7 @@ export async function packCatalog({ root = resolve(fileURLToPath(new URL('..', i
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2)
-  if (args.some(arg => arg !== '--partial')) throw new Error('Uso: node scripts/prepare-catalog-art.mjs [--partial]')
-  await packCatalog({ partial: args.includes('--partial') })
+  const setArg = args.find(arg => arg.startsWith('--set='))
+  if (args.some(arg => arg !== '--partial' && arg !== setArg)) throw new Error('Uso: node scripts/prepare-catalog-art.mjs [--partial] [--set=catalog|circuit]')
+  await packCatalog({ partial: args.includes('--partial'), set: setArg ? setArg.slice(6) : 'catalog' })
 }

@@ -21,7 +21,7 @@ Consultoria sobre um circuito de nove exercícios sem equipamento, com 45 s cada
 
 ## Pendências
 
-- Demonstrações ilustradas das nove estações e das versões modificadas.
+- Ilustrações em tinta no padrão do catálogo. Os 18 briefings e o empacotamento estão prontos em [docs/media/circuit](media/circuit/README.md); falta gerar as folhas com a referência aprovada do personagem. Até lá, cada estação usa o boneco vetorial animado (`src/data/circuitDemos.ts`), com duas poses em vaivém.
 - Revisão do conteúdo por profissional de educação física antes do lançamento.
 - Contar o circuito na meta semanal exige um tipo de sessão por tempo no modelo principal.
 

@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { cardioCoreCircuit as program, LEVEL_ORDER } from '../data/circuits'
 import { useCircuitStore } from '../lib/circuitStore'
 import { useStore } from '../lib/store'
-import { circuitDemoFor } from '../data/circuitDemos'
-import { InkDemo } from '../components/ExerciseDemo'
+import CircuitDemo from '../components/CircuitDemo'
 import { buildPhases, fmtDuration, positionAt, resolveMove, suggestProgression, totalSeconds, workSeconds, type CircuitPhaseKind, type ModifyReason } from '../lib/circuit'
 
 const KIND_LABEL: Record<CircuitPhaseKind, string> = {
@@ -101,7 +100,7 @@ export default function Circuit() {
         {phase.round > 0 && <span className="tiny muted num">Volta {phase.round} de {active.settings.rounds}</span>}</div>
       <h2 id="circuit-phase">{phase.name}{phase.kind === 'work' && phase.modified && <span className="pill accent circuit-pill">versão modificada</span>}</h2>
       <p className="circuit-clock num" aria-live="off" aria-label={`${pos.remainingSec} segundos restantes`}>{pos.remainingSec}<span className="small"> s</span></p>
-      {phase.moveId && (() => { const d = circuitDemoFor(phase.moveId, !!phase.modified); return d ? <InkDemo key={`${pos.index}`} demo={d} name={phase.kind === 'work' ? phase.name : `Próximo: ${phase.how}`} autoPlay compact /> : null })()}
+      {phase.moveId && <CircuitDemo key={pos.index} moveId={phase.moveId} modified={!!phase.modified} name={phase.kind === 'work' ? phase.name : phase.how} autoPlay compact />}
       <p className="small">{phase.how}</p>
       {phase.kind === 'work' && phase.moveId && <p className="tiny muted" style={{ marginTop: 6 }}>{program.moves.find((m) => m.id === phase.moveId)?.watch}</p>}
       {phase.kind === 'work' && (() => { const next = activePhases.slice(pos.index + 1).find((p) => p.kind === 'work'); return next ? <p className="tiny muted" style={{ marginTop: 6 }}>Depois: {next.name}</p> : null })()}
@@ -153,7 +152,7 @@ export default function Circuit() {
           return <li key={m.id}><details>
             <summary><span className="n num">{i + 1}</span><span className="t">{r.name}<small>{m.focus}</small>
               {r.modified && <span className="pill accent circuit-tag">{r.reasons.map((x) => REASON_LABEL[x]).join(' · ')}</span>}</span></summary>
-            {(() => { const d = circuitDemoFor(m.id, r.modified); return d ? <InkDemo demo={d} name={r.name} compact /> : null })()}
+            <CircuitDemo moveId={m.id} modified={r.modified} name={r.name} compact />
             <ol className="small">{r.how.map((h) => <li key={h}>{h}</li>)}</ol>
             <p className="tiny muted">{m.watch}</p>
             {r.modified ? <p className="tiny faint">Original: {m.name}.</p> : <p className="tiny faint">Versão mais fácil: {m.modified.name}.</p>}

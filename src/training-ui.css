@@ -205,3 +205,4 @@
 .circuit-live .exercise-demo { margin:6px 0 10px;padding:6px; }
 .circuit-live .exercise-demo > .between,.circuit-live .exercise-demo > figcaption { display:none; }
 .circuit-live .exercise-demo svg.movement-illustration { max-height:clamp(120px,22dvh,190px);width:auto;margin:0 auto;padding:4px; }
+.circuit-live .pilot-artboard { max-height:clamp(120px,22dvh,190px);width:auto;max-width:100%;margin:0 auto; }

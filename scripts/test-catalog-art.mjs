@@ -132,3 +132,19 @@ test('alignment source preserva apoio fixo quando a abertura dos braços muda os
     for (const bounds of supportBounds) assert.deepEqual(bounds, supportBounds[0])
   })
 })
+
+test('conjunto do circuito usa as próprias pastas, manifesto e caminho de sprite', async () => {
+  await fixture(async (root, sourcePath) => {
+    await mkdir(join(root, 'docs/media/circuit/generated'), { recursive: true })
+    await writeFile(join(root, 'docs/media/circuit/jobs.json'), JSON.stringify([{ id: 'polichinelo', hold: false }, { id: 'polichinelo-mod', hold: false }]))
+    await writeFile(join(root, 'docs/media/circuit/generated/polichinelo.json'), JSON.stringify({ id: 'polichinelo', hold: false, status: 'generated', cycle: 'loop', sourcePath }))
+    const result = await packCatalog({ root, partial: true, quiet: true, set: 'circuit' })
+    assert.deepEqual(result.missing, ['polichinelo-mod'])
+    const manifest = JSON.parse(await readFile(join(root, 'src/data/circuitIllustrations.json'), 'utf8'))
+    assert.equal(manifest.polichinelo.sprite, '/media/circuit/polichinelo.webp')
+    assert.equal(manifest.polichinelo.cycle, 'loop')
+    assert.ok((await stat(join(root, 'public/media/circuit/polichinelo.webp'))).size > 0)
+    await assert.rejects(stat(join(root, 'src/data/catalogIllustrations.json')), /ENOENT/, 'não toca no catálogo')
+    await assert.rejects(packCatalog({ root, quiet: true, set: 'outro' }), /Conjunto desconhecido/)
+  })
+})
