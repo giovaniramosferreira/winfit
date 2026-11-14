@@ -15,7 +15,7 @@ export default function AccountCard() {
       <div className="between"><h3>Conta e backup</h3><span className="pill accent">{{ local: 'Local', checking: 'Verificando…', review: 'Revisão necessária', pending: 'Alterações locais', synced: 'Backup confirmado', error: 'Falha no backup' }[status]}</span></div>
       <p className="small muted" style={{ marginTop: 6 }}>{session.user.email}. O backup é manual: nenhum histórico é enviado só por entrar na conta.</p>
       <p className="tiny muted">Ao enviar, plano, séries e treino ativo seguem para {destination}. A cópia fica na sua conta Supabase até ser substituída ou excluída pelo serviço. Sair interrompe o acesso neste app; não apaga a cópia remota.</p>
-      <label style={{ display: 'block', marginTop: 12 }}><input type="checkbox" checked={includeModules} onChange={(event) => setIncludeModules(event.target.checked)} /> Incluir alimentação, saúde pélvica e rotina neste envio</label>
+      <label style={{ display: 'block', marginTop: 12 }}><input type="checkbox" checked={includeModules} onChange={(event) => setIncludeModules(event.target.checked)} /> Incluir circuito, alimentação, saúde pélvica e rotina neste envio</label>
       <p className="tiny muted">Desmarcar impede incluir dados privados deste aparelho no próximo envio; não remove cópias já enviadas. Use “Excluir backup da conta” para removê-las.</p>
       <div className="row" style={{ marginTop: 12 }}>
         <button className="btn btn-ghost btn-sm grow" disabled={status === 'checking'} onClick={() => void syncNow(includeModules)}>Revisar e enviar backup</button>

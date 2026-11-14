@@ -9,6 +9,8 @@ import { homeWorkout } from '../lib/homeWorkout'
 import { startTraining, type TrainingMode } from '../data/sessionModules'
 import HomeArtwork from '../components/HomeArtwork'
 import { isTimedExercise } from '../lib/exerciseRules'
+import { cardioCoreCircuit } from '../data/circuits'
+import { useCircuitStore } from '../lib/circuitStore'
 
 export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
   const nav = useNavigate()
@@ -22,6 +24,7 @@ export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
   const [expired, setExpired] = useState(false)
   const [pickDay, setPickDay] = useState(false)
   const [unavailable, setUnavailable] = useState(false)
+  const circuitActive = useCircuitStore(s => s.active !== null)
   const home = useMemo(() => homeWorkout(profile,plan,seed,sessions),[profile,plan,seed,sessions])
   const nextGymDay = useMemo(() => {
     const done = sessions.filter(s => s.planId === plan.id).sort((a,b) => b.startedAt - a.startedAt)
@@ -69,6 +72,10 @@ export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
       {mode === 'home' && <p className="tiny muted" style={{ marginTop:12 }}>Demonstrações e variações no treino. Sem porta, sofá ou acessórios improvisados.</p>}
       {unavailable && <p className="note" role="alert">Não foi possível iniciar este treino. Revise seu plano e limitações no perfil.</p>}
     </section>
+    {mode === 'home' && <Link to="/circuit" className="card training-week circuit-card">
+      <div className="between"><h2>{cardioCoreCircuit.title}</h2><span className="chev">›</span></div>
+      <p className="small muted" style={{ marginTop:6 }}>{circuitActive ? 'Circuito pausado. Toque para retomar.' : 'Circuito por tempo de cardio e abdômen, ~9 min por volta. Níveis, versão sem saltos e aquecimento.'}</p>
+    </Link>}
     <section className="card training-week" style={{ marginTop:12 }}><div className="between"><h2>Minha semana</h2><span className="tiny muted num">{weekSessions.length} de {goal} treinos</span></div>
       <div className="week-dots" style={{ marginTop:8 }}>{week.map((d,i) => <div key={i} className={`week-dot ${d.done ? 'done' : ''} ${d.today ? 'today' : ''}`}><div className="dot">{d.done ? '✓' : ''}</div><div className="lbl">{d.label}</div></div>)}</div>
       <p className="tiny muted" style={{ marginTop:10 }}>Academia e calistenia compartilham sua meta semanal.</p>

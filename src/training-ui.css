@@ -179,3 +179,24 @@
 .player-info-actions { display:grid;gap:8px;margin-top:12px; }
 .player-info-actions .btn { width:100%;min-height:44px; }
 .player-instructions { max-height: min(65dvh, 460px);overflow-y:auto; }
+/* Circuito por tempo */
+.circuit-clock { font:600 72px/1 var(--font-display);text-align:center;margin:18px 0 12px;color:var(--accent);letter-spacing:-2px; }
+.circuit-rest .circuit-clock,.circuit-round_rest .circuit-clock,.circuit-cooldown .circuit-clock { color:var(--olive); }
+.circuit-progress { margin:16px 0 10px; }
+.circuit-actions { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px; }
+.circuit-rounds { display:flex;gap:8px;margin:8px 0; }
+.circuit-rounds .btn { min-width:56px; }
+.circuit-check { display:flex;gap:10px;align-items:center;padding:10px 0;font-size:15px; }
+.circuit-pill { margin-left:8px;font-size:11px;vertical-align:middle;white-space:nowrap; }
+.circuit-moves { list-style:none;padding:0;margin:8px 0 0; }
+.circuit-moves > li { border-bottom:1px solid var(--line); }
+.circuit-moves > li:last-child { border-bottom:0; }
+.circuit-moves summary { display:flex;align-items:center;gap:12px;padding:14px 0;cursor:pointer;list-style:none; }
+.circuit-moves summary::-webkit-details-marker { display:none; }
+.circuit-moves .n { display:grid;place-items:center;flex-shrink:0;width:33px;height:33px;border-radius:12px;background:#f0eafa;color:#7a5daa; }
+.circuit-moves .t { flex:1;min-width:0;font-weight:600; }
+.circuit-moves .t small { display:block;font-weight:400;font-size:12px;color:var(--text-dim);margin-top:2px; }
+.circuit-moves details > ol { margin:0 0 8px 20px;line-height:1.6; }
+.circuit-moves details > p { margin-bottom:10px; }
+.circuit-card { display:block;margin-top:12px;color:inherit;text-decoration:none; }
+.circuit-moves .circuit-tag { display:inline-block;margin-top:6px;font-size:11px;line-height:1.4;white-space:normal; }

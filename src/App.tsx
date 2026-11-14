@@ -18,6 +18,7 @@ import AuthProvider from './components/AuthProvider'
 import Training from './pages/Training'
 import Nutrition from './pages/Nutrition'
 import Pelvic from './pages/Pelvic'
+import Circuit from './pages/Circuit'
 import Routine from './pages/Routine'
 import Assistant from './pages/Assistant'
 import SessionDetail from './pages/SessionDetail'
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/calisthenics" element={onboarded ? <Training mode="home" /> : <Navigate to="/" replace />} />
         <Route path="/nutrition" element={<Nutrition />} />
         <Route path="/pelvic" element={<Pelvic />} />
+        <Route path="/circuit" element={onboarded ? <Circuit /> : <Navigate to="/" replace />} />
         <Route path="/routine" element={<Routine />} />
         <Route path="/assistant" element={onboarded ? <Assistant /> : <Navigate to="/" replace />} />
         <Route path="/session/:id" element={<SessionDetail />} />

@@ -5,7 +5,7 @@ const suites = [
   'test-generator.ts', 'test-home-workout.ts', 'test-calisthenics.ts', 'test-watch-sync.ts',
   'test-exercise-navigation.ts', 'test-number-dial.ts', 'test-set-input-limits.ts', 'test-undo-set.ts',
   'test-backup.ts', 'test-application-backup.ts', 'test-cloud-sync.ts', 'test-workout-storage.ts', 'test-privacy.cjs',
-  'test-pelvic-timer.ts', 'test-pelvic-store.ts', 'test-session-modules.tsx',
+  'test-pelvic-timer.ts', 'test-pelvic-store.ts', 'test-circuit.ts', 'test-session-modules.tsx',
   'test-routine.ts', 'test-session-history.ts', 'test-bodyweight-progress.ts',
   'test-assistant-context.ts', 'test-nutrition.cjs', 'test-meal-analysis.cjs', 'test-assistant-api.cjs',
 ]

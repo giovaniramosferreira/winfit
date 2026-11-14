@@ -5,6 +5,7 @@ import { applicationSnapshot, applyApplicationBackup, downloadBackup, mergeAppli
 import type { CloudRecord } from '../lib/cloudTransport'
 import { nutritionStore } from '../lib/nutritionStore'
 import { usePelvicStore } from '../lib/pelvicStore'
+import { useCircuitStore } from '../lib/circuitStore'
 import { useRoutineStore } from '../lib/routineStore'
 
 type Status = 'local' | 'checking' | 'review' | 'pending' | 'synced' | 'error'
@@ -46,7 +47,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         const local = applicationSnapshot()
         const hasLocal = local.profile || local.sessions.length || local.activeSession || local.modules?.nutrition?.meals.length ||
           local.modules?.nutrition?.goals.length || local.modules?.nutrition?.deleted.length || local.modules?.pelvic?.history.length ||
-          local.modules?.pelvic?.active || localStorage.getItem('winfit-routine-v1')
+          local.modules?.pelvic?.active || local.modules?.circuit?.history.length || local.modules?.circuit?.active || localStorage.getItem('winfit-routine-v1')
         const owner = localStorage.getItem('winfit-data-owner')
         if (!hasLocal && (!owner || owner === next.user!.id)) {
           applyApplicationBackup(parsed, parsed); markOwner(next); setStatus('synced')
@@ -59,7 +60,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const changed = () => setStatus((current) => current === 'synced' ? 'pending' : current)
-    const subscriptions = [useStore.subscribe(changed), nutritionStore.subscribe(changed), usePelvicStore.subscribe(changed), useRoutineStore.subscribe(changed)]
+    const subscriptions = [useStore.subscribe(changed), nutritionStore.subscribe(changed), usePelvicStore.subscribe(changed), useCircuitStore.subscribe(changed), useRoutineStore.subscribe(changed)]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 

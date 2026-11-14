@@ -3,17 +3,19 @@ import { sanitizeEquipmentFreePlan } from './generator'
 import { mergeWorkouts, parseWorkoutBackup, type WorkoutBackup } from './backup'
 import { exportNutritionData, importNutritionData, parseNutritionData, resetNutritionData } from './nutritionStore'
 import { usePelvicStore, validatePelvicData } from './pelvicStore'
+import { circuitProgress, useCircuitStore, validateCircuitData } from './circuitStore'
 import { exportRoutineData, importRoutineData, resetRoutineData, validateRoutineData } from './routineStore'
 import { getWorkoutStorageError, resetWorkoutStorageGuard, workoutStorage } from './workoutStorage'
 
 export interface ApplicationBackup extends WorkoutBackup {
-  modules?: { nutrition?: ReturnType<typeof parseNutritionData>; pelvic?: ReturnType<typeof validatePelvicData>; routine?: ReturnType<typeof exportRoutineData> }
+  modules?: { nutrition?: ReturnType<typeof parseNutritionData>; pelvic?: ReturnType<typeof validatePelvicData>; circuit?: ReturnType<typeof validateCircuitData>; routine?: ReturnType<typeof exportRoutineData> }
 }
 export function applicationSnapshot(includeModules = true): ApplicationBackup {
   if (workoutStorage.health().blocked) throw Error('Treinos salvos ilegíveis. Exporte o conteúdo original pelo aviso de armazenamento.')
   const workout = parseWorkoutBackup(JSON.parse(useStore.getState().exportData()))
   return includeModules ? { ...workout, modules: {
-    nutrition: parseNutritionData(exportNutritionData()), pelvic: validatePelvicData(JSON.parse(usePelvicStore.getState().exportData())), routine: exportRoutineData(),
+    nutrition: parseNutritionData(exportNutritionData()), pelvic: validatePelvicData(JSON.parse(usePelvicStore.getState().exportData())),
+    circuit: validateCircuitData(JSON.parse(useCircuitStore.getState().exportData())), routine: exportRoutineData(),
   } } : workout
 }
 export function parseApplicationBackup(raw: unknown): ApplicationBackup {
@@ -25,6 +27,7 @@ export function parseApplicationBackup(raw: unknown): ApplicationBackup {
   const result: ApplicationBackup = { ...workout, modules: {} }
   if (modules.nutrition) result.modules!.nutrition = parseNutritionData(JSON.stringify(modules.nutrition))
   if (modules.pelvic) result.modules!.pelvic = validatePelvicData(modules.pelvic)
+  if (modules.circuit) result.modules!.circuit = validateCircuitData(modules.circuit)
   if (modules.routine) {
     const routine = validateRoutineData(modules.routine)
     if (!routine) throw Error('Rotina do backup inválida.')
@@ -62,6 +65,19 @@ export function mergeApplications(local: ApplicationBackup, remote: ApplicationB
     const active = lp.active ?? rp.active
     result.modules.pelvic = { ...lp, active: active && !history.has(active.timer.id) ? active : null, history: [...history.values()] }
   }
+  const lc = local.modules?.circuit, rc = remote.modules?.circuit
+  if (lc && rc) {
+    // Mesma regra do módulo pélvico: histórico unido por ID; sessão ativa remota vira interrompida.
+    const history = new Map([...rc.history, ...lc.history].map((entry) => [entry.id, entry]))
+    if (lc.active && rc.active && lc.active.timer.id !== rc.active.timer.id && !history.has(rc.active.timer.id)) {
+      const a = rc.active
+      history.set(a.timer.id, { id: a.timer.id, programId: a.programId, programVersion: a.programVersion, settings: a.settings, limitations: a.limitations,
+        startedAt: a.startedAt, endedAt: Math.max(Date.now(), a.startedAt), elapsedMs: a.timer.elapsedMs, ...circuitProgress(a), status: 'interrupted' })
+    }
+    const active = lc.active ?? rc.active
+    result.modules.circuit = { ...lc, active: active && !history.has(active.timer.id) ? active : null,
+      history: [...history.values()].sort((a, b) => b.startedAt - a.startedAt) }
+  }
   const lr = local.modules?.routine, rr = remote.modules?.routine
   if (lr && rr) {
     const checklists = { ...rr.checklists }
@@ -76,11 +92,12 @@ export function applyApplicationBackup(snapshot: ApplicationBackup, originalInco
   // Keep both originals before the first state change; storage failure aborts here.
   const previous = applicationSnapshot(!options.workoutOnly)
   const previousWorkoutState = useStore.getState()
-  const rawModules = Object.fromEntries(['winfit-nutrition-v1','winfit-pelvic-v1','winfit-routine-v1'].map(key => [key,localStorage.getItem(key)]))
+  const rawModules = Object.fromEntries(['winfit-nutrition-v1','winfit-pelvic-v1','winfit-circuit-v1','winfit-routine-v1'].map(key => [key,localStorage.getItem(key)]))
   localStorage.setItem('winfit-recovery-v2', JSON.stringify({ previous, incoming: originalIncoming, rawModules }))
   try {
     if (next.modules?.nutrition && !importNutritionData(JSON.stringify(next.modules.nutrition))) throw Error('Falha ao salvar alimentação.')
     if (next.modules?.pelvic && !usePelvicStore.getState().importData(JSON.stringify(next.modules.pelvic))) throw Error('Falha ao salvar dados pélvicos.')
+    if (next.modules?.circuit && !useCircuitStore.getState().importData(JSON.stringify(next.modules.circuit))) throw Error('Falha ao salvar o circuito.')
     if (next.modules?.routine && !importRoutineData(next.modules.routine)) throw Error('Falha ao salvar rotina.')
     // The snapshot was already reconciled. A second cloud merge would select
     // the old local plan again and undo an explicit backup-plan choice.
@@ -91,6 +108,7 @@ export function applyApplicationBackup(snapshot: ApplicationBackup, originalInco
     // Recovery remains available even if storage quota prevents rollback.
     if (previous.modules?.nutrition) importNutritionData(JSON.stringify(previous.modules.nutrition))
     if (previous.modules?.pelvic) usePelvicStore.getState().importData(JSON.stringify(previous.modules.pelvic))
+    if (previous.modules?.circuit) useCircuitStore.getState().importData(JSON.stringify(previous.modules.circuit))
     if (previous.modules?.routine) importRoutineData(previous.modules.routine)
     try { useStore.setState(previousWorkoutState, true) } catch { /* In-memory state is restored before Zustand persists; recovery remains. */ }
     throw error
@@ -100,6 +118,8 @@ export function resetApplicationData(): void {
   if (!resetNutritionData() || !resetRoutineData()) throw Error('Não foi possível apagar todos os módulos. Confira o armazenamento.')
   usePelvicStore.getState().resetAll()
   if (usePelvicStore.getState().error) throw Error('Não foi possível apagar os dados pélvicos.')
+  useCircuitStore.getState().resetAll()
+  if (useCircuitStore.getState().error) throw Error('Não foi possível apagar os dados do circuito.')
   if (!resetWorkoutStorageGuard()) throw Error('Não foi possível redefinir os treinos salvos.')
   useStore.getState().resetAll()
   localStorage.removeItem('winfit-data-owner')
