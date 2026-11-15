@@ -158,3 +158,37 @@
 .nutrition-page .nutrition-total { font-size: 44px !important; font-weight: 600; letter-spacing: -1.5px; color: #4f2f8f; margin: 6px 0 0 !important; text-align: center; }
 .nutrition-page .nutrition-total span { font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--text-dim); }
 .nutrition-page .nutrition-overview > .small { text-align: center; }
+
+/* ── Rotina ───────────────────────────────────────────────────────────────── */
+.field-row { display: flex !important; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; border-top: 1px solid var(--line); font-size: 15px; margin: 0 !important; }
+.field-row input { width: auto !important; min-width: 0; max-width: 60%; border: 1.5px solid #e1d7ec; border-radius: 12px; padding: 8px 10px; font: inherit; background: #fff; color: var(--text); margin: 0 !important; }
+.time-input { font-variant-numeric: tabular-nums; }
+.day-chips { display: flex; justify-content: space-between; gap: 6px; padding: 10px 0 2px; border-top: 1px solid var(--line); }
+.day-chips button { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid #e1d7ec; background: #fff; font-weight: 600; color: #5d5070; padding: 0; }
+.day-chips button[aria-pressed="true"] { background: #7450bd; border-color: #7450bd; color: #fff; }
+.check-list { list-style: none; padding: 0; margin: 0; }
+.check-list li { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); min-height: 52px; }
+.check-list input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; margin: 0; }
+.check-list input:not([type]) { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 15px; color: var(--text); padding: 8px 0; margin: 0 !important; }
+.check-list input.done { text-decoration: line-through; color: var(--text-dim); }
+.add-row { display: flex; gap: 8px; margin-top: 12px; }
+.add-row input { flex: 1; min-width: 0; min-height: 44px; border: 1.5px solid #e1d7ec; border-radius: 14px; padding: 0 12px; font: inherit; background: #fff; margin: 0 !important; }
+.add-row .btn { width: 48px; padding: 0; display: grid; place-items: center; flex-shrink: 0; }
+.routine-page textarea.input { width: 100%; min-height: 84px; margin-top: 2px; }
+.routine-page .card label { margin: 0; }
+
+/* Módulos de bem-estar: alinhar com os componentes novos. */
+.switch { width: 46px !important; height: 28px !important; accent-color: auto; }
+:is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .switch-row { display: flex; font-size: 15px; }
+:is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) details.more { border: 0; border-top: 1px solid var(--line); border-radius: 0; background: none; padding: 0; margin-top: 14px; }
+:is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .btn-ghost { background: #fff; border: 1.5px solid #cdbde3; color: #5b3a9a; }
+:is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .btn-quiet { background: none; border: 0; }
+.routine-page #routine-checklist form.add-row { margin: 12px 0 0; padding: 0; background: none; }
+.routine-page #routine-checklist form.add-row .btn { margin-top: 0; }
+.routine-page .add-row input { padding: 0 12px !important; background: #fff !important; }
+.routine-page .field-row input { padding: 8px 10px !important; background: #fff !important; }
+.routine-page .seg + .small { margin-top: 0; }
+:is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .btn.btn-ghost:not(.btn-primary) { background: #fff; border: 1.5px solid #cdbde3; color: #5b3a9a; }
+:is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .btn.btn-quiet:not(.btn-primary) { background: none; border: 0; }
+.routine-page .check-list input:not([type]) { background: none !important; border: 0 !important; padding: 8px 0 !important; }
+:is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .seg > button { font-size: 14px; }
