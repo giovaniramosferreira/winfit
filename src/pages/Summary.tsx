@@ -28,9 +28,8 @@ export default function Summary() {
   return (
     <div className="page-full fade-in training-summary">
       <div className="summary-heading" style={{ paddingTop: 32 }}><div className="summary-award"><img src="/media/pump-house/award.svg" width="32" height="40" alt="" /></div>
-        <div className="sheet-head"><span>Treino concluído</span><span>{session.status === 'partial' ? 'Parcial' : 'Completo'}</span></div>
-        <h1 className="screen-title">{prs.length > 0 ? <>Sessão com <em>{prs.length} {prs.length === 1 ? 'recorde' : 'recordes'}.</em></> : 'Treino concluído!'}</h1>
-        <p className="muted" style={{ marginTop: 6 }}>{session.dayLabel}</p>
+        <h1 className="screen-title">{prs.length > 0 ? <>{prs.length === 1 ? 'Novo recorde' : `${prs.length} recordes`} <em>hoje!</em></> : session.status === 'partial' ? 'Treino salvo.' : 'Treino concluído!'}</h1>
+        <p className="muted" style={{ marginTop: 6 }}>{session.dayLabel}{session.status === 'partial' ? ' · parcial' : ''}</p>
       </div>
 
       <div className="stat-grid" style={{ marginTop: 24 }}>
@@ -40,7 +39,7 @@ export default function Summary() {
         </div>
         <div className="stat">
           <div className="v num">{session.logs.length}</div>
-          <div className="k">Séries registradas</div>
+          <div className="k">{session.logs.length === 1 ? 'Série' : 'Séries'}</div>
         </div>
         <div className="stat">
           <div className="v num">{!activity.hasLoad ? activity.reps : volume >= 1000 ? `${(volume / 1000).toFixed(1).replace('.', ',')} t` : `${Math.round(volume)} kg`}</div>
@@ -50,7 +49,7 @@ export default function Summary() {
           <div className="v num" style={{ color: delta != null && delta > 0 ? 'var(--accent)' : undefined }}>
             {!activity.hasLoad ? `${activity.seconds} seg` : delta != null ? `${delta > 0 ? '+' : ''}${delta}%` : '—'}
           </div>
-          <div className="k">{activity.hasLoad ? `vs. último ${session.dayLabel.split(' ')[0]}` : 'Tempo de sustentação'}</div>
+          <div className="k">{activity.hasLoad ? 'vs. último treino igual' : 'Tempo de sustentação'}</div>
         </div>
       </div>
 
@@ -66,7 +65,7 @@ export default function Summary() {
         </div>
       )}
 
-      <p className="summary-note">Seu treino foi salvo. Cada sessão conta na sua evolução.</p><div className="grow" />
+      <div className="grow" />
       <button className="btn btn-primary" style={{ marginTop: 24 }} onClick={() => nav('/home', { replace: true })}>
         Concluir
       </button>

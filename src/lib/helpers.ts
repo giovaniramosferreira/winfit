@@ -33,6 +33,7 @@ export function fmtDateTime(ts: number): string {
 
 export function fmtDuration(ms: number): string {
   const min = Math.round(ms / 60000)
+  if (min < 1) return '<1 min'
   if (min < 60) return `${min} min`
   return `${Math.floor(min / 60)}h${String(min % 60).padStart(2, '0')}`
 }
@@ -71,4 +72,9 @@ export function beep() {
     o.start()
     o.stop(audioCtx.currentTime + 0.55)
   } catch { /* sem suporte */ }
+}
+
+/** "1 série", "3 séries": evita "1 séries" em toda a interface. */
+export function plural(n: number, one: string, many: string): string {
+  return `${n.toLocaleString('pt-BR')} ${n === 1 ? one : many}`
 }
