@@ -129,3 +129,17 @@
 .lib-group > summary::after { content: '+'; color: var(--accent-strong); font-size: 20px; font-weight: 400; margin-left: 12px; }
 .lib-group[open] > summary::after { content: '−'; }
 .lib-group > .lib-list { border-top: 1px solid var(--line); }
+
+/* ── Ficha do exercício ───────────────────────────────────────────────────── */
+.exercise-detail-page .exercise-demo > figcaption { display: none; }
+.exercise-detail-page .top h1 { font-size: 23px; }
+.more-card > summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 16px; color: var(--text) !important; }
+.more-card > summary::after { content: '+' !important; color: var(--accent-strong); font-size: 20px; font-weight: 400; }
+.more-card[open] > summary::after { content: '−' !important; }
+.steps-list li { font-size: 15px; line-height: 1.5; }
+.exercise-detail-page .exercise-demo > .between, .circuit-moves .exercise-demo > .between { display: none; }
+.product-shell .demo-control { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px !important; margin-top: 6px; border-radius: 20px; border: 1.5px solid #cdbde3; background: #fff; color: #5b3a9a; text-decoration: none; font-size: 14px; }
+.product-shell .demo-control::before { content: ''; width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent currentColor; }
+.product-shell .demo-control[aria-pressed="true"]::before { width: 8px; height: 10px; border: 0; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+.steps-list li + li { margin-top: 8px !important; }
+.steps-list li { padding-block: 2px !important; }
