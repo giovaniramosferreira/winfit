@@ -100,3 +100,8 @@
 .seg + .switch-row { margin-top: 4px; }
 .circuit-moves summary .t { color: var(--text); }
 .circuit-moves .circuit-tag { text-transform: none; letter-spacing: 0; font-size: 12px; }
+
+/* ── Player ───────────────────────────────────────────────────────────────── */
+.training-player .player-body > .player-set-sheet { margin-top: 4px !important; }
+.training-player .player-head .player-minimize { margin-left: -8px; transform: rotate(-90deg); }
+.set-placeholder { color: #9a8db0; font-size: 13px; font-weight: 500; }
