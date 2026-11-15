@@ -28,5 +28,5 @@ export function homeSummary({ profile, plan, sessions, active, name, now = Date.
       : next
         ? `Hoje é dia de ${next.label}${address}.`
         : `Vamos montar seu treino${address}?`
-  return { message, weekCount, weekGoal }
+  return { message, weekCount, weekGoal, next }
 }
