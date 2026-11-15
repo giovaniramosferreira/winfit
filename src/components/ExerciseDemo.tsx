@@ -1,5 +1,5 @@
 import { useCallback, useId, useRef, useState } from 'react'
-import { MOVEMENT_DEMOS } from '../data/movementDemos'
+import { MOVEMENT_DEMOS, type MovementDemo } from '../data/movementDemos'
 import InkFigure from './InkFigure'
 import ExerciseEquipment from './ExerciseEquipment'
 import { EXERCISE_ILLUSTRATIONS } from '../data/exerciseIllustrations'
@@ -11,8 +11,13 @@ export default function ExerciseDemo({ exerciseId, name, autoPlay = false, compa
     : <VectorExerciseDemo key={exerciseId} exerciseId={exerciseId} name={name} autoPlay={autoPlay} compact={compact} />
 }
 
-function VectorExerciseDemo({ exerciseId, name, autoPlay = false, compact = false }: { exerciseId: string; name: string; autoPlay?: boolean; compact?: boolean }) {
+function VectorExerciseDemo({ exerciseId, ...props }: { exerciseId: string; name: string; autoPlay?: boolean; compact?: boolean }) {
   const demo = MOVEMENT_DEMOS[exerciseId]
+  return demo ? <InkDemo demo={demo} {...props} /> : null
+}
+
+/** Boneco vetorial em tinta animado entre duas poses. */
+export function InkDemo({ demo, name, autoPlay = false, compact = false }: { demo: MovementDemo; name: string; autoPlay?: boolean; compact?: boolean }) {
   const titleId = useId()
   const svg = useRef<SVGSVGElement | null>(null)
   const [playing, setPlaying] = useState(autoPlay)
@@ -20,7 +25,6 @@ function VectorExerciseDemo({ exerciseId, name, autoPlay = false, compact = fals
     svg.current = element
     if (!autoPlay || window.matchMedia('(prefers-reduced-motion: reduce)').matches) element?.pauseAnimations()
   }, [autoPlay])
-  if (!demo) return null
 
   const toggle = () => {
     if (!svg.current) return

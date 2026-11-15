@@ -151,7 +151,7 @@ export default function Profile() {
         </button>
         <button className="btn btn-danger btn-sm" style={{ marginTop: 10 }}
           onClick={() => {
-            if (confirm('Apagar dados locais de treino, alimentação, saúde pélvica e rotina? Exporte um backup antes. Esta ação não exclui backups na nuvem.')) {
+            if (confirm('Apagar dados locais de treino, circuito, alimentação, saúde pélvica e rotina? Exporte um backup antes. Esta ação não exclui backups na nuvem.')) {
               try { resetApplicationData(); privacy.setWatchDestination(null); logout(); nav('/') }
               catch (error) { setDataError(String(error)) }
             }

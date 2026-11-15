@@ -10,6 +10,7 @@ Atualizado em 2026-09-09. Aplicativo independente nesta raiz; não vive em `apps
 - `src/lib/store.ts`: Zustand persistido em `localStorage` (`winfit-v1`); perfil, plano, planos arquivados, sessões, recordes e sessão ativa. Cada alteração é persistida.
 - `src/lib/progression.ts`: sugestão de carga/repetições e PR de carga.
 - `src/lib/homeWorkout.ts`: ciclo adicional de casa, sem equipamentos nem apoios, reutilizando o gerador.
+- `src/lib/circuit.ts` + `circuitStore.ts` + `pages/Circuit.tsx`: circuito por tempo de cardio e core em `/circuit`, separado do catálogo e do histórico por séries. [docs/circuit-workout.md](docs/circuit-workout.md).
 - `server/worker.ts`: relay opcional do Apple Watch; o treino principal continua local. Não existe banco de usuários ou sincronização de histórico.
 - `src/lib/pwa.ts` + `vite.config.ts`: instalação e cache do shell. Deploy estático em `dist/`.
 
@@ -25,6 +26,7 @@ Mantém objetivo, experiência, estado atual e limitações; usa ciclo de corpo 
 
 - `npx tsx scripts/test-generator.ts`: 56.000 combinações do gerador.
 - `npx tsx scripts/test-home-workout.ts`: filtros, histórico, preservação e retomada.
+- `npx tsx scripts/test-circuit.ts`: tempos, versões modificadas, cronômetro, progressão e store do circuito.
 - `npx tsx scripts/test-watch-sync.ts`: comandos do Watch na store (não testa relógio físico ou rede do relay).
 
 Visão de produto em `PRODUCT_SPEC.md`; estado real e prioridades em [docs/backlog-audit.md](docs/backlog-audit.md).

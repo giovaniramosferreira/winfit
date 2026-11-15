@@ -29,3 +29,7 @@ Não há URLs temporárias do Figma no código em execução; os quatro arquivos
 As sequências de exercícios em `public/media/motion/` derivam das ilustrações originais locais do WinFit. Cada repetição contém64quadros calculados localmente com RIFE4.6; não são vídeos externos nem fotos de banco. Fontes originais mantidas. `docs/media/catalog/motion-sources/` contém correções produzidas com a ferramenta integrada de geração de imagens para dead bug, crucifixo e puxada. Briefings: preservar personagem/traço, seis células isoladas com margens, corpo/aparelho/câmera consistentes e movimento específico de cada exercício. Variantes rejeitadas não entram no produto.
 
 Processamento/reprodução: `scripts/prepare-motion-art.mjs`, `docs/media/catalog/motion-anchors.json` e `motion-packing.json`. Ferramenta local de interpolação: [RIFE NCNN Vulkan, distribuição oficial](https://github.com/nihui/rife-ncnn-vulkan), modelo4.6 incluído na distribuição20221029, código MIT. A ferramenta/modelo não são distribuídos no aplicativo; o aplicativo usa apenas os atlas WebP produzidos. Arte corrigida com imagegen integrado; intermediários calculados localmente.
+
+## Circuito cardio e core — 14/11/2026
+
+As 18 demonstrações do circuito (9 estações e 9 versões modificadas) usam o boneco vetorial original do WinFit (`src/data/circuitDemos.ts`, desenhado por `src/lib/inkFigure.ts`). As poses foram escritas à mão no código. Não há mídia externa. Os briefings para as futuras ilustrações em tinta estão em `docs/media/circuit/`.
