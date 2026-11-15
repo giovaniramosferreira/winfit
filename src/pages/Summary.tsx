@@ -55,7 +55,7 @@ export default function Summary() {
 
       {prs.length > 0 && (
         <div className="card" style={{ marginTop: 14 }}>
-          <div className="eyebrow accent">Recordes desta sessão</div>
+          <div className="eyebrow accent">Recordes deste treino</div>
           {prs.map((l) => (
             <div key={l.id} className="between" style={{ marginTop: 8 }}>
               <span className="small">{byId.get(l.exerciseId)?.name}</span>

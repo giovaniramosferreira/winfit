@@ -207,3 +207,7 @@
 .training-player .player-info { width: auto !important; padding: 0 14px !important; border-radius: 20px !important; font: 600 13px/1 var(--font-text, inherit) !important; color: #5b3a9a; background: #fffffff0 !important; border: 1.5px solid #cdbde3 !important; }
 .timer-progress { flex-basis: 100%; height: 6px; border-radius: 6px; background: #ffffff99; overflow: hidden; order: 9; }
 .timer-progress > span { display: block; height: 100%; background: #7450bd; border-radius: 6px; transition: width .25s linear; }
+.onboarding-screen .option .icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 13px; background: #f0eafa; color: #6a44b0; flex-shrink: 0; }
+.onboarding-screen .option.selected .icon { background: #fff; }
+.recap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.recap .lib-chip { font-size: 13px; min-height: 34px; }

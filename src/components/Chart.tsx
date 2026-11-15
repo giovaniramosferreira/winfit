@@ -30,7 +30,7 @@ export default function Chart({ data, unit }: { data: { label: string; value: nu
   return (
     <div className="chart-wrap">
       <svg className="chart" viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: 'block' }}
-        role="img" aria-label={`${metric} de ${describe(vals[0])} a ${describe(last.value)} em ${data.length} sessões`}>
+        role="img" aria-label={`${metric} de ${describe(vals[0])} a ${describe(last.value)} em ${data.length} treinos`}>
         <line className="grid" x1={PAD.l} y1={PAD.t} x2={W - PAD.r} y2={PAD.t} />
         <line className="grid" x1={PAD.l} y1={PAD.t + ih / 2} x2={W - PAD.r} y2={PAD.t + ih / 2} />
         <line className="grid" x1={PAD.l} y1={H - PAD.b} x2={W - PAD.r} y2={H - PAD.b} />

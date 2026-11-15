@@ -192,3 +192,15 @@
 .welcome .google-hint { color:#746985; }
 @media(max-width:899px) { .welcome-module,.welcome-module:nth-child(even) { padding:24px; border:1px solid #e3daed; } }
 @media(max-width:480px) { .welcome .landing-wrap { padding-inline:22px; }.welcome-modules { gap:12px; }.welcome-module,.welcome-module:nth-child(even) { padding:24px; }.welcome-phone { transform:rotate(-2deg); } }
+.welcome-phone-tabs button { padding:0 0 9px; border:0; background:none; font:inherit; color:inherit; cursor:pointer; border-bottom:2px solid transparent; }
+.welcome-phone-tabs button.selected { color:#7657e8; border-bottom-color:#7657e8; }
+.welcome-alt { padding-bottom:16px; }
+.welcome-alt-big { padding:6px 15px 0; font-size:30px; font-weight:600; letter-spacing:-1px; color:#4f2f8f; }
+.welcome-alt-big small { font-size:11px; color:#695978; letter-spacing:0; font-weight:500; }
+.welcome-alt-bar { margin:10px 15px 6px; height:6px; border-radius:6px; background:#e4daee; overflow:hidden; }
+.welcome-alt-bar span { display:block; height:100%; background:#7657e8; }
+.welcome-alt ul { list-style:none; margin:8px 15px 0; padding:0; font-size:11px; }
+.welcome-alt li { display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid #e4daee; }
+.welcome-alt-days { display:flex; gap:6px; padding:10px 15px 4px; }
+.welcome-alt-days span { width:24px; height:24px; border-radius:50%; display:grid; place-items:center; font-size:10px; border:1px solid #d9cfdf; }
+.welcome-alt-days span.on { background:#7657e8; color:#fff; border-color:#7657e8; }

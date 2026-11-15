@@ -7,7 +7,7 @@ export default function Preview() {
   const plan = useStore((s) => s.plan)
   const nav = useNavigate()
   const [building, setBuilding] = useState(true)
-  const [expanded, setExpanded] = useState<string | null>(null)
+  const [expanded, setExpanded] = useState<string | null>(() => useStore.getState().plan?.days[0]?.id ?? null)
   const [showWhy, setShowWhy] = useState(false)
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Preview() {
       <div className="account-entry-mark" aria-hidden="true">✓</div><div className="screen-kicker">Seu plano está pronto</div>
       <h1 className="screen-title" style={{ marginTop: 8 }}>{plan.splitLabel}</h1>
       <p className="muted" style={{ marginTop: 6 }}>
-        {plan.days.length} treinos por semana · ~{Math.round(plan.days.reduce((a, d) => a + d.estMin, 0) / plan.days.length)} min por sessão
+        {plan.days.length} treinos por semana · ~{Math.round(plan.days.reduce((a, d) => a + d.estMin, 0) / plan.days.length)} min cada
       </p>
 
       {plan.notes.map((n) => (
@@ -60,7 +60,7 @@ export default function Preview() {
             aria-expanded={expanded === day.id} onClick={() => setExpanded(expanded === day.id ? null : day.id)}>
             <div className="between">
               <div>
-                <h3>{day.label}</h3>
+                <h3>{day.label}{day.position === 0 && <span className="pill accent" style={{ marginLeft: 8, verticalAlign: 'middle' }}>Primeiro treino</span>}</h3>
                 <div className="small muted num">{day.exercises.length} exercícios · ~{day.estMin} min</div>
                 <div style={{ marginTop: 6 }}>
                   {day.targetMuscles.slice(0, 4).map((m) => (
