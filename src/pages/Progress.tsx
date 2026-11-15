@@ -6,7 +6,6 @@ import { fmtDate, fmtDuration, sessionsInWeekOffset, sessionsThisWeek, plural } 
 import { activityTotals, exerciseProgressSeries, fmtKg, volumeOf } from '../lib/progression'
 import { isTimedExercise } from '../lib/exerciseRules'
 import Chart from '../components/Chart'
-import { ANATOMY } from '../data/anatomy'
 
 export default function Progress() {
   const sessions = useStore((s) => s.sessions)
@@ -73,7 +72,7 @@ export default function Progress() {
       {lead && leadEx && (
         <figure className="plate-fig" style={{ marginTop: 14 }}>
           <Chart data={lead.series.map((x) => ({ label: fmtDate(x.ts), value: x.value }))} unit={lead.unit === 'kg' ? '' : lead.unit} />
-          <figcaption><b>Fig.</b> {leadEx.name} ({ANATOMY[leadEx.primary].latin}), {metricLabel.toLowerCase()} máxima por série de cada sessão em {lead.unit}.</figcaption>
+          <figcaption>{leadEx.name}: {metricLabel.toLowerCase()} máxima em cada treino ({lead.unit}).</figcaption>
         </figure>
       )}
 
@@ -95,6 +94,8 @@ export default function Progress() {
           <div className="k">{bodyweightFocus ? 'Séries na semana' : 'Recordes pessoais'}</div>
         </div>
       </div>
+
+      <WeekBars sessions={sessions} goal={profile.frequency} />
 
       {prs.length > 0 && (
         <div className="card" style={{ marginTop: 14 }}>
@@ -148,4 +149,26 @@ export default function Progress() {
       </div>
     </div>
   )
+}
+
+/** Treinos por semana nas últimas 8 semanas; a linha tracejada é a meta. */
+function WeekBars({ sessions, goal }: { sessions: ReturnType<typeof useStore.getState>['sessions']; goal: number }) {
+  const weeks = Array.from({ length: 8 }, (_, i) => {
+    const offset = i - 7
+    const start = new Date(); start.setHours(0, 0, 0, 0)
+    const day = (start.getDay() + 6) % 7; start.setDate(start.getDate() - day + offset * 7)
+    return { count: sessionsInWeekOffset(sessions, offset).length, label: offset === 0 ? 'Esta' : start.toLocaleDateString('pt-BR', { day: 'numeric', month: 'numeric' }) }
+  })
+  const max = Math.max(goal, ...weeks.map((w) => w.count), 1)
+  return <section className="card week-bars" style={{ marginTop: 14 }} aria-label={`Treinos por semana: ${weeks.map((w) => w.count).join(', ')}. Meta ${goal}.`}>
+    <div className="between"><h3>Treinos por semana</h3><span className="small muted">meta {goal}</span></div>
+    <div className="week-bars-plot" aria-hidden="true">
+      <span className="week-bars-goal" style={{ bottom: `calc(22px + (100% - 40px) * ${goal / max})` }} />
+      {weeks.map((w, i) => <div key={i} className="week-bars-col">
+        <span className="week-bars-n num">{w.count || ''}</span>
+        <span className={`week-bars-bar${w.count >= goal ? ' hit' : ''}`} style={{ height: `${Math.max(w.count / max * 100, w.count ? 6 : 2)}%` }} />
+        <span className="week-bars-l">{w.label}</span>
+      </div>)}
+    </div>
+  </section>
 }

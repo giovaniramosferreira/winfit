@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import Confetti from '../components/Confetti'
+import { renderShareCard, shareOrDownload } from '../lib/shareImage'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
 import { fmtDuration } from '../lib/helpers'
@@ -9,6 +12,7 @@ export default function Summary() {
   const nav = useNavigate()
   const sessions = useStore((s) => s.sessions)
   const session = sessions.find((s) => s.id === id)
+  const [shareMsg, setShareMsg] = useState('')
 
   if (!session) return <Navigate to="/home" replace />
 
@@ -27,7 +31,7 @@ export default function Summary() {
 
   return (
     <div className="page-full fade-in training-summary">
-      <div className="summary-heading" style={{ paddingTop: 32 }}><div className="summary-award"><img src="/media/pump-house/award.svg" width="32" height="40" alt="" /></div>
+      <div className="summary-heading" style={{ paddingTop: 32 }}>{prs.length > 0 && <Confetti />}<div className="summary-award"><img src="/media/pump-house/award.svg" width="32" height="40" alt="" /></div>
         <h1 className="screen-title">{prs.length > 0 ? <>{prs.length === 1 ? 'Novo recorde' : `${prs.length} recordes`} <em>hoje!</em></> : session.status === 'partial' ? 'Treino salvo.' : 'Treino concluído!'}</h1>
         <p className="muted" style={{ marginTop: 6 }}>{session.dayLabel}{session.status === 'partial' ? ' · parcial' : ''}</p>
       </div>
@@ -69,6 +73,20 @@ export default function Summary() {
       <button className="btn btn-primary" style={{ marginTop: 24 }} onClick={() => nav('/home', { replace: true })}>
         Concluir
       </button>
+      <button className="btn btn-quiet" onClick={async () => {
+        try {
+          const durationText = session.endedAt ? fmtDuration(session.endedAt - session.startedAt) : '—'
+          const blob = await renderShareCard({
+            title: prs.length ? `${prs.length === 1 ? 'Novo recorde' : `${prs.length} recordes`} hoje!` : 'Treino feito!',
+            subtitle: session.dayLabel,
+            stats: [[durationText, 'duração'], [String(session.logs.length), session.logs.length === 1 ? 'série' : 'séries'],
+              ...(activity.hasLoad ? [[volume >= 1000 ? `${(volume / 1000).toFixed(1).replace('.', ',')} t` : `${Math.round(volume)} kg`, 'volume'] as [string, string]] : [[String(activity.reps), 'repetições'] as [string, string]])],
+          })
+          const result = await shareOrDownload(blob, 'winfit-treino.png')
+          setShareMsg(result === 'downloaded' ? 'Imagem salva.' : '')
+        } catch { setShareMsg('Não foi possível gerar a imagem.') }
+      }}>Compartilhar resumo</button>
+      {shareMsg && <p className="small muted center" role="status">{shareMsg}</p>}
     </div>
   )
 }

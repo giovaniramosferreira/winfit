@@ -15,6 +15,7 @@ import ExerciseDemo from '../components/ExerciseDemo'
 import { EXERCISE_ILLUSTRATIONS } from '../data/exerciseIllustrations'
 import { isEquipmentFreeSession, isTimedExercise, variationLabel } from '../lib/exerciseRules'
 import Icon from '../components/Icon'
+import Confetti from '../components/Confetti'
 
 export default function Player() {
   const nav = useNavigate()
@@ -190,7 +191,7 @@ export default function Player() {
             {watchToast}
           </div>
         )}
-        {prFlash && <div className="pr-flash" style={{ marginTop: 12 }}>{prFlash}</div>}
+        {prFlash && <div className="pr-flash" style={{ marginTop: 12, position: 'relative' }}><Confetti />{prFlash}</div>}
 
         <div className="player-set-sheet" style={{ marginTop: 16 }}>
           <div className="player-set-heading"><h2>Suas séries</h2><span className="small muted">{logsHere.length} de {sx.sets} feitas</span></div>
