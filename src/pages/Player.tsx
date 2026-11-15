@@ -173,7 +173,7 @@ export default function Player() {
 
         </div><div className="player-demo-wrap" ref={instructionsRef}>
           <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} autoPlay compact />
-          <button ref={infoButtonRef} className="btn btn-ghost player-info" aria-label="Como fazer este exercício" aria-expanded={instructionsOpen} aria-controls="exercise-instructions" onClick={() => setInstructionsOpen(!instructionsOpen)}><span aria-hidden="true">i</span></button>
+          <button ref={infoButtonRef} className="btn btn-ghost player-info" aria-label="Como fazer este exercício" aria-expanded={instructionsOpen} aria-controls="exercise-instructions" onClick={() => setInstructionsOpen(!instructionsOpen)}><span aria-hidden="true">Como fazer</span></button>
           {instructionsOpen && <section className="player-instructions" id="exercise-instructions" role="region" aria-label="Como fazer o exercício">
             <div className="between"><strong>Como fazer</strong><button className="btn btn-quiet btn-sm" aria-label="Fechar instruções" onClick={() => { setInstructionsOpen(false); infoButtonRef.current?.focus() }}>Fechar</button></div>
             <ol>{exercise.instructions.map(instruction => <li key={instruction}>{instruction}</li>)}</ol>
@@ -367,9 +367,10 @@ function RestTimer() {
   }
 
   return (
-    <div className="timer-bar">
+    <div className="timer-bar" role="timer" aria-label={`Descanso: ${remaining} segundos`}>
       <span className="t num">{fmtClock(remaining)}</span>
       <span className="grow small muted">descanso</span>
+      <span className="timer-progress" aria-hidden="true"><span style={{ width: `${Math.max(0, Math.min(100, remaining / timer.totalSec * 100))}%` }} /></span>
       <button className="btn btn-ghost btn-sm" onClick={() => startTimer(remaining + 30)}>+30s</button>
       <button className="btn btn-ghost btn-sm" onClick={clearTimer}>Pular</button>
     </div>

@@ -37,6 +37,7 @@ export default function Profile() {
   const [freq, setFreq] = useState(profile.frequency)
   const [time, setTime] = useState(profile.sessionTimeMin)
   const [goal, setGoal] = useState(profile.goal)
+  const [equip, setEquip] = useState<Equipment[]>(profile.equipment)
   const [showPlan, setShowPlan] = useState(false)
 
   const doExport = () => {
@@ -45,7 +46,7 @@ export default function Profile() {
   }
 
   const applyAdjust = () => {
-    const next: TrainingProfile = { ...profile, frequency: freq, sessionTimeMin: time, goal }
+    const next: TrainingProfile = { ...profile, frequency: freq, sessionTimeMin: time, goal, equipment: profile.location === 'gym_basic' || profile.location === 'home_equipment' ? equip : profile.equipment }
     regenerate(next)
     setAdjust(false)
   }
@@ -144,8 +145,16 @@ export default function Profile() {
             <div className="seg">{[2, 3, 4, 5, 6].map((f) => <button key={f} className="num" aria-pressed={freq === f} onClick={() => setFreq(f)}>{f}</button>)}</div>
             <h3 className="field-title">Tempo por treino</h3>
             <div className="seg">{[30, 45, 60, 75].map((t) => <button key={t} className="num" aria-pressed={time === t} onClick={() => setTime(t)}>{t}′</button>)}</div>
+            {(profile.location === 'gym_basic' || profile.location === 'home_equipment') && <>
+              <h3 className="field-title">Equipamento</h3>
+              <div className="lib-chips" style={{ flexWrap: 'wrap', margin: '0 0 16px', padding: 0 }}>
+                {(Object.keys(EQUIP_LABEL) as Equipment[]).filter((e) => e !== 'peso_corporal').map((e) => (
+                  <button key={e} className={`lib-chip${equip.includes(e) ? ' on' : ''}`} aria-pressed={equip.includes(e)} onClick={() => setEquip(equip.includes(e) ? equip.filter((x) => x !== e) : [...equip, e])}>{EQUIP_LABEL[e]}</button>
+                ))}
+              </div>
+            </>}
             <button className="btn btn-primary" style={{ marginTop: 8 }} onClick={applyAdjust}>Gerar novo plano</button>
-            <button className="btn btn-quiet" onClick={redoOnboarding}>Mudar local, equipamento ou limitações</button>
+            <button className="btn btn-quiet" onClick={redoOnboarding}>Mudar local ou limitações</button>
           </div>
         </div>
       )}

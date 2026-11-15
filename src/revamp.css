@@ -204,3 +204,6 @@
 .spinner { width: 40px; height: 40px; margin: 0 auto; border-radius: 50%; border: 4px solid #e3d8f2; border-top-color: #7450bd; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+.training-player .player-info { width: auto !important; padding: 0 14px !important; border-radius: 20px !important; font: 600 13px/1 var(--font-text, inherit) !important; color: #5b3a9a; background: #fffffff0 !important; border: 1.5px solid #cdbde3 !important; }
+.timer-progress { flex-basis: 100%; height: 6px; border-radius: 6px; background: #ffffff99; overflow: hidden; order: 9; }
+.timer-progress > span { display: block; height: 100%; background: #7450bd; border-radius: 6px; transition: width .25s linear; }
