@@ -227,3 +227,22 @@
 .week-bars-n { font-size: 12px; color: var(--text-dim); margin-bottom: 4px; }
 .week-bars-l { position: absolute; bottom: -22px; font-size: 11px; color: var(--text-dim); white-space: nowrap; }
 .progress-screen .progress-lead { font-size: 26px; }
+
+/* Estados vazios, skeleton e hora 24 h. */
+.empty-state { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 22px 16px; border: 1.5px dashed #ddd0ef; border-radius: 20px; color: var(--text-dim); font-size: 14.5px; }
+.empty-state p { margin: 0; }
+.skeleton { display: block; height: 14px; border-radius: 7px; background: linear-gradient(90deg, #eee7f6 25%, #f7f3fb 50%, #eee7f6 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
+.time-field { position: relative; display: inline-flex; align-items: center; min-width: 84px; justify-content: center; border: 1.5px solid #e1d7ec; border-radius: 12px; padding: 8px 12px; background: #fff; font-size: 16px; font-weight: 600; }
+.time-field input { position: absolute; inset: 0; opacity: 0; width: 100% !important; max-width: none !important; cursor: pointer; }
+
+/* ── Modo escuro automático ───────────────────────────────────────────────────
+   A paleta clara usa cores fixas em ~1.200 linhas de CSS. Em vez de duplicá-las,
+   invertemos a luminosidade da interface e devolvemos fotos e ilustrações ao normal. */
+@media (prefers-color-scheme: dark) {
+  /* No elemento raiz o filtro não muda o contexto de position: fixed (barra inferior, modais). */
+  html:has(.app-shell.product-shell) { filter: invert(.92) hue-rotate(180deg); background: #f4f1f8; }
+  .app-shell.product-shell :is(img, video, .ex-thumb, .pilot-frames, .home-module-art-gym, .home-module-art-home, .home-module-photo, .substitution-thumbnail-frame, .confetti) { filter: invert(1) hue-rotate(180deg); }
+  .app-shell.product-shell :is(.ex-thumb, .pilot-artboard) { background: #fff !important; }
+}

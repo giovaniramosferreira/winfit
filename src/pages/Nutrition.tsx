@@ -4,6 +4,7 @@ import { daySummary, goalForDate, localDate, type Meal, type FoodItem, type Nutr
 import { nutritionStore } from '../lib/nutritionStore'
 import PageTop from '../components/PageTop'
 import Icon from '../components/Icon'
+import EmptyState from '../components/EmptyState'
 const uid = () => crypto.randomUUID()
 const freshItem = (): FoodItem => ({id:uid(),name:'',portion:null,kcal:null})
 const freshMeal = (date:string): Meal => ({id:uid(),date,time:new Date().toTimeString().slice(0,5),type:'Almoço',items:[freshItem()]})
@@ -72,7 +73,7 @@ export default function Nutrition() {
       <div className="row" style={{marginTop:12}}><button type="submit" className="btn btn-primary">Salvar refeição</button><button type="button" className="btn btn-ghost" onClick={()=>setMeal(null)}>Cancelar</button></div>
     </form></section>}
     <h2 className="hub-section">Refeições</h2>
-    {!meals.length && <p className="small muted" style={{margin:'0 2px'}}>Nenhuma refeição neste dia.</p>}
+    {!meals.length && <EmptyState icon="meal" title="Nenhuma refeição neste dia." />}
     {meals.map(m=><article key={m.id} className="card nutrition-meal" style={{marginTop:12}}><h3>{m.time} · {m.type}</h3>{m.items.map(i=><p key={i.id}>{i.name}{i.portion!==null?` · ${i.portion} g`:''} · {i.kcal===null?'kcal pendentes':`${i.kcal} kcal`}</p>)}<div className="row"><button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>setMeal(structuredClone(m))}>Editar</button><button className="btn btn-quiet btn-sm" disabled={state.blocked} onClick={()=>{if(nutritionStore.deleteMeal(m.id))setMessage('Refeição excluída. Dá para restaurar em “Refeições excluídas”.')}}>Excluir</button></div></article>)}
     <MealPhotoDraft/>
     {state.deleted.length>0 && <details className="more"><summary>Refeições excluídas ({state.deleted.length})</summary>{state.deleted.map(m=><div className="card" key={m.id} style={{marginTop:8}}>{m.date} · {m.time} · {m.type}<button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>nutritionStore.restoreMeal(m.id)}>Restaurar refeição</button></div>)}</details>}

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import PageTop from '../components/PageTop'
 import Switch from '../components/Switch'
 import Icon from '../components/Icon'
+import TimeField from '../components/TimeField'
+import EmptyState from '../components/EmptyState'
 import { calendarFile, duePrompt } from '../lib/routine'
 import { useRoutineStore } from '../lib/routineStore'
 
@@ -50,7 +52,7 @@ export default function Routine() {
     {tab === 'agenda' && <section className="card" id="routine-agenda">
       <Switch label="Lembrar de treinar" hint="Aparece com o app aberto" checked={r.reminder.enabled} onChange={(v) => update({ reminder: { ...r.reminder, enabled: v } })} />
       {r.reminder.enabled && <>
-        <label className="field-row"><span>Horário</span><input className="time-input" type="time" value={r.reminder.time} onChange={(e) => update({ reminder: { ...r.reminder, time: e.target.value } })} /></label>
+        <TimeField label="Horário" value={r.reminder.time} onChange={(time) => update({ reminder: { ...r.reminder, time } })} />
         <Days kind="reminder" />
         <button className="btn btn-ghost" style={{ marginTop: 14 }} disabled={!r.reminder.days.length} onClick={downloadCalendar}>Adicionar ao calendário do celular</button>
         <p className="small muted" style={{ marginTop: 6 }}>Para receber o aviso com o app fechado.</p>
@@ -70,7 +72,7 @@ export default function Routine() {
     {tab === 'checklist' && <section className="card" id="routine-checklist">
       <div className="seg" role="group" aria-label="Local">{([['academia', 'Academia'], ['casa', 'Casa'], ['viagem', 'Viagem']] as const).map(([id, label]) =>
         <button key={id} type="button" aria-pressed={place === id} onClick={() => setPlace(id)}>{label}</button>)}</div>
-      {list.length === 0 && <p className="small muted">Nada na lista. Adicione o que levar.</p>}
+      {list.length === 0 && <EmptyState icon="bag" title="Nada na lista ainda." />}
       <ul className="check-list">{list.map((entry) => <li key={entry.id}>
         <input type="checkbox" aria-label={`Feito: ${entry.text}`} checked={entry.done} onChange={(e) => update({ checklists: { ...r.checklists, [place]: list.map((i) => i.id === entry.id ? { ...i, done: e.target.checked } : i) } })} />
         <input aria-label="Texto do item" className={entry.done ? 'done' : ''} maxLength={200} value={entry.text} onChange={(e) => update({ checklists: { ...r.checklists, [place]: list.map((i) => i.id === entry.id ? { ...i, text: e.target.value } : i) } })} />
@@ -92,10 +94,10 @@ export default function Routine() {
         <summary>Lembrete de check-in</summary>
         <Switch label="Lembrar de registrar" checked={r.checkin.enabled} onChange={(v) => update({ checkin: { ...r.checkin, enabled: v } })} />
         {r.checkin.enabled && <>
-          <label className="field-row"><span>Horário</span><input className="time-input" type="time" value={r.checkin.time} onChange={(e) => update({ checkin: { ...r.checkin, time: e.target.value } })} /></label>
+          <TimeField label="Horário" value={r.checkin.time} onChange={(time) => update({ checkin: { ...r.checkin, time } })} />
           <Days kind="checkin" />
-          <label className="field-row"><span>Silêncio de</span><input className="time-input" type="time" value={r.checkin.quietStart} onChange={(e) => update({ checkin: { ...r.checkin, quietStart: e.target.value } })} /></label>
-          <label className="field-row"><span>até</span><input className="time-input" type="time" value={r.checkin.quietEnd} onChange={(e) => update({ checkin: { ...r.checkin, quietEnd: e.target.value } })} /></label>
+          <TimeField label="Silêncio de" value={r.checkin.quietStart} onChange={(quietStart) => update({ checkin: { ...r.checkin, quietStart } })} />
+          <TimeField label="até" value={r.checkin.quietEnd} onChange={(quietEnd) => update({ checkin: { ...r.checkin, quietEnd } })} />
         </>}
       </details>
       {r.entries.length > 0 && <><h2 className="field-title" style={{ marginTop: 18 }}>Registros</h2>

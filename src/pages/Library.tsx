@@ -8,6 +8,7 @@ import type { Exercise, MuscleGroup } from '../types'
 import ExerciseThumb from '../components/ExerciseThumb'
 import PageTop from '../components/PageTop'
 import Icon from '../components/Icon'
+import EmptyState from '../components/EmptyState'
 
 const GROUPS = REGIONS.flatMap((r) => r.groups)
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -52,10 +53,7 @@ export default function Library() {
         {GROUPS.map((g) => <button key={g} className={`lib-chip${group === g ? ' on' : ''}`} aria-pressed={group === g} onClick={() => setGroup(group === g ? null : g)}>{MUSCLE_LABEL[g]}</button>)}
       </div>
 
-      {results.length === 0 && <div className="empty" style={{ marginTop: 16 }}>
-        <h3>Nada encontrado.</h3>
-        <p className="small" style={{ marginTop: 6 }}>Tente “terra”, “extensora” ou “glúteo”.</p>
-      </div>}
+      {results.length === 0 && <EmptyState icon="book" title="Nada encontrado. Tente “terra” ou “glúteo”." action={<button className="btn btn-ghost btn-sm" onClick={() => { setQ(''); setGroup(null); setMine(false) }}>Limpar filtros</button>} />}
 
       {filtering ? <>
         <p className="small muted" style={{ margin: '4px 2px 8px' }}>{results.length} {results.length === 1 ? 'exercício' : 'exercícios'}</p>
