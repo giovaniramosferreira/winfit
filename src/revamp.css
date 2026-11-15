@@ -150,3 +150,11 @@
 .kv dd { margin: 0; text-align: right; font-weight: 550; }
 .settings-row { border: 1px solid #e7e0ef; text-align: left; font: inherit; }
 .file-btn { display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+/* ── Alimentação ──────────────────────────────────────────────────────────── */
+.day-switch { display: flex; align-items: center; justify-content: space-between; margin: -6px -8px 4px; }
+.day-switch-label { position: relative; font-size: 16px; font-weight: 600; color: var(--text); }
+.day-switch-label input { position: absolute; inset: 0; opacity: 0; width: 100%; cursor: pointer; }
+.nutrition-page .nutrition-total { font-size: 44px !important; font-weight: 600; letter-spacing: -1.5px; color: #4f2f8f; margin: 6px 0 0 !important; text-align: center; }
+.nutrition-page .nutrition-total span { font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--text-dim); }
+.nutrition-page .nutrition-overview > .small { text-align: center; }
