@@ -5,6 +5,7 @@ import { nutritionStore } from '../lib/nutritionStore'
 import PageTop from '../components/PageTop'
 import Icon from '../components/Icon'
 import EmptyState from '../components/EmptyState'
+import TimeField from '../components/TimeField'
 const uid = () => crypto.randomUUID()
 const freshItem = (): FoodItem => ({id:uid(),name:'',portion:null,kcal:null})
 const freshMeal = (date:string): Meal => ({id:uid(),date,time:new Date().toTimeString().slice(0,5),type:'Almoço',items:[freshItem()]})
@@ -49,7 +50,7 @@ export default function Nutrition() {
       <button className="btn btn-quiet" disabled={state.blocked} onClick={()=>{setGoalDate(date);setGoalOpen(!goalOpen)}}>{target===null?'Definir meta diária':'Mudar meta'}</button>
     </section>
     {goalOpen && <section className="card" style={{marginTop:12}}><h2>Meta diária</h2>
-      <label>Válida a partir de<input type="date" style={inputStyle} value={goalDate} onChange={e=>setGoalDate(e.target.value)}/></label>
+      <label className="field-row"><span>A partir de</span><span className="time-field"><span aria-hidden="true">{dayLabel(goalDate)}</span><input type="date" aria-label="A partir de" value={goalDate} onChange={e=>e.target.value&&setGoalDate(e.target.value)}/></span></label>
       <label>Como informar<select style={inputStyle} value={mode} onChange={e=>setMode(e.target.value as typeof mode)}><option value="direct">Valor em kcal</option><option value="calculated">Manutenção menos déficit</option></select></label>
       {mode==='direct'?<label>Meta (kcal)<input type="number" min="1" step="any" style={inputStyle} value={direct} onChange={e=>setDirect(e.target.value)}/></label>:<>
         <label>Manutenção informada (kcal)<input type="number" min="1" step="any" style={inputStyle} value={maintenance} onChange={e=>setMaintenance(e.target.value)}/></label>
@@ -59,18 +60,18 @@ export default function Nutrition() {
       <button className="btn btn-ghost" onClick={()=>setGoalOpen(false)}>Cancelar</button>
     </section>}
     {meal && <section className="card" style={{marginTop:12}}><h2>Refeição</h2><form onSubmit={e=>{e.preventDefault();saveMeal()}}>
-      <label>Data<input required type="date" style={inputStyle} value={meal.date} onChange={e=>setMeal({...meal,date:e.target.value})}/></label>
-      <label>Horário<input required type="time" style={inputStyle} value={meal.time} onChange={e=>setMeal({...meal,time:e.target.value})}/></label>
-      <label>Tipo<select style={inputStyle} value={meal.type} onChange={e=>setMeal({...meal,type:e.target.value})}>{['Café da manhã','Almoço','Jantar','Lanche','Outro'].map(t=><option key={t}>{t}</option>)}</select></label>
-      {meal.items.map((item,index)=><fieldset key={item.id} style={{marginTop:16,padding:12,border:'1px solid var(--line)',borderRadius:12}}><legend>Item {index+1}</legend>
+      <div className="seg meal-type" role="group" aria-label="Tipo">{['Café da manhã','Almoço','Jantar','Lanche','Outro'].map(t=><button type="button" key={t} aria-pressed={meal.type===t} onClick={()=>setMeal({...meal,type:t})}>{t.replace('Café da manhã','Café')}</button>)}</div>
+      <label className="field-row"><span>Dia</span><span className="time-field"><span aria-hidden="true">{dayLabel(meal.date)}</span><input required type="date" aria-label="Dia" max={localDate()} value={meal.date} onChange={e=>e.target.value&&setMeal({...meal,date:e.target.value})}/></span></label>
+      <TimeField label="Horário" value={meal.time} onChange={time=>setMeal({...meal,time})} />
+      {meal.items.map((item,index)=><fieldset key={item.id} className="meal-item"><legend className="sr-only">Alimento {index+1}</legend>
         <label>Alimento<input required maxLength={200} style={inputStyle} value={item.name} onChange={e=>updateItem(item.id,{name:e.target.value})}/></label>
         <label>Porção (g)<input type="number" min="0.01" step="any" style={inputStyle} value={item.portion??''} onChange={e=>updateItem(item.id,{portion:e.target.value===''?null:Number(e.target.value)})}/></label>
         <label>Calorias (kcal)<input type="number" min="0" step="any" style={inputStyle} value={item.kcal??''} onChange={e=>updateItem(item.id,{kcal:e.target.value===''?null:Number(e.target.value)})}/></label>
         <NutritionLabelCalculator name={item.name} onConfirm={value=>updateItem(item.id,{portion:value.portion,kcal:value.kcal,provenance:value.provenance})}/>
-        <button type="button" className="btn btn-ghost btn-sm" disabled={meal.items.length===1} onClick={()=>setMeal({...meal,items:meal.items.filter(i=>i.id!==item.id)})}>Remover item</button>
+        {meal.items.length>1 && <button type="button" className="btn btn-quiet btn-sm" onClick={()=>setMeal({...meal,items:meal.items.filter(i=>i.id!==item.id)})}>Remover alimento</button>}
       </fieldset>)}
-      <button type="button" className="btn btn-ghost" onClick={()=>setMeal({...meal,items:[...meal.items,freshItem()]})}>Adicionar item</button>
-      <div className="row" style={{marginTop:12}}><button type="submit" className="btn btn-primary">Salvar refeição</button><button type="button" className="btn btn-ghost" onClick={()=>setMeal(null)}>Cancelar</button></div>
+      <button type="button" className="btn btn-ghost" onClick={()=>setMeal({...meal,items:[...meal.items,freshItem()]})}>+ Outro alimento</button>
+      <button type="submit" className="btn btn-primary" style={{marginTop:12}}>Salvar refeição</button><button type="button" className="btn btn-quiet" onClick={()=>setMeal(null)}>Cancelar</button>
     </form></section>}
     <h2 className="hub-section">Refeições</h2>
     {!meals.length && <EmptyState icon="meal" title="Nenhuma refeição neste dia." />}

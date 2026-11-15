@@ -63,7 +63,7 @@ export default function App() {
       </Routes>
       {onboarded && !inPlayer && !inFlow && !loc.pathname.startsWith('/summary') && (
         <>
-          {loc.pathname !== '/home' && <MiniBar />}
+          {!['/home', '/training', '/calisthenics'].includes(loc.pathname) && <MiniBar />}
           <TabBar />
         </>
       )}

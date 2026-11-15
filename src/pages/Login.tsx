@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/AuthProvider'
 import { sendMagicLink } from '../lib/auth'
 import { useStore } from '../lib/store'
@@ -27,6 +27,9 @@ export default function Login() {
     finally { setSending(false) }
   }
 
+  // Sem login configurado, esta tela não tem o que oferecer.
+  if (!configured) return <Navigate to={onboarded ? '/home' : '/onboarding'} replace />
+
   return (
     <div className="page-full product-shell account-screen login-screen fade-in">
       <button className="btn btn-quiet btn-sm" style={{ alignSelf: 'flex-start', paddingLeft: 0 }} onClick={() => nav('/')}>
@@ -34,10 +37,9 @@ export default function Login() {
       </button>
 
       <div style={{ paddingTop: 32 }}>
-        <div className="account-entry-mark" aria-hidden="true">W<span>f</span></div><div className="screen-kicker">Bem-vindo ao seu ritmo</div>
-        <h1 className="screen-title" style={{ marginTop: 10 }}>Acesse sua <em>conta WinFit.</em></h1>
+        <div className="account-entry-mark" aria-hidden="true">W<span>f</span></div>        <h1 className="screen-title" style={{ marginTop: 10 }}>Acesse sua <em>conta WinFit.</em></h1>
         <p className="muted" style={{ marginTop: 8 }}>
-          Seu espaço para treinar e cuidar da rotina. Entre na sua conta ou comece sem cadastro.
+          Entre para guardar um backup dos seus treinos.
         </p>
       </div>
 

@@ -246,3 +246,10 @@
   .app-shell.product-shell :is(img, video, .ex-thumb, .pilot-frames, .home-module-art-gym, .home-module-art-home, .home-module-photo, .substitution-thumbnail-frame, .confetti) { filter: invert(1) hue-rotate(180deg); }
   .app-shell.product-shell :is(.ex-thumb, .pilot-artboard) { background: #fff !important; }
 }
+
+/* Formulário de refeição. */
+.nutrition-page .meal-type { flex-wrap: wrap; }
+.nutrition-page .meal-type > button { flex: 1 1 30%; font-size: 13.5px; }
+.nutrition-page .meal-item { margin: 14px 0 0; padding: 12px 0 0; border: 0; border-top: 1px solid var(--line); min-width: 0; }
+.nutrition-page .meal-item label { display: block; margin-top: 8px; }
+.nutrition-page .field-row .time-field { max-width: 60%; }

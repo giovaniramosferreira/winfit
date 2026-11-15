@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useStore } from '../lib/store'
+import Switch from './Switch'
 import { privacy, usePrivacy } from '../lib/privacy'
 import {
   getRelayUrl,
@@ -83,36 +84,18 @@ export default function WatchModal({
           </button>
         </div>
 
-        <p className="small muted" style={{ marginTop: 4 }}>
-          Bata séries e receba a vibração do timer direto no pulso.
-        </p>
+        <p className="small muted" style={{ marginTop: 4 }}>Registre séries e sinta o fim do descanso no pulso.</p>
         {relayError && <p role="status" className="small">{relayError}</p>}
         <section className="card" style={{ marginTop: 12 }}>
-          <h3>{enabled ? 'Envio ao Watch ativado' : 'Envio ao Watch desativado'}</h3>
-          <p className="small muted" style={{ marginTop: 8 }}>Ao ativar, exercício atual, carga/repetições, séries e descanso são enviados para <b>{new URL(destination).hostname}</b>, usando seu código de pareamento. O relay permite consultar esse estado e enviar comandos a quem tiver o código. Não compartilhe o código.</p>
-          <p className="tiny muted" style={{ marginTop: 8 }}>Desligar interrompe novos envios e comandos neste aparelho. Não confirma exclusão do estado já recebido pelo relay; não há garantia de prazo de retenção configurada no aplicativo.</p>
-          <button className="btn btn-ghost" style={{ marginTop: 12 }} onClick={() => privacy.setWatchDestination(enabled ? null : destination)}>
-            {enabled ? 'Desativar envio ao Watch' : 'Ativar envio ao Watch'}
-          </button>
+          <Switch label="Enviar treino ao relógio" hint={enabled ? statusLabel[syncState].text : 'Desligado'} checked={enabled}
+            onChange={(on) => privacy.setWatchDestination(on ? destination : null)} />
           {preference.error && <p role="alert" className="small">{preference.error}</p>}
+          <details className="more">
+            <summary>Privacidade</summary>
+            <p>Ligado, o exercício atual, carga, repetições, séries e descanso vão para <b>{new URL(destination).hostname}</b> com seu código de pareamento. Quem tiver o código pode consultar esse estado e enviar comandos: não compartilhe.</p>
+            <p>Desligar interrompe novos envios neste aparelho, mas não apaga o que o servidor já recebeu.</p>
+          </details>
         </section>
-
-        {/* Status de Conexão */}
-        <div
-          className="card"
-          style={{
-            marginTop: 14,
-            padding: '10px 14px',
-            borderColor: syncState === 'connected' ? 'var(--green)' : 'var(--line)',
-          }}
-        >
-          <div className="between">
-            <span className="tiny muted">Status da Sincronização</span>
-            <span className="tiny num font-bold" style={{ color: statusLabel[syncState].color }}>
-              {statusLabel[syncState].text}
-            </span>
-          </div>
-        </div>
 
         {/* Card Principal: 1-Click Install */}
         <div
@@ -135,26 +118,27 @@ export default function WatchModal({
             }}
             onClick={handleInstallShortcut}
           >
-            <span>{installing ? '✓ Abrindo o app Atalhos...' : 'Adicionar ao Apple Watch (1 Toque)'}</span>
+            <span>{installing ? '✓ Abrindo o app Atalhos…' : 'Instalar atalho no iPhone'}</span>
           </button>
 
+          {!enabled && <p className="small muted" style={{ marginTop: 8 }}>Ligue “Enviar treino ao relógio” para o atalho funcionar.</p>}
           <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div className="row" style={{ alignItems: 'flex-start', gap: 10 }}>
               <span className="step-n">1</span>
               <p className="tiny muted" style={{ margin: 0, lineHeight: 1.4 }}>
-                Ao tocar no botão acima, seu iPhone abrirá a janela nativa da Apple.
+                O app Atalhos abre.
               </p>
             </div>
             <div className="row" style={{ alignItems: 'flex-start', gap: 10 }}>
               <span className="step-n">2</span>
               <p className="tiny muted" style={{ margin: 0, lineHeight: 1.4 }}>
-                Toque no botão azul <b>"Adicionar Atalho"</b>.
+                Toque em <b>Adicionar Atalho</b>.
               </p>
             </div>
             <div className="row" style={{ alignItems: 'flex-start', gap: 10 }}>
               <span className="step-n">3</span>
               <p className="tiny muted" style={{ margin: 0, lineHeight: 1.4 }}>
-                Pronto! O atalho <b>WinFit</b> já aparecerá no seu relógio e na lista de Complicações.
+                O atalho <b>WinFit</b> aparece no relógio.
               </p>
             </div>
           </div>
@@ -163,7 +147,7 @@ export default function WatchModal({
         {/* Token do Usuário */}
         <div className="card" style={{ marginTop: 12, padding: '12px 14px' }}>
           <div className="between">
-            <span className="tiny muted">Seu Token de Pareamento</span>
+            <span className="tiny muted">Código de pareamento</span>
             <button className="tiny accent-text" onClick={() => setEditingToken(!editingToken)}>
               {editingToken ? 'Cancelar' : 'Alterar'}
             </button>
@@ -179,7 +163,7 @@ export default function WatchModal({
                 style={{ padding: '4px 10px', minHeight: 30, fontSize: 12 }}
                 onClick={() => copyToClipboard(watchToken, 'token')}
               >
-                {copied === 'token' ? '✓ Copiado' : 'Copiar Token'}
+                {copied === 'token' ? '✓ Copiado' : 'Copiar'}
               </button>
             </div>
           ) : (
@@ -193,7 +177,7 @@ export default function WatchModal({
                 placeholder="WF-XXXX"
               />
               <button className="btn btn-primary btn-sm" style={{ marginTop: 8 }} onClick={handleSaveToken}>
-                Salvar Token
+                Salvar código
               </button>
             </div>
           )}
