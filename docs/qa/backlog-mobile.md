@@ -1,6 +1,6 @@
 # QA móvel do backlog
 
-Execução local: 2026-10-26T19:08:47.853Z · Chrome headless · http://127.0.0.1:5173/
+Execução local: 2026-11-15T22:13:22.143Z · Chrome headless · http://127.0.0.1:5173/
 
 - PASS: Hub contém quatro módulos e links auxiliares
 - PASS: Academia e calistenia preservam sessão, índice, séries e descanso
@@ -72,6 +72,6 @@ Inspeção visual de Home390, Nutrition320 e Routine320: módulos legíveis e se
     "events",
     "poll"
   ],
-  "viewportScreenshots": "C:\\IA\\winfit\\docs\\testing\\artifacts"
+  "viewportScreenshots": "/home/user/winfit/docs/testing/artifacts"
 }
 ```

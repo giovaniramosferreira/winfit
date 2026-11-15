@@ -28,10 +28,10 @@ async function run() {
     useStore.getState().completeOnboarding({goal:'health',experience:'none',currentState:'sometimes',location:'gym_full',equipment:['halteres','barra','banco','maquinas','polia','peso_corporal'],frequency:3,sessionTimeMin:30,limitations:[],biometrics:{},version:1})
     const {privacy}=await import(window.__qaPath('/src/lib/privacy.ts')); privacy.setWatchDestination(null)
   })
-  await go('/home'); await page.reload(); await page.getByRole('heading',{name:'Seu momento de cuidar.'}).waitFor()
+  await go('/home'); await page.reload(); await page.getByRole('heading',{name:/Hoje é dia de/}).waitFor()
   await check('Hub contém quatro módulos e links auxiliares',async()=>{
-    for(const href of ['/training','/calisthenics','/pelvic','/nutrition','/routine','/assistant']) assert.ok(await page.locator(`a[href="#${href}"]`).count(),href)
-    assert.match(await page.locator('body').innerText(),/Respiração disponível/)
+    for(const href of ['/training','/calisthenics','/circuit','/pelvic','/nutrition','/routine','/assistant']) assert.ok(await page.locator(`a[href="#${href}"]`).count(),href)
+    assert.match(await page.locator('body').innerText(),/Pausa de 1 min/)
   })
   await check('Academia e calistenia preservam sessão, índice, séries e descanso',async()=>{
     await go('/training'); await page.getByRole('button',{name:'Começar treino',exact:true}).click(); await page.waitForURL('**#/player')
@@ -42,7 +42,7 @@ async function run() {
   })
   await check('Watch sem consentimento gera zero requests',async()=>{await page.waitForTimeout(1600);assert.equal(relay.length,0)})
   await check('Watch opt-in inicia relay mock e revogação interrompe',async()=>{
-    await go('/profile'); await page.getByRole('button',{name:'Adicionar ao Apple Watch',exact:true}).click(); await page.getByRole('button',{name:'Ativar envio ao Watch',exact:true}).click(); await page.getByRole('button',{name:'✕',exact:true}).click(); await go('/player'); await page.waitForTimeout(1300); assert.ok(relay.length>0); assert.ok(relay.some(r=>r.kind==='status')); assert.ok(relay.some(r=>r.kind==='poll'))
+    await go('/profile'); await page.getByRole('button',{name:/Apple Watch/}).click(); await page.getByRole('switch',{name:/Enviar treino ao relógio/}).check(); await page.getByRole('button',{name:'✕',exact:true}).click(); await go('/player'); await page.waitForTimeout(1300); assert.ok(relay.length>0); assert.ok(relay.some(r=>r.kind==='status')); assert.ok(relay.some(r=>r.kind==='poll'))
     const otherTab = await context.newPage()
     await otherTab.goto(`${base}#/home`)
     await otherTab.evaluate(()=>localStorage.setItem('winfit-privacy-v1',JSON.stringify({watchDestination:null})))
@@ -50,26 +50,30 @@ async function run() {
     await page.waitForTimeout(200); const count=relay.length; await page.waitForTimeout(1500); assert.equal(relay.length,count)
   })
   await check('Saúde pélvica inicia, pausa e recarrega pausada',async()=>{
-    await go('/pelvic'); assert.ok(await page.getByRole('button',{name:'Aguardando revisão profissional'}).isDisabled()); await page.getByRole('button',{name:/Começar pausa/}).click(); await page.waitForTimeout(1200); await page.getByRole('button',{name:'Pausar',exact:true}).click()
+    await go('/pelvic'); await page.getByText('Em breve, após revisão profissional').waitFor(); assert.equal(await page.getByRole('button',{name:/Kegel/}).count(),0); await page.getByRole('button',{name:/Começar pausa/}).click(); await page.waitForTimeout(1200); await page.getByRole('button',{name:'Pausar',exact:true}).click()
     const before=await page.evaluate(async()=>{const {usePelvicStore}=await import(window.__qaPath('/src/lib/pelvicStore.ts'));return usePelvicStore.getState().active.timer.elapsedMs})
     await page.reload(); await page.getByRole('button',{name:'Retomar',exact:true}).waitFor(); await page.waitForTimeout(1100)
     const after=await page.evaluate(async()=>{const {usePelvicStore}=await import(window.__qaPath('/src/lib/pelvicStore.ts'));return usePelvicStore.getState().active.timer.elapsedMs});assert.equal(before,after)
   })
   await check('Alimentação: pendência, edição, exclusão, restauração e meta persistem',async()=>{
-    await go('/nutrition'); await page.getByRole('button',{name:'Adicionar refeição',exact:true}).click(); await page.getByLabel('Alimento',{exact:true}).fill('Arroz QA'); await page.getByRole('button',{name:'Salvar refeição',exact:true}).click(); await page.getByText('Arroz QA · kcal pendentes',{exact:true}).waitFor(); await page.getByText('Total parcial',{exact:true}).waitFor()
-    await page.getByRole('button',{name:'Editar refeição',exact:true}).click(); await page.getByLabel('Calorias da porção (opcional)',{exact:true}).fill('125'); await page.getByRole('button',{name:'Salvar refeição',exact:true}).click(); await page.getByText('Arroz QA · 125 kcal',{exact:true}).waitFor()
-    await page.getByRole('button',{name:'Excluir refeição',exact:true}).click(); await page.getByText(/Refeições excluídas \(1\)/).click(); await page.getByRole('button',{name:'Restaurar refeição',exact:true}).click(); await page.getByText('Arroz QA · 125 kcal',{exact:true}).waitFor()
-    await page.getByRole('button',{name:'Configurar meta',exact:true}).click(); await page.getByLabel('Meta (kcal)',{exact:true}).fill('2200'); await page.getByRole('button',{name:'Salvar meta',exact:true}).click(); await page.reload(); await page.getByText('Arroz QA · 125 kcal',{exact:true}).waitFor(); await page.getByText(/Meta informada: 2.200 kcal/).waitFor()
+    await go('/nutrition'); await page.getByRole('button',{name:'Adicionar refeição',exact:true}).click(); await page.getByLabel('Alimento',{exact:true}).fill('Arroz QA'); await page.getByRole('button',{name:'Salvar refeição',exact:true}).click(); await page.getByText('Arroz QA · kcal pendentes',{exact:true}).waitFor(); await page.getByText('1 item sem calorias',{exact:true}).waitFor()
+    await page.getByRole('button',{name:'Editar',exact:true}).click(); await page.getByLabel('Calorias (kcal)',{exact:true}).fill('125'); await page.getByRole('button',{name:'Salvar refeição',exact:true}).click(); await page.getByText('Arroz QA · 125 kcal',{exact:true}).waitFor()
+    await page.getByRole('button',{name:'Excluir',exact:true}).click(); await page.getByText(/Refeições excluídas \(1\)/).click(); await page.getByRole('button',{name:'Restaurar refeição',exact:true}).click(); await page.getByText('Arroz QA · 125 kcal',{exact:true}).waitFor()
+    await page.getByRole('button',{name:'Definir meta diária',exact:true}).click(); await page.getByLabel('Meta (kcal)',{exact:true}).fill('2200'); await page.getByRole('button',{name:'Salvar meta',exact:true}).click(); await page.reload(); await page.getByText('Arroz QA · 125 kcal',{exact:true}).waitFor(); await page.getByText(/de 2\.200 kcal/).waitFor()
   })
   await check('Rotina: checklist e lembretes desligados persistem',async()=>{
-    await go('/routine'); assert.equal(await page.getByLabel('Lembrete de treino',{exact:true}).isChecked(),false); await page.getByLabel('Novo item',{exact:true}).fill('Garrafa QA'); await page.getByRole('button',{name:'Adicionar',exact:true}).click(); await page.getByLabel('Texto do item',{exact:true}).last().waitFor(); await page.locator('section').filter({has:page.getByRole('heading',{name:'Checklist por local',exact:true})}).locator('input[type=checkbox]').last().check(); await page.reload(); assert.equal(await page.locator('section').filter({has:page.getByRole('heading',{name:'Checklist por local',exact:true})}).locator('input[type=checkbox]').last().isChecked(),true); assert.equal(await page.getByLabel('Texto do item',{exact:true}).last().inputValue(),'Garrafa QA'); assert.equal(await page.getByLabel('Lembrete de treino',{exact:true}).isChecked(),false)
+    const reminder = () => page.getByRole('switch',{name:/Lembrar de treinar/})
+    const boxes = () => page.locator('#routine-checklist input[type=checkbox]')
+    await go('/routine'); assert.equal(await reminder().isChecked(),false)
+    await page.getByRole('button',{name:'Checklist',exact:true}).click(); await page.getByLabel('Novo item',{exact:true}).fill('Garrafa QA'); await page.getByRole('button',{name:'Adicionar item',exact:true}).click(); await page.getByLabel('Texto do item',{exact:true}).last().waitFor(); await boxes().last().check()
+    await page.reload(); assert.equal(await reminder().isChecked(),false); await page.getByRole('button',{name:'Checklist',exact:true}).click(); assert.equal(await boxes().last().isChecked(),true); assert.equal(await page.getByLabel('Texto do item',{exact:true}).last().inputValue(),'Garrafa QA')
   })
   await check('Progresso abre detalhes das séries históricas',async()=>{
     await page.evaluate(async()=>{const {useStore}=await import(window.__qaPath('/src/lib/store.ts'));useStore.getState().finishSession()})
     await go('/progress'); const link=page.locator('a[href^="#/session/"]').first(); await link.waitFor(); await link.click(); await page.getByText(/Série 1: 7,25 kg/).waitFor()
   })
   await check('Assistente mostra proposta sem aplicar automaticamente',async()=>{
-    await go('/assistant'); const before=await page.evaluate(async()=>{const {useStore}=await import(window.__qaPath('/src/lib/store.ts'));return JSON.stringify(useStore.getState().plan)}); await page.getByRole('button',{name:'Ver proposta',exact:true}).click(); await page.getByRole('heading',{name:'Prévia',exact:true}).waitFor(); const after=await page.evaluate(async()=>{const {useStore}=await import(window.__qaPath('/src/lib/store.ts'));return JSON.stringify(useStore.getState().plan)});assert.equal(after,before)
+    await go('/assistant'); const before=await page.evaluate(async()=>{const {useStore}=await import(window.__qaPath('/src/lib/store.ts'));return JSON.stringify(useStore.getState().plan)}); await page.getByRole('button',{name:'Ver proposta',exact:true}).click(); await page.getByRole('heading',{name:/Proposta/}).waitFor(); const after=await page.evaluate(async()=>{const {useStore}=await import(window.__qaPath('/src/lib/store.ts'));return JSON.stringify(useStore.getState().plan)});assert.equal(after,before)
   })
   for(const width of [390,320]) for(const route of ['/home','/training','/calisthenics','/pelvic','/nutrition','/routine','/progress','/assistant']) await check(`Layout ${width}px ${route}`,async()=>{
     await page.setViewportSize({width,height:width===390?844:568});await go(route)
