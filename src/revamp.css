@@ -143,3 +143,10 @@
 .product-shell .demo-control[aria-pressed="true"]::before { width: 8px; height: 10px; border: 0; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
 .steps-list li + li { margin-top: 8px !important; }
 .steps-list li { padding-block: 2px !important; }
+
+/* ── Perfil ───────────────────────────────────────────────────────────────── */
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 12px 0 0; font-size: 14.5px; }
+.kv dt { color: var(--text-dim); }
+.kv dd { margin: 0; text-align: right; font-weight: 550; }
+.settings-row { border: 1px solid #e7e0ef; text-align: left; font: inherit; }
+.file-btn { display: flex; align-items: center; justify-content: center; cursor: pointer; }

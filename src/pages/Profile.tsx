@@ -11,6 +11,8 @@ import DataControls from '../components/DataControls'
 import { applicationSnapshot, downloadBackup, resetApplicationData } from '../lib/applicationBackup'
 import { useAuth } from '../components/AuthProvider'
 import { privacy } from '../lib/privacy'
+import PageTop from '../components/PageTop'
+import Icon from '../components/Icon'
 
 const GOAL_LABEL: Record<Goal, string> = {
   hypertrophy: 'Ganhar músculo',
@@ -24,7 +26,6 @@ export default function Profile() {
   const nav = useNavigate()
   const profile = useStore((s) => s.profile)!
   const plan = useStore((s) => s.plan)!
-  const watchToken = useStore((s) => s.watchToken)
   const regenerate = useStore((s) => s.regenerate)
   const { logout } = useAuth()
   const [dataError, setDataError] = useState('')
@@ -54,104 +55,63 @@ export default function Profile() {
     nav('/onboarding')
   }
 
+  const equipmentText = profile.location === 'gym_full'
+    ? 'Academia completa'
+    : profile.equipment.length > 0 ? profile.equipment.map((e: Equipment) => EQUIP_LABEL[e]).join(', ') : 'Só peso do corpo'
+
   return (
     <div className="page product-shell account-screen profile-screen fade-in">
-      <div className="screen-topline"><span className="screen-kicker">Seu espaço</span><span className="account-brand">Win<em>Fit</em></span></div>
-      <h1 className="screen-title">Seu plano e <em>suas preferências.</em></h1><p className="screen-subtitle">Tudo do seu jeito, em um só lugar.</p>
+      <PageTop title="Perfil" back={false} />
+      {needRefresh && <div className="note" role="status" style={{ marginBottom: 12 }}>
+        <b>Nova versão pronta.</b>
+        <button className="btn btn-primary btn-sm" style={{ display: 'block', marginTop: 10 }} onClick={update}>Atualizar agora</button>
+      </div>}
+      {!online && <p className="small muted" style={{ marginBottom: 12 }}>Sem conexão. O app continua funcionando.</p>}
 
-      <div className="card account-plan-card" style={{ marginTop: 16 }}>
-        <div className="between">
-          <h3>Seu treino, do seu jeito</h3>
-          <span className="pill accent">{plan.splitLabel}</span>
-        </div>
-        <p className="small muted num" style={{ marginTop: 6 }}>
-          {GOAL_LABEL[profile.goal]} · {profile.frequency}x/semana · ~{profile.sessionTimeMin} min
-        </p>
-        <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={() => setShowPlan(!showPlan)}>
-          {showPlan ? 'Ocultar treinos' : 'Ver treinos da semana'}
-        </button>
+      <section className="card account-plan-card">
+        <h2 className="field-title" style={{ fontSize: 18 }}>{plan.splitLabel}</h2>
+        <dl className="kv">
+          <dt>Objetivo</dt><dd>{GOAL_LABEL[profile.goal]}</dd>
+          <dt>Frequência</dt><dd className="num">{profile.frequency}x por semana</dd>
+          <dt>Duração</dt><dd className="num">~{profile.sessionTimeMin} min</dd>
+          <dt>Equipamento</dt><dd>{equipmentText}</dd>
+        </dl>
+        <button className="btn btn-primary" style={{ marginTop: 14 }} onClick={() => setAdjust(true)}>Editar plano</button>
+        <button className="btn btn-quiet" onClick={() => setShowPlan(!showPlan)}>{showPlan ? 'Ocultar treinos' : 'Ver treinos do plano'}</button>
         {showPlan && (
-          <div style={{ marginTop: 10 }}>
+          <div style={{ marginTop: 4 }}>
             {plan.days.map((d) => (
               <div key={d.id} style={{ padding: '10px 0', borderTop: '1px solid var(--line)' }}>
-                <h3 style={{ fontSize: 14 }}>{d.label} <span className="tiny faint num">~{d.estMin} min</span></h3>
+                <h3 style={{ fontSize: 15 }}>{d.label} <span className="small muted num">~{d.estMin} min</span></h3>
                 {d.exercises.map((pe) => (
                   <div key={pe.id} className="between" style={{ marginTop: 4 }}>
                     <span className="small muted">{byId.get(pe.exerciseId)?.name}</span>
-                    <span className="tiny faint num">{pe.sets}×{pe.repMin}–{pe.repMax}</span>
+                    <span className="small muted num">{pe.sets}×{pe.repMin}–{pe.repMax}</span>
                   </div>
                 ))}
               </div>
             ))}
           </div>
         )}
-        <div className="row" style={{ marginTop: 12 }}>
-          <button className="btn btn-primary btn-sm grow" onClick={() => setAdjust(true)}>Ajustar plano</button>
-          <button className="btn btn-ghost btn-sm grow" onClick={redoOnboarding}>Refazer perguntas</button>
-        </div>
-      </div>
+      </section>
 
-      <div className="card" style={{ marginTop: 12 }}>
-        <h3>Equipamento</h3>
-        <p className="small muted" style={{ marginTop: 6 }}>
-          {profile.location === 'gym_full'
-            ? 'Academia completa — tudo disponível.'
-            : profile.equipment.length > 0
-              ? profile.equipment.map((e: Equipment) => EQUIP_LABEL[e]).join(', ') + ' + peso corporal'
-              : 'Somente peso corporal.'}
-        </p>
-        <p className="tiny faint" style={{ marginTop: 6 }}>Para mudar, use "Refazer perguntas".</p>
-      </div>
+      <h2 className="hub-section">Ajustes</h2>
+      <button className="hub-row settings-row" style={{ marginTop: 0, width: '100%' }} onClick={() => setWatchModal(true)}>
+        <span className="hub-row-icon"><Icon name="timer" /></span>
+        <span className="hub-row-copy"><b>Apple Watch</b><small>Registrar séries pelo relógio</small></span>
+        <Icon name="chevron" />
+      </button>
+      <div style={{ marginTop: 12 }}><InstallCard variant="settings" /></div>
+      <div style={{ marginTop: 12 }}><AccountCard /></div>
 
-      <div className="card" style={{ marginTop: 12 }}>
-        <div className="between">
-          <h3>Apple Watch</h3>
-          <span className="pill accent num">{watchToken}</span>
-        </div>
-        <p className="small muted" style={{ marginTop: 6 }}>
-          Bata séries e receba a vibração do timer no relógio sem tirar o iPhone do bolso.
-        </p>
-        <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={() => setWatchModal(true)}>
-          Adicionar ao Apple Watch
-        </button>
-      </div>
-
-      <h2 className="ui-section-heading account-section-heading">Conta e conexão</h2>
-      <AccountCard />
-      <DataControls />
-
-      <div style={{ marginTop: 12 }}>
-        <InstallCard variant="settings" />
-      </div>
-
-      <div className="card" style={{ marginTop: 12 }}>
-        <h3>Versão</h3>
-        <p className="small muted" style={{ marginTop: 6 }}>
-          {needRefresh
-            ? 'Uma versão nova está pronta para ser aplicada.'
-            : online
-              ? 'Você está na versão mais recente.'
-              : 'Sem conexão — o app roda offline; a checagem de versão volta quando a internet voltar.'}
-        </p>
-        {needRefresh && (
-          <button className="btn btn-primary btn-sm" style={{ marginTop: 12 }} onClick={update}>
-            Atualizar agora
-          </button>
-        )}
-      </div>
-
-      <h2 className="ui-section-heading account-section-heading">Privacidade e dados</h2>
-      <div className="card account-data-card" style={{ marginTop: 12 }}>
-        <h3>Seus dados</h3>
-        <p className="small muted" style={{ marginTop: 6 }}>
-          Os registros ficam neste aparelho. Backup na conta só é enviado após sua confirmação; fotos ficam fora desse backup. Exporte uma cópia antes de limpar dados.
-        </p>
-        <button className="btn btn-ghost btn-sm" style={{ marginTop: 12 }} onClick={doExport}>
-          ⬇ Exportar meus dados (JSON)
-        </button>
-        <button className="btn btn-danger btn-sm" style={{ marginTop: 10 }}
+      <details className="card more-card" style={{ marginTop: 12 }}>
+        <summary>Dados e backup</summary>
+        <p className="small muted" style={{ marginTop: 6 }}>Seus registros ficam neste aparelho.</p>
+        <button className="btn btn-ghost" style={{ marginTop: 12 }} onClick={doExport}>Exportar meus dados</button>
+        <DataControls />
+        <button className="btn btn-danger" style={{ marginTop: 12 }}
           onClick={() => {
-            if (confirm('Apagar dados locais de treino, circuito, alimentação, saúde pélvica e rotina? Exporte um backup antes. Esta ação não exclui backups na nuvem.')) {
+            if (confirm('Apagar todos os dados deste aparelho? Exporte um backup antes. Backups na nuvem não são apagados.')) {
               try { resetApplicationData(); privacy.setWatchDestination(null); logout(); nav('/') }
               catch (error) { setDataError(String(error)) }
             }
@@ -159,50 +119,36 @@ export default function Profile() {
           Apagar dados deste aparelho
         </button>
         {dataError && <p role="alert" className="small">{dataError}</p>}
-      </div>
+      </details>
 
-      <p className="tiny faint" style={{ marginTop: 20, textAlign: 'center' }}>
-        WinFit MVP · O WinFit não substitui avaliação médica ou profissional de educação física presencial.
-        Sentiu dor persistente? Procure um profissional de saúde.
-      </p>
+      <details className="card more-card" style={{ marginTop: 12 }}>
+        <summary>Sobre o WinFit</summary>
+        <p className="small muted" style={{ marginTop: 6 }}>O WinFit não substitui avaliação médica ou de um profissional de educação física. Sentiu dor persistente? Procure ajuda.</p>
+        <p className="small muted" style={{ marginTop: 8 }}>
+          Interface e ícones adaptados do <a href="https://www.figma.com/community/file/1091263687486055207/free-fitness-app-ui-kit" target="_blank" rel="noreferrer">Pump House / Free Fitness App UI Kit, por Figma Pro</a>, sob <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.
+        </p>
+      </details>
 
       {adjust && (
         <div className="modal-back" onClick={() => setAdjust(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>Ajustar plano</h2>
-            <p className="tiny faint" style={{ marginTop: 4 }}>
-              O plano atual é arquivado e um novo é gerado. Seu histórico e recordes são preservados.
-            </p>
-            <label className="field">Objetivo</label>
-            <div className="row" style={{ flexWrap: 'wrap' }}>
+          <div className="modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="adjust-title">
+            <h2 id="adjust-title">Editar plano</h2>
+            <p className="small muted" style={{ marginTop: 4 }}>Um novo plano é gerado. Histórico e recordes continuam.</p>
+            <h3 className="field-title" style={{ marginTop: 16 }}>Objetivo</h3>
+            <div className="lib-chips" style={{ flexWrap: 'wrap', margin: 0, padding: 0 }}>
               {(Object.keys(GOAL_LABEL) as Goal[]).map((g) => (
-                <button key={g} className={`pill ${goal === g ? 'accent' : ''}`} onClick={() => setGoal(g)}>
-                  {GOAL_LABEL[g]}
-                </button>
+                <button key={g} className={`lib-chip${goal === g ? ' on' : ''}`} aria-pressed={goal === g} onClick={() => setGoal(g)}>{GOAL_LABEL[g]}</button>
               ))}
             </div>
-            <label className="field">Dias por semana</label>
-            <div className="row">
-              {[2, 3, 4, 5, 6].map((f) => (
-                <button key={f} className={`pill num ${freq === f ? 'accent' : ''}`} onClick={() => setFreq(f)}>{f}</button>
-              ))}
-            </div>
-            <label className="field">Tempo por treino</label>
-            <div className="row">
-              {[30, 45, 60, 75].map((t) => (
-                <button key={t} className={`pill num ${time === t ? 'accent' : ''}`} onClick={() => setTime(t)}>{t} min</button>
-              ))}
-            </div>
-            <button className="btn btn-primary" style={{ marginTop: 20 }} onClick={applyAdjust}>
-              Gerar novo plano
-            </button>
+            <h3 className="field-title" style={{ marginTop: 16 }}>Dias por semana</h3>
+            <div className="seg">{[2, 3, 4, 5, 6].map((f) => <button key={f} className="num" aria-pressed={freq === f} onClick={() => setFreq(f)}>{f}</button>)}</div>
+            <h3 className="field-title">Tempo por treino</h3>
+            <div className="seg">{[30, 45, 60, 75].map((t) => <button key={t} className="num" aria-pressed={time === t} onClick={() => setTime(t)}>{t}′</button>)}</div>
+            <button className="btn btn-primary" style={{ marginTop: 8 }} onClick={applyAdjust}>Gerar novo plano</button>
+            <button className="btn btn-quiet" onClick={redoOnboarding}>Mudar local, equipamento ou limitações</button>
           </div>
         </div>
       )}
-
-      <p className="tiny faint" style={{ marginTop: 24, lineHeight: 1.7 }}>
-        Interface e ícones adaptados do <a href="https://www.figma.com/community/file/1091263687486055207/free-fitness-app-ui-kit" target="_blank" rel="noreferrer">Pump House / Free Fitness App UI Kit, por Figma Pro</a>, sob <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>. Cores, tipografia e organização adaptadas para o WinFit.
-      </p>
       {watchModal && <WatchModal onClose={() => setWatchModal(false)} />}
     </div>
   )
