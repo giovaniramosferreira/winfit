@@ -192,3 +192,15 @@
 :is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .btn.btn-quiet:not(.btn-primary) { background: none; border: 0; }
 .routine-page .check-list input:not([type]) { background: none !important; border: 0 !important; padding: 8px 0 !important; }
 :is(.nutrition-page,.pelvic-page,.routine-page,.assistant-page) .seg > button { font-size: 14px; }
+
+/* ── Onboarding ───────────────────────────────────────────────────────────── */
+.onboarding-screen .screen-topline { min-height: 44px; }
+.onboarding-screen .progressbar { height: 6px; border-radius: 6px; margin-bottom: 26px; }
+.onboarding-screen .progressbar > div { border-radius: 6px; }
+.onboarding-screen .choice-grid { margin-top: 4px; }
+.unit-input { position: relative; }
+.unit-input .input { padding-right: 60px; font-size: 18px; }
+.unit-input span { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 15px; pointer-events: none; }
+.spinner { width: 40px; height: 40px; margin: 0 auto; border-radius: 50%; border: 4px solid #e3d8f2; border-top-color: #7450bd; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }

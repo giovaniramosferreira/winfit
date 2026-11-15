@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
-import { byId } from '../data/exercises'
-import { ANATOMY } from '../data/anatomy'
+import { byId, MUSCLE_LABEL } from '../data/exercises'
 
 export default function Preview() {
   const plan = useStore((s) => s.plan)
@@ -12,7 +11,7 @@ export default function Preview() {
   const [showWhy, setShowWhy] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setBuilding(false), 1400)
+    const t = setTimeout(() => setBuilding(false), 700)
     return () => clearTimeout(t)
   }, [])
 
@@ -22,11 +21,8 @@ export default function Preview() {
     return (
       <div className="page-full product-shell account-screen preview-screen center" style={{ justifyContent: 'center' }}>
         <div className="fade-in">
-          <div className="eyebrow accent">Escrevendo</div>
-          <h2 style={{ marginTop: 10, fontSize: 26 }}>Montando seu plano…</h2>
-          <p className="muted small" style={{ marginTop: 8 }}>
-            Ajustando ao seu equipamento · Distribuindo o volume semanal · Calibrando repetições
-          </p>
+          <div className="spinner" aria-hidden="true" />
+          <h2 style={{ marginTop: 16, fontSize: 24 }} role="status">Montando seu plano…</h2>
         </div>
       </div>
     )
@@ -37,7 +33,7 @@ export default function Preview() {
       <div className="account-entry-mark" aria-hidden="true">✓</div><div className="screen-kicker">Seu plano está pronto</div>
       <h1 className="screen-title" style={{ marginTop: 8 }}>{plan.splitLabel}</h1>
       <p className="muted" style={{ marginTop: 6 }}>
-        {plan.days.length} treinos/semana · ~{Math.round(plan.days.reduce((a, d) => a + d.estMin, 0) / plan.days.length)} min por sessão
+        {plan.days.length} treinos por semana · ~{Math.round(plan.days.reduce((a, d) => a + d.estMin, 0) / plan.days.length)} min por sessão
       </p>
 
       {plan.notes.map((n) => (
@@ -68,7 +64,7 @@ export default function Preview() {
                 <div className="small muted num">{day.exercises.length} exercícios · ~{day.estMin} min</div>
                 <div style={{ marginTop: 6 }}>
                   {day.targetMuscles.slice(0, 4).map((m) => (
-                    <span key={m} className="muscle-tag">{ANATOMY[m].latin}</span>
+                    <span key={m} className="muscle-tag">{MUSCLE_LABEL[m]}</span>
                   ))}
                 </div>
               </div>
@@ -92,8 +88,8 @@ export default function Preview() {
       </div>
 
       <div style={{ marginTop: 20 }}>
-        <button className="btn btn-primary" onClick={() => nav('/home')}>Salvar meu plano</button>
-        <button className="btn btn-quiet" onClick={() => nav('/onboarding')}>Ajustar respostas</button>
+        <button className="btn btn-primary" onClick={() => nav('/home')}>Começar</button>
+        <button className="btn btn-quiet" onClick={() => nav('/onboarding')}>Mudar respostas</button>
       </div>
     </div>
   )

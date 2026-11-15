@@ -110,7 +110,6 @@ export default function Onboarding() {
     <div className="page-full product-shell account-screen onboarding-screen fade-in" key={d.step}>
       <div className="screen-topline" style={{ marginBottom: 8 }}>
         <button className="btn-quiet" onClick={back} style={{ padding: '8px 0' }}>← Voltar</button>
-        <span className="eyebrow num">Pergunta {d.step} de {totalSteps}</span>
       </div>
       <div className="progressbar" role="progressbar" aria-label="Perguntas do seu plano" aria-valuemin={1} aria-valuemax={totalSteps} aria-valuenow={d.step}><div style={{ width: `${(d.step / totalSteps) * 100}%` }} /></div>
 
@@ -137,7 +136,7 @@ export default function Onboarding() {
       )}
 
       {d.step === 3 && (
-        <Step title="Como está sua rotina de treino hoje?" sub="Quem está voltando de pausa recebe um plano de readaptação — sem dor desnecessária na primeira semana.">
+        <Step title="Como está sua rotina de treino hoje?" sub="Se estiver voltando de pausa, o plano começa mais leve.">
           {STATE.map((o) => (
             <button key={o.v} className={`option ${d.currentState === o.v ? 'selected' : ''}`}
               onClick={() => next({ currentState: o.v })}>
@@ -162,7 +161,7 @@ export default function Onboarding() {
       )}
 
       {d.step === 5 && (
-        <Step title="O que você tem disponível?" sub="Só prescrevemos o que você pode executar de verdade.">
+        <Step title="O que você tem disponível?">
           {EQUIP_OPTS.map((o) => (
             <button key={o.v} className={`option ${d.equipment?.includes(o.v) ? 'selected' : ''}`}
               onClick={() => setD({ ...d, equipment: toggleArr(d.equipment, o.v) })}>
@@ -175,35 +174,37 @@ export default function Onboarding() {
             onClick={() => next({})}>
             Continuar
           </button>
-          <p className="tiny faint center" style={{ marginTop: 10 }}>Peso corporal sempre conta — não precisa marcar.</p>
         </Step>
       )}
 
       {d.step === 6 && (
-        <Step title="Quantos dias por semana você consegue treinar?" sub="Seja realista — dá para ajustar depois.">
-          {FREQS.map((f) => (
-            <button key={f} className={`option ${d.frequency === f ? 'selected' : ''}`}
-              onClick={() => next({ frequency: f })}>
-              <span className="icon num" style={{ fontSize: 22 }}>{f}</span>
-              <span>dias por semana</span>
-            </button>
-          ))}
+        <Step title="Quantos dias por semana?" sub="Dá para mudar depois.">
+          <div className="choice-grid" style={{ gridTemplateColumns: `repeat(${FREQS.length}, 1fr)` }}>
+            {FREQS.map((f) => (
+              <button key={f} className={d.frequency === f ? 'selected' : ''} aria-label={`${f} dias por semana`}
+                onClick={() => next({ frequency: f })}>
+                <span className="num">{f}</span><small>dias</small>
+              </button>
+            ))}
+          </div>
         </Step>
       )}
 
       {d.step === 7 && (
         <Step title="Quanto tempo por treino?">
-          {TIMES.map((o) => (
-            <button key={o.v} className={`option ${d.sessionTimeMin === o.v ? 'selected' : ''}`}
-              onClick={() => next({ sessionTimeMin: o.v })}>
-              <span>{o.t}</span>
-            </button>
-          ))}
+          <div className="choice-grid">
+            {TIMES.map((o) => (
+              <button key={o.v} className={d.sessionTimeMin === o.v ? 'selected' : ''} aria-label={o.t}
+                onClick={() => next({ sessionTimeMin: o.v })}>
+                <span className="num">{o.v}{o.v === 75 ? '+' : ''}</span><small>min</small>
+              </button>
+            ))}
+          </div>
         </Step>
       )}
 
       {d.step === 8 && (
-        <Step title="Alguma região com dor ou limitação?" sub="Vamos evitar os padrões que mais estressam essas regiões.">
+        <Step title="Alguma região com dor ou limitação?" sub="Marque quantas quiser. Evitamos exercícios que forçam essas regiões.">
           <button className={`option ${(d.limitations ?? []).length === 0 && d.limitations !== undefined ? 'selected' : ''}`}
             onClick={() => next({ limitations: [] })}>
             <span>Nenhuma</span>
@@ -215,25 +216,21 @@ export default function Onboarding() {
               <span style={{ marginLeft: 'auto' }}>{d.limitations?.includes(o.v) ? '✓' : ''}</span>
             </button>
           ))}
-          {(d.limitations?.length ?? 0) > 0 && (
-            <button className="btn btn-primary" style={{ marginTop: 20 }} onClick={() => next({})}>
-              Continuar
-            </button>
-          )}
-          <p className="tiny faint" style={{ marginTop: 16 }}>
-            O WinFit não substitui avaliação médica. Se você sente dor persistente, procure um profissional de saúde.
-          </p>
+          <button className="btn btn-primary" style={{ marginTop: 20 }} disabled={(d.limitations?.length ?? 0) === 0} onClick={() => next({})}>
+            Continuar
+          </button>
+          <p className="small muted" style={{ marginTop: 12 }}>Dor persistente? Procure um profissional de saúde.</p>
         </Step>
       )}
 
       {d.step === 9 && (
-        <Step title="Sobre você" sub="Usamos para calibrar o volume e acompanhar seu progresso. Opcional, exceto a idade.">
-          <label className="field">Idade</label>
-          <input className="input num" type="number" inputMode="numeric" placeholder="Ex.: 28"
-            value={age} onChange={(e) => setAge(e.target.value)} />
-          <label className="field">Peso (kg) — opcional</label>
-          <input className="input num" type="number" inputMode="decimal" placeholder="Ex.: 72"
-            value={weight} onChange={(e) => setWeight(e.target.value)} />
+        <Step title="Sobre você" sub="Para ajustar o volume do treino.">
+          <label className="field" htmlFor="ob-age">Idade</label>
+          <div className="unit-input"><input id="ob-age" className="input num" type="number" inputMode="numeric" placeholder="28"
+            value={age} onChange={(e) => setAge(e.target.value)} /><span>anos</span></div>
+          <label className="field" htmlFor="ob-weight">Peso <span className="muted">(opcional)</span></label>
+          <div className="unit-input"><input id="ob-weight" className="input num" type="number" inputMode="decimal" placeholder="72"
+            value={weight} onChange={(e) => setWeight(e.target.value)} /><span>kg</span></div>
           <button className="btn btn-primary" style={{ marginTop: 24 }}
             disabled={!age || Number(age) < 13 || Number(age) > 100}
             onClick={finish}>
@@ -248,7 +245,6 @@ export default function Onboarding() {
 function Step({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
     <div className="account-question">
-      <p className="screen-kicker">Vamos conhecer seu ritmo</p>
       <h1 className="screen-title" style={{ fontSize: 27 }}>{title}</h1>
       {sub && <p className="muted small" style={{ marginTop: 6 }}>{sub}</p>}
       <div style={{ marginTop: 16 }}>{children}</div>

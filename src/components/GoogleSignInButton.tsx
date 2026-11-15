@@ -14,6 +14,8 @@ export default function GoogleSignInButton() {
     try { await signInWithGoogle() }
     catch { setError('Não foi possível abrir o login. Tente novamente ou experimente sem conta.'); setBusy(false) }
   }
+  // Sem login configurado, não mostramos um botão que não faz nada.
+  if (!isGoogleAuthConfigured) return null
   return <div className="google-entry">
     <button className="btn google-button" disabled={!isGoogleAuthConfigured || busy} aria-describedby={!isGoogleAuthConfigured ? id : undefined} onClick={() => void enter()}>
       <GoogleMark />{busy ? 'Abrindo Google…' : 'Entrar com Google'}
