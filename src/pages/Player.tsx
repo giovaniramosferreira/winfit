@@ -14,6 +14,8 @@ import { maximumInputLoad } from '../lib/setInputLimits'
 import ExerciseDemo from '../components/ExerciseDemo'
 import { EXERCISE_ILLUSTRATIONS } from '../data/exerciseIllustrations'
 import { isEquipmentFreeSession, isTimedExercise, variationLabel } from '../lib/exerciseRules'
+import Icon from '../components/Icon'
+import Confetti from '../components/Confetti'
 
 export default function Player() {
   const nav = useNavigate()
@@ -151,8 +153,8 @@ export default function Player() {
     <div className={`player training-player${session.timer ? ' is-resting' : ''}`}>
       <header className="player-head">
         <div className="between">
-          <button className="btn btn-ghost btn-sm player-minimize" aria-label="Voltar ao início e manter treino em andamento" onClick={() => nav('/home')}><span aria-hidden="true">⌄</span> Minimizar treino</button>
-          <span className="tiny muted num" role="status">{idx + 1}/{session.exercises.length} exercícios · {doneSets}/{totalSets} séries</span>
+          <button className="top-back player-minimize" aria-label="Voltar ao início e manter treino em andamento" title="Minimizar treino" onClick={() => nav('/home')}><Icon name="back" /></button>
+          <span className="small muted num" role="status">Exercício {idx + 1} de {session.exercises.length} · {doneSets}/{totalSets} séries</span>
           <button className="btn btn-ghost btn-sm player-options" aria-label="Opções do treino" onClick={() => setMenuOpen(true)}>⋯</button>
         </div>
         <div className="player-progress"><div style={{ width: `${(doneSets / Math.max(totalSets, 1)) * 100}%` }} /></div>
@@ -160,11 +162,8 @@ export default function Player() {
       </header>
 
       <main className="player-body">
-        <div className="player-exercise-heading"><div className="between">
-          <span className="eyebrow num">Exercício {idx + 1} de {session.exercises.length}</span>
-          {sx.substitutedFrom && <span className="pill">substituído</span>}
-        </div>
-        <h1>{exercise.name}</h1>
+        <div className="player-exercise-heading">
+        <h1>{exercise.name}{sx.substitutedFrom && <span className="pill" style={{ marginLeft: 8, verticalAlign: 'middle' }}>substituído</span>}</h1>
         <p className="small muted num" style={{ marginTop: 4 }}>
           Meta: {sx.sets} × {sx.repMin}–{sx.repMax} {unit}
           {exercise.loadType === 'external' && suggestion.weight != null && suggestion.weight > 0 && (
@@ -175,7 +174,7 @@ export default function Player() {
 
         </div><div className="player-demo-wrap" ref={instructionsRef}>
           <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} autoPlay compact />
-          <button ref={infoButtonRef} className="btn btn-ghost player-info" aria-label="Como fazer este exercício" aria-expanded={instructionsOpen} aria-controls="exercise-instructions" onClick={() => setInstructionsOpen(!instructionsOpen)}><span aria-hidden="true">i</span></button>
+          <button ref={infoButtonRef} className="btn btn-ghost player-info" aria-label="Como fazer este exercício" aria-expanded={instructionsOpen} aria-controls="exercise-instructions" onClick={() => setInstructionsOpen(!instructionsOpen)}><span aria-hidden="true">Como fazer</span></button>
           {instructionsOpen && <section className="player-instructions" id="exercise-instructions" role="region" aria-label="Como fazer o exercício">
             <div className="between"><strong>Como fazer</strong><button className="btn btn-quiet btn-sm" aria-label="Fechar instruções" onClick={() => { setInstructionsOpen(false); infoButtonRef.current?.focus() }}>Fechar</button></div>
             <ol>{exercise.instructions.map(instruction => <li key={instruction}>{instruction}</li>)}</ol>
@@ -192,7 +191,7 @@ export default function Player() {
             {watchToast}
           </div>
         )}
-        {prFlash && <div className="pr-flash" style={{ marginTop: 12 }}>{prFlash}</div>}
+        {prFlash && <div className="pr-flash" style={{ marginTop: 12, position: 'relative' }}><Confetti />{prFlash}</div>}
 
         <div className="player-set-sheet" style={{ marginTop: 16 }}>
           <div className="player-set-heading"><h2>Suas séries</h2><span className="small muted">{logsHere.length} de {sx.sets} feitas</span></div>
@@ -225,7 +224,7 @@ export default function Player() {
                   <>
                     {!bodyweight && <button className="set-cell num" disabled={!isNext}
                       onClick={() => setEditor({ weight: defaultWeight(), reps: defaultReps() })}>
-                      {isNext && exercise.loadType === 'external' ? (defaultWeight() || '?') : isNext ? '—' : ''}
+                      {isNext && exercise.loadType === 'external' ? (defaultWeight() || <span className="set-placeholder">kg</span>) : isNext ? '—' : ''}
                     </button>}
                     <button className="set-cell num" disabled={!isNext}
                       onClick={() => setEditor({ weight: defaultWeight(), reps: defaultReps() })}>
@@ -247,7 +246,7 @@ export default function Player() {
         <RestTimer />
         <div className="row">
           <button className="btn btn-ghost" style={{ flex: 1 }} disabled={idx === 0} onClick={goPrev}>← Anterior</button>
-          <button className="btn btn-primary" style={{ flex: 1 }} disabled={idx === session.exercises.length - 1} onClick={goNext}>Próximo →</button>
+          <button className={`btn ${logsHere.length >= sx.sets || sx.skipped ? 'btn-primary' : 'btn-ghost'}`} style={{ flex: 1 }} disabled={idx === session.exercises.length - 1} onClick={goNext}>Próximo →</button>
         </div>
         <button className={`btn ${allExercisesDone ? 'btn-primary' : 'btn-quiet'}`} style={{ width: '100%', marginTop: 8 }} onClick={() => setFinishOpen(true)}>Encerrar treino</button>
       </footer>
@@ -260,9 +259,10 @@ export default function Player() {
               <NumberDial label="Carga (kg)" value={editor.weight} min={0} integer max={maximumInputLoad(exercise, [...sessions.flatMap(s => s.logs.filter(l => l.exerciseId === exercise.id).map(l => l.weight)), ...logsHere.map(l => l.weight), suggestion.weight ?? 0])}
                 onChange={(weight) => setEditor((current) => current ? { ...current, weight } : null)} />
             )}
-            <NumberDial label={isTimed ? 'Segundos' : 'Repetições'} value={editor.reps} min={isTimed ? 1 : 0} max={isTimed ? undefined : 30} integer
+            <NumberDial hint={exercise.loadType !== 'external'} label={isTimed ? 'Segundos' : 'Repetições'} value={editor.reps} min={isTimed ? 1 : 0} max={isTimed ? undefined : 30} integer
               onChange={(reps) => setEditor((current) => current ? { ...current, reps } : null)} />
-            <button type="submit" className="btn btn-primary" style={{ marginTop: 20 }}>
+            {exercise.loadType === 'external' && editor.weight === 0 && <p className="small muted" style={{ marginTop: 12 }}>Defina a carga usada para acompanhar sua evolução.</p>}
+            <button type="submit" className="btn btn-primary" style={{ marginTop: 20 }} disabled={exercise.loadType === 'external' && editor.weight === 0}>
               {editor.logId ? 'Salvar' : 'Registrar série'}
             </button>
             {editor.logId && (
@@ -361,16 +361,17 @@ function RestTimer() {
     return (
       <div className="timer-bar done">
         <span className="t green">0:00</span>
-        <span className="grow small green">Descanso encerrado — próxima série!</span>
+        <span className="grow small green">Hora da próxima série</span>
         <button className="btn btn-ghost btn-sm" onClick={clearTimer}>OK</button>
       </div>
     )
   }
 
   return (
-    <div className="timer-bar">
+    <div className="timer-bar" role="timer" aria-label={`Descanso: ${remaining} segundos`}>
       <span className="t num">{fmtClock(remaining)}</span>
       <span className="grow small muted">descanso</span>
+      <span className="timer-progress" aria-hidden="true"><span style={{ width: `${Math.max(0, Math.min(100, remaining / timer.totalSec * 100))}%` }} /></span>
       <button className="btn btn-ghost btn-sm" onClick={() => startTimer(remaining + 30)}>+30s</button>
       <button className="btn btn-ghost btn-sm" onClick={clearTimer}>Pular</button>
     </div>

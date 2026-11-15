@@ -327,7 +327,7 @@ export function generatePlan(p: TrainingProfile, seed: string, catalog = EXERCIS
 
   if (trimmed)
     notes.push(
-      `Para caber em ~${p.sessionTimeMin} min, enxugamos descansos e acessórios. Se puder treinar por mais tempo, ajuste em Perfil → Ajustar plano.`,
+      `Para caber em ~${p.sessionTimeMin} min, enxugamos descansos e acessórios. Se puder treinar por mais tempo, ajuste em Perfil → Editar plano.`,
     )
 
   return {

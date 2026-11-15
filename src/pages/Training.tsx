@@ -1,15 +1,13 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
-import { byId } from '../data/exercises'
-import { ANATOMY, plateNo } from '../data/anatomy'
+import { byId, MUSCLE_LABEL } from '../data/exercises'
 import { sessionsThisWeek, startOfWeek } from '../lib/helpers'
 import { fmtKg } from '../lib/progression'
 import { homeWorkout } from '../lib/homeWorkout'
 import { startTraining, type TrainingMode } from '../data/sessionModules'
-import HomeArtwork from '../components/HomeArtwork'
+import Icon from '../components/Icon'
 import { isTimedExercise } from '../lib/exerciseRules'
-import { cardioCoreCircuit } from '../data/circuits'
 import { useCircuitStore } from '../lib/circuitStore'
 
 export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
@@ -51,44 +49,44 @@ export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
   const toc = active ? active.exercises.map(e => ({ id:e.planExerciseId, exerciseId:e.exerciseId, sets:e.sets, repMin:e.repMin, repMax:e.repMax })) : day.exercises
   const origin = active ? active.source === 'home' ? 'Calistenia' : 'Academia' : mode === 'home' ? 'Calistenia' : 'Academia'
   const lastPR = mode === 'gym' ? prs[0] : null
+  const title = active ? active.dayLabel : day.label.replace(/^Em casa · /, '')
   return <div className="page training-page">
-    <h1 className="sr-only">{mode === 'home' ? 'Calistenia' : 'Academia'}</h1>
+    <h1 className="sr-only">Treinar</h1>
+    <nav className="seg" aria-label="Modalidade">
+      <Link to="/training" aria-current={mode === 'gym' ? 'page' : undefined}>Academia</Link>
+      <Link to="/calisthenics" aria-current={mode === 'home' ? 'page' : undefined}>Calistenia</Link>
+    </nav>
     <section className="hero-card training-session">
-      <div className="training-session-heading"><div>
-        <div className="eyebrow accent">{active ? `${origin} em andamento` : 'Próximo treino'}</div>
-        <h2>{active ? active.dayLabel : day.label}</h2>
-      </div><div className="training-art" aria-hidden="true"><HomeArtwork module={mode === 'home' ? 'home' : 'gym'} /></div></div>
-      {active && <p className="small muted">{active.logs.length} séries registradas. Retomar mantém exercício atual, séries e descanso, mesmo ao entrar por outro módulo.</p>}
-      {!active && <div className="kpis" style={{ marginTop:8 }}><div><b className="num">{day.exercises.length}</b><span>exercícios</span></div><div><b className="num">~{day.estMin}</b><span>minutos</span></div></div>}
-      <div className="eyebrow" style={{ marginTop:12 }}>Exercícios de hoje</div>
-      <ol className="toc" style={{ marginTop:4 }}>{toc.map((pe,i) => {
+      <div className="eyebrow accent">{active ? `${origin} em andamento` : 'Próximo treino'}</div>
+      <h2 className="train-title">{title}</h2>
+      <p className="train-meta num">{active ? `${active.logs.length} séries feitas` : `${day.exercises.length} exercícios · ~${day.estMin} min`}</p>
+      <ol className="train-list">{toc.map((pe,i) => {
         const ex = byId.get(pe.exerciseId); if (!ex) return null
-        return <li key={pe.id}><Link to={`/exercise/${ex.id}`} className={`toc-item${i === 0 && !active ? ' on' : ''}`}>
-          <span className="n num">{plateNo(ex.id)}</span><span className="t">{ex.name}<small>{ANATOMY[ex.primary].latin}</small></span><span className="m num">{pe.sets}×{pe.repMin}–{pe.repMax}{isTimedExercise(ex.id) ? ' s' : ''}</span>
+        return <li key={pe.id}><Link to={`/exercise/${ex.id}`}>
+          <span className="train-n num">{i + 1}</span><span className="train-t">{ex.name}<small>{MUSCLE_LABEL[ex.primary]}</small></span><span className="train-m num">{pe.sets}×{pe.repMin}–{pe.repMax}{isTimedExercise(ex.id) ? ' s' : ''}</span>
         </Link></li>
       })}</ol>
-      {active || day.exercises.length ? <button className="btn btn-primary" style={{ marginTop:10 }} onClick={() => start()}>{active ? 'Retomar treino' : mode === 'home' ? 'Começar em casa' : 'Começar treino'}</button> : <p className="note">Não há exercícios sem equipamentos compatíveis com as limitações do seu perfil.</p>}
-      {!active && mode === 'gym' && <button className="btn btn-quiet" onClick={() => setPickDay(true)}>Treinar outro dia do plano</button>}
-      {mode === 'home' && <p className="tiny muted" style={{ marginTop:12 }}>Demonstrações e variações no treino. Sem porta, sofá ou acessórios improvisados.</p>}
-      {unavailable && <p className="note" role="alert">Não foi possível iniciar este treino. Revise seu plano e limitações no perfil.</p>}
+      {active || day.exercises.length ? <button className="btn btn-primary train-cta" onClick={() => start()}><Icon name="play" />{active ? 'Retomar treino' : 'Começar treino'}</button> : <p className="note">Nenhum exercício sem equipamento combina com suas limitações.</p>}
+      {!active && mode === 'gym' && plan.days.length > 1 && <button className="btn btn-quiet" onClick={() => setPickDay(true)}>Escolher outro dia</button>}
+      {unavailable && <p className="note" role="alert">Não foi possível iniciar. Revise o plano no Perfil.</p>}
     </section>
-    {mode === 'home' && <Link to="/circuit" className="card training-week circuit-card">
-      <div className="between"><h2>{cardioCoreCircuit.title}</h2><span className="chev">›</span></div>
-      <p className="small muted" style={{ marginTop:6 }}>{circuitActive ? 'Circuito pausado. Toque para retomar.' : 'Circuito por tempo de cardio e abdômen, ~9 min por volta. Níveis, versão sem saltos e aquecimento.'}</p>
-    </Link>}
-    <section className="card training-week" style={{ marginTop:12 }}><div className="between"><h2>Minha semana</h2><span className="tiny muted num">{weekSessions.length} de {goal} treinos</span></div>
+    <Link to="/circuit" className="hub-row hub-quick">
+      <span className="hub-row-icon"><Icon name="timer" /></span>
+      <span className="hub-row-copy"><b>Circuito cardio e core</b><small>{circuitActive ? 'Pausado · toque para retomar' : '~9 min por volta · sem equipamento'}</small></span>
+      <Icon name="chevron" />
+    </Link>
+    <section className="card training-week" style={{ marginTop:12 }}><div className="between"><h2>Semana</h2><span className="small muted num">{weekSessions.length} de {goal}</span></div>
       <div className="week-dots" style={{ marginTop:8 }}>{week.map((d,i) => <div key={i} className={`week-dot ${d.done ? 'done' : ''} ${d.today ? 'today' : ''}`}><div className="dot">{d.done ? '✓' : ''}</div><div className="lbl">{d.label}</div></div>)}</div>
-      <p className="tiny muted" style={{ marginTop:10 }}>Academia e calistenia compartilham sua meta semanal.</p>
     </section>
     {lastPR && <Link to={`/exercise/${lastPR.exerciseId}`} className="note" style={{ display:'block', marginTop:14, color:'inherit', textDecoration:'none' }}><b>Último recorde.</b> {byId.get(lastPR.exerciseId)?.name}: <span className="mono num">{fmtKg(lastPR.value)} × {lastPR.reps}</span></Link>}
     {pickDay && <div className="modal-back" onClick={() => setPickDay(false)}><div className="modal" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="choose-training">
-      <h2 id="choose-training">Escolher treino</h2>{plan.days.map(d => <button key={d.id} className="list-item" onClick={() => start(d.id)}><div className="grow"><h3>{d.label}</h3><span className="small muted num">{d.exercises.length} exercícios · ~{d.estMin} min</span></div><span className="chev">›</span></button>)}
+      <h2 id="choose-training">Escolher dia</h2>{plan.days.map(d => <button key={d.id} className="list-item" onClick={() => start(d.id)}><div className="grow"><h3>{d.label}</h3><span className="small muted num">{d.exercises.length} exercícios · ~{d.estMin} min</span></div><span className="chev">›</span></button>)}
       <button className="btn btn-quiet" onClick={() => setPickDay(false)}>Voltar</button>
     </div></div>}
     {expired && active && <div className="modal-back"><div className="modal" role="dialog" aria-modal="true" aria-labelledby="training-expired">
-      <h2 id="training-expired">Treino inacabado</h2><p className="small muted">{active.dayLabel} tem {active.logs.length} séries registradas. Preserve o registro como treino parcial ou continue de onde parou.</p>
+      <h2 id="training-expired">Treino inacabado</h2><p className="small muted">{active.dayLabel}: {active.logs.length} séries registradas.</p>
       <button className="btn btn-primary" onClick={() => { setExpired(false); nav('/player') }}>Continuar treino</button>
-      <button className="btn btn-ghost" style={{ marginTop:10 }} onClick={() => { saveExpired(); setExpired(false) }}>Salvar como treino parcial</button>
+      <button className="btn btn-ghost" style={{ marginTop:10 }} onClick={() => { saveExpired(); setExpired(false) }}>Salvar como parcial</button>
       <button className="btn btn-quiet" onClick={() => setExpired(false)}>Voltar</button>
     </div></div>}
   </div>

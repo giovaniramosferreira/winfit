@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
+import Icon, { type IconName } from '../components/Icon'
 import type {
   CurrentState, Equipment, Experience, Goal, Limitation, OnboardingDraft, TrainLocation, TrainingProfile,
 } from '../types'
 
-const GOALS: { v: Goal; t: string; s: string }[] = [
-  { v: 'hypertrophy', t: 'Ganhar músculo', s: 'Hipertrofia como prioridade' },
-  { v: 'fat_loss', t: 'Perder gordura', s: 'Emagrecer preservando músculo' },
-  { v: 'strength', t: 'Ficar mais forte', s: 'Foco em força nos básicos' },
-  { v: 'return_fitness', t: 'Voltar à forma', s: 'Retomar o condicionamento' },
-  { v: 'health', t: 'Saúde e disposição', s: 'Treinar bem, viver melhor' },
+const GOALS: { v: Goal; t: string; s: string; i: IconName }[] = [
+  { v: 'hypertrophy', t: 'Ganhar músculo', s: 'Hipertrofia como prioridade', i: 'dumbbell' },
+  { v: 'fat_loss', t: 'Perder gordura', s: 'Emagrecer preservando músculo', i: 'flame' },
+  { v: 'strength', t: 'Ficar mais forte', s: 'Foco em força nos básicos', i: 'bolt' },
+  { v: 'return_fitness', t: 'Voltar à forma', s: 'Retomar o condicionamento', i: 'refresh' },
+  { v: 'health', t: 'Saúde e disposição', s: 'Treinar bem, viver melhor', i: 'breath' },
 ]
 const EXP: { v: Experience; t: string; s: string }[] = [
   { v: 'none', t: 'Nunca treinei', s: 'Ou treinei muito pouco' },
@@ -24,11 +25,11 @@ const STATE: { v: CurrentState; t: string; s: string }[] = [
   { v: 'paused_months', t: 'Parado há alguns meses', s: 'Voltando de uma pausa' },
   { v: 'paused_long', t: 'Parado há muito tempo', s: '1 ano ou mais' },
 ]
-const LOCATIONS: { v: TrainLocation; t: string; s: string }[] = [
-  { v: 'gym_full', t: 'Academia completa', s: 'Máquinas, pesos livres, polias' },
-  { v: 'gym_basic', t: 'Academia básica / condomínio', s: 'Estrutura limitada' },
-  { v: 'home_equipment', t: 'Em casa, com equipamentos', s: 'Halteres, elásticos etc.' },
-  { v: 'home_none', t: 'Em casa, sem equipamentos', s: 'Só o peso do corpo' },
+const LOCATIONS: { v: TrainLocation; t: string; s: string; i: IconName }[] = [
+  { v: 'gym_full', t: 'Academia completa', s: 'Máquinas, pesos livres, polias', i: 'building' },
+  { v: 'gym_basic', t: 'Academia básica / condomínio', s: 'Estrutura limitada', i: 'dumbbell' },
+  { v: 'home_equipment', t: 'Em casa, com equipamentos', s: 'Halteres, elásticos etc.', i: 'bag' },
+  { v: 'home_none', t: 'Em casa, sem equipamentos', s: 'Só o peso do corpo', i: 'home' },
 ]
 const EQUIP_OPTS: { v: Equipment; t: string }[] = [
   { v: 'halteres', t: 'Halteres' },
@@ -69,8 +70,11 @@ export default function Onboarding() {
   const needsEquipStep = d.location === 'gym_basic' || d.location === 'home_equipment'
   const totalSteps = 9
 
+  // Editando pelo resumo final: depois de responder, volta direto ao resumo.
+  const [editing, setEditing] = useState(false)
   const next = (patch: Partial<OnboardingDraft>, jump = 1) => {
-    setTimeout(() => setD((cur) => ({ ...cur, ...patch, step: cur.step + jump })), 180)
+    const needsEquip = patch.location === 'gym_basic' || patch.location === 'home_equipment'
+    setTimeout(() => setD((cur) => ({ ...cur, ...patch, step: editing && !needsEquip ? 9 : cur.step + jump })), 180)
   }
 
   const back = () => {
@@ -80,6 +84,7 @@ export default function Onboarding() {
     setD({ ...d, step: d.step - jump })
   }
 
+  useEffect(() => { if (d.step === 9) setEditing(false) }, [d.step])
   const finish = () => {
     const profile: TrainingProfile = {
       goal: d.goal!,
@@ -101,6 +106,14 @@ export default function Onboarding() {
     nav('/preview')
   }
 
+  const recap: [string, number][] = [
+    [GOALS.find((o) => o.v === d.goal)?.t ?? '', 1],
+    [EXP.find((o) => o.v === d.experience)?.t ?? '', 2],
+    [LOCATIONS.find((o) => o.v === d.location)?.t ?? '', 4],
+    [`${d.frequency ?? '?'} dias por semana`, 6],
+    [TIMES.find((o) => o.v === d.sessionTimeMin)?.t ?? '', 7],
+    [d.limitations?.length ? `Cuidado: ${d.limitations.map((l) => LIMS.find((o) => o.v === l)?.t.toLowerCase()).join(', ')}` : 'Sem limitações', 8],
+  ]
   const toggleArr = <T,>(arr: T[] | undefined, v: T): T[] => {
     const a = arr ?? []
     return a.includes(v) ? a.filter((x) => x !== v) : [...a, v]
@@ -110,7 +123,6 @@ export default function Onboarding() {
     <div className="page-full product-shell account-screen onboarding-screen fade-in" key={d.step}>
       <div className="screen-topline" style={{ marginBottom: 8 }}>
         <button className="btn-quiet" onClick={back} style={{ padding: '8px 0' }}>← Voltar</button>
-        <span className="eyebrow num">Pergunta {d.step} de {totalSteps}</span>
       </div>
       <div className="progressbar" role="progressbar" aria-label="Perguntas do seu plano" aria-valuemin={1} aria-valuemax={totalSteps} aria-valuenow={d.step}><div style={{ width: `${(d.step / totalSteps) * 100}%` }} /></div>
 
@@ -119,7 +131,7 @@ export default function Onboarding() {
           {GOALS.map((o) => (
             <button key={o.v} className={`option ${d.goal === o.v ? 'selected' : ''}`}
               onClick={() => next({ goal: o.v })}>
-              <span>{o.t}<div className="desc">{o.s}</div></span>
+              <span className="icon"><Icon name={o.i} /></span><span>{o.t}<div className="desc">{o.s}</div></span>
             </button>
           ))}
         </Step>
@@ -137,7 +149,7 @@ export default function Onboarding() {
       )}
 
       {d.step === 3 && (
-        <Step title="Como está sua rotina de treino hoje?" sub="Quem está voltando de pausa recebe um plano de readaptação — sem dor desnecessária na primeira semana.">
+        <Step title="Como está sua rotina de treino hoje?" sub="Se estiver voltando de pausa, o plano começa mais leve.">
           {STATE.map((o) => (
             <button key={o.v} className={`option ${d.currentState === o.v ? 'selected' : ''}`}
               onClick={() => next({ currentState: o.v })}>
@@ -155,14 +167,14 @@ export default function Onboarding() {
                 const skip = o.v === 'gym_full' || o.v === 'home_none'
                 next({ location: o.v, equipment: skip ? [] : d.equipment }, skip ? 2 : 1)
               }}>
-              <span>{o.t}<div className="desc">{o.s}</div></span>
+              <span className="icon"><Icon name={o.i} /></span><span>{o.t}<div className="desc">{o.s}</div></span>
             </button>
           ))}
         </Step>
       )}
 
       {d.step === 5 && (
-        <Step title="O que você tem disponível?" sub="Só prescrevemos o que você pode executar de verdade.">
+        <Step title="O que você tem disponível?">
           {EQUIP_OPTS.map((o) => (
             <button key={o.v} className={`option ${d.equipment?.includes(o.v) ? 'selected' : ''}`}
               onClick={() => setD({ ...d, equipment: toggleArr(d.equipment, o.v) })}>
@@ -175,35 +187,37 @@ export default function Onboarding() {
             onClick={() => next({})}>
             Continuar
           </button>
-          <p className="tiny faint center" style={{ marginTop: 10 }}>Peso corporal sempre conta — não precisa marcar.</p>
         </Step>
       )}
 
       {d.step === 6 && (
-        <Step title="Quantos dias por semana você consegue treinar?" sub="Seja realista — dá para ajustar depois.">
-          {FREQS.map((f) => (
-            <button key={f} className={`option ${d.frequency === f ? 'selected' : ''}`}
-              onClick={() => next({ frequency: f })}>
-              <span className="icon num" style={{ fontSize: 22 }}>{f}</span>
-              <span>dias por semana</span>
-            </button>
-          ))}
+        <Step title="Quantos dias por semana?" sub="Dá para mudar depois.">
+          <div className="choice-grid" style={{ gridTemplateColumns: `repeat(${FREQS.length}, 1fr)` }}>
+            {FREQS.map((f) => (
+              <button key={f} className={d.frequency === f ? 'selected' : ''} aria-label={`${f} dias por semana`}
+                onClick={() => next({ frequency: f })}>
+                <span className="num">{f}</span><small>dias</small>
+              </button>
+            ))}
+          </div>
         </Step>
       )}
 
       {d.step === 7 && (
         <Step title="Quanto tempo por treino?">
-          {TIMES.map((o) => (
-            <button key={o.v} className={`option ${d.sessionTimeMin === o.v ? 'selected' : ''}`}
-              onClick={() => next({ sessionTimeMin: o.v })}>
-              <span>{o.t}</span>
-            </button>
-          ))}
+          <div className="choice-grid">
+            {TIMES.map((o) => (
+              <button key={o.v} className={d.sessionTimeMin === o.v ? 'selected' : ''} aria-label={o.t}
+                onClick={() => next({ sessionTimeMin: o.v })}>
+                <span className="num">{o.v}{o.v === 75 ? '+' : ''}</span><small>min</small>
+              </button>
+            ))}
+          </div>
         </Step>
       )}
 
       {d.step === 8 && (
-        <Step title="Alguma região com dor ou limitação?" sub="Vamos evitar os padrões que mais estressam essas regiões.">
+        <Step title="Alguma região com dor ou limitação?" sub="Marque quantas quiser. Evitamos exercícios que forçam essas regiões.">
           <button className={`option ${(d.limitations ?? []).length === 0 && d.limitations !== undefined ? 'selected' : ''}`}
             onClick={() => next({ limitations: [] })}>
             <span>Nenhuma</span>
@@ -215,26 +229,26 @@ export default function Onboarding() {
               <span style={{ marginLeft: 'auto' }}>{d.limitations?.includes(o.v) ? '✓' : ''}</span>
             </button>
           ))}
-          {(d.limitations?.length ?? 0) > 0 && (
-            <button className="btn btn-primary" style={{ marginTop: 20 }} onClick={() => next({})}>
-              Continuar
-            </button>
-          )}
-          <p className="tiny faint" style={{ marginTop: 16 }}>
-            O WinFit não substitui avaliação médica. Se você sente dor persistente, procure um profissional de saúde.
-          </p>
+          <button className="btn btn-primary" style={{ marginTop: 20 }} disabled={(d.limitations?.length ?? 0) === 0} onClick={() => next({})}>
+            Continuar
+          </button>
+          <p className="small muted" style={{ marginTop: 12 }}>Dor persistente? Procure um profissional de saúde.</p>
         </Step>
       )}
 
       {d.step === 9 && (
-        <Step title="Sobre você" sub="Usamos para calibrar o volume e acompanhar seu progresso. Opcional, exceto a idade.">
-          <label className="field">Idade</label>
-          <input className="input num" type="number" inputMode="numeric" placeholder="Ex.: 28"
-            value={age} onChange={(e) => setAge(e.target.value)} />
-          <label className="field">Peso (kg) — opcional</label>
-          <input className="input num" type="number" inputMode="decimal" placeholder="Ex.: 72"
-            value={weight} onChange={(e) => setWeight(e.target.value)} />
-          <button className="btn btn-primary" style={{ marginTop: 24 }}
+        <Step title="Sobre você" sub="Para ajustar o volume do treino.">
+          <label className="field" htmlFor="ob-age">Idade</label>
+          <div className="unit-input"><input id="ob-age" className="input num" type="number" inputMode="numeric" placeholder="28"
+            value={age} onChange={(e) => setAge(e.target.value)} /><span>anos</span></div>
+          <label className="field" htmlFor="ob-weight">Peso <span className="muted">(opcional)</span></label>
+          <div className="unit-input"><input id="ob-weight" className="input num" type="number" inputMode="decimal" placeholder="72"
+            value={weight} onChange={(e) => setWeight(e.target.value)} /><span>kg</span></div>
+          <div className="recap" aria-label="Suas respostas">
+            {recap.map(([label, step]) => <button key={label} type="button" className="lib-chip" onClick={() => { setEditing(true); setD({ ...d, step }) }}>{label}</button>)}
+          </div>
+          <p className="small muted" style={{ marginTop: 6 }}>Toque numa resposta para mudar.</p>
+          <button className="btn btn-primary" style={{ marginTop: 18 }}
             disabled={!age || Number(age) < 13 || Number(age) > 100}
             onClick={finish}>
             Gerar meu plano
@@ -248,7 +262,6 @@ export default function Onboarding() {
 function Step({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
     <div className="account-question">
-      <p className="screen-kicker">Vamos conhecer seu ritmo</p>
       <h1 className="screen-title" style={{ fontSize: 27 }}>{title}</h1>
       {sub && <p className="muted small" style={{ marginTop: 6 }}>{sub}</p>}
       <div style={{ marginTop: 16 }}>{children}</div>

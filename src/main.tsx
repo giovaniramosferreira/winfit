@@ -7,6 +7,7 @@ import './product-ui.css'
 import './training-ui.css'
 import './wellness-ui.css'
 import './account-ui.css'
+import './revamp.css'
 
 // HashRouter: funciona em qualquer hosting estático sem config de rewrite — custo zero de infra.
 ReactDOM.createRoot(document.getElementById('root')!).render(

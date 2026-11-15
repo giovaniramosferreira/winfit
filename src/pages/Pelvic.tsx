@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { pelvicPrograms, phaseInstructions, phaseLabels } from '../data/pelvicPrograms'
 import { usePelvicStore } from '../lib/pelvicStore'
+import PageTop from '../components/PageTop'
+import Switch from '../components/Switch'
+import Icon from '../components/Icon'
 
 export default function Pelvic() {
   const s = usePelvicStore()
@@ -37,40 +40,46 @@ export default function Pelvic() {
       catch { s.setSignals(false,s.vibration); setNotice('Áudio indisponível neste navegador. As instruções continuam na tela.') }
     }
   }
+  const available = pelvicPrograms.filter(p => p.available)
+  const locked = pelvicPrograms.filter(p => !p.available)
   return <div className="page pelvic-page fade-in">
-    <header className="wellness-heading"><div className="screen-topline"><span className="screen-kicker">Bem-estar</span><span className="wellness-badge">Seu momento de pausa</span></div><div className="wellness-heading-copy"><div><h1 className="screen-title">Saúde <em>pélvica.</em></h1><p className="screen-subtitle">Uma pausa para respirar e cuidar de você.</p></div><span className="wellness-art breath-art" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="32" stroke="currentColor" opacity=".15"/><circle cx="40" cy="40" r="24" fill="#ddd1f5"/><path d="M40 54S22 43 22 33a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-18 21-18 21Z" stroke="currentColor" strokeWidth="2"/></svg></span></div></header><p className="tiny muted wellness-local-note">Conheça a proposta e faça uma pausa para respirar. Não substitui avaliação individual de saúde.</p>
-    <section className="note" style={{ marginTop:16 }}>
-      <b>Antes de começar</b>
-      <p className="small">Não prenda a respiração, não empurre para baixo e não treine interrompendo o xixi. Pare se sentir dor ou desconforto. Dor pélvica ou sintomas urinários merecem avaliação profissional; contrações não são indicadas para todas as pessoas.</p>
-      <p className="small">Não prometemos melhora sexual ou tratamento de sintomas. A pausa disponível é apenas respiração confortável, sem contrações.</p>
-    </section>
+    <PageTop title="Saúde pélvica" tagline="Uma pausa curta para respirar." />
     {(s.error || notice) && <p className="note" role="alert">{s.error || notice}</p>}
-    {s.active && timer && phase ? <section className="card pelvic-session" style={{ marginTop:18 }} aria-labelledby="pelvic-phase">
+    {s.active && timer && phase ? <section className="card pelvic-session" aria-labelledby="pelvic-phase">
       <p className="eyebrow">{pelvicPrograms.find(p => p.id === s.active!.programId)?.title}</p>
       <h2 id="pelvic-phase">{phaseLabels[phase.kind]}</h2>
       <p>{phaseInstructions[phase.kind]}</p>
-      <p className="num" style={{ fontSize:48, textAlign:'center', margin:'16px 0' }} aria-label={`${timer.remainingSeconds} segundos restantes`}>{timer.remainingSeconds}<span className="small"> segundos</span></p>
-      <p className="small muted" role="status">{timer.status === 'paused' ? 'Pausado. Retome quando estiver pronto.' : `Etapa ${timer.phaseIndex + 1} de ${timer.phases.length}`}</p>
+      <p className="num" style={{ fontSize:56, fontWeight:600, textAlign:'center', margin:'16px 0', color:'#4f2f8f' }} aria-label={`${timer.remainingSeconds} segundos restantes`}>{timer.remainingSeconds}<span className="small"> s</span></p>
+      <p className="small muted" role="status">{timer.status === 'paused' ? 'Pausado' : `Etapa ${timer.phaseIndex + 1} de ${timer.phases.length}`}</p>
       <button className="btn btn-primary" onClick={() => timer.status === 'paused' ? s.resume() : s.pause()}>{timer.status === 'paused' ? 'Retomar' : 'Pausar'}</button>
-      <button className="btn btn-ghost" style={{ marginTop:10 }} onClick={() => s.stop()}>Interromper sessão</button>
-      <p className="tiny muted">Ao sair desta tela ou colocar o app em segundo plano, a sessão pausa. Sessões interrompidas não contam como concluídas.</p>
-    </section> : pelvicPrograms.map(p => <section key={p.id} className={`card pelvic-program ${p.available ? 'pelvic-program-available' : 'pelvic-program-locked'}`} style={{ marginTop:18 }}>
-      <div className="wellness-badge">{p.kind === 'relaxation' ? 'Relaxamento sem contração' : 'Prévia · indisponível'}</div>
-      <h2>{p.title}</h2><p className="small muted">{p.description}</p>
-      {p.available ? <button className="btn btn-primary" style={{ marginTop:12 }} onClick={() => s.start(p.id)}>Começar pausa · 70 segundos</button> : <><button className="btn btn-ghost" style={{ marginTop:12 }} disabled>Aguardando revisão profissional</button><p className="tiny muted">A prévia não contém prescrição de tempo, intensidade ou progressão. A liberação exige revisão registrada por profissional.</p></>}
-      <p className="tiny muted">Conteúdo versão {p.version} · {p.reviewStatus === 'general-wellbeing' ? 'Bem-estar geral; sem protocolo clínico' : 'Revisão profissional pendente'}</p>
-    </section>)}
-    <section className="card" style={{ marginTop:18 }}>
-      <h2>Sinais opcionais</h2><p className="small muted">Escolha como acompanhar cada etapa.</p>
-      <label style={{ display:'block', padding:'12px 0' }}><input type="checkbox" checked={s.audio} onChange={e => void enableAudio(e.target.checked)} /> Som na mudança de etapa</label>
-      <label style={{ display:'block', padding:'12px 0' }}><input type="checkbox" checked={s.vibration} onChange={e => { s.setSignals(s.audio,e.target.checked); if (e.target.checked && !navigator.vibrate) setNotice('Este navegador não oferece vibração. Use o texto e o contador na tela.') }} /> Vibração na mudança de etapa</label>
-      <p className="tiny muted">Desligados por padrão. Som pode precisar ser reativado após recarregar. Sem animação obrigatória; texto e segundos ficam sempre visíveis.</p>
-    </section>
-    <section className="card" style={{ marginTop:18 }}>
-      <h2>Histórico pélvico</h2>
-      <p className="small muted">Independente dos treinos de academia e calistenia. Não altera sua meta semanal.</p>
-      {s.history.length === 0 ? <p className="small muted">Nenhuma sessão registrada.</p> : s.history.slice(0,50).map(r => <div className="list-item" key={r.id}><div className="grow"><b>{r.status === 'completed' ? 'Concluída' : 'Interrompida'}</b><p className="tiny muted">{pelvicPrograms.find(p => p.id === r.programId)?.title} · v{r.programVersion} · {new Date(r.startedAt).toLocaleString('pt-BR')}</p></div><span className="small num">{Math.floor(r.elapsedMs / 1000)} s</span></div>)}
-    </section>
-    <details className="card" style={{ marginTop:18 }}><summary>Fontes e limites</summary><p className="small">Texto próprio baseado em orientações públicas. Essas referências não significam aprovação do Winfit ou revisão profissional do conteúdo.</p><p><a href="https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/" target="_blank" rel="noreferrer">NHS: respiração confortável</a></p><p><a href="https://www.nhs.uk/conditions/urinary-incontinence/10-ways-to-stop-leaks/" target="_blank" rel="noreferrer">NHS: assoalho pélvico e respiração</a></p><p><a href="https://www.nhs.uk/symptoms/pelvic-pain/" target="_blank" rel="noreferrer">NHS: avaliação de dor pélvica</a></p></details>
+      <button className="btn btn-quiet" style={{ marginTop:6 }} onClick={() => s.stop()}>Interromper</button>
+    </section> : <>
+      {available.map(p => <section key={p.id} className="card pelvic-program pelvic-program-available">
+        <h2>{p.title}</h2><p className="small muted">Respire no seu ritmo, sem prender o ar nem contrair.</p>
+        <button className="btn btn-primary train-cta" onClick={() => s.start(p.id)}><Icon name="play" />Começar pausa · 70 s</button>
+      </section>)}
+      <section className="card" style={{ marginTop:12 }}>
+        <Switch label="Som na troca de etapa" checked={s.audio} onChange={(v) => void enableAudio(v)} />
+        <Switch label="Vibração" checked={s.vibration} onChange={(v) => { s.setSignals(s.audio, v); if (v && !navigator.vibrate) setNotice('Este navegador não vibra. Acompanhe pelo contador.') }} />
+      </section>
+      <details className="card more-card" style={{ marginTop:12 }} open={s.history.length === 0}>
+        <summary>Antes de começar</summary>
+        <ul className="bullets small" style={{ marginTop:4 }}>
+          <li>Não prenda a respiração nem empurre para baixo.</li>
+          <li>Não treine interrompendo o xixi.</li>
+          <li>Dor pélvica ou sintomas urinários pedem avaliação profissional.</li>
+        </ul>
+        <p className="small muted" style={{ marginTop:8 }}>É uma pausa de bem-estar, não um tratamento.</p>
+      </details>
+      {locked.map(p => <div key={p.id} className="hub-row" style={{ opacity:.85 }}>
+        <span className="hub-row-icon"><Icon name="breath" /></span>
+        <span className="hub-row-copy"><b>{p.title.replace(' · em revisão', '')}</b><small>Em breve, após revisão profissional</small></span>
+      </div>)}
+    </>}
+    {s.history.length > 0 && <section className="card" style={{ marginTop:12 }}>
+      <h2>Histórico</h2>
+      {s.history.slice(0,50).map(r => <div className="list-item" key={r.id}><div className="grow"><b>{r.status === 'completed' ? 'Concluída' : 'Interrompida'}</b><p className="small muted">{new Date(r.startedAt).toLocaleString('pt-BR', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' })}</p></div><span className="small num">{Math.floor(r.elapsedMs / 1000)} s</span></div>)}
+    </section>}
+    <details className="more"><summary>Fontes</summary><p><a href="https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/" target="_blank" rel="noreferrer">NHS: respiração confortável</a></p><p><a href="https://www.nhs.uk/conditions/urinary-incontinence/10-ways-to-stop-leaks/" target="_blank" rel="noreferrer">NHS: assoalho pélvico e respiração</a></p><p><a href="https://www.nhs.uk/symptoms/pelvic-pain/" target="_blank" rel="noreferrer">NHS: avaliação de dor pélvica</a></p></details>
   </div>
 }

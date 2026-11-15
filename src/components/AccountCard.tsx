@@ -9,7 +9,7 @@ export default function AccountCard() {
   const [message, setMessage] = useState('')
   const [sending, setSending] = useState(false)
   if (!configured) return null
-  if (loading) return <div className="card" style={{ marginTop: 12 }}><p className="small muted">Verificando sua conta…</p></div>
+  if (loading) return <div className="card" style={{ marginTop: 12 }} aria-busy="true"><span className="sr-only">Verificando sua conta…</span><span className="skeleton" style={{ width: '45%' }} /><span className="skeleton" style={{ width: '80%', marginTop: 10 }} /><span className="skeleton" style={{ width: '60%', marginTop: 8 }} /></div>
   if (session?.user) return (
     <div className="card" style={{ marginTop: 12 }}>
       <div className="between"><h3>Conta e backup</h3><span className="pill accent">{{ local: 'Local', checking: 'Verificando…', review: 'Revisão necessária', pending: 'Alterações locais', synced: 'Backup confirmado', error: 'Falha no backup' }[status]}</span></div>

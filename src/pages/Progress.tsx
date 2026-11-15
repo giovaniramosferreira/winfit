@@ -2,11 +2,10 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
-import { fmtDate, fmtDuration, sessionsInWeekOffset, sessionsThisWeek } from '../lib/helpers'
+import { fmtDate, fmtDuration, sessionsInWeekOffset, sessionsThisWeek, plural } from '../lib/helpers'
 import { activityTotals, exerciseProgressSeries, fmtKg, volumeOf } from '../lib/progression'
 import { isTimedExercise } from '../lib/exerciseRules'
 import Chart from '../components/Chart'
-import { ANATOMY } from '../data/anatomy'
 
 export default function Progress() {
   const sessions = useStore((s) => s.sessions)
@@ -52,28 +51,28 @@ export default function Progress() {
   if (sessions.length === 0) {
     return (
       <div className="page product-shell account-screen progress-screen">
-        <div className="screen-topline"><span className="screen-kicker">Progresso</span><span>Seu histórico</span></div><div className="account-empty-art" aria-hidden="true"><img src="/media/pump-house/award.svg" alt="" /></div>
-        <h1 className="screen-title">Seus números começam no <em>primeiro treino.</em></h1>
-        <p className="muted small" style={{ marginTop: 8 }}>Conclua uma sessão para acompanhar sua frequência e evolução nos exercícios.</p>
-        <Link to="/home" className="btn btn-primary" style={{ marginTop: 20 }}>Ir para o treino</Link>
+        <div className="account-empty-art" aria-hidden="true" style={{ marginTop: 24 }}><img src="/media/pump-house/award.svg" alt="" /></div>
+        <h1 className="screen-title">Seu progresso aparece <em>aqui.</em></h1>
+        <p className="muted small" style={{ marginTop: 8 }}>Faça o primeiro treino para ver frequência, cargas e recordes.</p>
+        <Link to="/training" className="btn btn-primary" style={{ marginTop: 20 }}>Começar treino</Link>
       </div>
     )
   }
 
   return (
     <div className="page product-shell account-screen progress-screen fade-in">
-      <div className="screen-topline"><span className="screen-kicker">Seu progresso</span><span className="num">{sessions.length} treinos registrados</span></div>
-      <h1 className="screen-title">
+      <h1 className="sr-only">Progresso</h1>
+      <h2 className="screen-title progress-lead">
         {lead && leadEx && leadDelta > 0
           ? <>{leadEx.name}: {metricLabel.toLowerCase()} aumentou <em>{formatLead(leadDelta)}.</em></>
           : lead && leadEx
             ? <>{leadEx.name}: {metricLabel.toLowerCase()} {leadDelta < 0 ? 'mais recente' : 'estável'} em <em>{formatLead(lead.series[lead.series.length - 1].value)}.</em></>
-            : <>{sessions.length} {sessions.length === 1 ? 'treino registrado' : 'treinos registrados'}.</>}
-      </h1>
+            : <>{plural(sessions.length, 'treino registrado', 'treinos registrados')}.</>}
+      </h2>
       {lead && leadEx && (
         <figure className="plate-fig" style={{ marginTop: 14 }}>
           <Chart data={lead.series.map((x) => ({ label: fmtDate(x.ts), value: x.value }))} unit={lead.unit === 'kg' ? '' : lead.unit} />
-          <figcaption><b>Fig.</b> {leadEx.name} ({ANATOMY[leadEx.primary].latin}), {metricLabel.toLowerCase()} máxima por série de cada sessão em {lead.unit}.</figcaption>
+          <figcaption>{leadEx.name}: {metricLabel.toLowerCase()} máxima em cada treino ({lead.unit}).</figcaption>
         </figure>
       )}
 
@@ -96,6 +95,8 @@ export default function Progress() {
         </div>
       </div>
 
+      <WeekBars sessions={sessions} goal={profile.frequency} />
+
       {prs.length > 0 && (
         <div className="card" style={{ marginTop: 14 }}>
           <div className="eyebrow accent">Últimos recordes</div>
@@ -117,7 +118,7 @@ export default function Progress() {
           <Link key={exId} to={`/exercise/${exId}`} className="list-item">
             <div className="grow">
               <span className="small">{byId.get(exId)?.name}</span>
-              <div className="tiny faint num">{st.count} séries registradas</div>
+              <div className="tiny faint num">{plural(st.count, 'série', 'séries')}</div>
             </div>
             <span className="mono num">{st.max > 0 ? fmtKg(st.max) : `${st.best} ${isTimedExercise(exId) ? 'seg' : 'reps'}`}</span>
             <span className="chev">›</span>
@@ -126,7 +127,7 @@ export default function Progress() {
       </div>
 
       <div className="card" style={{ marginTop: 14 }}>
-        <div className="between"><h3>Seu histórico</h3><span className="pill">{sessions.length} sessões</span></div>
+        <div className="between"><h3>Seu histórico</h3><span className="pill">{plural(sessions.length, 'treino', 'treinos')}</span></div>
         {sessions.slice(0, 15).map((s) => {
           const activity = activityTotals(s.logs)
           return (
@@ -134,7 +135,7 @@ export default function Progress() {
             <div className="grow">
               <span className="small">{s.dayLabel} {s.status === 'partial' && <span className="pill">parcial</span>}</span>
               <div className="tiny faint num">
-                {fmtDate(s.startedAt)} · {s.logs.length} séries · {s.endedAt ? fmtDuration(s.endedAt - s.startedAt) : ''}
+                {fmtDate(s.startedAt)} · {plural(s.logs.length, 'série', 'séries')} · {s.endedAt ? fmtDuration(s.endedAt - s.startedAt) : ''}
               </div>
             </div>
             <span className="mono num small muted">{activity.hasLoad ? `${Math.round(activity.volume)} kg` : <>
@@ -148,4 +149,26 @@ export default function Progress() {
       </div>
     </div>
   )
+}
+
+/** Treinos por semana nas últimas 8 semanas; a linha tracejada é a meta. */
+function WeekBars({ sessions, goal }: { sessions: ReturnType<typeof useStore.getState>['sessions']; goal: number }) {
+  const weeks = Array.from({ length: 8 }, (_, i) => {
+    const offset = i - 7
+    const start = new Date(); start.setHours(0, 0, 0, 0)
+    const day = (start.getDay() + 6) % 7; start.setDate(start.getDate() - day + offset * 7)
+    return { count: sessionsInWeekOffset(sessions, offset).length, label: offset === 0 ? 'Esta' : start.toLocaleDateString('pt-BR', { day: 'numeric', month: 'numeric' }) }
+  })
+  const max = Math.max(goal, ...weeks.map((w) => w.count), 1)
+  return <section className="card week-bars" style={{ marginTop: 14 }} aria-label={`Treinos por semana: ${weeks.map((w) => w.count).join(', ')}. Meta ${goal}.`}>
+    <div className="between"><h3>Treinos por semana</h3><span className="small muted">meta {goal}</span></div>
+    <div className="week-bars-plot" aria-hidden="true">
+      <span className="week-bars-goal" style={{ bottom: `calc(22px + (100% - 40px) * ${goal / max})` }} />
+      {weeks.map((w, i) => <div key={i} className="week-bars-col">
+        <span className="week-bars-n num">{w.count || ''}</span>
+        <span className={`week-bars-bar${w.count >= goal ? ' hit' : ''}`} style={{ height: `${Math.max(w.count / max * 100, w.count ? 6 : 2)}%` }} />
+        <span className="week-bars-l">{w.label}</span>
+      </div>)}
+    </div>
+  </section>
 }

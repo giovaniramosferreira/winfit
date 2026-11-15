@@ -9,9 +9,10 @@ interface Props {
   min: number
   integer?: boolean
   onChange: (value: number) => void
+  hint?: boolean
 }
 
-export default function NumberDial({ label, value, min, max = Infinity, integer = false, onChange }: Props) {
+export default function NumberDial({ label, value, min, max = Infinity, integer = false, onChange, hint = true }: Props) {
   const id = useId()
   const [draft, setDraft] = useState(String(value))
   const typing = useRef(false)
@@ -62,7 +63,7 @@ export default function NumberDial({ label, value, min, max = Infinity, integer 
           if (event.target.value !== '') update(event.target.valueAsNumber)
         }} />
       <div className="dial-track" role="spinbutton" tabIndex={0} aria-label={`Ajustar ${label}`}
-        aria-valuemax={Number.isFinite(max) ? max : undefined} aria-valuemin={min} aria-valuenow={value} aria-describedby={`${id}-hint`}
+        aria-valuemax={Number.isFinite(max) ? max : undefined} aria-valuemin={min} aria-valuenow={value} aria-describedby={hint ? `${id}-hint` : undefined}
         onKeyDown={key}
         onPointerDown={(event) => {
           if (event.button !== 0 || drag.current) return
@@ -82,7 +83,7 @@ export default function NumberDial({ label, value, min, max = Infinity, integer 
         <span className="dial-marker" aria-hidden="true" />
         <span className="dial-directions" aria-hidden="true">− <span>arraste</span> +</span>
       </div>
-      <p id={`${id}-hint`} className="tiny muted dial-hint">Arraste devagar para ajustar · toque no número para digitar</p>
+      {hint && <p id={`${id}-hint`} className="tiny muted dial-hint">Arraste a régua ou toque no número</p>}
     </div>
   )
 }

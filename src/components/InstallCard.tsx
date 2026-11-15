@@ -26,7 +26,7 @@ export default function InstallCard({ variant = 'suggest' }: { variant?: 'sugges
       <div className="card">
         <h3>Aplicativo</h3>
         <p className="small muted" style={{ marginTop: 6 }}>
-          ✓ WinFit está instalado neste aparelho e funciona sem internet.
+          ✓ Instalado. Funciona sem internet.
         </p>
       </div>
     )
@@ -45,11 +45,9 @@ export default function InstallCard({ variant = 'suggest' }: { variant?: 'sugges
     if (variant === 'suggest') return null
     return (
       <div className="card">
-        <h3>Aplicativo</h3>
+        <h3>Instalar o app</h3>
         <p className="small muted" style={{ marginTop: 6 }}>
-          Use o menu do navegador para adicionar o WinFit à tela de início
-          {isIOSSafari() ? '' : ' (procure por "Instalar app" ou "Adicionar à tela de início")'}.
-          Instalado, ele abre em tela cheia e funciona offline.
+          No menu do navegador, toque em {isIOSSafari() ? '“Adicionar à Tela de Início”' : '“Instalar app”'}.
         </p>
       </div>
     )
@@ -62,7 +60,7 @@ export default function InstallCard({ variant = 'suggest' }: { variant?: 'sugges
         <div className="grow">
           <h3>Instalar o WinFit</h3>
           <div className="small muted">
-            Abre em tela cheia, sem barra do navegador, e funciona sem internet na academia.
+            Tela cheia e funciona sem internet.
           </div>
         </div>
       </div>
