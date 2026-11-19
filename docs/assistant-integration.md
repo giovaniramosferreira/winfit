@@ -34,6 +34,7 @@ Pergunta não vazia até1000 caracteres; tempo inteiro5–180; equipamento perte
 `server/assistant.ts` exporta `createAssistantHandler(deps)` com dependências injetadas:
 
 - `authenticate(bearer)`: autoridade real que verifica a sessão, retorna `{id}` ou null. Decodificar JWT não basta.
+- Adaptador preparado em `server/supabaseAuth.ts`: consulta Supabase Auth por requisição, identidade mínima, timeout e resposta limitada. [Contrato e evidência](testing/backend-auth.tdd.md). Ainda precisa ser conectado ao runtime; não habilita rota/fornecedor.
 - `destination`: fornecedor/região exatos apresentados no consentimento.
 - `provider({question,context,instructions})`: apenas texto e contexto mínimo; não recebe token de usuário, identificador ou plano. Instruções delimitam explicações sem diagnóstico/protocolo clínico/ferramentas. Não há adapter de provider nesta entrega.
 - `coordinator.run(userId,key,fingerprint,task)`: reserva atômica durável por usuário/namespace do assistente, quota e resultado idempotente. Sem coordenador,503. Testes usam memória somente como fake; não há proteção distribuída operacional implementada. Definir timeout/lease/custo por conta e política de retenção antes de produção.
