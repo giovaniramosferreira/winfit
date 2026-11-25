@@ -1,0 +1,29 @@
+.wellness-simple .wellness-compact-heading { margin: 0 0 16px; }
+.wellness-simple .wellness-compact-heading h1 { font-size: 26px; line-height: 1.15; margin: 8px 0; }
+.wellness-simple .wellness-compact-heading p { margin: 8px 0; }
+.wellness-simple .wellness-disclosure { margin-top: 12px; }
+.wellness-simple summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; gap: 8px; font-weight: 600; }
+.wellness-simple summary::after { content: '+'; margin-left: auto; }
+.wellness-simple details[open] > summary::after { content: '−'; }
+.wellness-simple .wellness-tabs { display: flex; gap: 6px; margin-top: 14px; }
+.wellness-simple .wellness-tabs button { flex: 1; min-height: 44px; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: transparent; }
+.wellness-simple .wellness-tabs button[aria-selected=true] { background: var(--accent, #7048b9); color: white; }
+.wellness-simple [hidden] { display: none !important; }
+.wellness-simple .card h2 { font-size: 20px; margin: 0 0 12px; }
+.wellness-simple label { display: block; margin: 12px 0; }
+.wellness-simple input:not([type=checkbox]), .wellness-simple select, .wellness-simple textarea { width: 100%; min-height: 44px; margin-top: 5px; }
+.wellness-simple .btn { min-height: 44px; }
+.wellness-simple .nutrition-overview { margin-top: 8px !important; }
+.wellness-simple .nutrition-overview .nutrition-total { margin-top: 10px !important; font-size: 32px; }
+.wellness-simple .nutrition-photo { padding: 0; border: 0; box-shadow: none; }
+.wellness-simple .pelvic-essential { margin-top: 12px; }
+.wellness-simple .wellness-equipment-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 4px 12px; border: 1px solid var(--line); border-radius: 14px; padding: 10px; }
+.wellness-simple .wellness-check-option { display: flex; align-items: center; gap: 7px; min-height: 44px; margin: 0; font-size: 13px; }
+.wellness-simple .adaptation-exercise { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.wellness-simple .adaptation-thumbnail { width: 76px; flex: 0 0 76px; height: 76px; overflow: hidden; border-radius: 12px; }
+.wellness-simple .adaptation-thumbnail .exercise-demo { margin: 0; border: 0; padding: 0; }
+.wellness-simple .adaptation-thumbnail .pilot-stage { height: 76px; }
+.wellness-simple .adaptation-thumbnail .pilot-frames { height: 76px; }
+.wellness-simple .adaptation-thumbnail figcaption, .wellness-simple .adaptation-thumbnail .demo-control, .wellness-simple .adaptation-thumbnail .between, .wellness-simple .adaptation-thumbnail .tiny { display:none; }
+.wellness-simple #meal-editor, .wellness-simple #goal-editor { scroll-margin-top: 12px; }
+@media(max-width: 380px) { .wellness-simple .wellness-equipment-grid { grid-template-columns: 1fr; } }

@@ -21,8 +21,11 @@ import Pelvic from './pages/Pelvic'
 import Circuit from './pages/Circuit'
 import Routine from './pages/Routine'
 import Assistant from './pages/Assistant'
+import Tools from './pages/Tools'
 import SessionDetail from './pages/SessionDetail'
 import WorkoutStorageNotice from './components/WorkoutStorageNotice'
+import { lazy, Suspense } from 'react'
+const DesignSystem = lazy(() => import('./pages/DesignSystem'))
 
 export default function App() {
   const profile = useStore((s) => s.profile)
@@ -57,8 +60,10 @@ export default function App() {
         <Route path="/summary/:id" element={<Summary />} />
         <Route path="/progress" element={onboarded ? <Progress /> : <Navigate to="/" replace />} />
         <Route path="/exercise/:id" element={<ExerciseDetail />} />
+        <Route path="/tools" element={<Tools />} />
         <Route path="/library" element={onboarded ? <Library /> : <Navigate to="/" replace />} />
         <Route path="/profile" element={onboarded ? <Profile /> : <Navigate to="/" replace />} />
+        {import.meta.env.DEV && <Route path="/design" element={<Suspense fallback={null}><DesignSystem /></Suspense>} />}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       {onboarded && !inPlayer && !inFlow && !loc.pathname.startsWith('/summary') && (

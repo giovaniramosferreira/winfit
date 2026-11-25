@@ -49,8 +49,14 @@ export function mergeApplications(local: ApplicationBackup, remote: ApplicationB
   result.modules = { ...remote.modules, ...local.modules }
   const ln = local.modules?.nutrition, rn = remote.modules?.nutrition
   if (ln && rn) {
-    const items = new Map([...rn.meals.map((meal) => ({ meal, deleted: false })), ...rn.deleted.map((meal) => ({ meal, deleted: true })),
-      ...ln.meals.map((meal) => ({ meal, deleted: false })), ...ln.deleted.map((meal) => ({ meal, deleted: true }))].map((item) => [item.meal.id, item]))
+    // Exclusão vence: o item excluído continua restaurável, então um registro vivo e desatualizado
+    // de outro aparelho não pode ressuscitá-lo (AURAVIZ-165). Entre dois vivos, o local vence.
+    const items = new Map<string, { meal: typeof ln.meals[number]; deleted: boolean }>()
+    for (const item of [...rn.meals.map((meal) => ({ meal, deleted: false })), ...rn.deleted.map((meal) => ({ meal, deleted: true })),
+      ...ln.meals.map((meal) => ({ meal, deleted: false })), ...ln.deleted.map((meal) => ({ meal, deleted: true }))]) {
+      const known = items.get(item.meal.id)
+      items.set(item.meal.id, known?.deleted && !item.deleted ? known : item)
+    }
     result.modules.nutrition = { version: 1, meals: [...items.values()].filter((x) => !x.deleted).map((x) => x.meal),
       deleted: [...items.values()].filter((x) => x.deleted).map((x) => x.meal),
       goals: [...new Map([...rn.goals, ...ln.goals].map((goal) => [goal.date, goal])).values()] }

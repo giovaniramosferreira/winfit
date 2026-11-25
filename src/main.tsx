@@ -2,12 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import App from './App'
+import './design/tokens.css'
 import './styles.css'
 import './product-ui.css'
 import './training-ui.css'
 import './wellness-ui.css'
 import './account-ui.css'
 import './revamp.css'
+import './design/components.css'
 
 // HashRouter: funciona em qualquer hosting estático sem config de rewrite — custo zero de infra.
 ReactDOM.createRoot(document.getElementById('root')!).render(

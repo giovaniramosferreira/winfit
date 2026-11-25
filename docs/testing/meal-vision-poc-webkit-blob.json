@@ -1,0 +1,27 @@
+{
+  "executedAt": "2026-11-04T23:45:33.233Z",
+  "engine": "Playwright WebKit 26.5",
+  "physicalDevice": false,
+  "observations": [
+    {
+      "offline": false,
+      "operations": {
+        "blobBuffer": "ok",
+        "fileBuffer": "ok",
+        "fileReader": "ok",
+        "imageBitmap": "ok",
+        "dataImage": "ok"
+      }
+    },
+    {
+      "offline": true,
+      "operations": {
+        "blobBuffer": "NotReadableError: The I/O read operation failed.",
+        "fileBuffer": "NotReadableError: The I/O read operation failed.",
+        "fileReader": "NotReadableError: The I/O read operation failed.",
+        "imageBitmap": "InvalidStateError: An error occured reading the Blob argument to createImageBitmap",
+        "dataImage": "ok"
+      }
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import Confetti from '../components/Confetti'
 import { renderShareCard, shareOrDownload } from '../lib/shareImage'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
-import { fmtDuration } from '../lib/helpers'
+import { fmtDuration, sessionActiveMs } from '../lib/helpers'
 import { activityTotals, fmtKg, volumeOf } from '../lib/progression'
 
 export default function Summary() {
@@ -18,6 +18,7 @@ export default function Summary() {
 
   const volume = volumeOf(session.logs)
   const activity = activityTotals(session.logs)
+  const activeMs = sessionActiveMs(session)
   // Um recorde por exercício: a melhor série marcada como PR na sessão.
   const prs = [...session.logs.filter((l) => l.isPR)
     .reduce((m, l) => {
@@ -38,7 +39,7 @@ export default function Summary() {
 
       <div className="stat-grid" style={{ marginTop: 24 }}>
         <div className="stat">
-          <div className="v num">{session.endedAt ? fmtDuration(session.endedAt - session.startedAt) : '—'}</div>
+          <div className="v num">{activeMs === null ? '—' : fmtDuration(activeMs)}</div>
           <div className="k">Duração</div>
         </div>
         <div className="stat">
@@ -75,7 +76,7 @@ export default function Summary() {
       </button>
       <button className="btn btn-quiet" onClick={async () => {
         try {
-          const durationText = session.endedAt ? fmtDuration(session.endedAt - session.startedAt) : '—'
+          const durationText = activeMs === null ? '—' : fmtDuration(activeMs)
           const blob = await renderShareCard({
             title: prs.length ? `${prs.length === 1 ? 'Novo recorde' : `${prs.length} recordes`} hoje!` : 'Treino feito!',
             subtitle: session.dayLabel,

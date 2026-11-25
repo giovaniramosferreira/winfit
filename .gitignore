@@ -6,3 +6,4 @@ dev-dist/
 tsconfig.tsbuildinfo
 coverage/
 .ecc/
+.poc-models/

@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
-import { lastPerformance, suggestFor, fmtKg } from '../lib/progression'
+import { lastPerformance, suggestFor, fmtKg, POLICY_LABEL } from '../lib/progression'
+import { policyFor } from '../lib/progressionPolicyStore'
+import { suggestDeload } from '../lib/deload'
 import { equivalentsFor } from '../lib/generator'
 import { isEquipmentFree } from '../lib/homeWorkout'
 import { fmtClock, beep, vibrate } from '../lib/helpers'
@@ -16,6 +18,7 @@ import { EXERCISE_ILLUSTRATIONS } from '../data/exerciseIllustrations'
 import { isEquipmentFreeSession, isTimedExercise, variationLabel } from '../lib/exerciseRules'
 import Icon from '../components/Icon'
 import Confetti from '../components/Confetti'
+import { Sheet, confirmDialog } from '../components/ui'
 
 export default function Player() {
   const nav = useNavigate()
@@ -82,8 +85,9 @@ export default function Player() {
     id: sx.planExerciseId, exerciseId: sx.exerciseId, slotType: 'core',
     sets: sx.sets, repMin: sx.repMin, repMax: sx.repMax, restSec: sx.restSec, optional: sx.optional,
   }
-  const suggestion = suggestFor(planExLike, exercise, sessions)
+  const suggestion = suggestFor(planExLike, exercise, sessions, { policy: policyFor(exercise.id) })
   const prev = lastPerformance(sx.exerciseId, sessions)
+  const deload = exercise.loadType === 'external' ? suggestDeload(exercise.id, sessions) : null
 
   const logsHere = session.logs.filter((l) => l.planExerciseId === sx.planExerciseId)
   const nextSetNumber = logsHere.length + 1
@@ -170,8 +174,8 @@ export default function Player() {
             <> · <b className={`mono${suggestion.isIncrease ? ' accent-text' : ''}`}>{fmtKg(suggestion.weight)}</b></>
           )}
         </p>
-
-
+        <p className="small muted" style={{ marginTop: 4 }} data-testid="progression-reason"><b>{POLICY_LABEL[suggestion.policy]}:</b> {suggestion.note}</p>
+        {deload?.suggest && <p className="small" role="note" data-testid="deload-note">{deload.reason}</p>}
         </div><div className="player-demo-wrap" ref={instructionsRef}>
           <ExerciseDemo key={exercise.id} exerciseId={exercise.id} name={exercise.name} autoPlay compact />
           <button ref={infoButtonRef} className="btn btn-ghost player-info" aria-label="Como fazer este exercício" aria-expanded={instructionsOpen} aria-controls="exercise-instructions" onClick={() => setInstructionsOpen(!instructionsOpen)}><span aria-hidden="true">Como fazer</span></button>
@@ -252,9 +256,9 @@ export default function Player() {
       </footer>
 
       {editor && (
-        <div className="modal-back" onClick={() => setEditor(null)}>
-          <form className="modal" onClick={(e) => e.stopPropagation()} onSubmit={(e) => { e.preventDefault(); confirmEditor() }}>
-            <h2>{editor.logId ? 'Editar série' : `Série ${nextSetNumber}`}</h2>
+        <Sheet onClose={() => setEditor(null)} labelledBy="set-editor-title">
+          <form onSubmit={(e) => { e.preventDefault(); confirmEditor() }}>
+            <h2 id="set-editor-title">{editor.logId ? 'Editar série' : `Série ${nextSetNumber}`}</h2>
             {exercise.loadType === 'external' && (
               <NumberDial label="Carga (kg)" value={editor.weight} min={0} integer max={maximumInputLoad(exercise, [...sessions.flatMap(s => s.logs.filter(l => l.exerciseId === exercise.id).map(l => l.weight)), ...logsHere.map(l => l.weight), suggestion.weight ?? 0])}
                 onChange={(weight) => setEditor((current) => current ? { ...current, weight } : null)} />
@@ -272,7 +276,7 @@ export default function Player() {
               </button>
             )}
           </form>
-        </div>
+        </Sheet>
       )}
 
       {subOpen && (
@@ -284,8 +288,8 @@ export default function Player() {
       )}
 
       {menuOpen && (
-        <div className="modal-back" onClick={() => setMenuOpen(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
+        <Sheet onClose={() => setMenuOpen(false)} label="Opções do treino">
+          <div>
             <h2>Opções</h2>
             <div style={{ marginTop: 12 }}>
               <label className="exercise-picker"><span className="small">Ir para exercício</span><select aria-label="Ir para exercício" value={idx} onChange={(event) => { setEditor(null); setCurrentIndex(Number(event.target.value)); setMenuOpen(false) }}>
@@ -296,19 +300,19 @@ export default function Player() {
                 Encerrar treino agora
               </button>
               <button className="btn btn-danger" style={{ marginTop: 10 }}
-                onClick={() => { if (confirm('Descartar este treino? As séries registradas serão perdidas.')) { discardActive(); nav('/home') } }}>
+                onClick={async () => { if (await confirmDialog({ title: 'Descartar este treino?', message: 'As séries registradas serão perdidas.', confirmLabel: 'Descartar', destructive: true })) { discardActive(); nav('/home') } }}>
                 Descartar treino
               </button>
               <button className="btn btn-quiet" onClick={() => setMenuOpen(false)}>Cancelar</button>
             </div>
           </div>
-        </div>
+        </Sheet>
       )}
 
       {finishOpen && (
-        <div className="modal-back" onClick={() => setFinishOpen(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>Como foi o treino?</h2>
+        <Sheet onClose={() => setFinishOpen(false)} labelledBy="finish-title">
+          <div>
+            <h2 id="finish-title">Como foi o treino?</h2>
             <p className="muted small" style={{ marginTop: 6 }}>
               {doneSets < totalSets
                 ? `Você registrou ${doneSets} de ${totalSets} séries. O treino será salvo como parcial.`
@@ -326,7 +330,7 @@ export default function Player() {
               Encerrar sem avaliar
             </button>
           </div>
-        </div>
+        </Sheet>
       )}
 
       {watchModalOpen && (
@@ -393,8 +397,8 @@ function SubstituteModal({ exercise, onClose, onPick }: {
     .sort((a, b) => Number(variationLabel(exercise.id, a.id) === 'Outra variação') - Number(variationLabel(exercise.id, b.id) === 'Outra variação'))
 
   return (
-    <div className="modal-back" onClick={onClose}>
-      <div className="modal substitution-sheet" role="dialog" aria-modal="true" aria-label={`Variações de ${exercise.name}`} onClick={(e) => e.stopPropagation()}>
+    <Sheet onClose={onClose} className="substitution-sheet" label={`Variações de ${exercise.name}`}>
+      <div>
         <div className="between" style={{ marginBottom: 12 }}>
           <span className="eyebrow">{exercise.loadType === 'bodyweight' ? 'Ajuste a dificuldade' : 'Substituir exercício'}</span>
           <button className="btn-quiet" onClick={onClose}>Fechar</button>
@@ -431,7 +435,7 @@ function SubstituteModal({ exercise, onClose, onPick }: {
           </>
         )}
       </div>
-    </div>
+    </Sheet>
   )
 }
 

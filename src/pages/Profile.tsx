@@ -13,6 +13,7 @@ import { useAuth } from '../components/AuthProvider'
 import { privacy } from '../lib/privacy'
 import PageTop from '../components/PageTop'
 import Icon from '../components/Icon'
+import { Sheet, confirmDialog } from '../components/ui'
 
 const GOAL_LABEL: Record<Goal, string> = {
   hypertrophy: 'Ganhar músculo',
@@ -111,8 +112,8 @@ export default function Profile() {
         <button className="btn btn-ghost" style={{ marginTop: 12 }} onClick={doExport}>Exportar meus dados</button>
         <DataControls />
         <button className="btn btn-danger" style={{ marginTop: 12 }}
-          onClick={() => {
-            if (confirm('Apagar todos os dados deste aparelho? Exporte um backup antes. Backups na nuvem não são apagados.')) {
+          onClick={async () => {
+            if (await confirmDialog({ title: 'Apagar todos os dados deste aparelho?', message: 'Exporte um backup antes. Backups na nuvem não são apagados.', confirmLabel: 'Apagar tudo', destructive: true })) {
               try { resetApplicationData(); privacy.setWatchDestination(null); logout(); nav('/') }
               catch (error) { setDataError(String(error)) }
             }
@@ -131,8 +132,8 @@ export default function Profile() {
       </details>
 
       {adjust && (
-        <div className="modal-back" onClick={() => setAdjust(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="adjust-title">
+        <Sheet onClose={() => setAdjust(false)} labelledBy="adjust-title">
+          <div>
             <h2 id="adjust-title">Editar plano</h2>
             <p className="small muted" style={{ marginTop: 4 }}>Um novo plano é gerado. Histórico e recordes continuam.</p>
             <h3 className="field-title" style={{ marginTop: 16 }}>Objetivo</h3>
@@ -156,7 +157,7 @@ export default function Profile() {
             <button className="btn btn-primary" style={{ marginTop: 8 }} onClick={applyAdjust}>Gerar novo plano</button>
             <button className="btn btn-quiet" onClick={redoOnboarding}>Mudar local ou limitações</button>
           </div>
-        </div>
+        </Sheet>
       )}
       {watchModal && <WatchModal onClose={() => setWatchModal(false)} />}
     </div>

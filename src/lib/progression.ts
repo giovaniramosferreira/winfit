@@ -17,11 +17,25 @@ export function exerciseProgressSeries(exerciseId: string, sessions: Session[]):
 // Dupla progressão (seção 19 da spec): fechou todas as séries no teto da faixa → sobe carga,
 // volta ao piso. Senão → mesma carga, meta é adicionar repetições.
 
+/** Políticas nomeadas de progressão (AURAVIZ-162). A regra aplicada e o motivo ficam sempre visíveis. */
+export type ProgressionPolicy = 'double' | 'linear' | 'reps'
+export const PROGRESSION_POLICIES: ProgressionPolicy[] = ['double', 'linear', 'reps']
+export const POLICY_LABEL: Record<ProgressionPolicy, string> = { double: 'Dupla progressão', linear: 'Progressão linear', reps: 'Só repetições' }
+export const POLICY_DESC: Record<ProgressionPolicy, string> = {
+  double: 'Fechou todas as séries no teto da faixa: sobe a carga e volta ao piso. Senão, mesma carga e mais repetições.',
+  linear: 'Fez todas as séries com pelo menos o piso da faixa: sobe a carga na próxima sessão.',
+  reps: 'Nunca sobe a carga sozinha: só sugere mais repetições até o teto (bom para máquinas e isolados).',
+}
+export function isProgressionPolicy(value: unknown): value is ProgressionPolicy { return value === 'double' || value === 'linear' || value === 'reps' }
+
 export interface Suggestion {
   weight: number | null // null = primeira vez: calibrar
   targetReps: number
   note: string
   isIncrease: boolean
+  policy: ProgressionPolicy
+  /** false quando a última sessão teve menos séries registradas que o plano: nunca avança carga. */
+  lastSessionComplete: boolean
 }
 
 /** Últimos sets não-extra de um exercício na sessão mais recente que o contém. */
@@ -39,7 +53,12 @@ export function sessionsWithExercise(exerciseId: string, sessions: Session[]): n
   ).length
 }
 
-export function suggestFor(planEx: PlanExercise, exercise: Exercise, sessions: Session[]): Suggestion {
+/**
+ * A próxima prescrição é função pura do histórico (nada guardado). Leitura honesta da sessão:
+ * série não registrada conta como falha, então menos séries que o plano nunca avança a carga.
+ */
+export function suggestFor(planEx: PlanExercise, exercise: Exercise, sessions: Session[], options: { policy?: ProgressionPolicy } = {}): Suggestion {
+  const policy = options.policy ?? 'double'
   const last = lastPerformance(planEx.exerciseId, sessions)
   if (!last || last.length === 0) {
     return {
@@ -52,32 +71,41 @@ export function suggestFor(planEx: PlanExercise, exercise: Exercise, sessions: S
             ? 'Primeira vez: registre quantos segundos sustenta com boa execução.'
             : 'Primeira vez: registre quantas repetições consegue com boa execução.',
       isIncrease: false,
+      policy,
+      lastSessionComplete: true,
     }
   }
+  const complete = last.length >= planEx.sets
+  const incompleteNote = complete ? '' : ` Você registrou ${last.length} de ${planEx.sets} séries; série não feita conta como falha, então repita a carga.`
   const maxWeight = Math.max(...last.map((l) => l.weight))
-  const allTopped = last.every((l) => l.reps >= planEx.repMax)
+  const bestReps = Math.max(...last.map((l) => l.reps))
+  const allTopped = complete && last.every((l) => l.reps >= planEx.repMax)
+  const allHitFloor = complete && last.every((l) => l.reps >= planEx.repMin)
+  const base = { policy, lastSessionComplete: complete }
 
   if (exercise.loadType !== 'external') {
     if (allTopped) {
-      return { weight: 0, targetReps: planEx.repMax, note: 'Você fechou a faixa — hora de progredir para uma variação mais difícil (troque o exercício).', isIncrease: true }
+      return { ...base, weight: 0, targetReps: planEx.repMax, note: 'Você fechou a faixa — hora de progredir para uma variação mais difícil (troque o exercício).', isIncrease: true }
     }
-    const best = Math.max(...last.map((l) => l.reps))
     const step = isTimedExercise(exercise.id) ? 5 : 1
     const unit = isTimedExercise(exercise.id) ? 'seg' : 'reps'
-    return { weight: maxWeight, targetReps: Math.min(best + step, planEx.repMax), note: `Última vez: ${best} ${unit}. Meta: +${step}.`, isIncrease: false }
+    return { ...base, weight: maxWeight, targetReps: Math.min(bestReps + step, planEx.repMax), note: `Última vez: ${bestReps} ${unit}. Meta: +${step}.${incompleteNote}`, isIncrease: false }
   }
 
-  if (allTopped && maxWeight > 0) {
+  if (policy === 'linear' && allHitFloor && maxWeight > 0) {
     const next = round25(maxWeight + exercise.minIncrementKg)
-    return { weight: next, targetReps: planEx.repMin, note: `Você fechou ${planEx.sets}×${planEx.repMax} com ${fmtKg(maxWeight)}. Sobe para ${fmtKg(next)}.`, isIncrease: true }
+    return { ...base, weight: next, targetReps: planEx.repMin, note: `Progressão linear: você fez todas as séries com ${fmtKg(maxWeight)}. Sobe para ${fmtKg(next)}.`, isIncrease: true }
   }
-  const bestReps = Math.max(...last.map((l) => l.reps))
-  return {
-    weight: maxWeight,
-    targetReps: Math.min(bestReps + 1, planEx.repMax),
-    note: `Última vez: ${fmtKg(maxWeight)} × ${bestReps}. Meta: chegar a ${planEx.repMax} reps.`,
-    isIncrease: false,
+  if (policy === 'double' && allTopped && maxWeight > 0) {
+    const next = round25(maxWeight + exercise.minIncrementKg)
+    return { ...base, weight: next, targetReps: planEx.repMin, note: `Você fechou ${planEx.sets}×${planEx.repMax} com ${fmtKg(maxWeight)}. Sobe para ${fmtKg(next)}.`, isIncrease: true }
   }
+  if (policy === 'reps' && allTopped && maxWeight > 0) {
+    return { ...base, weight: maxWeight, targetReps: planEx.repMax, note: `Você fechou ${planEx.sets}×${planEx.repMax} com ${fmtKg(maxWeight)}. Nesta política a carga não sobe sozinha: aumente manualmente se quiser.`, isIncrease: false }
+  }
+  const target = policy === 'linear' ? planEx.repMin : Math.min(bestReps + 1, planEx.repMax)
+  const goal = policy === 'linear' ? `fazer todas as séries com ${planEx.repMin}+ reps` : `chegar a ${planEx.repMax} reps`
+  return { ...base, weight: maxWeight, targetReps: target, note: `Última vez: ${fmtKg(maxWeight)} × ${bestReps}. Meta: ${goal}.${incompleteNote}`, isIncrease: false }
 }
 
 /** PR de carga: peso acima de qualquer registro anterior, apenas a partir da 2ª sessão do exercício. */

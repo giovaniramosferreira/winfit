@@ -7,12 +7,15 @@ import { startTraining } from '../data/sessionModules'
 import HomeArtwork from '../components/HomeArtwork'
 import { useCircuitStore } from '../lib/circuitStore'
 import Icon from '../components/Icon'
+import { Sheet } from '../components/ui'
+import StreakCard from '../components/StreakCard'
 
 const wellbeing = [
   { to: '/pelvic', title: 'Saúde pélvica', caption: 'Pausa de 1 min', icon: 'breath' },
   { to: '/nutrition', title: 'Alimentação', caption: 'Diário de refeições', icon: 'meal' },
   { to: '/routine', title: 'Rotina', caption: 'Lembretes e checklist', icon: 'calendar' },
   { to: '/assistant', title: 'Adaptar treino', caption: 'Pouco tempo hoje?', icon: 'spark' },
+  { to: '/tools', title: 'Ferramentas', caption: '1RM, anilhas e mais', icon: 'timer' },
 ] as const
 
 export default function Home() {
@@ -52,6 +55,8 @@ export default function Home() {
       </button>
     </section>
 
+    <StreakCard />
+
     <h2 className="hub-section">Treinar</h2>
     <div className="hub-train" aria-label="Modalidades de treino">
       <Link to="/training" className="hub-card home-module"><HomeArtwork module="gym" /><span className="hub-card-copy"><b>Academia</b><small>Seu plano</small></span></Link>
@@ -71,12 +76,12 @@ export default function Home() {
       </Link>)}
     </div>
 
-    {expired && active && <div className="modal-back"><div className="modal" role="dialog" aria-modal="true" aria-labelledby="hub-expired">
+    {expired && active && <Sheet dismissible={false} labelledBy="hub-expired" onClose={() => setExpired(false)}><div>
       <h2 id="hub-expired">Treino inacabado</h2><p className="small muted">{active.dayLabel}: {active.logs.length} séries registradas.</p>
       <button className="btn btn-primary" onClick={() => { setExpired(false); nav('/player') }}>Continuar treino</button>
       <button className="btn btn-ghost" style={{ marginTop:10 }} onClick={() => { saveExpired(); setExpired(false) }}>Salvar como parcial</button>
       <button className="btn btn-quiet" onClick={() => setExpired(false)}>Voltar</button>
-    </div></div>}
+    </div></Sheet>}
   </main>
 }
 

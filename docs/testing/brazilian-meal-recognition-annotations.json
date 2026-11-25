@@ -1,0 +1,10 @@
+{
+  "cc-23":{"containsFood":true,"requiredGroups":[{"name":"feijoada/feijão","patterns":["feijoada","feijao"]}],"optionalGroups":[{"name":"arroz","patterns":["arroz"]},{"name":"carnes","patterns":["carne","linguica","porco"]}],"note":"Mesa com várias porções; não inferir quantidades, receita ou tudo que foi consumido."},
+  "cc-24":{"containsFood":true,"requiredGroups":[{"name":"arroz","patterns":["arroz"]},{"name":"feijão","patterns":["feijao"]},{"name":"farofa","patterns":["farofa","farinha de mandioca"]}],"optionalGroups":[],"note":"Prato de arroz, feijão e farofa; pesos e receita desconhecidos."},
+  "br-01":{"containsFood":true,"requiredGroups":[{"name":"feijoada/feijão","patterns":["feijoada","feijao"]},{"name":"arroz","patterns":["arroz"]},{"name":"carnes","patterns":["carne","linguica","porco","bacon"]}],"optionalGroups":[{"name":"verdura","patterns":["couve","verdura","folha"]}],"note":"Arroz, feijão preto e carnes com verdura/acompanhamento; não exigir tipo de carne pela foto."},
+  "br-02":{"containsFood":true,"requiredGroups":[{"name":"arroz","patterns":["arroz"]},{"name":"feijão","patterns":["feijao"]},{"name":"salada/verduras","patterns":["alface","salada","folha","verdura"]}],"optionalGroups":[{"name":"legumes","patterns":["legume","abobrinha","pepino"]}],"note":"Arroz e feijão com folhas e legumes; variedade dos legumes é ambígua."},
+  "br-03":{"containsFood":true,"requiredGroups":[{"name":"coxinha","patterns":["coxinha"]}],"optionalGroups":[],"note":"Coxinha; recheio não está visível e não deve ser tratado como confirmado."},
+  "br-04":{"containsFood":true,"requiredGroups":[{"name":"pão de queijo","patterns":["pao de queijo","paes de queijo"]}],"optionalGroups":[],"note":"Anotação apoiada na foto e legenda original; interior/receita não visíveis."},
+  "cc-21":{"containsFood":false,"requiredGroups":[],"optionalGroups":[],"note":"Paisagem sem alimento."},
+  "cc-22":{"containsFood":false,"requiredGroups":[],"optionalGroups":[],"note":"Paisagem sem alimento."}
+}

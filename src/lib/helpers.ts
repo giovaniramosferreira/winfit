@@ -38,6 +38,24 @@ export function fmtDuration(ms: number): string {
   return `${Math.floor(min / 60)}h${String(min % 60).padStart(2, '0')}`
 }
 
+/** Maior intervalo entre duas ações que ainda conta como treino (descanso longo incluso). */
+export const MAX_IDLE_GAP_MS = 15 * 60 * 1000
+
+/**
+ * Tempo de treino de uma sessão encerrada: soma dos intervalos entre início, séries e fim, limitando cada
+ * intervalo a MAX_IDLE_GAP_MS. Treino deixado aberto por horas ou dias não infla a duração.
+ * Nunca excede `endedAt − startedAt`; devolve null se a sessão não tem fim.
+ */
+export function sessionActiveMs(session: { startedAt: number; endedAt?: number; logs: ReadonlyArray<{ ts: number }> }): number | null {
+  const { startedAt, endedAt } = session
+  if (endedAt === undefined || endedAt < startedAt) return null
+  const marks = session.logs.map((l) => Math.min(Math.max(l.ts, startedAt), endedAt)).sort((a, b) => a - b)
+  const points = [startedAt, ...marks, endedAt]
+  let total = 0
+  for (let i = 1; i < points.length; i++) total += Math.min(points[i] - points[i - 1], MAX_IDLE_GAP_MS)
+  return Math.min(total, endedAt - startedAt)
+}
+
 export function fmtClock(sec: number): string {
   const m = Math.floor(sec / 60)
   const s = sec % 60

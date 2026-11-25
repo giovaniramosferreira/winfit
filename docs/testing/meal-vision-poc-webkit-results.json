@@ -1,0 +1,1899 @@
+{
+  "schemaVersion": 1,
+  "executedAt": "2026-11-05T00:50:39.182Z",
+  "platform": "Playwright WebKit desktop 26.5, 390x844 touch emulation; NOT physical iPhone",
+  "offlineMode": "http-isolation",
+  "blockedHttpRequests": [],
+  "initialization": {
+    "modelBytes": 33995501,
+    "initializationMs": 194,
+    "analysisMs": null,
+    "jsHeapBytes": null,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15"
+  },
+  "checks": [
+    "Switching meals discards the previous photo draft",
+    "Model cannot load without explicit research acknowledgment",
+    "Non-food suggestions can be rejected without diary entries",
+    "Image cannot be analyzed before local opt-in",
+    "Loaded WASM model analyzes with HTTP blocked (not offline emulation)",
+    "Changing candidates resets reference and confirmation",
+    "Analysis alone never saves food or nutrients",
+    "Repeated review of the same photo consumes once",
+    "Reviewed meal and daily total are rendered",
+    "Editing grams recalculates energy and macros",
+    "Reload preserves one meal and reference provenance",
+    "Deletion recalculates the day",
+    "Restoration does not duplicate the meal",
+    "Diary can hide calorie counting",
+    "Unknown catalog entry asks for manual input",
+    "Manual editing with HTTP blocked invalidates old calculated nutrients",
+    "No external image or analysis requests",
+    "No page errors"
+  ],
+  "externalRequests": [],
+  "pageErrors": [],
+  "screenshots": [
+    "artifacts/meal-vision-webkit-analysis.png",
+    "artifacts/meal-vision-webkit-saved.png"
+  ],
+  "latencyMs": {
+    "min": 65,
+    "median": 72,
+    "p95": 79,
+    "max": 84
+  },
+  "cost": {
+    "remoteInferenceRequests": 0,
+    "remoteInferenceCost": 0,
+    "deviceEnergy": "unmeasured",
+    "setupDownloadsExcluded": true
+  },
+  "physicalIPhoneTest": null,
+  "images": [
+    {
+      "id": "cc-01",
+      "file": "cc-01.jpg",
+      "class_key": "fried_rice",
+      "label": 44,
+      "identifier": "7a4feeda-cec9-4c6e-a780-e8cd5fb942c4",
+      "url": "https://live.staticflickr.com/8309/7893613332_56cb1c7ff2.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Vegan fried rice\" by Lablascovegmenu is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/35022955@N06/7893613332",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "41afb54045d838e4a08333f2d5e1a28cf087f8ea80f012fbbad00984dc79d37d",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "fried_rice",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "risotto",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "tacos",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 84,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "fried_rice",
+        "visibleItems": [
+          "arroz",
+          "legumes",
+          "folhas"
+        ],
+        "ambiguity": "Preparo e ingredientes exatos não podem ser confirmados visualmente."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-02",
+      "file": "cc-02.jpg",
+      "class_key": "fried_rice",
+      "label": 44,
+      "identifier": "ba0960a5-3d6b-405f-91ec-0e6c4536e9f1",
+      "url": "https://live.staticflickr.com/3010/3010144552_7b95a85756_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"honey moon fried rice\" by Geoff Peters 604 is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/54359128@N00/3010144552",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "85cd997f6adb59319d546b1b9d20a1bdd2956c715b4735484e0e6050a13ca60a",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "dumplings",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "hot_and_sour_soup",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "ramen",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 73,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "fried_rice",
+        "visibleItems": [
+          "arroz",
+          "camarões",
+          "molho"
+        ],
+        "ambiguity": "Duas preparações e molhos; não inferir receita ou peso."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-03",
+      "file": "cc-03.jpg",
+      "class_key": "fried_rice",
+      "label": 44,
+      "identifier": "d8a4c637-a105-4735-984c-6d773c64d25f",
+      "url": "https://live.staticflickr.com/7337/11017830464_5727652b85_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Japanese fried rice with prawns in a hot stone bowl at Gyoza Douraku in Melbourne\" by ultrakml is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/34948727@N00/11017830464",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "a21870481faa8380205fe623ff078d4c42a3c1596a3406de86017bdd480a99ce",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "bibimbap",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "fried_rice",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "dumplings",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 74,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "fried_rice",
+        "visibleItems": [
+          "arroz",
+          "camarões",
+          "algas"
+        ],
+        "ambiguity": "Prato misto; ingredientes ocultos desconhecidos."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-04",
+      "file": "cc-04.jpg",
+      "class_key": "bibimbap",
+      "label": 7,
+      "identifier": "25e262a8-3b8c-4db4-b999-44ba4d57c0a6",
+      "url": "https://live.staticflickr.com/3131/2753530146_bbebc6b2ea_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Bibimbap - Seoul Garden\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/2753530146",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "c925aae0194c8dc2a3517aab72dc6f8aa06b7795839c44042655270051c51186",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "bibimbap",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "fried_rice",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "huevos_rancheros",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 74,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "bibimbap",
+        "visibleItems": [
+          "ovo",
+          "arroz",
+          "legumes",
+          "acompanhamentos"
+        ],
+        "ambiguity": "Porções em vários recipientes; consumo não confirmado."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-05",
+      "file": "cc-05.jpg",
+      "class_key": "bibimbap",
+      "label": 7,
+      "identifier": "7728d336-8dcd-4421-b42b-ace8097cab77",
+      "url": "https://live.staticflickr.com/3413/3475063251_9afea310a5_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"BBQ Chicken Dolsot Bibimbap - Hello Cook AUD9.50\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/3475063251",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "e62eeeebb2a84da533e2b6fc716b4ed8f762c74c6830a57cd25061d9e87be78d",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "bibimbap",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "spaghetti_bolognese",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "ramen",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 71,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "bibimbap",
+        "visibleItems": [
+          "ovo",
+          "legumes",
+          "carne",
+          "arroz"
+        ],
+        "ambiguity": "Parte do arroz está oculta; identidade da carne vem da legenda, não da foto."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-06",
+      "file": "cc-06.jpg",
+      "class_key": "bibimbap",
+      "label": 7,
+      "identifier": "2adac0ef-7f03-4a3c-bbd1-ef57a32562bc",
+      "url": "https://live.staticflickr.com/3038/3085707177_291b290f21_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Stone pot Bibimbap - Hello Cook AUD9.50\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/3085707177",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "ecfe59b5ab49d03c089f159f18ca0f32fabcaccaa6223f3f68012ecdff522b05",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "bibimbap",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "seaweed_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "ramen",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 73,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "bibimbap",
+        "visibleItems": [
+          "arroz",
+          "legumes",
+          "folhas",
+          "carne"
+        ],
+        "ambiguity": "Ingredientes e óleo não são quantificáveis pela foto."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-07",
+      "file": "cc-07.jpg",
+      "class_key": "steak",
+      "label": 93,
+      "identifier": "314c8b77-d3b1-4e06-99ec-f34752ae7855",
+      "url": "https://live.staticflickr.com/3081/4556359611_fa3e70b25e_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"steak\" by marc kjerland is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/22251370@N02/4556359611",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "174df856768fe21fc88a00a65bef7655896833fe638d2fac80a0007b857f464e",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "chocolate_cake",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "prime_rib",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "steak",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 79,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "steak",
+        "visibleItems": [
+          "carne",
+          "purê ou acompanhamento claro"
+        ],
+        "ambiguity": "Pessoa também em cena; corte e acompanhamento não confirmados."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-08",
+      "file": "cc-08.jpg",
+      "class_key": "steak",
+      "label": 93,
+      "identifier": "6db41308-ebd2-4344-9257-26a0854647a1",
+      "url": "https://live.staticflickr.com/3087/2797392720_b38838e320_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Steak dinner\" by mick62 is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/8509783@N03/2797392720",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "a6e89f817cbfcd69ebc6cb1c913a2fd633f399e58d7ccf93a4e7677e6e39a66d",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "steak",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "baby_back_ribs",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "beef_tartare",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 73,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "steak",
+        "visibleItems": [
+          "carne",
+          "milho",
+          "batatas",
+          "acompanhamento"
+        ],
+        "ambiguity": "Prato misto e peso desconhecido."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-09",
+      "file": "cc-09.jpg",
+      "class_key": "steak",
+      "label": 93,
+      "identifier": "5537c611-38e4-4650-8027-0c04d832bfaa",
+      "url": "https://live.staticflickr.com/7043/6919739838_6feee8fec2_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Steak & Chips\" by marksweb is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/92166740@N00/6919739838",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "2da68d07e75baa3c92b1f13e14606d33b4709fb09c9a1c3e05671932bd3958a0",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "steak",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "filet_mignon",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "hamburger",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 74,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "steak",
+        "visibleItems": [
+          "carne",
+          "batatas fritas",
+          "cogumelos",
+          "tomate"
+        ],
+        "ambiguity": "Molhos e gorduras de preparo desconhecidos."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-10",
+      "file": "cc-10.jpg",
+      "class_key": "beet_salad",
+      "label": 5,
+      "identifier": "92b0575b-c021-4ea5-9743-c59d38fadb83",
+      "url": "https://live.staticflickr.com/3362/3428266508_df88d4029a_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Warm Beet Salad with Toasted Hazelnut & Blueberry\" by Vegan Feast Catering is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/25128194@N02/3428266508",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "67393ce0e8f7600a7e92c7e390c4837f474a003b163e9adda7f79535d888963b",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "beet_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "greek_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "tuna_tartare",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 72,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "beet_salad",
+        "visibleItems": [
+          "folhas",
+          "beterraba",
+          "legumes",
+          "frutas"
+        ],
+        "ambiguity": "Mistura com frutas e outros ingredientes; molho não confirmado."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-11",
+      "file": "cc-11.jpg",
+      "class_key": "beet_salad",
+      "label": 5,
+      "identifier": "522e6700-ecd0-406d-b856-12f3a43ea2b4",
+      "url": "https://live.staticflickr.com/8298/7967927468_6e4602bda7_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Beet Salad\" by Christine Rondeau is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/56846157@N00/7967927468",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "f19d232a3aa54bd8926abce0a02c8c7afbb0ee0be9d778d1b3f2fbfa4fad958f",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "caprese_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "beef_carpaccio",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "greek_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 72,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "beet_salad",
+        "visibleItems": [
+          "folhas",
+          "tomate",
+          "beterraba",
+          "queijo"
+        ],
+        "ambiguity": "Composição inferida de aparência e legenda; sem identificação de receita."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-12",
+      "file": "cc-12.jpg",
+      "class_key": "beet_salad",
+      "label": 5,
+      "identifier": "b9416e51-28ac-4ce8-bd91-9fb86f7f74aa",
+      "url": "https://live.staticflickr.com/3238/2994378434_0601f4e99e_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"beet salad\" by stu_spivack is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/35034346243@N01/2994378434",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "cd4f651a591061674ebad47a68bd84ffdf6d8ca4323e41b01078e77a958958e3",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "beet_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "foie_gras",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "caprese_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 72,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "beet_salad",
+        "visibleItems": [
+          "beterraba",
+          "folhas",
+          "cítrico",
+          "queijo"
+        ],
+        "ambiguity": "Não inferir variedades ou quantidades."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-13",
+      "file": "cc-13.jpg",
+      "class_key": "pork_chop",
+      "label": 77,
+      "identifier": "b8ffbd12-2e89-4ee0-867a-ac52c32b727d",
+      "url": "https://live.staticflickr.com/2043/2279580602_bb253eda60_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Pork Chops - Ishikai\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/2279580602",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "ff1bffd6c754bdc6a9f44d4a1c267e6a769399d90881cb8c3a0b27d0a5ededd9",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "takoyaki",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "bread_pudding",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "waffles",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 71,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "pork_chop",
+        "visibleItems": [
+          "carne empanada",
+          "folhas ou repolho"
+        ],
+        "ambiguity": "A legenda indica porco; a foto sozinha não distingue carne empanada."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-14",
+      "file": "cc-14.jpg",
+      "class_key": "pork_chop",
+      "label": 77,
+      "identifier": "4d0ee8fc-8da1-41b7-b814-946de2b05891",
+      "url": "https://live.staticflickr.com/3048/3015036072_353be8a0fa_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Special Broken Rice with Pork Chop, Shredded Pork Skin and Fried Egg - Thanh Ha\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/3015036072",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "d2b125df831c90bce5f9d86d8445979ec0bff19f09106989c9e6e052e784de31",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "filet_mignon",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "peking_duck",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "bibimbap",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 69,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "pork_chop",
+        "visibleItems": [
+          "arroz",
+          "carne",
+          "ovo",
+          "folhas",
+          "acompanhamentos"
+        ],
+        "ambiguity": "Prato misto; tipo da carne é apoiado na legenda."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-15",
+      "file": "cc-15.jpg",
+      "class_key": "pork_chop",
+      "label": 77,
+      "identifier": "c780c78c-99e4-4e1a-a43c-570dfb9bc3a0",
+      "url": "https://live.staticflickr.com/118/277782049_30c7889b67_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Tonight's Dinner: Pork Chops\" by ctaloi is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/89551589@N00/277782049",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "132bdca75a216294af2201c7531ea992bf0a1063423268f8961a3327888def34",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "pork_chop",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "foie_gras",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "steak",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 69,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "pork_chop",
+        "visibleItems": [
+          "carne na grelha"
+        ],
+        "ambiguity": "Tipo e peso não confirmados pela foto."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-16",
+      "file": "cc-16.jpg",
+      "class_key": "caesar_salad",
+      "label": 11,
+      "identifier": "af58b0ae-19de-4e41-b672-28221cdc9378",
+      "url": "https://live.staticflickr.com/2283/2259686201_9e75b8559e_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Grilled Chicken Caesar Salad - Automatic Cafe\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/2259686201",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "e67eec4b250dbe6e02f1a945bf6b44f2ff63f99d0dfacd7fbbdefb80f03ba1ad",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "caesar_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "greek_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "beet_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 69,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "caesar_salad",
+        "visibleItems": [
+          "folhas",
+          "frango",
+          "molho"
+        ],
+        "ambiguity": "Classificação de salada não determina a receita do molho."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-17",
+      "file": "cc-17.jpg",
+      "class_key": "caesar_salad",
+      "label": 11,
+      "identifier": "cdb49cd6-1304-43b1-b63d-e70a1040e17c",
+      "url": "https://live.staticflickr.com/252/521246021_2e7ba9e096_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Smoked Chicken Caesar Salad - Attitudes\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/521246021",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "030ee003d3008b6c6354aca509e964c9db5a05eac473e43e239767eeb65b93b1",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "caesar_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "greek_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "chicken_quesadilla",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 70,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "caesar_salad",
+        "visibleItems": [
+          "frango",
+          "folhas",
+          "molho"
+        ],
+        "ambiguity": "Proteína em destaque pode levar o classificador a ignorar a salada."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-18",
+      "file": "cc-18.jpg",
+      "class_key": "caesar_salad",
+      "label": 11,
+      "identifier": "7e25f9cb-dc6d-4a85-ba63-583f2072f627",
+      "url": "https://live.staticflickr.com/493/19461199606_4d41bcf453_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Caesar Salad & Grilled Shrimps\" by Prayitno / Thank you for (12 millions +) view is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/34128007@N04/19461199606",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "3a7f8b80ff885f0dd0853ac6075264880eb31819c7361b540552d79ef3edee55",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "caesar_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "beet_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "greek_salad",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 68,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "caesar_salad",
+        "visibleItems": [
+          "camarões",
+          "folhas",
+          "queijo",
+          "molho"
+        ],
+        "ambiguity": "Prato misto, molho e peso desconhecidos."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-19",
+      "file": "cc-19.jpg",
+      "class_key": "spring_rolls",
+      "label": 92,
+      "identifier": "efab848f-7930-4925-bc6b-37166ace54fd",
+      "url": "https://live.staticflickr.com/2379/2461262750_cf8a32dde6_b.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "attribution": "\"Chicken spring roll insides - Bistro Vue\" by avlxyz is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/10559879@N00/2461262750",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "799ed4b0cb5386dd0040c5ba61838732fa9af512993661aa39b3e14c326c4952",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "spring_rolls",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "lobster_roll_sandwich",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "bruschetta",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 70,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "spring_rolls",
+        "visibleItems": [
+          "rolinhos fritos",
+          "recheio"
+        ],
+        "ambiguity": "Recheio e óleo não podem ser determinados visualmente."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-20",
+      "file": "cc-20.jpg",
+      "class_key": "spring_rolls",
+      "label": 92,
+      "identifier": "074b4740-7092-4a50-bd62-2a071b924857",
+      "url": "https://live.staticflickr.com/2727/4015192611_ef0c58e554_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"spring roll bento\" by gamene is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/12670507@N02/4015192611",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "cc7428f5838b7ba719d645489e7967335d87a221eb9465d22a6be3afacb39822",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "frozen_yogurt",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "ice_cream",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "hot_dog",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 71,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": "spring_rolls",
+        "visibleItems": [
+          "rolinhos",
+          "legumes",
+          "grãos",
+          "acompanhamentos"
+        ],
+        "ambiguity": "Bento com múltiplos alimentos; uma classe é insuficiente."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-21",
+      "file": "cc-21.jpg",
+      "class_key": "spring_rolls",
+      "label": 92,
+      "identifier": "5cc96136-387c-43bb-a45f-70415d6a981e",
+      "url": "https://live.staticflickr.com/1573/24898578702_afca939aeb_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Spring Rolling Hills\" by Jaykhuang is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/50663863@N02/24898578702",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "9e5332590ad0b9a217e95a307c4c249e3f1b9a4f5d3441d56b10130edba4784a",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "chocolate_cake",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "macarons",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "ice_cream",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 65,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": false,
+        "food101Label": null,
+        "visibleItems": [],
+        "ambiguity": "Paisagem com montanhas e névoa; rótulo de busca spring_rolls é errado."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-22",
+      "file": "cc-22.jpg",
+      "class_key": "spring_rolls",
+      "label": 92,
+      "identifier": "9225bbd6-f16f-4799-a0bc-b457bea39a58",
+      "url": "https://live.staticflickr.com/8873/27939698404_4fc0670285_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Spring Rolling Hills\" by Jaykhuang is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/50663863@N02/27939698404",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "cc83c98d87d051e20f03ba8654b15abfa6ad6835a7c1a449c6755ae4e7acc530",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "chocolate_cake",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "chocolate_mousse",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "carrot_cake",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 68,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": false,
+        "food101Label": null,
+        "visibleItems": [],
+        "ambiguity": "Paisagem; duplicidade temática intencional para testar ausência de comida."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-23",
+      "file": "cc-23.jpg",
+      "class_key": "brazilian-mixed",
+      "label": null,
+      "identifier": "FeijoadaBrasileira.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/FeijoadaBrasileira.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "FeijoadaBrasileira.jpg — Operoxido, CC BY-SA 4.0. Unmodified original; analysis uses resized/re-encoded pixels.",
+      "source": "Wikimedia Commons",
+      "foreign_landing_url": "https://commons.wikimedia.org/wiki/File:FeijoadaBrasileira.jpg",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "82dde03d19494683904a1d419836d15572259e316dae611093845d039f448ae0",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "donuts",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "beignets",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "churros",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 75,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": null,
+        "visibleItems": [
+          "feijão ou feijoada",
+          "arroz",
+          "carne",
+          "acompanhamentos"
+        ],
+        "ambiguity": "Feijoada brasileira está fora das 101 classes. Mesa com várias porções; não inferir consumo, carnes ou receita exata."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    },
+    {
+      "id": "cc-24",
+      "file": "cc-24.jpg",
+      "class_key": "brazilian-mixed",
+      "label": null,
+      "identifier": "Arroz,_feijão_e_farofa.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Arroz%2C_feij%C3%A3o_e_farofa.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "Arroz, feijão e farofa.jpg — Felipe Spina, CC BY 2.0. Unmodified original; analysis uses resized/re-encoded pixels.",
+      "source": "Wikimedia Commons",
+      "foreign_landing_url": "https://commons.wikimedia.org/wiki/File:Arroz%2C_feij%C3%A3o_e_farofa.jpg",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "515282dfdf9ea9590e5d2fa6c0e02338af3601a337ff38a3620416222a1523bd",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "chicken_curry",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "spaghetti_bolognese",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          },
+          {
+            "name": "frozen_yogurt",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": [
+              "Alternativa de classificação do prato inteiro; não identifica todos os ingredientes.",
+              "A foto não determina peso, óleo, molhos ou quantidade consumida."
+            ]
+          }
+        ],
+        "questions": [
+          "A imagem contém comida? Se não, descarte as sugestões.",
+          "Quais alimentos, carnes, acompanhamentos, óleo e molhos foram consumidos?",
+          "Confirme o preparo e informe o peso consumido em gramas."
+        ]
+      },
+      "metrics": {
+        "modelBytes": 33995501,
+        "initializationMs": 194,
+        "analysisMs": 67,
+        "jsHeapBytes": null
+      },
+      "annotation": {
+        "containsFood": true,
+        "food101Label": null,
+        "visibleItems": [
+          "arroz",
+          "feijão",
+          "farofa"
+        ],
+        "ambiguity": "Feijão e farofa não têm classes próprias; foto não informa peso nem ingredientes do feijão."
+      },
+      "portionErrorGrams": null,
+      "portionErrorPercent": null
+    }
+  ],
+  "downloadFailures": [
+    {
+      "id": "cc-25",
+      "file": "cc-25.jpg",
+      "class_key": "brazilian-mixed",
+      "label": null,
+      "identifier": "Rice,_beans_and_vegetables_in_Brazil.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Rice%2C_beans_and_vegetables_in_Brazil.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Rice, beans and vegetables in Brazil.jpg — Mike Peel (www.mikepeel.net), CC BY-SA 4.0. Unmodified original; analysis uses resized/re-encoded pixels.",
+      "source": "Wikimedia Commons",
+      "foreign_landing_url": "https://commons.wikimedia.org/wiki/File:Rice%2C_beans_and_vegetables_in_Brazil.jpg",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "download": "failed",
+      "error": "Download failed: 429 https://upload.wikimedia.org/wikipedia/commons/c/c1/Rice%2C_beans_and_vegetables_in_Brazil.jpg"
+    },
+    {
+      "id": "cc-26",
+      "file": "cc-26.jpg",
+      "class_key": "brazilian-mixed",
+      "label": null,
+      "identifier": "Feijoada_completa.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Feijoada_completa.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "Feijoada completa.jpg — Andre S. Ribeiro, CC BY 2.0. Unmodified original; analysis uses resized/re-encoded pixels.",
+      "source": "Wikimedia Commons",
+      "foreign_landing_url": "https://commons.wikimedia.org/wiki/File:Feijoada_completa.jpg",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "download": "failed",
+      "error": "Download failed: 429 https://upload.wikimedia.org/wikipedia/commons/4/42/Feijoada_completa.jpg"
+    }
+  ]
+}

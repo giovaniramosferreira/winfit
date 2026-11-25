@@ -6,6 +6,7 @@ import TimeField from '../components/TimeField'
 import EmptyState from '../components/EmptyState'
 import { calendarFile, duePrompt } from '../lib/routine'
 import { useRoutineStore } from '../lib/routineStore'
+import { confirmDialog } from '../components/ui'
 
 const weekday = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
 export default function Routine() {
@@ -44,7 +45,7 @@ export default function Routine() {
         <button key={id} type="button" aria-pressed={tab === id} onClick={() => setTab(id)}>{label}</button>)}
     </nav>
     {error && <section className="card" role="alert"><p>{error}</p><button className="btn btn-ghost" onClick={exportOriginal}>Exportar dados originais da rotina</button>
-      {blocked && <button className="btn btn-danger" onClick={() => { if (window.confirm('Redefinir a rotina local? Exporte os dados originais antes de continuar.')) useRoutineStore.getState().resetAll() }}>Redefinir somente a rotina</button>}</section>}
+      {blocked && <button className="btn btn-danger" onClick={async () => { if (await confirmDialog({ title: 'Redefinir a rotina local?', message: 'Exporte os dados originais antes de continuar.', confirmLabel: 'Redefinir', destructive: true })) useRoutineStore.getState().resetAll() }}>Redefinir somente a rotina</button>}</section>}
     <fieldset disabled={blocked} style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
     {due && <section className="note" role="status" style={{ marginBottom: 12 }}><b>{due.kind === 'reminder' ? 'Hora do treino!' : due.kind === 'checkin' ? 'Como você está?' : 'Hora do treino e do check-in'}</b>
       <div className="row" style={{ marginTop: 10 }}><button className="btn btn-ghost btn-sm" onClick={acknowledge}>Dispensar hoje</button><button className="btn btn-ghost btn-sm" onClick={() => update({ snoozedUntil: Date.now() + 30 * 60000 })}>Adiar 30 min</button></div></section>}

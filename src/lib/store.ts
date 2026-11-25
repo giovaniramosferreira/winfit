@@ -6,6 +6,7 @@ import type {
 } from '../types'
 import { canPerform, generatePlan, sanitizeEquipmentFreePlan } from './generator'
 import { checkPR, suggestFor } from './progression'
+import { policyFor } from './progressionPolicyStore'
 import { byId } from '../data/exercises'
 import { homeWorkout, isEquipmentFree } from './homeWorkout'
 import { isEquipmentFreeSession, isTimedExercise } from './exerciseRules'
@@ -377,7 +378,7 @@ export const useStore = create<WinfitState>()(
           restSec: sx.restSec,
           optional: sx.optional,
         }
-        const suggestion = suggestFor(planExLike, exercise, sessions)
+        const suggestion = suggestFor(planExLike, exercise, sessions, { policy: policyFor(exercise.id) })
 
         const defaultWeight = () => {
           if (logsHere.length > 0) return logsHere[logsHere.length - 1].weight
@@ -450,7 +451,7 @@ export const useStore = create<WinfitState>()(
           restSec: sx.restSec,
           optional: sx.optional,
         }
-        const suggestion = suggestFor(planExLike, exercise, sessions)
+        const suggestion = suggestFor(planExLike, exercise, sessions, { policy: policyFor(exercise.id) })
 
         const defaultWeight = () => {
           if (logsHere.length > 0) return logsHere[logsHere.length - 1].weight
