@@ -1,0 +1,23 @@
+/* Componentes do design system que não existiam como classes: tons de selo, aviso e nota de campo.
+   Botão, cartão e campo reaproveitam .btn, .card, label.field e .input (styles.css), já ligados aos tokens. */
+.pill.success { background: var(--ds-success-soft); color: var(--ds-success); }
+.pill.warning { background: var(--ds-warning-soft); color: var(--ds-warning); }
+.pill.danger { background: var(--ds-danger-soft); color: var(--ds-danger); }
+
+.alert { display: flex; align-items: flex-start; gap: var(--ds-space-3); padding: var(--ds-space-3) var(--ds-space-4); border-radius: var(--ds-radius-md); font-size: var(--ds-text-sm); line-height: var(--ds-leading-body); }
+.alert > .icon { flex-shrink: 0; margin-top: 1px; }
+.alert-info { background: var(--ds-brand-soft); color: var(--ds-brand-ink); }
+.alert-warning { background: var(--ds-warning-soft); color: var(--ds-warning); }
+.alert-danger { background: var(--ds-danger-soft); color: var(--ds-danger); }
+
+.field-note { font-size: var(--ds-text-xs); color: var(--ds-text-dim); margin-top: var(--ds-space-1); }
+.field-error { color: var(--ds-danger); font-weight: 600; }
+.input[aria-invalid="true"] { border-color: var(--ds-danger); }
+
+/* Painéis inferiores: entrada sem transparência no painel (o conteúdo de trás não aparece). */
+.modal-back { animation: sheet-fade .18s ease-out; }
+.modal { animation: sheet-rise .22s var(--ds-ease); outline: none; }
+@keyframes sheet-fade { from { background-color: transparent; } }
+@keyframes sheet-rise { from { transform: translateY(32px); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .modal-back, .modal { animation: none; } }
+.confirm-actions { display: grid; gap: var(--ds-space-2); margin-top: var(--ds-space-4); }

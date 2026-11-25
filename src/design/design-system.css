@@ -1,0 +1,26 @@
+/* Vitrine do design system (/design). Usa apenas tokens --ds-*. */
+.ds-page { background: var(--ds-bg); color: var(--ds-text); font-family: var(--ds-font-text); padding: var(--ds-space-4); padding-bottom: calc(var(--ds-space-7) + 80px); min-height: 100dvh; }
+.ds-page h1 { font-size: var(--ds-text-xl); line-height: var(--ds-leading-tight); letter-spacing: -.6px; }
+.ds-page h2 { font-size: var(--ds-text-lg); margin: var(--ds-space-6) 0 var(--ds-space-2); letter-spacing: -.3px; }
+.ds-page h3 { font-size: var(--ds-text-sm); color: var(--ds-text-dim); margin: var(--ds-space-4) 0 var(--ds-space-2); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.ds-page p { color: var(--ds-text-dim); font-size: var(--ds-text-sm); line-height: var(--ds-leading-body); }
+.ds-head { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-3); }
+.ds-toggle { min-height: var(--ds-touch); padding: 0 var(--ds-space-4); border-radius: var(--ds-radius-pill); border: 1.5px solid var(--ds-line-strong); background: var(--ds-surface); color: var(--ds-text); font: 600 var(--ds-text-sm) var(--ds-font-text); cursor: pointer; }
+.ds-toggle:focus-visible { outline: 3px solid var(--ds-focus); outline-offset: 2px; }
+.ds-card { background: var(--ds-surface); border: 1px solid var(--ds-line); border-radius: var(--ds-radius-xl); padding: var(--ds-space-4); box-shadow: var(--ds-shadow-md); }
+.ds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: var(--ds-space-3); }
+.ds-swatch { border-radius: var(--ds-radius-md); border: 1px solid var(--ds-line); overflow: hidden; background: var(--ds-surface); }
+.ds-swatch i { display: block; height: 52px; }
+.ds-swatch b { display: block; padding: var(--ds-space-2) var(--ds-space-2) 0; font-size: var(--ds-text-xs); }
+.ds-swatch code { display: block; padding: 0 var(--ds-space-2) var(--ds-space-2); font: 500 11px var(--ds-font-data); color: var(--ds-text-dim); word-break: break-all; }
+.ds-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-3); }
+.ds-type > div { display: flex; align-items: baseline; gap: var(--ds-space-3); padding: var(--ds-space-2) 0; border-bottom: 1px solid var(--ds-line); }
+.ds-type code, .ds-note { font: 500 11px var(--ds-font-data); color: var(--ds-text-faint); min-width: 92px; }
+.ds-space { display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-1) 0; }
+.ds-space i { display: block; height: 12px; background: var(--ds-brand); border-radius: 3px; }
+.ds-radius { width: 72px; height: 72px; background: var(--ds-brand-soft); border: 1.5px solid var(--ds-brand); display: grid; place-items: center; font: 500 11px var(--ds-font-data); color: var(--ds-brand-ink); }
+.ds-shadow { width: 96px; height: 64px; background: var(--ds-surface); border-radius: var(--ds-radius-md); display: grid; place-items: center; font: 500 11px var(--ds-font-data); color: var(--ds-text-dim); border: 1px solid var(--ds-line); }
+.ds-contrast { display: flex; justify-content: space-between; gap: var(--ds-space-3); padding: var(--ds-space-2) 0; border-bottom: 1px solid var(--ds-line); font-size: var(--ds-text-sm); }
+.ds-contrast b { font-family: var(--ds-font-data); font-weight: 500; }
+
+body:has(.ds-page) { background: var(--ds-bg) !important; }

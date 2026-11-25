@@ -1,0 +1,338 @@
+{
+  "executedAt": "2026-11-05T01:15:40.134Z",
+  "engine": "chromium",
+  "platform": "156.0.8078.80",
+  "model": {
+    "model": "qwen3-vl:4b-instruct",
+    "digest": "84f7ed8042fa7cdbd902f7dcb7d0370e032095047cc3244179f263b77b5bc318",
+    "modelBytes": 3337225651,
+    "destination": "Este Mac — Ollama local"
+  },
+  "scope": "Real public images through browser adapter and actual local Ollama; no mocked vision outputs; filenames and annotations excluded from model input",
+  "checks": [
+    "No analysis before explicit local consent",
+    "Real recognition renders rice and beans before manual correction",
+    "Recognized foods populate the existing meal editor automatically",
+    "Reanalysis does not duplicate items and keeps reviewed nutrients",
+    "Confirmed rice/beans update the rendered daily total",
+    "Reload preserves one meal and recognition provenance",
+    "Deleting a recognized meal recalculates the day",
+    "Restoring a recognized meal restores the total once",
+    "No third-party requests or page errors"
+  ],
+  "externalRequests": [],
+  "pageErrors": [],
+  "images": [
+    {
+      "id": "cc-21",
+      "file": "cc-21.jpg",
+      "class_key": "spring_rolls",
+      "label": 92,
+      "identifier": "5cc96136-387c-43bb-a45f-70415d6a981e",
+      "url": "https://live.staticflickr.com/1573/24898578702_afca939aeb_b.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "\"Spring Rolling Hills\" by Jaykhuang is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "source": "flickr",
+      "foreign_landing_url": "https://www.flickr.com/photos/50663863@N02/24898578702",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "9e5332590ad0b9a217e95a307c4c249e3f1b9a4f5d3441d56b10130edba4784a",
+      "download": "ok",
+      "result": {
+        "candidates": [],
+        "questions": [],
+        "dishName": null,
+        "containsFood": false
+      },
+      "elapsedMs": 7618.296459,
+      "annotation": {
+        "containsFood": false,
+        "requiredGroups": [],
+        "optionalGroups": [],
+        "note": "Paisagem sem alimento."
+      },
+      "matched": [],
+      "qualityPassed": true
+    },
+    {
+      "id": "cc-23",
+      "file": "cc-23.jpg",
+      "class_key": "brazilian-mixed",
+      "label": null,
+      "identifier": "FeijoadaBrasileira.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/FeijoadaBrasileira.jpg",
+      "license": "by-sa",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "FeijoadaBrasileira.jpg — Operoxido, CC BY-SA 4.0. Unmodified original; analysis uses resized/re-encoded pixels.",
+      "source": "Wikimedia Commons",
+      "foreign_landing_url": "https://commons.wikimedia.org/wiki/File:FeijoadaBrasileira.jpg",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "82dde03d19494683904a1d419836d15572259e316dae611093845d039f448ae0",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "Feijão preto",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "Arroz",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "Frango assado",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "Cebola",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "Pimenta",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          }
+        ],
+        "questions": [],
+        "dishName": "Feijoada",
+        "containsFood": true
+      },
+      "elapsedMs": 25572.1345,
+      "annotation": {
+        "containsFood": true,
+        "requiredGroups": [
+          {
+            "name": "feijoada/feijão",
+            "patterns": [
+              "feijoada",
+              "feijao"
+            ]
+          }
+        ],
+        "optionalGroups": [
+          {
+            "name": "arroz",
+            "patterns": [
+              "arroz"
+            ]
+          },
+          {
+            "name": "carnes",
+            "patterns": [
+              "carne",
+              "linguica",
+              "porco"
+            ]
+          }
+        ],
+        "note": "Mesa com várias porções; não inferir quantidades, receita ou tudo que foi consumido."
+      },
+      "matched": [
+        {
+          "name": "feijoada/feijão",
+          "found": true
+        }
+      ],
+      "qualityPassed": true
+    },
+    {
+      "id": "cc-24",
+      "file": "cc-24.jpg",
+      "class_key": "brazilian-mixed",
+      "label": null,
+      "identifier": "Arroz,_feijão_e_farofa.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Arroz%2C_feij%C3%A3o_e_farofa.jpg",
+      "license": "by",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "Arroz, feijão e farofa.jpg — Felipe Spina, CC BY 2.0. Unmodified original; analysis uses resized/re-encoded pixels.",
+      "source": "Wikimedia Commons",
+      "foreign_landing_url": "https://commons.wikimedia.org/wiki/File:Arroz%2C_feij%C3%A3o_e_farofa.jpg",
+      "expectedVisibleItems": null,
+      "expectedFood101Label": null,
+      "containsFood": null,
+      "knownGrams": null,
+      "annotationStatus": "unreviewed",
+      "licenseEvidence": "plate-vision d5690063cc8795497c603aa676f97fd253053bbf model/data/ood/manifest.json",
+      "sha256": "515282dfdf9ea9590e5d2fa6c0e02338af3601a337ff38a3620416222a1523bd",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "arroz",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "feijão",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "farinha de aveia",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          }
+        ],
+        "questions": [],
+        "dishName": null,
+        "containsFood": true
+      },
+      "elapsedMs": 8756.991999999998,
+      "annotation": {
+        "containsFood": true,
+        "requiredGroups": [
+          {
+            "name": "arroz",
+            "patterns": [
+              "arroz"
+            ]
+          },
+          {
+            "name": "feijão",
+            "patterns": [
+              "feijao"
+            ]
+          },
+          {
+            "name": "farofa",
+            "patterns": [
+              "farofa",
+              "farinha de mandioca"
+            ]
+          }
+        ],
+        "optionalGroups": [],
+        "note": "Prato de arroz, feijão e farofa; pesos e receita desconhecidos."
+      },
+      "matched": [
+        {
+          "name": "arroz",
+          "found": true
+        },
+        {
+          "name": "feijão",
+          "found": true
+        },
+        {
+          "name": "farofa",
+          "found": false
+        }
+      ],
+      "qualityPassed": false
+    },
+    {
+      "id": "br-01",
+      "title": "Feijoada_completa.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Feijoada_completa.jpg",
+      "author": "Andre S. Ribeiro",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "file": "br-01.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Feijoada_completa.jpg",
+      "sha256": "2c093eb05677f7ce4dd0b5c7472ec36bfcecf4d3598f0627e1cbfc1a87e586ec",
+      "download": "ok",
+      "result": {
+        "candidates": [
+          {
+            "name": "feijão preto",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "arroz amarelo",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          },
+          {
+            "name": "salada com farinha de mandioca",
+            "preparation": null,
+            "portionHypothesis": null,
+            "uncertainties": []
+          }
+        ],
+        "questions": [],
+        "dishName": "feijoada",
+        "containsFood": true
+      },
+      "elapsedMs": 17977.239167,
+      "annotation": {
+        "containsFood": true,
+        "requiredGroups": [
+          {
+            "name": "feijoada/feijão",
+            "patterns": [
+              "feijoada",
+              "feijao"
+            ]
+          },
+          {
+            "name": "arroz",
+            "patterns": [
+              "arroz"
+            ]
+          },
+          {
+            "name": "carnes",
+            "patterns": [
+              "carne",
+              "linguica",
+              "porco",
+              "bacon"
+            ]
+          }
+        ],
+        "optionalGroups": [
+          {
+            "name": "verdura",
+            "patterns": [
+              "couve",
+              "verdura",
+              "folha"
+            ]
+          }
+        ],
+        "note": "Arroz, feijão preto e carnes com verdura/acompanhamento; não exigir tipo de carne pela foto."
+      },
+      "matched": [
+        {
+          "name": "feijoada/feijão",
+          "found": true
+        },
+        {
+          "name": "arroz",
+          "found": true
+        },
+        {
+          "name": "carnes",
+          "found": false
+        }
+      ],
+      "qualityPassed": false
+    }
+  ],
+  "failure": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'cc-24',\n+     misses: [\n+       {\n+         found: false,\n+         name: 'farofa'\n+       }\n+     ]\n+   },\n+   {\n+     id: 'br-01',\n+     misses: [\n+       {\n+         found: false,\n+         name: 'carnes'\n+       }\n+     ]\n+   }\n+ ]\n- []\n"
+}

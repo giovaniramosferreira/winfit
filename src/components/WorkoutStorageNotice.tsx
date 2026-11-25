@@ -1,6 +1,7 @@
 import { useState, useSyncExternalStore } from 'react'
 import { workoutStorage } from '../lib/workoutStorage'
 import { useStore } from '../lib/store'
+import { confirmDialog } from './ui'
 
 export default function WorkoutStorageNotice() {
   const health = useSyncExternalStore(workoutStorage.subscribe, workoutStorage.health, workoutStorage.health)
@@ -21,8 +22,8 @@ export default function WorkoutStorageNotice() {
       const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'winfit-treinos-desta-sessao.json'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000)
       setMemoryCopied(true)
     }}>Baixar treinos desta sessão (memória)</button>
-    {health.blocked && raw !== null && <button className="btn btn-ghost" disabled={!copied || !memoryCopied} onClick={() => {
-      if (window.confirm('Confirma que guardou a cópia original? Redefinir apaga somente os treinos locais deste aparelho.')) {
+    {health.blocked && raw !== null && <button className="btn btn-ghost" disabled={!copied || !memoryCopied} onClick={async () => {
+      if (await confirmDialog({ title: 'Confirma que guardou a cópia original?', message: 'Redefinir apaga somente os treinos locais deste aparelho.', confirmLabel: 'Redefinir', destructive: true })) {
         if (workoutStorage.resetGuard()) useStore.getState().resetAll()
       }
     }}>Redefinir somente treinos locais</button>}

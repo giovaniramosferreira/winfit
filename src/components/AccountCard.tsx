@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { sendMagicLink } from '../lib/auth'
 import { useAuth } from './AuthProvider'
+import { confirmDialog } from './ui'
 
 export default function AccountCard() {
   const { configured, loading, session, syncNow, logout, status, error, review, resolve, deleteRemote, downloadRemote, destination } = useAuth()
@@ -24,7 +25,7 @@ export default function AccountCard() {
       {review && <div className="note"><h3>Há dados na nuvem</h3><p className="small">Confira a cópia remota antes de mesclar. Registros com o mesmo ID mantêm a versão deste aparelho; o plano e treino ativo locais continuam. A rotina local prevalece. Dados de outra conta não devem ser mesclados sem sua intenção de transferi-los.</p>
         <button className="btn btn-ghost" onClick={downloadRemote}>Baixar cópia da nuvem</button>
         <button className="btn btn-primary" disabled={status === 'checking'} onClick={() => void resolve(includeModules)}>Confirmar mesclagem e envio</button></div>}
-      <button className="btn btn-quiet btn-sm" disabled={status === 'checking'} onClick={() => { if (confirm('Excluir o backup da sua conta? Os dados locais ficam preservados. Esta ação não exclui a conta nem cópias de infraestrutura do provedor.')) void deleteRemote() }}>Excluir backup da conta</button>
+      <button className="btn btn-quiet btn-sm" disabled={status === 'checking'} onClick={async () => { if (await confirmDialog({ title: 'Excluir o backup da sua conta?', message: 'Os dados locais ficam preservados. Esta ação não exclui a conta nem cópias de infraestrutura do provedor.', confirmLabel: 'Excluir backup', destructive: true })) void deleteRemote() }}>Excluir backup da conta</button>
       {error && <p role="alert" className="small">{error}</p>}
       {message && <p className="tiny faint" style={{ marginTop: 8 }}>{message}</p>}
     </div>

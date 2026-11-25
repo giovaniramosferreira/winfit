@@ -7,6 +7,7 @@ import { useCircuitStore } from '../lib/circuitStore'
 import { useStore } from '../lib/store'
 import CircuitDemo from '../components/CircuitDemo'
 import { buildPhases, fmtDuration, positionAt, resolveMove, suggestProgression, totalSeconds, workSeconds, type CircuitPhaseKind, type ModifyReason } from '../lib/circuit'
+import { confirmDialog } from '../components/ui'
 
 const KIND_LABEL: Record<CircuitPhaseKind, string> = {
   prepare: 'Prepare-se', warmup: 'Aquecimento', work: 'Trabalho', rest: 'Descanso', round_rest: 'Descanso entre voltas', cooldown: 'Desaquecimento',
@@ -107,7 +108,7 @@ export default function Circuit() {
       <button className="btn btn-primary" onClick={() => { if (active.timer.status === 'paused') { void unlockAudio(); s.resume() } else s.pause() }}>{active.timer.status === 'paused' ? 'Retomar' : 'Pausar'}</button>
       <div className="circuit-actions">
         <button className="btn btn-ghost" onClick={() => s.skip()}>Pular etapa</button>
-        <button className="btn btn-ghost" onClick={() => { if (confirm('Encerrar o circuito? O tempo feito fica registrado.')) s.stop() }}>Encerrar</button>
+        <button className="btn btn-ghost" onClick={async () => { if (await confirmDialog({ title: 'Encerrar o circuito?', message: 'O tempo feito fica registrado.', confirmLabel: 'Encerrar' })) s.stop() }}>Encerrar</button>
       </div>
       <p className="small muted" style={{ marginTop: 10 }}>Dor, tontura ou falta de ar? Pare.</p>
     </section> : s.healthAckAt === null ? <section className="card training-session" aria-labelledby="circuit-health">

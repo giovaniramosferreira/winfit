@@ -1,0 +1,11 @@
+.exercise-thumbnail{display:inline-flex;align-items:center;justify-content:center;flex:0 0 64px;width:64px;height:64px;background:var(--surface,#f2edf7);border-radius:14px;overflow:hidden}
+.exercise-thumbnail>span{display:block;width:100%;background-repeat:no-repeat;background-position:0 0;mix-blend-mode:multiply}
+.library-page .screen-title,.exercise-detail-page .screen-title{font-size:clamp(22px,5vw,30px);line-height:1.15}
+.library-page .toc-item{gap:12px;min-height:80px}.library-page .library-filters{display:flex;flex-wrap:nowrap;overflow:auto;padding-bottom:8px}.library-page .chip{flex-shrink:0;min-height:44px}
+.library-page .region-head{display:none}.library-page .library-muscle-heading{margin-top:18px}.library-page .library-heading p{display:none}
+.anatomy-details{margin-top:16px}.anatomy-details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600}
+.session-detail-screen details{margin-top:10px}.session-detail-screen summary{display:flex;align-items:center;gap:12px;cursor:pointer;min-height:72px}.session-detail-screen summary strong{display:block}.session-detail-screen details ul{padding-left:22px}.session-detail-screen .screen-title{font-size:26px}
+.training-page .exercise-thumbnail{width:42px;height:42px;flex-basis:42px}.training-page .toc-item{gap:10px}
+.progress-period{display:flex;gap:6px;margin:14px 0}.progress-period button{min-height:44px}
+.library-page .toc-item{display:grid;grid-template-columns:64px minmax(0,1fr) 16px;align-items:center}.library-page .toc-item .t{min-width:0;overflow-wrap:anywhere}.training-page .toc-item{grid-template-columns:42px minmax(0,1fr) auto}
+.exercise-detail-page .exercise-demo>.between,.exercise-detail-page .exercise-demo>figcaption{display:none}.exercise-detail-page .exercise-demo .pilot-artboard{max-height:280px}.exercise-detail-page .exercise-demo{padding:12px}

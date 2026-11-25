@@ -1,16 +1,27 @@
-import { useState, useSyncExternalStore } from 'react'
+import { lazy, Suspense, useState, useSyncExternalStore } from 'react'
 import MealPhotoDraft, { NutritionLabelCalculator } from '../components/MealPhotoDraft'
-import { daySummary, goalForDate, localDate, type Meal, type FoodItem, type NutritionGoal } from '../lib/nutrition'
+import NutritionCatalogReview from '../components/NutritionCatalogReview'
+import { dayMacros } from '../lib/foodCatalog'
+import { applyRecognizedFoods } from '../lib/multimodalMeal'
+import { daySummary, goalForDate, localDate, editFoodItem, upsertReviewedItem, type Meal, type FoodItem, type NutritionGoal } from '../lib/nutrition'
 import { nutritionStore } from '../lib/nutritionStore'
 import PageTop from '../components/PageTop'
 import Icon from '../components/Icon'
 import EmptyState from '../components/EmptyState'
+import { Button } from '../components/ui'
+import NutritionInsights from '../components/NutritionInsights'
+import { dayEnergy } from '../lib/aiEstimate'
+import { whatIf } from '../lib/mealPreview'
 const uid = () => crypto.randomUUID()
 const freshItem = (): FoodItem => ({id:uid(),name:'',portion:null,kcal:null})
 const freshMeal = (date:string): Meal => ({id:uid(),date,time:new Date().toTimeString().slice(0,5),type:'Almoço',items:[freshItem()]})
 const inputStyle = {width:'100%',minHeight:44,marginTop:4}
 const shift = (date:string, days:number) => { const d = new Date(`${date}T12:00:00`); d.setDate(d.getDate()+days); return localDate(d) }
 function dayLabel(date:string){ const today=localDate(); if(date===today) return 'Hoje'; if(date===shift(today,-1)) return 'Ontem'; return new Date(`${date}T12:00:00`).toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'}) }
+const MealVisionLab=import.meta.env?.DEV && import.meta.env.VITE_MEAL_VISION_POC==='true'
+  ? lazy(()=>import('../components/MealVisionLab').catch(()=>({default:()=>
+    <p role="status">O laboratório não pôde ser carregado. Continue com o registro manual; seus dados foram preservados. Para tentar a análise novamente, recarregue quando a conexão estiver disponível.</p>
+  }))) : null
 export default function Nutrition() {
   const state=useSyncExternalStore(nutritionStore.subscribe,nutritionStore.getState,nutritionStore.getState)
   const [date,setDate]=useState(localDate())
@@ -23,9 +34,11 @@ export default function Nutrition() {
   const [maintenance,setMaintenance]=useState('')
   const [deficit,setDeficit]=useState('')
   const summary=daySummary(state.meals,date)
+  const energy=dayEnergy(state.meals,date)
+  const macros=dayMacros(state.meals,date)
   const target=goalForDate(state.goals,date)
   const meals=state.meals.filter(m=>m.date===date).sort((a,b)=>a.time.localeCompare(b.time))
-  const updateItem=(id:string,patch:Partial<FoodItem>)=>setMeal(m=>m?{...m,items:m.items.map(i=>i.id===id?{...i,provenance:undefined,...patch}:i)}:m)
+  const updateItem=(id:string,patch:Partial<FoodItem>)=>setMeal(m=>m?{...m,items:m.items.map(i=>i.id===id?editFoodItem(i,patch):i)}:m)
   const saveMeal=()=>{try{if(meal && nutritionStore.upsertMeal(meal)){setMeal(null);setMessage('Refeição salva neste dispositivo.')}}catch(e){setMessage((e as Error).message)}}
   const saveGoal=()=>{try{
     const goal: NutritionGoal=mode==='direct'?{id:uid(),date:goalDate,mode,kcal:direct.trim()?Number(direct):NaN}:{id:uid(),date:goalDate,mode,maintenance:maintenance.trim()?Number(maintenance):NaN,deficit:deficit.trim()?Number(deficit):NaN}
@@ -44,10 +57,13 @@ export default function Nutrition() {
       </div>
       <p className="nutrition-total num">{summary.kcal.toLocaleString('pt-BR')}<span> {target===null?'kcal':`de ${target.toLocaleString('pt-BR')} kcal`}</span></p>
       {target!==null && <div className="progressbar" style={{margin:'10px 0 4px'}}><div style={{width:`${Math.min(100,summary.kcal/target*100)}%`}}/></div>}
+      {energy.estimatedItems>0 && <p className="small muted" data-testid="ai-estimated">Inclui {energy.estimatedKcal.toLocaleString('pt-BR')} kcal estimadas por IA (faixa do dia: {energy.rangeMin.toLocaleString('pt-BR')} a {energy.rangeMax.toLocaleString('pt-BR')} kcal).</p>}
       {summary.pending>0 && <p className="small muted">{summary.pending===1?'1 item sem calorias':`${summary.pending} itens sem calorias`}</p>}
+      {meals.some(m=>m.items.some(i=>i.macros))&&<p className="small muted">Nutrientes estimados: proteínas {macros.protein} g · carboidratos {macros.carbohydrate} g · gorduras {macros.fat} g.{macros.pending>0&&` Total parcial: ${macros.pending} item(ns) sem nutrientes informados.`}</p>}
       <button className="btn btn-primary train-cta" disabled={state.blocked} onClick={()=>{setMeal(freshMeal(date));setMessage('')}}><Icon name="plus" />Adicionar refeição</button>
       <button className="btn btn-quiet" disabled={state.blocked} onClick={()=>{setGoalDate(date);setGoalOpen(!goalOpen)}}>{target===null?'Definir meta diária':'Mudar meta'}</button>
     </section>
+    <NutritionInsights />
     {goalOpen && <section className="card" style={{marginTop:12}}><h2>Meta diária</h2>
       <label>Válida a partir de<input type="date" style={inputStyle} value={goalDate} onChange={e=>setGoalDate(e.target.value)}/></label>
       <label>Como informar<select style={inputStyle} value={mode} onChange={e=>setMode(e.target.value as typeof mode)}><option value="direct">Valor em kcal</option><option value="calculated">Manutenção menos déficit</option></select></label>
@@ -58,7 +74,7 @@ export default function Nutrition() {
       <button className="btn btn-primary" style={{marginTop:12}} onClick={saveGoal}>Salvar meta</button>
       <button className="btn btn-ghost" onClick={()=>setGoalOpen(false)}>Cancelar</button>
     </section>}
-    {meal && <section className="card" style={{marginTop:12}}><h2>Refeição</h2><form onSubmit={e=>{e.preventDefault();saveMeal()}}>
+    {meal && <section id="meal-editor" className="card" style={{marginTop:12}}><div className="between"><h2>Refeição</h2><Button variant="quiet" onClick={()=>setMeal(null)}>Fechar</Button></div><form onSubmit={e=>{e.preventDefault();saveMeal()}}>
       <label>Data<input required type="date" style={inputStyle} value={meal.date} onChange={e=>setMeal({...meal,date:e.target.value})}/></label>
       <label>Horário<input required type="time" style={inputStyle} value={meal.time} onChange={e=>setMeal({...meal,time:e.target.value})}/></label>
       <label>Tipo<select style={inputStyle} value={meal.type} onChange={e=>setMeal({...meal,type:e.target.value})}>{['Café da manhã','Almoço','Jantar','Lanche','Outro'].map(t=><option key={t}>{t}</option>)}</select></label>
@@ -67,15 +83,19 @@ export default function Nutrition() {
         <label>Porção (g)<input type="number" min="0.01" step="any" style={inputStyle} value={item.portion??''} onChange={e=>updateItem(item.id,{portion:e.target.value===''?null:Number(e.target.value)})}/></label>
         <label>Calorias (kcal)<input type="number" min="0" step="any" style={inputStyle} value={item.kcal??''} onChange={e=>updateItem(item.id,{kcal:e.target.value===''?null:Number(e.target.value)})}/></label>
         <NutritionLabelCalculator name={item.name} onConfirm={value=>updateItem(item.id,{portion:value.portion,kcal:value.kcal,provenance:value.provenance})}/>
-        <button type="button" className="btn btn-ghost btn-sm" disabled={meal.items.length===1} onClick={()=>setMeal({...meal,items:meal.items.filter(i=>i.id!==item.id)})}>Remover item</button>
+        <NutritionCatalogReview key={`${item.id}-${item.name}-${item.portion}`} item={item} onConfirm={value=>updateItem(item.id,value)}/>
+        {item.provenance&&<p className="tiny muted">Estimativa revisada: {item.provenance.recordId} · {item.provenance.version} · {item.provenance.confirmedAt}</p>}
+        <Button variant="secondary" small disabled={meal.items.length===1} onClick={()=>setMeal({...meal,items:meal.items.filter(i=>i.id!==item.id)})}>Remover item</Button>
       </fieldset>)}
-      <button type="button" className="btn btn-ghost" onClick={()=>setMeal({...meal,items:[...meal.items,freshItem()]})}>Adicionar item</button>
-      <div className="row" style={{marginTop:12}}><button type="submit" className="btn btn-primary">Salvar refeição</button><button type="button" className="btn btn-ghost" onClick={()=>setMeal(null)}>Cancelar</button></div>
+      <Button variant="secondary" onClick={()=>setMeal({...meal,items:[...meal.items,freshItem()]})}>Adicionar item</Button>
+      <div className="row" style={{marginTop:12}}><Button variant="primary" type="submit">Salvar refeição</Button><Button variant="secondary" onClick={()=>setMeal(null)}>Cancelar</Button></div>
+      {(()=>{const candidate=meal.items.reduce((s,i)=>s+(i.kcal??0),0);if(candidate<=0)return null;const preview=whatIf(state.meals.filter(m=>m.id!==meal.id),meal.date,candidate,goalForDate(state.goals,meal.date));return <p className="small muted" role="status" data-testid="whatif" style={{marginTop:12}}><b>E se registrar?</b> {preview.message}</p>})()}
+      <MealPhotoDraft key={meal.id}/>
+      {MealVisionLab&&<details className="more"><summary>POC de reconhecimento local (pesquisa)</summary><Suspense fallback={<p role="status">Abrindo laboratório…</p>}><MealVisionLab key={meal.id} onRecognized={(groupId,foods)=>{const exists=meal.items.some(i=>i.recognition?.groupId===groupId||i.id===groupId);setMeal(current=>current?{...current,items:applyRecognizedFoods(current.items,groupId,foods)}:current);return !exists}}/></Suspense></details>}
     </form></section>}
     <h2 className="hub-section">Refeições</h2>
     {!meals.length && <EmptyState icon="meal" title="Nenhuma refeição neste dia." />}
-    {meals.map(m=><article key={m.id} className="card nutrition-meal" style={{marginTop:12}}><h3>{m.time} · {m.type}</h3>{m.items.map(i=><p key={i.id}>{i.name}{i.portion!==null?` · ${i.portion} g`:''} · {i.kcal===null?'kcal pendentes':`${i.kcal} kcal`}</p>)}<div className="row"><button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>setMeal(structuredClone(m))}>Editar</button><button className="btn btn-quiet btn-sm" disabled={state.blocked} onClick={()=>{if(nutritionStore.deleteMeal(m.id))setMessage('Refeição excluída. Dá para restaurar em “Refeições excluídas”.')}}>Excluir</button></div></article>)}
-    <MealPhotoDraft/>
+    {meals.map(m=><article key={m.id} className="card nutrition-meal" style={{marginTop:12}}><h3>{m.time} · {m.type}</h3>{m.items.map(i=><div key={i.id}><p>{i.name}{i.portion!==null?` · ${i.portion} g`:''} · {i.kcal===null?'kcal pendentes':`${i.kcal} kcal estimadas`}</p>{i.review?.notes&&<p className="tiny muted">{i.review.notes}</p>}{i.provenance&&<p className="tiny muted">Fonte: {i.provenance.recordId} · {i.provenance.version} · base de 100 g · porção confirmada em {new Date(i.provenance.confirmedAt).toLocaleString('pt-BR')}</p>}</div>)}<div className="row"><button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>setMeal(structuredClone(m))}>Editar</button><button className="btn btn-quiet btn-sm" disabled={state.blocked} onClick={()=>{if(nutritionStore.deleteMeal(m.id))setMessage('Refeição excluída. Dá para restaurar em “Refeições excluídas”.')}}>Excluir</button></div></article>)}
     {state.deleted.length>0 && <details className="more"><summary>Refeições excluídas ({state.deleted.length})</summary>{state.deleted.map(m=><div className="card" key={m.id} style={{marginTop:8}}>{m.date} · {m.time} · {m.type}<button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>nutritionStore.restoreMeal(m.id)}>Restaurar refeição</button></div>)}</details>}
     {state.goals.length>0 && <details className="more"><summary>Metas anteriores</summary>{state.goals.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(g=><div className="card" key={g.id} style={{marginTop:8}}>Desde {g.date}: {g.mode==='direct'?g.kcal:g.maintenance-g.deficit} kcal {g.mode==='calculated'&&<span>({g.maintenance} − {g.deficit} informados)</span>}<button className="btn btn-ghost btn-sm" disabled={state.blocked} onClick={()=>nutritionStore.deleteGoal(g.id)}>Remover meta</button></div>)}</details>}
     {state.meals.length>0 && <details className="more"><summary>Dias com registros</summary><div className="lib-chips" style={{flexWrap:'wrap',margin:0,padding:'4px 0'}}>{[...new Set(state.meals.map(m=>m.date))].sort().reverse().map(d=><button className="lib-chip" key={d} onClick={()=>setDate(d)}>{dayLabel(d)}</button>)}</div></details>}

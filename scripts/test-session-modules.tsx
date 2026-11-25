@@ -56,3 +56,11 @@ const activeHome = render(createElement(Training,{ mode:'home' }))
 assert.match(activeHome,/Academia em andamento/)
 assert.ok(activeHome.includes(first.dayLabel))
 console.log('Session modules: four links, separate training modes, active session and index preserved OK')
+
+// A session from another module remains separate from the requested proposal.
+useStore.setState({ activeSession: { ...first, source: 'gym' } })
+const crossMode = render(createElement(Training, { mode: 'home' }))
+assert.match(crossMode, /Calistenia/)
+assert.match(crossMode, /Retomar treino/)
+assert.equal((crossMode.match(/Retomar treino/g) || []).length, 1)
+assert.ok(!crossMode.includes('Pectoralis major'), 'Training uses familiar muscle labels')

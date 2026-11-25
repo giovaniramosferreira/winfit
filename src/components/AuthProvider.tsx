@@ -7,6 +7,7 @@ import { nutritionStore } from '../lib/nutritionStore'
 import { usePelvicStore } from '../lib/pelvicStore'
 import { useCircuitStore } from '../lib/circuitStore'
 import { useRoutineStore } from '../lib/routineStore'
+import { confirmDialog } from './ui'
 
 type Status = 'local' | 'checking' | 'review' | 'pending' | 'synced' | 'error'
 type Review = { remote: CloudRecord; includeModules: boolean }
@@ -27,9 +28,9 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   const busy = useRef(false)
   const failure = (err: unknown) => { setError(err instanceof Error ? err.message : 'Falha de sincronização.'); setStatus('error') }
   const markOwner = (s: AuthSession) => localStorage.setItem('winfit-data-owner', s.user!.id)
-  const confirmOwner = (s: AuthSession) => {
+  const confirmOwner = async (s: AuthSession) => {
     const owner = localStorage.getItem('winfit-data-owner')
-    return !owner || owner === s.user!.id || window.confirm('Estes dados locais pertencem a outra conta. Você quer transferi-los para a conta atual? Exporte uma cópia antes se não tiver certeza.')
+    return !owner || owner === s.user!.id || confirmDialog({ title: 'Transferir os dados locais para esta conta?', message: 'Estes dados pertencem a outra conta. Exporte uma cópia antes se não tiver certeza.', confirmLabel: 'Transferir' })
   }
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
   const syncNow = async (includeModules = false) => {
     if (!session?.user || busy.current) return
-    if (!confirmOwner(session)) { setStatus('pending'); return }
+    if (!(await confirmOwner(session))) { setStatus('pending'); return }
     const run = epoch.current; busy.current = true; setStatus('checking'); setError('')
     try {
       const local = applicationSnapshot(includeModules)
@@ -80,7 +81,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   }
   const resolve = async (includeModules = review?.includeModules ?? false) => {
     if (!session?.user || !review || busy.current) return
-    if (!confirmOwner(session)) return
+    if (!(await confirmOwner(session))) return
     const run = epoch.current; busy.current = true; setStatus('checking'); setError('')
     try {
       const remote = parseApplicationBackup(review.remote.data)

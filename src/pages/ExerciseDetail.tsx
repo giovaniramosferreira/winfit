@@ -1,9 +1,10 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId, EQUIP_LABEL, MUSCLE_LABEL } from '../data/exercises'
 import { fmtDate } from '../lib/helpers'
-import { fmtKg } from '../lib/progression'
+import { fmtKg, PROGRESSION_POLICIES, POLICY_LABEL, POLICY_DESC, isProgressionPolicy } from '../lib/progression'
+import { policyFor, setPolicy } from '../lib/progressionPolicyStore'
 import Chart from '../components/Chart'
 import BodyPlate from '../components/BodyPlate'
 import { ANATOMY } from '../data/anatomy'
@@ -16,6 +17,7 @@ export default function ExerciseDetail() {
   const sessions = useStore((s) => s.sessions)
   const active = useStore((s) => s.activeSession)
   const exercise = id ? byId.get(id) : undefined
+  const [policy, setPolicyState] = useState(() => (id ? policyFor(id) : 'double'))
 
   const history = useMemo(() => {
     if (!exercise) return []
@@ -82,6 +84,14 @@ export default function ExerciseDetail() {
           ))}
         </section>
       )}
+
+      {exercise.loadType === 'external' && <section className="card" style={{ marginTop: 12 }} aria-labelledby="policy-title">
+        <h2 id="policy-title" className="field-title">Como a carga sobe</h2>
+        <select aria-label="Política de progressão" style={{ minHeight: 44, width: '100%' }} value={policy} onChange={(e) => { const v = e.target.value; if (isProgressionPolicy(v) && setPolicy(exercise.id, v)) setPolicyState(v) }}>
+          {PROGRESSION_POLICIES.map((p) => <option key={p} value={p}>{POLICY_LABEL[p]}</option>)}
+        </select>
+        <p className="small muted" style={{ marginTop: 6 }}>{POLICY_DESC[policy]}</p>
+      </section>}
 
       <details className="card more-card" style={{ marginTop: 12 }}>
         <summary>Músculos trabalhados</summary>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useStore } from '../lib/store'
 import { privacy, usePrivacy } from '../lib/privacy'
 import {
@@ -30,6 +30,24 @@ export default function WatchModal({
   const [tempRelay, setTempRelay] = useState(getRelayUrl())
   const [relayError, setRelayError] = useState('')
 
+  const modalRef = useRef<HTMLDivElement>(null)
+  const closeRef = useRef(onClose)
+  closeRef.current = onClose
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null
+    modalRef.current?.querySelector<HTMLElement>('button')?.focus()
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeRef.current()
+      if (event.key === 'Tab') {
+        const elements = [...(modalRef.current?.querySelectorAll<HTMLElement>('button, input, select, textarea, a[href], summary, [tabindex="0"]') ?? [])].filter(el => el.getClientRects().length > 0 && !el.hasAttribute('disabled') && el.getAttribute('tabindex') !== '-1')
+        const first = elements[0], last = elements[elements.length - 1]
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
+      }
+    }
+    document.addEventListener('keydown', keydown)
+    return () => { document.removeEventListener('keydown', keydown); previous?.focus() }
+  }, [])
   const endpoints = getShortcutEndpoints(watchToken)
 
   const copyToClipboard = (text: string, label: string) => {
@@ -72,13 +90,14 @@ export default function WatchModal({
   return (
     <div className="modal-back" onClick={onClose}>
       <div
-        className="modal"
+        className="modal watch-modal"
+        ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="watch-title"
         onClick={(e) => e.stopPropagation()}
         style={{ maxHeight: '90vh', overflowY: 'auto' }}
       >
         <div className="between">
-          <h2>Apple Watch</h2>
-          <button className="btn-quiet" onClick={onClose} style={{ minHeight: 32, fontSize: 18 }}>
+          <h2 id="watch-title">Conectar Apple Watch</h2>
+          <button aria-label="Fechar configuração do Apple Watch" className="btn-quiet" onClick={onClose} style={{ minHeight: 44, minWidth: 44, fontSize: 18 }}>
             ✕
           </button>
         </div>
@@ -88,7 +107,7 @@ export default function WatchModal({
         </p>
         {relayError && <p role="status" className="small">{relayError}</p>}
         <section className="card" style={{ marginTop: 12 }}>
-          <h3>{enabled ? 'Envio ao Watch ativado' : 'Envio ao Watch desativado'}</h3>
+          <p className="eyebrow">1 · Autorizar conexão</p><h3>{enabled ? 'Envio ao Watch ativado' : 'Envio ao Watch desativado'}</h3>
           <p className="small muted" style={{ marginTop: 8 }}>Ao ativar, exercício atual, carga/repetições, séries e descanso são enviados para <b>{new URL(destination).hostname}</b>, usando seu código de pareamento. O relay permite consultar esse estado e enviar comandos a quem tiver o código. Não compartilhe o código.</p>
           <p className="tiny muted" style={{ marginTop: 8 }}>Desligar interrompe novos envios e comandos neste aparelho. Não confirma exclusão do estado já recebido pelo relay; não há garantia de prazo de retenção configurada no aplicativo.</p>
           <button className="btn btn-ghost" style={{ marginTop: 12 }} onClick={() => privacy.setWatchDestination(enabled ? null : destination)}>
@@ -114,7 +133,7 @@ export default function WatchModal({
           </div>
         </div>
 
-        {/* Card Principal: 1-Click Install */}
+        {/* Instalação separada da autorização de envio */}
         <div
           className="card"
           style={{
@@ -125,6 +144,7 @@ export default function WatchModal({
             borderRadius: 'var(--radius)',
           }}
         >
+          <h3>2 · Adicionar o atalho</h3>
           <button
             className="btn btn-primary"
             style={{
@@ -135,7 +155,7 @@ export default function WatchModal({
             }}
             onClick={handleInstallShortcut}
           >
-            <span>{installing ? '✓ Abrindo o app Atalhos...' : 'Adicionar ao Apple Watch (1 Toque)'}</span>
+            <span>{installing ? '✓ Abrindo o app Atalhos...' : 'Abrir atalho da Apple'}</span>
           </button>
 
           <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -154,7 +174,7 @@ export default function WatchModal({
             <div className="row" style={{ alignItems: 'flex-start', gap: 10 }}>
               <span className="step-n">3</span>
               <p className="tiny muted" style={{ margin: 0, lineHeight: 1.4 }}>
-                Pronto! O atalho <b>WinFit</b> já aparecerá no seu relógio e na lista de Complicações.
+                Após adicionar, confira se o atalho <b>WinFit</b> aparece no app Atalhos do relógio.
               </p>
             </div>
           </div>
@@ -163,8 +183,8 @@ export default function WatchModal({
         {/* Token do Usuário */}
         <div className="card" style={{ marginTop: 12, padding: '12px 14px' }}>
           <div className="between">
-            <span className="tiny muted">Seu Token de Pareamento</span>
-            <button className="tiny accent-text" onClick={() => setEditingToken(!editingToken)}>
+            <span className="tiny muted">3 · Código de conexão</span>
+            <button className="btn btn-quiet btn-sm" onClick={() => setEditingToken(!editingToken)}>
               {editingToken ? 'Cancelar' : 'Alterar'}
             </button>
           </div>
@@ -176,10 +196,10 @@ export default function WatchModal({
               </span>
               <button
                 className="btn btn-ghost btn-sm"
-                style={{ padding: '4px 10px', minHeight: 30, fontSize: 12 }}
+                style={{ padding: '4px 10px', minHeight: 44, fontSize: 12 }}
                 onClick={() => copyToClipboard(watchToken, 'token')}
               >
-                {copied === 'token' ? '✓ Copiado' : 'Copiar Token'}
+                {copied === 'token' ? '✓ Copiado' : 'Copiar código'}
               </button>
             </div>
           ) : (
@@ -193,7 +213,7 @@ export default function WatchModal({
                 placeholder="WF-XXXX"
               />
               <button className="btn btn-primary btn-sm" style={{ marginTop: 8 }} onClick={handleSaveToken}>
-                Salvar Token
+                Salvar código
               </button>
             </div>
           )}
@@ -202,11 +222,11 @@ export default function WatchModal({
         {/* Menu Avançado / Manual (Colapsado por padrão) */}
         <div style={{ marginTop: 14, textAlign: 'center' }}>
           <button
-            className="tiny faint"
+            className="btn btn-quiet btn-sm"
             onClick={() => setShowAdvanced(!showAdvanced)}
             style={{ textDecoration: 'underline' }}
           >
-            {showAdvanced ? 'Ocultar opções avançadas' : 'Opções manuais e URLs'}
+            {showAdvanced ? 'Ocultar opções avançadas' : 'Configuração avançada'}
           </button>
         </div>
 
@@ -219,7 +239,7 @@ export default function WatchModal({
               </div>
               <button
                 className="btn btn-ghost btn-sm"
-                style={{ marginTop: 6, width: '100%', minHeight: 28, fontSize: 11 }}
+                style={{ marginTop: 6, width: '100%', minHeight: 44, fontSize: 12 }}
                 onClick={() => copyToClipboard(endpoints.quickLog, 'quickLog')}
               >
                 {copied === 'quickLog' ? '✓ Copiado' : 'Copiar URL'}
@@ -233,7 +253,7 @@ export default function WatchModal({
               </div>
               <button
                 className="btn btn-ghost btn-sm"
-                style={{ marginTop: 6, width: '100%', minHeight: 28, fontSize: 11 }}
+                style={{ marginTop: 6, width: '100%', minHeight: 44, fontSize: 12 }}
                 onClick={() => copyToClipboard(endpoints.addRest, 'addRest')}
               >
                 {copied === 'addRest' ? '✓ Copiado' : 'Copiar URL'}

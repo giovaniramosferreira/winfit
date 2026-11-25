@@ -9,6 +9,7 @@ import { startTraining, type TrainingMode } from '../data/sessionModules'
 import Icon from '../components/Icon'
 import { isTimedExercise } from '../lib/exerciseRules'
 import { useCircuitStore } from '../lib/circuitStore'
+import { Sheet } from '../components/ui'
 
 export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
   const nav = useNavigate()
@@ -79,15 +80,15 @@ export default function Training({ mode = 'gym' }: { mode?: TrainingMode }) {
       <div className="week-dots" style={{ marginTop:8 }}>{week.map((d,i) => <div key={i} className={`week-dot ${d.done ? 'done' : ''} ${d.today ? 'today' : ''}`}><div className="dot">{d.done ? '✓' : ''}</div><div className="lbl">{d.label}</div></div>)}</div>
     </section>
     {lastPR && <Link to={`/exercise/${lastPR.exerciseId}`} className="note" style={{ display:'block', marginTop:14, color:'inherit', textDecoration:'none' }}><b>Último recorde.</b> {byId.get(lastPR.exerciseId)?.name}: <span className="mono num">{fmtKg(lastPR.value)} × {lastPR.reps}</span></Link>}
-    {pickDay && <div className="modal-back" onClick={() => setPickDay(false)}><div className="modal" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="choose-training">
+    {pickDay && <Sheet onClose={() => setPickDay(false)} labelledBy="choose-training"><div>
       <h2 id="choose-training">Escolher dia</h2>{plan.days.map(d => <button key={d.id} className="list-item" onClick={() => start(d.id)}><div className="grow"><h3>{d.label}</h3><span className="small muted num">{d.exercises.length} exercícios · ~{d.estMin} min</span></div><span className="chev">›</span></button>)}
       <button className="btn btn-quiet" onClick={() => setPickDay(false)}>Voltar</button>
-    </div></div>}
-    {expired && active && <div className="modal-back"><div className="modal" role="dialog" aria-modal="true" aria-labelledby="training-expired">
+    </div></Sheet>}
+    {expired && active && <Sheet dismissible={false} labelledBy="training-expired" onClose={() => setExpired(false)}><div>
       <h2 id="training-expired">Treino inacabado</h2><p className="small muted">{active.dayLabel}: {active.logs.length} séries registradas.</p>
       <button className="btn btn-primary" onClick={() => { setExpired(false); nav('/player') }}>Continuar treino</button>
       <button className="btn btn-ghost" style={{ marginTop:10 }} onClick={() => { saveExpired(); setExpired(false) }}>Salvar como parcial</button>
       <button className="btn btn-quiet" onClick={() => setExpired(false)}>Voltar</button>
-    </div></div>}
+    </div></Sheet>}
   </div>
 }

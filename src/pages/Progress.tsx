@@ -2,10 +2,11 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../lib/store'
 import { byId } from '../data/exercises'
-import { fmtDate, fmtDuration, sessionsInWeekOffset, sessionsThisWeek, plural } from '../lib/helpers'
+import { fmtDate, fmtDuration, sessionActiveMs, sessionsInWeekOffset, sessionsThisWeek, plural } from '../lib/helpers'
 import { activityTotals, exerciseProgressSeries, fmtKg, volumeOf } from '../lib/progression'
 import { isTimedExercise } from '../lib/exerciseRules'
 import Chart from '../components/Chart'
+import TrainingInsights from '../components/TrainingInsights'
 
 export default function Progress() {
   const sessions = useStore((s) => s.sessions)
@@ -96,6 +97,7 @@ export default function Progress() {
       </div>
 
       <WeekBars sessions={sessions} goal={profile.frequency} />
+      <TrainingInsights />
 
       {prs.length > 0 && (
         <div className="card" style={{ marginTop: 14 }}>
@@ -135,7 +137,7 @@ export default function Progress() {
             <div className="grow">
               <span className="small">{s.dayLabel} {s.status === 'partial' && <span className="pill">parcial</span>}</span>
               <div className="tiny faint num">
-                {fmtDate(s.startedAt)} · {plural(s.logs.length, 'série', 'séries')} · {s.endedAt ? fmtDuration(s.endedAt - s.startedAt) : ''}
+                {fmtDate(s.startedAt)} · {plural(s.logs.length, 'série', 'séries')} · {sessionActiveMs(s) !== null ? fmtDuration(sessionActiveMs(s)!) : ''}
               </div>
             </div>
             <span className="mono num small muted">{activity.hasLoad ? `${Math.round(activity.volume)} kg` : <>
